@@ -1,0 +1,32 @@
+import grails.test.mixin.TestFor
+import grails.test.mixin.Mock
+import spock.lang.Specification
+// import com.acme.app.Book
+
+@TestFor(BookController)
+@Mock(Book)
+
+class BookControllerSpec extends Specification {
+
+   void "test saving an invalid book"() {
+        when:
+        controller.save()
+
+        then:
+        model.bookInstance != null
+        view == '/book/create'
+    }
+
+    void "test saving a valid book"() {
+        when:
+        params.title = "The Stand"
+        params.pages = "500"
+
+        controller.save()
+
+        then:
+        response.redirectedUrl == '/book/show/1'
+        flash.message != null
+        Book.count() == 1
+    }
+}

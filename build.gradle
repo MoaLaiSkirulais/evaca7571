@@ -11,7 +11,7 @@ buildscript {
 }
 
 version "0.1"
-group "evaca7571"
+group "acme"
 
 apply plugin:"eclipse"
 apply plugin:"idea"

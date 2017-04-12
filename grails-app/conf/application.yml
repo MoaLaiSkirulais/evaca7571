@@ -2,7 +2,7 @@
 grails:
     profile: web
     codegen:
-        defaultPackage: evaca7571
+        defaultPackage: acme
     spring:
         transactionManagement:
             proxies: false
