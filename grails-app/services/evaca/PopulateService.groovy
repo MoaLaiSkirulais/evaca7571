@@ -5,6 +5,81 @@ import grails.transaction.Transactional
 @Transactional
 class PopulateService {
  
+	/* razas */
+	def razas() {
+
+		log.info "Populando razas..."
+		new Raza(name: "Aberdeen Angus").save()
+		new Raza(name: "Braford").save()
+		new Raza(name: "Holando Argentino").save()
+		new Raza(name: "Cruza").save()
+		new Raza(name: "Hereford").save()
+		new Raza(name: "Jersey").save()
+		new Raza(name: "Bovino Criollo").save()
+		new Raza(name: "Brangus").save()
+		new Raza(name: "Careta").save()
+		return 1
+	}
+
+	/* categorias */
+	def categorias() {
+
+		log.info "Populando categorias..."
+		new Categoria(name: "Preñadas").save()
+		new Categoria(name: "Con Ternero al Pie").save()
+		new Categoria(name: "Vacias").save()
+		new Categoria(name: "De Descarte").save()
+		new Categoria(name: "Con Servicio").save()
+		return 1
+	}
+
+	/* usuarios */
+	def usuarios() {
+
+		log.info "Populando usuarios..."
+		
+		new Usuario(
+			fechaCreacion: "11/11/2011", 
+			username: "lcastro", 
+			nombre: "Leo", 
+			apellido: "Castro", 
+			email: "leocastro@gmail.com", 
+			tbTipo: "Castro", 
+			password: "Castro", 
+			tbState: "Castro", 
+			puntaje: 11, 
+			comision: 11					
+		).save()
+		
+		new Usuario(
+			fechaCreacion: "11/11/2011", 
+			username: "mporto", 
+			nombre: "Martin", 
+			apellido: "Porto", 
+			email: "martinporto@gmail.com", 
+			tbTipo: "Castro", 
+			password: "Castro", 
+			tbState: "Castro", 
+			puntaje: 11, 
+			comision: 11					
+		).save()
+		
+		new Usuario(
+			fechaCreacion: "11/11/2011", 
+			username: "dguglie", 
+			nombre: "Damian", 
+			apellido: "Guglielmoti", 
+			email: "dguglie@gmail.com", 
+			tbTipo: "Castro", 
+			password: "Castro", 
+			tbState: "Castro", 
+			puntaje: 11, 
+			comision: 11					
+		).save()
+
+		return 1
+	}
+
 	/* lotes */
 	def lotes() {
 
@@ -237,5 +312,45 @@ class PopulateService {
 		).save()
 
 		return
+	}
+	
+	/* all */
+	def all() {
+
+		razas()
+		categorias()
+		usuarios()
+		lotes()
+		avisos()
+		ofertas()
+		ventas()
+		resenas()
+	}
+	
+	/* showAll */
+	def showAll() {
+
+		println Raza.list().toString()
+		println Categoria.list().toString()
+		println Usuario.list().toString()
+		println Lote.list().toString()
+		println Aviso.list().toString()
+		println Oferta.list().toString()
+		println Venta.list().toString()
+		println Resena.list().toString()
+	}	
+	
+	/* countAll */
+	def countAll() {
+
+		println Raza.list().size()
+		println Categoria.list().size()
+		println Usuario.list().size()
+		println Lote.list().size()
+		println Aviso.list().size()
+		println Oferta.list().size()
+		println Venta.list().size()
+		println Resena.list().size()
+
 	}
 }
