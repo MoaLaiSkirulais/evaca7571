@@ -1,0 +1,12 @@
+2017-04-15 13:26:09 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "RESENA" not found; SQL statement:
+select count(*) as y0_ from resena this_ [42102-193]
+2017-04-15 13:26:26 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "AVISO" not found; SQL statement:
+select count(*) as y0_ from aviso this_ [42102-193]
+2017-04-15 13:26:33 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "OFERTA" not found; SQL statement:
+select count(*) as y0_ from oferta this_ [42102-193]
+2017-04-15 13:43:33 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOTE" not found; SQL statement:
+select count(*) as y0_ from lote this_ [42102-193]
