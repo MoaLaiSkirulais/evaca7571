@@ -3,7 +3,7 @@ package evaca
 class Usuario {
 
 
-	Date fechaCreacion
+	String fechaCreacion
 	String nombre
 	String apellido
 	String email

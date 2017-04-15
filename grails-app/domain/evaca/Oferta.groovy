@@ -2,10 +2,11 @@ package evaca
 
 class Oferta {
 
-	Date fechaCreacion
-	
+	Date fechaCreacion	
 	Aviso aviso
-	static belongsTo = [aviso:Aviso]
+	Usuario usuario
+	
+	static belongsTo = [aviso:Aviso, usuario:Usuario]
 
     static constraints = {
     }
