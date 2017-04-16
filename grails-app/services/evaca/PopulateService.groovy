@@ -39,41 +39,41 @@ class PopulateService {
 		log.info "Populando usuarios..."
 		
 		new Usuario(
-			fechaCreacion: "11/11/2011", 
+			fechaCreacion: new Date(), 
 			username: "lcastro", 
 			nombre: "Leo", 
 			apellido: "Castro", 
 			email: "leocastro@gmail.com", 
-			tbTipo: "Castro", 
+			tbTipo: "Consignatario", 
 			password: "Castro", 
-			tbState: "Castro", 
-			puntaje: 11, 
+			tbState: "Activo", 
+			// puntaje: 11, 
 			comision: 11					
 		).save()
 		
 		new Usuario(
-			fechaCreacion: "11/11/2011", 
+			fechaCreacion: new Date(), 
 			username: "mporto", 
 			nombre: "Martin", 
 			apellido: "Porto", 
 			email: "martinporto@gmail.com", 
-			tbTipo: "Castro", 
+			tbTipo: "Productor", 
 			password: "Castro", 
-			tbState: "Castro", 
-			puntaje: 11, 
+			tbState: "Activo", 
+			// puntaje: 11, 
 			comision: 11					
 		).save()
 		
 		new Usuario(
-			fechaCreacion: "11/11/2011", 
+			fechaCreacion: new Date(),  
 			username: "dguglie", 
 			nombre: "Damian", 
 			apellido: "Guglielmoti", 
 			email: "dguglie@gmail.com", 
-			tbTipo: "Castro", 
+			tbTipo: "Productor", 
 			password: "Castro", 
-			tbState: "Castro", 
-			puntaje: 11, 
+			tbState: "Pendiente", 
+			// puntaje: 11, 
 			comision: 11					
 		).save()
 
@@ -89,6 +89,7 @@ class PopulateService {
 		// def c = Categoria.first()
 
 		new Lote(
+			usuario: Usuario.last(), 
 			raza: Raza.list()[2], 
 			categoria: Categoria.list()[2], 
 			fechaCreacion: new Date(), 
@@ -110,6 +111,7 @@ class PopulateService {
 		
 		
 		new Lote(
+			usuario: Usuario.last(), 
 			raza: Raza.list()[1], 
 			categoria: Categoria.list()[1], 
 			fechaCreacion: new Date(), 
@@ -131,6 +133,7 @@ class PopulateService {
 		
 		
 		new Lote(
+			usuario: Usuario.last(), 
 			raza: Raza.list()[3], 
 			categoria: Categoria.list()[3], 
 			fechaCreacion: new Date(), 
@@ -343,14 +346,14 @@ class PopulateService {
 	/* countAll */
 	def countAll() {
 
-		println Raza.list().size()
-		println Categoria.list().size()
-		println Usuario.list().size()
-		println Lote.list().size()
-		println Aviso.list().size()
-		println Oferta.list().size()
-		println Venta.list().size()
-		println Resena.list().size()
+		println "Raza" + Raza.list().size()
+		println "Categoria" + Categoria.list().size()
+		println "Usuario" + Usuario.list().size()
+		println "Lote" + Lote.list().size()
+		println "Aviso" + Aviso.list().size()
+		println "Oferta" + Oferta.list().size()
+		println "Venta" + Venta.list().size()
+		println "Resena" + Resena.list().size()
 
 	}
 }

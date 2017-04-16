@@ -16,28 +16,28 @@ class Lote {
 	Boolean trazada
 	String ubicacion
 	Integer edad
-	String descarte
+	// String descarte
 	Boolean marcaLiquida
-	String pesada
-	String desbaste
+	// String pesada
+	// String desbaste
 	String cuit
-	Float precio
+	// Float precio
 	Integer tiempoDePago
       
 	Raza raza	
 	Categoria categoria
 	
-	static belongsTo = [raza: Raza, categoria: Categoria]
-	
+	static belongsTo = [raza: Raza, categoria: Categoria, usuario:Usuario]
+
 	static constraints = {
-	
-		descarte blank: true, nullable: true
-		pesada blank: true, nullable: true
-		desbaste blank: true, nullable: true
+
+		// descarte blank: true, nullable: true
+		// pesada blank: true, nullable: true
+		// desbaste blank: true, nullable: true
 
 		// raza size: 5..15, blank: true //, unique: true
 		// categoria blank: false, nullable: false
-		 // categoria inList: ['A', 'B', 'C']
+		// categoria inList: ['A', 'B', 'C']
 
         // password size: 5..15, blank: false
         // email email: true, blank: false

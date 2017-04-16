@@ -22,4 +22,13 @@ class Aviso {
 		]
 
 	}
+	
+    public void setTbState(String tbState) {
+		if (tbState == 'Active'){
+			this.tbState = 'Finished'
+		} else {
+			this.tbState = tbState
+		}
+    }
+
 }
