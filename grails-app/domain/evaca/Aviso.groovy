@@ -6,10 +6,11 @@ class Aviso {
 	Date fechaPublicacion
 	String tbState
 	Float precio
+	Usuario consignatario
 	
 	Lote lote      
-	static belongsTo = [lote:Lote]
- 
+	static belongsTo = [lote:Lote, consignatario:Usuario]
+	
 	static constraints = {
 
 		tbState blank: false, nullable: false

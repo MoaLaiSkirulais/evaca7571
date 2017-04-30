@@ -317,6 +317,39 @@ class PopulateService {
 		return
 	}
 	
+	/* preguntas */
+	def preguntas() {
+
+		log.info "Populando preguntas..."
+		
+		new Pregunta( 			
+			fechaCreacion: new Date(), 
+			label: "Como fue la comunicacion con el vendedor?"
+		).save()
+
+		new Pregunta( 			
+			fechaCreacion: new Date(), 
+			label: "Como fue la comunicacion con el consignatario?"
+		).save()
+
+		new Pregunta( 			
+			fechaCreacion: new Date(), 
+			label: "Cual es el estado del lote?"
+		).save()
+
+		new Pregunta( 			
+			fechaCreacion: new Date(), 
+			label: "Volveria a comprar?"
+		).save()
+
+		new Pregunta( 			
+			fechaCreacion: new Date(), 
+			label: "Que le parecio el sistema?"
+		).save()
+
+		return
+	}
+	
 	/* all */
 	def all() {
 
@@ -328,6 +361,7 @@ class PopulateService {
 		ofertas()
 		ventas()
 		resenas()
+		preguntas()
 	}
 	
 	/* showAll */
@@ -341,6 +375,7 @@ class PopulateService {
 		println Oferta.list().toString()
 		println Venta.list().toString()
 		println Resena.list().toString()
+		println Pregunta.list().toString()
 	}	
 	
 	/* countAll */
@@ -354,6 +389,7 @@ class PopulateService {
 		println "Oferta" + Oferta.list().size()
 		println "Venta" + Venta.list().size()
 		println "Resena" + Resena.list().size()
+		println "Pregunta" + Pregunta.list().size()
 
 	}
 }

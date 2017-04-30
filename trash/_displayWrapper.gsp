@@ -1,0 +1,1 @@
+<f:field bean="person" property="gender" widget-optionValue="name"/>

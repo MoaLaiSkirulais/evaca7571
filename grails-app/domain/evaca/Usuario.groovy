@@ -13,24 +13,41 @@ class Usuario {
 	Float puntaje
 	Float comision
 	
+	// public Usuario(Map map) {
+        // map?.each { k, v -> this[k] = v }
+        // nombre = "garcha"
+    // }
+
+	
 	static hasMany = [ofertas: Oferta, resenas: Resena]
-		
+
     static constraints = {
 	
-		puntaje blank: true, nullable: true, editable: false, defaultValue: 0
+		// fechaCreacion()
+		fechaCreacion blank: true, nullable: true, editable: false
+		nombre()
+		apellido()
 		email email: true, unique: true
-		username size: 6..15, blank: false, unique: true
+		tbState inList: ['Activo', 'Inactivo', 'Pendiente']
+		tbTipo inList: ['Consignatario', 'Productor']
 		
+		username size: 6..15, blank: false, unique: true		
+		password()
+	
+		puntaje blank: true, nullable: true, editable: false, defaultValue: 0
+		comision()
 		// raza size: 5..15, blank: true //, unique: true
 		// comision range: 0..50
 		// apellido widget: 'textarea'
-		
-		tbState inList: ['Activo', 'Inactivo', 'Pendiente']
-		tbTipo inList: ['Consignatario', 'Productor']
+
     }
 	
     static mapping = {
         sort "fechaCreacion"
+    }
+	
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = new Date()
     }
 
 }
