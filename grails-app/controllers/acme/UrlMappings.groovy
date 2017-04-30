@@ -14,6 +14,8 @@ class UrlMappings {
 		"/form"(controller:"home", action:"bookData") 
 		"/milayout" (controller:"home", action:"milayout", view: "milayout") 
 	    "/caca"(view: "/caca")  
+	    "/field"(controller:"field", action:"index")
+	    "/plugins"(controller:"field", action:"plugins", view: "plugins")
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')

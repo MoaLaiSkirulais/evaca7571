@@ -2,17 +2,20 @@ package evaca
 
 class Raza {
 
-      String name
-      static hasMany = [lotes:Lote]
-      
-	  Set lotes
-      static constraints = {
-              name(nullable:false, blank:false)
-      }
+	Date fechaCreacion	
+	String name
+	
+	static hasMany = [lotes:Lote]
+	Set lotes
 
-      String toString(){
-              this.name
-      }
+	static constraints = {
+		name(nullable:false, blank:false)
+		fechaCreacion blank: true, nullable: true
+	}
+
+	String toString(){
+		this.name
+	}
 
 }
 

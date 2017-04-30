@@ -1,21 +1,21 @@
 package evaca
 
-/* 
- * Book
- */
+// /* 
+ // * Book
+ // */
  
-class Book {
+// class Book {
 
-	Integer id
-	String author
-	String title
+	// Integer id
+	// String author
+	// String title
 	
-	public Book(String author, String title){
-		this.author = author;
-		this.title = title;      
-		this.id = 1;      
-	}
-}
+	// public Book(String author, String title){
+		// this.author = author;
+		// this.title = title;      
+		// this.id = 1;      
+	// }
+// }
 
 /* 
  * HomeController
