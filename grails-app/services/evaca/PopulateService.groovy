@@ -165,7 +165,8 @@ class PopulateService {
 			lote: Lote.list()[1], 
 			fechaCreacion: new Date(), 
 			fechaPublicacion: new Date(), 
-			tbState: "Draft",
+			tbState: "Borrador",
+			consignatario: Usuario.list()[2], 
 			precio: 3200
 		).save()
 		
@@ -173,7 +174,8 @@ class PopulateService {
 			lote: Lote.list()[1], 
 			fechaCreacion: new Date(), 
 			fechaPublicacion: new Date(), 
-			tbState: "Active",
+			tbState: "Borrador",
+			consignatario: Usuario.list()[2], 
 			precio: 3200
 		).save()
 		
@@ -181,7 +183,8 @@ class PopulateService {
 			lote: Lote.list()[2], 
 			fechaCreacion: new Date(), 
 			fechaPublicacion: new Date(), 
-			tbState: "Draft",
+			tbState: "Borrador",
+			consignatario: Usuario.list()[2], 
 			precio: 3200
 		).save()
 		
@@ -189,7 +192,8 @@ class PopulateService {
 			lote: Lote.list()[2], 
 			fechaCreacion: new Date(), 
 			fechaPublicacion: new Date(), 
-			tbState: "Active",
+			tbState: "Borrador",
+			consignatario: Usuario.list()[2], 
 			precio: 3200
 		).save()
 		
@@ -198,6 +202,7 @@ class PopulateService {
 			fechaCreacion: new Date(), 
 			fechaPublicacion: new Date(), 
 			tbState: "Vendido",
+			consignatario: Usuario.list()[2], 
 			precio: 3200
 		).save()
 		

@@ -19,26 +19,20 @@ class Usuario {
     // }
 
 	
-	static hasMany = [ofertas: Oferta, resenas: Resena]
+	static hasMany = [ofertas: Oferta, resenas: Resena, lotes: Lote]
 
     static constraints = {
 	
-		// fechaCreacion()
-		fechaCreacion blank: true, nullable: true, editable: false
+		fechaCreacion blank: true, nullable: true
 		nombre()
 		apellido()
 		email email: true, unique: true
-		tbState inList: ['Activo', 'Inactivo', 'Pendiente']
-		tbTipo inList: ['Consignatario', 'Productor']
-		
+		tbState nullable: true, inList: ['Activo', 'Inactivo', 'Pendiente']
+		tbTipo inList: ['Consignatario', 'Productor']		
 		username size: 6..15, blank: false, unique: true		
 		password()
-	
 		puntaje blank: true, nullable: true, editable: false, defaultValue: 0
 		comision()
-		// raza size: 5..15, blank: true //, unique: true
-		// comision range: 0..50
-		// apellido widget: 'textarea'
 
     }
 	
@@ -46,8 +40,22 @@ class Usuario {
         sort "fechaCreacion"
     }
 	
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = new Date()
+    public Usuario() {
+		this.fechaCreacion = new Date();
+		this.tbState = "Pendiente";
     }
+	
+	// public void setFechaCreacion(Date fechaCreacion) {
+		// this.fechaCreacion = new Date()
+    // }
+	
+	def beforeInsert() {
+		this.fechaCreacion = new Date()
+		this.tbState = "Pendiente"
+	}
+	
+	String toString(){
+		this.nombre + " " + this.apellido
+	}
 
 }
