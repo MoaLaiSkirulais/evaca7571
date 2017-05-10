@@ -1,5 +1,8 @@
 <% now = new Date() %>
 <h3><%=now%></h3>
+---
+<g:isLoggedIn>You are logged in!</g:isLoggedIn>
+---
 
 <g:form>    
 	<f:all bean="raza"/>
@@ -25,9 +28,3 @@
 <f:display bean="raza" property="fechaCreacion">
     <g:formatDate format="dd MMM yyyy" date="${value}"/>
 </f:display>
-
-!!
-
-
-
-
