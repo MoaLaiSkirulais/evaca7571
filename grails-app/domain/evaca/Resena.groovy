@@ -19,7 +19,7 @@ class Resena {
 	static belongsTo = [venta:Venta, usuario:Usuario] 
 	// static hasMany = [preguntas: Pregunta]
 	// static hasMany = [resenaPreguntas: ResenaPregunta]
-  static mapping = {
+	static mapping = {
         comentario type: "text"
     }
 

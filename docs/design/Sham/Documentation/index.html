@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sham &#8211; Documentation</title>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="all" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="all" href="css/prettify.css">
+	<link rel="stylesheet" type="text/css" media="all" href="css/style.css">
+</head>
+<body data-spy="scroll" data-target="#sidebar-wrapper">
+	<!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav nav">
+	    	<div slim-scroll>
+	            <li class="sidebar-brand ex">
+	                <a href="#">Sham Docs</a>
+	            </li>
+	            <li>
+	                <a href="#get-started">Get Started</a>
+	            </li>
+	            <li>
+	                <a href="#file-structure">File Structure</a>
+	            </li>
+	            <li>
+	                <a href="#grunt">Grunt</a>
+	            </li>
+	            <li>
+	                <a href="#grid-system">Grid System</a>
+	            </li>
+	            <li>
+	                <a href="#map">Map</a>
+	            </li>
+	            <li>
+	                <a href="#icons">Icons</a>
+	            </li>
+	            <li>
+	                <a href="#slider-default">Slider Default</a>
+	            </li>
+	            <li>
+	                <a href="#slider-swiper">Slider Swiper</a>
+	            </li>
+	            <li>
+	                <a href="#flying-to-cart">Flying to cart</a>
+	            </li>
+	            <li>
+	                <a href="#slide-toggle">Slide Toggle</a>
+	            </li>
+	            <li>
+	                <a href="#helpers-classes">Helpers Classes</a>
+	            </li>
+	            <li>
+	                <a href="#plugin-slimScroll">Plugin - slimScroll</a>
+	            </li>
+	            <li>
+	                <a href="#plugin-owlCarousel">Plugin - owlCarousel</a>
+	            </li>
+	            <li>
+	                <a href="#plugin-fancybox">Plugin - fancyBox</a>
+	            </li>
+	            <li class="divider"></li>
+	            <li class="ex">
+	                <a class="active" href="mailto:support@liliom.co">Contact</a>
+	            </li>
+	        </div>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <div id="wrapper">
+    	<div class="docs">
+    		<article id="get-started">
+    			<h2 class="title" style="margin-top: 0;">Get Started</h2>
+    			<blockquote>
+    				<p>
+	    				Thank you for purchasing our theme 😊
+	    			</p>
+    			</blockquote>
+    			<p>
+    				This documentation will give you an understanding of how the files are structured and guide you in performing common functions.
+    			</p>
+    				If you have any questions that are beyond the scope of this help file, please feel free contact us via e-mail: <code>support@liliom.co</code>. Enjoy!
+    			</p>
+    		</article>
+
+    		<article id="file-structure">
+    			<h2 class="title">File Structure</h2>
+    			<p>The template contains 20 html files. You will find them in the root directory of the download package.</p>
+				<br>
+
+				<pre><code>Sham/
+├── assets/
+│   └── css/
+│     ├── jquery.fancybox.css
+│     ├── Liliom-icons.css
+│     ├── owl.carousel.css
+│     ├── pace.css
+│     ├── swiper.css
+│   └── fonts/
+│     └── Liliom/
+│     ├── glyphicons-halflings-regular.ttf
+│   └── img/
+│     ├── ....
+│   └── js/
+│     └── libs/
+│     ├── scripts.js
+│   └── sass/
+│     └── bootstrap/
+│     ├── _mixins.scss
+│     ├── _variables.scss
+│     ├── style.scss
+├── grunt/
+|   ├── Gruntfile.js
+|   ├── package.json
+├── build/
+│   ├── ....
+</code></pre><br>
+				<ul>
+					<li class="folder">
+						<h4><code>assets/css</code></h4>
+		    			<p>
+		    				This folder contains all CSS packages, which used by the template. All files here should not be changed.
+		    			</p>
+		    			<ol>
+		    				<li class="file">
+									<h4><code>jquery.fancybox.css</code></h4>
+				    			<p>
+				    				The CSS file for the <a href="http://fancybox.net/" target="_blank">jQuery Fancy Box plugin</a>
+				    			</p>
+								</li>
+								<li class="file">
+									<h4><code>Liliom-icons.css</code></h4>
+				    			<p>
+				    				The CSS file for every icon in the theme. <a href="#icons">Read More</a>
+				    			</p>
+								</li>
+								<li class="file">
+									<h4><code>owl.carousel.css</code></h4>
+				    			<p>
+				    				The CSS file for the <a href="https://github.com/OwlFonk/OwlCarousel">OWL Carousel</a> plugin <a href="#plugin-owlCarousel">Read More</a>
+				    			</p>
+								</li>
+								<li class="file">
+									<h4><code>pace.css</code></h4>
+				    			<p>
+				    				The CSS file for the loader bar <a href="http://github.hubspot.com/pace/docs/welcome/">pace</a> plugin.
+				    			</p>
+								</li>
+								<li class="file">
+									<h4><code>swiper.css</code></h4>
+				    			<p>
+				    				The CSS file for the slider plugin <a href="www.idangero.us/swiper/">Swiper</a> plugin.
+				    			</p>
+								</li>
+		    			</ol>
+					</li>
+					<li class="folder">
+						<h4><code>assets/fonts</code></h4>
+						<p>
+							All fonts which used in the template are located here.
+						</p>
+					</li>
+					<li class="folder">
+						<h4><code>assets/js</code></h4>
+		    			<p>
+		    				Sham. comes with a number of JS files, many of which you will never edit. If you don't know your way around javascript please don't edit them, these files will break parts of your site.
+		    			</p>
+		    			<ol>
+		    				<li class="file">
+								<h4><code>scripts.js</code></h4>
+				    			<p>
+				    				This is the main scripts file for the template, that includes all functions specific to the theme such as control of the slider and initialize map and Carousel among other things.
+				    			</p>
+							</li>
+		    			</ol>
+					</li>
+					<li class="folder">
+						<h4><code>assets/sass</code></h4>
+		    			<p>
+		    				We use <a href="http://sass-lang.com/">Sass</a> language as a preprocessor for CSS, this means if you want to edit CSS and customize your theme, you should edit these files, and not the files in <code>assets/css</code>.
+		    				<br>
+		    				Sass comes with a lot of great features, it offers variables, mixins and others to make editing and customizing the template so much easier.
+		    				<br>
+		    				Note: All files which started with underscore like <code>_variables.scss</code> are includable.
+		    			</p>
+		    			<ol>
+		    				<li class="file">
+								<h4><code>bootstrap/</code></h4>
+				    			<p>
+				    				This folder contains <a href="http://getbootstrap.com/css/#sass">bootstrap sass</a>, it is a version of bootstrap which written in sass, it makes the process of editing and customizing bootstrap so much easier.
+				    				<br>
+				    				<b>Example:</b>
+				    				we can edit bootstrap itself through overriding its variables, you can go to bootstrap variables file <code>bootstrap/bootstrap/_variables.scss</code>, pick a variable, copy it, paste it in our variables file <code>_variables.scss</code>, and change it to the value of your choice. <br>
+<pre class="prettyprint linenums">
+// bootstrap/bootstrap/_variables.scss
+// line 373
+// I picked this variable here
+$navbar-default-bg: #f8f8f8 !default;
+
+// _variables.scss
+// line 31
+// and changed it to my own value here.
+$navbar-default-bg: #fff;
+</pre>
+				    			</p>
+								</li>
+								<li class="file">
+									<h4><code>_mixins.scss</code></h4>
+									<p>A Mixin is a group of CSS declarations that you want to reuse throughout your site. All theme Mixins are included in this file.</p>
+								</li>
+								<li class="file">
+									<h4><code>_variables.scss</code></h4>
+									<p>This file has all theme variables, from it you can edit the your theme colors and fonts.</p>
+								</li>
+								<li class="file">
+									<h4><code>style.scss</code></h4>
+									<p>The main style file, it has all CSS for every single detail in the theme.</p>
+								</li>
+		    			</ol>
+					</li>
+					<li class="folder">
+						<h4><code>assets/grunt</code></h4>
+		    			<p>
+		    				This folder contains everything relevant to grunt, and task automation.
+		    			</p>
+		    			<ol>
+		    				<li class="file">
+									<h4><code>Gruntfile.js</code></h4>
+				    			<p>
+				    				The Grunt Main file, you will find full explanation <a href="#grunt">here</a>.
+				    			</p>
+								</li>
+								<li class="file">
+									<h4><code>package.json</code></h4>
+				    			<p>
+				    				This file is the NPM packages file, it contains all packages names, and versions, you can install the packages by executing <code>npm install</code> on this directory.
+				    				<br>
+				    				for further details, see <a href="#grunt">Grunt Section</a>
+				    			</p>
+								</li>
+		    			</ol>
+					</li>
+					<li class="folder">
+						<h4><code>assets/build</code></h4>
+						<p>The build directory for grunt, when grunt starts, it takes all files in assets, apply its edits, and put the files here.</p>
+					</li>
+				</ul>
+    		</article>
+
+    		<article id="grunt">
+    			<h2 class="title">Grunt</h2>
+    			<p>The <a href="http://gruntjs.com/" target="_blank">Grunt main website</a>, defines Grunt as "In one word: automation. The less work you have to do when performing repetitive tasks like minification, compilation, unit testing, linting, etc, the easier your job becomes. After you've configured it through a Gruntfile, a task runner can do most of that mundane work for you—and your team—with basically zero effort."
+					<br>
+					<br>
+					So Grunt is basically a task runner, that do repetitive tasks, and we are using it in the theme to concat and minfiy JavaScript, compile sass and minfiy css, and compress images.
+					<br>
+					<br>
+					All stuff which relevant to grunt is exists in the <code>grunt</code> directory.
+					<br>
+					<br>
+					<img src="images/grunt-folder.png">
+					<br>
+					<br>
+					The first thing you need to do is opening your CMD or Terminal here, and execute <code>npm install</code> if not works, you need to install npm, and grunt, so search in google for "How to install NPM and Grunt" and add the name of your OS to the search query.
+					<br>
+					<br>
+					After installing npm and grunt, execute <code>npm install</code> in the <code>grunt</code> directory. and when that get finished, you will notice a new directory <code>grunt/node_modules</code> this directory contains all modules, which will be used by Grunt.
+					<br>
+					<br>
+					Now you will need to do one thing, basically open CMD or Terminal on the <code>grunt</code> folder, and execute <code>grunt</code> and now grunt will minify the CSS and JS, and do all the repeatative stuff for us, now you can open <code>index.html</code> and you will notice that it is working.
+					<br>
+					<br>
+					<img src="images/grunt-command.png">
+					<br>
+					<br>
+					<h4>Notes:</h4>
+					<ul>
+						<li>When you need to change anything in sass or js code, you will need to run this command <code>grunt</code> so grunt will start compiling sass, and minifying it, etc...</li>
+					</ul>
+    			</p>
+    		</article>
+
+    		<article id="grid-system">
+    			<h2 class="title">Grid System</h2>
+    			<p>The template is based on Bootstrap v3.3.6, 12 column grid system. Is flexible and easy to understand. For more info go <a href="http://getbootstrap.com/css/#grid" target="_blank">here</a>.</p>
+
+				<h4>Basic Introduction</h4>
+                <p>Grid systems are used for creating page layouts through a series of rows and columns that house your content. Here's how the Bootstrap grid system works:</p>
+                <p>Rows must be placed within a <code>.container</code> (fixed-width) or <code>.container-fluid</code> (full-width) for proper alignment and padding.</p>
+                <p>Use rows to create horizontal groups of columns.</p>
+                <p>Content should be placed within columns, and only columns may be immediate children of rows.</p>
+                <p>Predefined grid classes like <code>.row</code> and <code>.col-xs-4</code> are available for quickly making grid layouts. Less mixins can also be used for more semantic layouts.</p>
+                <p>Columns create gutters (gaps between column content) via <code>padding</code>. That padding is offset in rows for the first and last column via negative margin on <code>.rows</code>.</p>
+                <p>The negative margin is why the examples below are outdented. It's so that content within grid columns is lined up with non-grid content.</p>
+                <p>Grid columns are created by specifying the number of twelve available columns you wish to span. For example, three equal columns would use three .<code>col-xs-4</code>.</p>
+                <p>If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line.</p>
+                <p>Grid classes apply to devices with screen widths greater than or equal to the breakpoint sizes, and override grid classes targeted at smaller devices. Therefore, applying any <code>.col-md-</code> class to an element will not only affect its styling on medium devices but also on large devices if a <code>.col-lg-</code> class is not present.</p>
+    		</article>
+
+    		<article id="map">
+    			<h2 class="title">Map</h2>
+    			<p>Sham uses Google maps plugin. If you want to add a map to any page you have to first call the Google maps API after the footer and before the ending body tag like this:</p>
+
+    			<pre class="prettyprint linenums">&#x3C;script src=&#x22;https://maps.googleapis.com/maps/api/js?v=3.exp&#x22;&#x3E;&#x3C;/script&#x3E;</pre>
+
+    			<p>
+    				Then add a div with the id #map, with attributes <code>data-lat=""</code> for latitude and <code>data-long=""</code> for longitude and <code>data-title=""</code> for title and <code>data-subtitle=""</code> for subtitle. Like this:
+    			</p>
+    			<pre class="prettyprint linenums">&#x3C;div id=&#x22;map&#x22; data-lat=&#x22;40.9803480&#x22; data-long=&#x22;28.7270580&#x22; data-title=&#x22;Liliom Lab&#x22; data-subtitle=&#x22;Istanbul, Turkey&#x22;&#x3E;&#x3C;/div&#x3E;</pre>
+    		</article>
+
+    		<article id="icons">
+    			<h2 class="title">Icons</h2>
+    			<p>Sham uses <a href="http://liliomlab.com/static/LiliomIcons/index.html">Liliom Icons</a> font. This font combines <a href="https://design.google.com/icons/">Material icons</a> and <a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a> icons together.</p>
+
+    			<p>Using (Liliom Icons) package is very easy and simple, Let's take an example:</p>
+
+    			<p><code>&#x3C;i class=&#x22;lil-ICON_NAME&#x22;&#x3E;&#x3C;/i&#x3E;</code> Example: <code>&#x3C;i class=&#x22;lil-search&#x22;&#x3E;&#x3C;/i&#x3E;</code></p>
+
+    			<p><small>You can get icons codes from <a href="http://liliomlab.com/static/LiliomIcons/index.html">here</a>.</small></p>
+    		</article>
+
+    		<article id="slider-default">
+    			<h2 class="title">Slider Default</h2>
+    			<p>Sham uses Bootstrap Carousel as second slider. You can view all available options for the carousel at their <a href="http://getbootstrap.com/javascript/#carousel">website</a></p>
+
+    			<p>The basic structure implemented in Sham Template is as follows:</p>
+    			<pre class="prettyprint linenums">&lt;div class=&quot;slider&quot;&gt;
+	&lt;div id=&quot;YOUR_SILDER_ID&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;
+	    &lt;!-- Indicators --&gt;
+	    &lt;ol class=&quot;carousel-indicators&quot;&gt;
+	        &lt;li data-target=&quot;#YOUR_SILDER_ID&quot; data-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/li&gt;
+	        &lt;li data-target=&quot;#YOUR_SILDER_ID&quot; data-slide-to=&quot;1&quot;&gt;&lt;/li&gt;
+	        &lt;li data-target=&quot;#YOUR_SILDER_ID&quot; data-slide-to=&quot;2&quot;&gt;&lt;/li&gt;
+	    &lt;/ol&gt;
+
+	    &lt;!-- Wrapper for slides --&gt;
+	    &lt;div class=&quot;carousel-inner&quot; role=&quot;listbox&quot;&gt;
+	    	&lt;!-- SLIDE WITH TEXT --&gt;
+	        &lt;div class=&quot;item active&quot; style=&quot;background-image: url('build/img/image.jpg');&quot;&gt;
+                	&lt;div class=&quot;carousel-caption align-vertical&quot;&gt;
+				&lt;div class=&quot;row&quot;&gt;
+					&lt;div class=&quot;col-sm-12 mask-left&quot;&gt;
+						&lt;h1&gt;YOUR TITLE HERE.&lt;/h1&gt;
+						&lt;p&gt;YOUR PARAGRAPH HERE&lt;/p&gt;
+						&lt;div class=&quot;button-group&quot;&gt;
+							&lt;a href=&quot;BUTTON URL 1&quot; class=&quot;btn btn-primary&quot;&gt;BUTTON TEXT 1&lt;/a&gt;
+							&lt;a href=&quot;BUTTON URL 2&quot; class=&quot;btn btn-default&quot;&gt;BUTTON TEXT 2&lt;/a&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;&lt;!-- /.carousel-caption --&gt;
+	        &lt;/div&gt;&lt;!-- /.item --&gt;
+
+	        &lt;!-- SLIDE WITHOUT TEXT --&gt;
+	        &lt;div class=&quot;item&quot; style=&quot;background-image: url('build/img/image.jpg');&quot;&gt;&lt;/div&gt;&lt;!-- /.item --&gt;
+
+	        &lt;!-- MORE AND MORE SLIDERS.... --&gt;
+	    &lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+    		</article>
+
+    		<article id="slider-swiper">
+    			<h2 class="title">Slider swiper</h2>
+    			<p>Sham uses Swiper Plugin as its primary slider manager. You can view all available options for the slider at their <a href="http://idangero.us/swiper/api">website</a></p>
+
+    			<p>The basic structure implemented in Sham Template is as follows:</p>
+    			<pre class="prettyprint linenums">&lt;div class=&quot;swiper-slider&quot;&gt;
+	&lt;!-- Slider main container --&gt;
+	&lt;div class=&quot;swiper-container fullscreen&quot;&gt;
+	    &lt;!-- Additional required wrapper --&gt;
+	    &lt;div class=&quot;swiper-wrapper text-center&quot;&gt;
+	        &lt;!-- Slides --&gt;
+	        &lt;div class=&quot;swiper-slide&quot; style=&quot;background-image: url(build/img/img.jpg);&quot;&gt;
+	        	&lt;div class=&quot;valign-wrapper fullscreen&quot;&gt;
+	        		&lt;div class=&quot;valign col-xs-offset-3&quot; data-swiper-parallax=&quot;-100&quot;&gt;
+	        		&lt;/div&gt;
+	        	&lt;/div&gt;
+	        &lt;/div&gt;
+	        &lt;div class=&quot;swiper-slide&quot; style=&quot;background-image: url(build/img/img.jpg);&quot;&gt;
+	        	&lt;div class=&quot;valign-wrapper fullscreen&quot;&gt;
+	        		&lt;div class=&quot;valign col-xs-offset-8&quot; data-swiper-parallax=&quot;-100&quot;&gt;
+	        		&lt;/div&gt;
+	        	&lt;/div&gt;
+	        &lt;/div&gt;
+	        &lt;div class=&quot;swiper-slide&quot; style=&quot;background-image: url(build/img/img.jpg);&quot;&gt;
+	        	&lt;div class=&quot;valign-wrapper fullscreen&quot;&gt;
+	        		&lt;div class=&quot;valign col-xs-offset-5&quot;&gt;
+	        		&lt;/div&gt;
+	        	&lt;/div&gt;
+	        &lt;/div&gt;
+	    &lt;/div&gt;
+	    &lt;!-- If we need pagination --&gt;
+	    &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+	    &lt;!-- If we need navigation buttons --&gt;
+	    &lt;div class=&quot;swiper-button-prev&quot;&gt;&lt;i class=&quot;lil-chevron_left&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+	    &lt;div class=&quot;swiper-button-next&quot;&gt;&lt;i class=&quot;lil-chevron_right&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;&lt;!-- /.swiper-slider --&gt;</pre>
+    		</article>
+
+    		<article id="flying-to-cart">
+    			<h2 class="title">Flying to cart</h2>
+    			<blockquote>
+    				If you need to add the product to your application by Ajax just follow these simple steps.
+    			</blockquote>
+    			<ol>
+    				<li>Open <code>scripts.js</code> file - Located in <code>assets/js</code> folder.</li>
+    				<li>You will find <code>addToCart</code> function in <code>347</code> line.</li>
+    				<li>Inside this function you will find comment <code>1- [Add product to 'Application' by AJAX]</code></li>
+    				<li>Add your AJAX code here :)</li>
+    			</ol>
+    			<p>For get product ID, add the <code>product-id="ID"</code> attribute in <code>div</code> tag have an class <code>product</code>. For Example:</p>
+    			<pre class="prettyprint linenums">&lt;div class=&quot;product&quot; product-id=&quot;ITEM_ID&quot;&gt;
+  ....
+&lt;/div&gt;</pre>
+				<p>Now you can use <code>productId</code> variable in <code>addToCart</code> function. (this variable will get <code>product-id</code> from attribute).</p>
+				<small><code>productId</code> variable defined in <code>assets/js/scripts.js:349</code></small>
+    		</article>
+
+    		<article id="slide-toggle">
+    			<h2 class="title">Slide Toggle</h2>
+    			<blockquote>
+    				Slide Toggle effect is very easy and flexible with sham theme, Let's go to understand how it works.
+    			</blockquote>
+    			<p>If are you need to see an example, go to <code>checkout.html</code> file and click on "Click here to login" link, or try to change (Payment Method).</p>
+    			<h4>How it works:</h4>
+    			<ol>
+    				<li>Create an element and add <code>data-slide-toggle="#YOUR_SELECTOR"</code> attribute.</li>
+    				<li>Create <code>div</code> tag that have a selector <code>&lt;div id=&quot;YOUR_SELECTOR&quot;&gt;&lt;/div&gt;</code></li>
+    			</ol>
+    			<p>For Example:</p>
+    			<pre class="prettyprint linenums">&lt;a href=&quot;#&quot; data-slide-toggle=&quot;.login-form&quot;&gt;Click here to login&lt;/a&gt;
+&lt;div class=&quot;login-form&quot;&gt;
+	&lt;!-- YOUR CONTENT HERE --&gt;
+&lt;/div&gt;</pre>
+    		</article>
+
+    		<article id="helpers-classes">
+    			<h2 class="title">Helpers Classes</h2>
+    			<blockquote>
+    				Sham comes with a number of helpers classes for help you.
+    			</blockquote>
+    			<div class="table-responsive">
+	    			<table class="table">
+	    				<thead>
+	    					<tr>
+	    						<th width="20%">Class</th>
+	    						<th>Description</th>
+	    					</tr>
+	    				</thead>
+	    				<tbody>
+	    					<tr>
+	    						<td><code>mask-left</code></td>
+	    						<td>Add nice mask as background.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>browser-default</code></td>
+	    						<td>You can add this class to get the browser default <code>checkbox</code> or <code>radio</code>.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>typed-cursor</code></td>
+	    						<td>typing animation cursor</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>align-vertical</code></td>
+	    						<td>You can easily vertically center things by adding this class to the container holding the items you want to vertically align.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>fullscreen</code></td>
+	    						<td>To set window height.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>pos-r</code></td>
+	    						<td>position relative</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>col-center</code></td>
+	    						<td>To remove float and auto margin.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>content-top-margin</code></td>
+	    						<td>Add 130px margin top.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>no-margin-top</code></td>
+	    						<td>Remove margin top.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>no-padding-right</code></td>
+	    						<td>Remove padding right.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>no-padding-left</code></td>
+	    						<td>Remove padding left.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>no-padding-top</code></td>
+	    						<td>Remove padding top.</td>
+	    					</tr>
+	    					<tr>
+	    						<td><code>no-padding-bottom</code></td>
+	    						<td>Remove padding bottom.</td>
+	    					</tr>
+	    				</tbody>
+	    			</table>
+    			</div>
+    		</article>
+
+			<article id="plugin-slimScroll">
+    			<h2 class="title">Plugin - slimScroll</h2>
+    			<blockquote>
+    				Small jQuery plugin that transforms any div into a scrollable area with a nice scrollbar. Demo and more: <a href="http://rocha.la/jQuery-slimScroll">Click Here</a>.
+    			</blockquote>
+
+    			<p>For use slimScroll with Sham theme option, just add <code>slim-scroll</code> attribute for user <code>div</code>, For Example:</p>
+
+    			<pre class="prettyprint linenums">&lt;div slim-scroll&gt;
+    &lt;!-- YOUR CONTENT --&gt;
+&lt;/div&gt;</pre>
+    		</article>
+
+    		<article id="plugin-owlCarousel">
+    			<h2 class="title">Plugin - owlCarousel</h2>
+    			<blockquote>
+    				Touch enabled jQuery plugin that lets you create a beautiful, responsive carousel slide. Demo and more: <a href="http://smashingboxes.github.io/OwlCarousel2/">Click Here</a>.
+    			</blockquote>
+
+    			<p>Sham theme comes with a number of ready carousel, Like (Brands and Related Products).</p>
+
+				<h4>Brands carousel structure:</h4>
+				<p>Add <code>div</code> with <code>id="logos"</code> attribute, example:</p>
+    			<pre class="prettyprint linenums">&lt;section class=&quot;section brands&quot; id=&quot;brands&quot;&gt;
+	&lt;div class=&quot;container&quot;&gt;
+		&lt;div class=&quot;row&quot;&gt;
+			&lt;div id=&quot;logos&quot;&gt;
+				&lt;div class=&quot;item&quot;&gt;
+					&lt;a href=&quot;#!&quot;&gt;&lt;img src=&quot;build/img/brands/1.png&quot; class=&quot;img-responsive&quot;&gt;&lt;/a&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;item&quot;&gt;
+					&lt;a href=&quot;#!&quot;&gt;&lt;img src=&quot;build/img/brands/2.png&quot; class=&quot;img-responsive&quot;&gt;&lt;/a&gt;
+				&lt;/div&gt;
+				&lt;!-- MORE AND MORE BRANDS --&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/section&gt;&lt;!-- /#brands --&gt;</pre>
+
+				<h4>Related Products carousel structure:</h4>
+				<p>Add <code>div</code> with <code>id="related-products"</code> attribute, example:</p>
+				<pre class="prettyprint linenums">&lt;div id=&quot;related-products&quot;&gt;
+	&lt;div class=&quot;product&quot; product-id=&quot;1&quot;&gt;
+		&lt;div class=&quot;inner-product&quot;&gt;
+			&lt;span class=&quot;onsale&quot;&gt;Sale!&lt;/span&gt;
+			&lt;div class=&quot;product-thumbnail&quot;&gt;
+				&lt;img src=&quot;build/img/18.jpg&quot; class=&quot;img-responsive&quot;&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;product-details text-center&quot;&gt;
+				&lt;div class=&quot;align-vertical&quot;&gt;
+					&lt;h3 class=&quot;product-title&quot;&gt;PRODUCT TITLE&lt;/h3&gt;
+					&lt;p&gt;SOME TEXT HERE&lt;/p&gt;
+					&lt;p class=&quot;product-price&quot;&gt;
+						&lt;ins&gt;
+							&lt;span class=&quot;amount&quot;&gt;$450&lt;/span&gt;
+						&lt;/ins&gt;
+						&lt;del&gt;
+							&lt;span class=&quot;amount&quot;&gt;$750&lt;/span&gt;
+						&lt;/del&gt;
+					&lt;/p&gt;
+					&lt;div class=&quot;product-btns&quot;&gt;
+						&lt;span data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Add To Cart&quot;&gt;
+							&lt;a href=&quot;#!&quot; class=&quot;li-icon add-to-cart&quot;&gt;&lt;i class=&quot;lil-shopping_cart&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+						&lt;/span&gt;
+						&lt;span data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;View&quot;&gt;
+							&lt;a href=&quot;#!&quot; class=&quot;li-icon view-details&quot;&gt;&lt;i class=&quot;lil-search&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+						&lt;/span&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;&lt;!-- /.product --&gt;
+
+	&lt;!-- MORE AND MORE AMAZING PRODUCTS --&gt;
+&lt;/div&gt;</pre>
+    		</article>
+
+    		<article id="plugin-fancybox">
+    			<h2 class="title">Plugin - fancyBox</h2>
+    			<blockquote>
+    				fancyBox is a tool that offers a nice and elegant way to add zooming functionality for images, html content and multi-media on your webpages. Demo and more: <a href="http://fancyapps.com/fancybox/">Click Here</a>.
+    			</blockquote>
+    			<p>
+    				For use fancyBox: Create link elements whose <code>href</code> attributes will contain the path of the element you wish to open within the fancyBox, then add <code>class="fancybox"</code>. Like this:
+    			</p>
+    			<pre class="prettyprint linenums">&lt;a href=&quot;build/img/img.png&quot; class=&quot;fancybox&quot;&gt;
+  &lt;img src=&quot;build/img/img.png&quot;&gt;
+&lt;/a&gt;</pre>
+				<p>
+					If you have a set of related items that you would like to group, additionally include a group name in the <code>rel</code> (or <code>data-fancybox-group</code>) attribute:
+				</p>
+				<pre class="prettyprint linenums">&lt;a href=&quot;build/img/img.png&quot; class=&quot;fancybox&quot; rel=&quot;gallery&quot;&gt;
+  &lt;img src=&quot;build/img/img.png&quot;&gt;
+&lt;/a&gt;
+&lt;a href=&quot;build/img/img.png&quot; class=&quot;fancybox&quot; rel=&quot;gallery&quot;&gt;
+  &lt;img src=&quot;build/img/img.png&quot;&gt;
+&lt;/a&gt;</pre>
+    		</article>
+    	</div>
+
+    	<div class="col-sm-12 text-center">
+	    	<br>
+    		<h5>Made with love in <a href="http://liliom.co?rel=douc" target="_blank">Liliom lab</a></h5>
+    	</div>
+    </div>
+    <!-- #wrapper -->
+
+    <br><br><br><br><br><br>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="js/prettify.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+</body>
+</html>
