@@ -7,45 +7,102 @@
 	
     <body>
 	
-		<g:if test="${flash.message}">
-			<div class="flash">
-				${flash.message}
-			</div>
-		</g:if>
+		<div class="page-wrapper">
+			<section class="section" id="page-login">
 		
-		<g:hasErrors>
-			<div class="errors">
-				<g:renderErrors bean="${usuario}" as="list" />
-			</div>
-		</g:hasErrors>
+				<div class="container">				
+					<div class="row">
 
-		<div style="float:left; border: 1px solid red; width:400px">
-			<g:form action="login" >
-				<h1>login</h1>
-				<p>username<input name="username"/></p>
-				<p>password<input name="password"/></p>
-				<p><g:submitButton name="login" value="login"/></td></p>
-			</g:form>
-		</div>	
-				
-		<div style="float:left; border: 1px solid red; width:400px">
-			<g:form controller="usuario" action="register">
+						<g:if test="${flash.message}">
+							<div class="flash">
+								${flash.message}
+							</div>
+						</g:if>
 
-				<h1>nuevo usuario</h1>
-				<p>nombre<g:textField name="nombre" value="${params.nombre}" /></p>
-				<p>apellido<g:textField name="apellido" value="${params.apellido}" /></p>
-				<p>email<input name="email" value="${usuario?.email}"/></p>
-				<p>username<input value="${usuario?.username}" name="username"/></p> 
-				<p>tbTipo<input value="${usuario?.tbTipo}" name="tbTipo"/></p>
-				<p>tbState<input value="${usuario?.tbState}" name="tbState"/></p>
-				<p>comision<input value="${usuario?.comision}" name="comision"/></p>
-				<p>password<input value="${usuario?.password}" name="password"/></p>
-				<p>repassword<input name="repassword"/></p>
-				<p><g:submitButton name="update" value="Update"/></td></p>
-			
-			</g:form>
-		</div>
+						<g:hasErrors>
+							<div class="errors">
+								<g:renderErrors bean="${usuario}" as="list" />
+							</div>
+						</g:hasErrors>
 
+						<div class="col-sm-6">
+							<div class="box">
+								<h2>login</h2><br>
+								<g:form controller="usuario" action="register" class="inputs-border">
+									<div class="form-group">
+										<div class="required">
+											<input class="form-control" placeholder="username" type="text" placeholder="username" name="username" value="${usuario?.username}"/></p>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<div class="required">
+											<input class="form-control" placeholder="password" type="text" placeholder="password" name="password" value="${usuario?.password}"/></p>
+										</div>
+									</div>
+
+									<div class="form-group text-right">
+										<g:submitButton name="login" value="login" class="btn btn-default"/></td></p>
+									</div>
+									
+								</g:form>
+							</div>
+						</div><!-- /.box -->			
+		
+						<div class="col-sm-6">						
+							<div class="box">
+								<h2>nuevo usuario</h2><br>
+								<g:form controller="usuario" action="register" class="inputs-border">
+									<div class="form-group">
+										<div class="required">
+											<input class="form-control" placeholder="nombre" type="text" placeholder="nombre" name="nombre" value="${usuario?.nombre}"/></p>
+										</div>								
+									</div>
+									
+									<div class="form-group">
+										<div class="required">
+											<input class="form-control" placeholder="apellido" type="text" placeholder="apellido" name="apellido" value="${usuario?.apellido}"/></p>
+										</div>								
+									</div>
+									
+									<div class="form-group">
+										<input class="form-control" placeholder="email" type="text" placeholder="email" name="email" value="${usuario?.email}"/></p>
+									</div>
+									
+									<div class="form-group">
+										<input class="form-control" placeholder="username" type="text" value="${usuario?.username}" name="username"/></p> 
+									</div>
+									
+									<div class="form-group">
+										<input class="form-control" placeholder="tbTipo" type="text" value="${usuario?.tbTipo}" name="tbTipo"/></p>
+									</div>
+									
+									<div class="form-group">
+										<input class="form-control" placeholder="tbState" type="text" value="${usuario?.tbState}" name="tbState"/></p>
+									</div>
+									
+									<div class="form-group">
+										<input class="form-control" placeholder="comision" type="text" value="${usuario?.comision}" name="comision"/></p>
+									</div>
+									
+									<div class="form-group">
+										<input class="form-control" placeholder="password" type="text" value="${usuario?.password}" name="password"/></p>
+									</div>
+									
+									<div class="form-group">
+										<input class="form-control" placeholder="repassword" type="text" name="repassword"/></p>
+									</div>
+
+									<div class="form-group text-right">
+										<g:submitButton name="update" value="Update" class="btn btn-default"/></td></p>
+									</div>
+								</g:form>
+							</div><!-- /.box -->		
+						</div>
+					</div>
+				</div>
+			</section><!-- #page-login -->
+		</div><!-- /.page-wrapper -->
 	</body>
 
 </html>

@@ -6,5 +6,9 @@ class UsuarioTagLib {
 		out << render(template:"/tagLibTemplates/UsuarioTagLib")
 	}
 
+	def links = {attrs ->		
+		out << render(template:"/tagLibTemplates/UsuarioLinksTagLib")
+	}
+
 
 }
