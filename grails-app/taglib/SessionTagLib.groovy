@@ -9,7 +9,7 @@ class SessionTagLib {
 		out << sessionService.fechaCreacion
 	}
 
-	def sayHo = {attrs ->		
+	def showSession = {attrs ->		
 		out << render(template:"/tagLibTemplates/SessionTagLib", model:[sessionService:sessionService])
 	}
 
