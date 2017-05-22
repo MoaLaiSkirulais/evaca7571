@@ -17,7 +17,6 @@
 				<h1>eVaca</h1>
 			</div>
 			<!-- <evaca:sayHi to="Mortimer" /> -->
-			<evaca:sayHo/>
 			<evaca:actions/>
 		</div>
 		

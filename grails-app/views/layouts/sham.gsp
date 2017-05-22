@@ -29,7 +29,7 @@
 				<div class="clearfix"></div>
 			</nav><!-- /.sub-navbar -->
 
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default" style="border-bottom: 1px solid #e4dddd">
 				<div class="container">
 					
 					<div class="navbar-header">
@@ -81,7 +81,7 @@
 				</div><!-- /.widgets -->
 			</div><!-- /.container -->
 			<div class="copy-right text-center">
-				<p>© Copyright 2017. All Rights Reserved. Created by <a href="#!" class="effect">mlob</a></p>
+				<p>© Copyright 2017. All Rights Reserved. Created by <a href="#!" class="effect">delios</a></p>
 			</div>
 		</footer><!-- /.footer -->
 
