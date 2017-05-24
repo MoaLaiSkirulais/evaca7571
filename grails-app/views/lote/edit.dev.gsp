@@ -21,6 +21,8 @@
 								<g:renderErrors bean="${usuario}" as="list" />
 							</div>
 						</g:hasErrors>
+						
+						<f:all bean="lote"/>
 
 						<div class="col-sm-6">				
 							<div class="box">
@@ -28,26 +30,42 @@
 
 								<g:form controller="lote" action="create" class="inputs-border">
 
+									<div class="form-group">
+										<div class="required">
+											<input class="form-control" type="text" placeholder="fechaCreacion" name="fechaCreacion" value="${lote?.fechaCreacion}"/></p>
+										</div>								
+									</div>
+
+									<div class="form-group">
+										<div class="required">
+											<input class="form-control" type="text" placeholder="cantidad" name="cantidad" value="${lote?.cantidad}"/></p>
+										</div>								
+									</div>
 									<f:with bean="lote">
-
-										<f:display property="usuario"/><br>
-
-										<f:display property="fechaCreacion">
-											<g:formatDate format="dd MMM yyyy" date="${value}"/>
-										</f:display><br><br>
-										
 										<f:field property="categoria" />
+										<f:field property="provincia" />
 										<f:field property="raza" />
 										<f:field property="edad" />
-										<f:field property="ubicacion" />
 										<f:field property="pesoMaximo" />
 										<f:field property="pesoMinimo" />
 										<f:field property="pesoPromedio" />
 										<f:field property="cantidad" />
-										<f:field property="trazada" />
-										<f:field property="marcaLiquida" />
-
+										<f:input property="cantidad"/>
+										<f:display property="cantidad"/>
+										
+										<f:display bean="lote" property="fechaCreacion">
+											<g:formatDate format="dd MMM yyyy" date="${value}"/>
+										</f:display>
 									</f:with>
+									
+									<div class="form-group">
+										<div class="required">
+											<input class="form-control" type="text" placeholder="ubicacion" name="ubicacion" value="${lote?.ubicacion}"/></p>
+										</div>								
+									</div>
+									
+									<f:field  bean="lote" property="ubicacion" />
+									<f:field  bean="lote" property="edad" />
 									
 									<div class="form-group text-right">
 										<g:submitButton name="update" value="Update" class="btn btn-default"/></td></p>

@@ -5,6 +5,7 @@ class Raza {
 	Date fechaCreacion	
 	String name
 	
+	
 	static hasMany = [lotes:Lote]
 	Set lotes
 
