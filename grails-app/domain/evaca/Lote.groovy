@@ -8,6 +8,7 @@ class Lote {
 	Categoria categoria
 	Integer cantidad
 	String ubicacion
+	String provincia
 	Integer pesoPromedio
 	Integer pesoMaximo
 	Integer pesoMinimo
@@ -34,6 +35,7 @@ class Lote {
 		categoria()
 		cantidad()
 		ubicacion()
+		provincia nullable: true
 		pesoPromedio()
 		pesoMaximo()
 		pesoMinimo()
