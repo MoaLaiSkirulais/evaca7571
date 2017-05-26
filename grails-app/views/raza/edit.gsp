@@ -5,8 +5,11 @@
     </head>
 	
     <body>
+	
+		<evaca:breadcrums/>
+	
 		<div class="page-wrapper">
-			<section class="section" id="page-login">
+			
 				<div class="container">
 					<div class="row">
 						<g:if test="${flash.message}">
@@ -29,13 +32,13 @@
 
 									<f:with bean="raza">
 
-										<f:display property="id"/><br>
-										<f:display property="usuario"/><br>
-										<f:display property="fechaCreacion">
+										<b>id:</b>&nbsp;<f:display property="id"/><br>
+										<b>usuario:</b>&nbsp;<f:display property="usuario"/><br>
+										<b>fechaCreacion:</b>&nbsp;<f:display property="fechaCreacion">
 											<g:formatDate format="dd MMM yyyy" date="${value}"/>
 										</f:display><br><br>
 										
-										<f:field property="nombre" />
+										<f:field property="nombre"/>
 
 									</f:with>
 									

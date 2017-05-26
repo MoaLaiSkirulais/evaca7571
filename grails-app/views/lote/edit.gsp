@@ -6,8 +6,11 @@
     </head>
 	
     <body>
+	
+		<evaca:breadcrums/>
+
 		<div class="page-wrapper">
-			<section class="section" id="page-login">
+			
 				<div class="container">
 					<div class="row">
 						<g:if test="${flash.message}">

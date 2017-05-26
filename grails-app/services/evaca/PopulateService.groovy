@@ -361,9 +361,9 @@ class PopulateService {
 	/* all */
 	def all() {
 
+		usuarios()
 		razas()
 		categorias()
-		usuarios()
 		lotes()
 		avisos()
 		ofertas()
@@ -375,9 +375,9 @@ class PopulateService {
 	/* showAll */
 	def showAll() {
 
+		println Usuario.list().toString()
 		println Raza.list().toString()
 		println Categoria.list().toString()
-		println Usuario.list().toString()
 		println Lote.list().toString()
 		println Aviso.list().toString()
 		println Oferta.list().toString()
