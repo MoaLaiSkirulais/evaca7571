@@ -13,7 +13,6 @@
 		<link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Inconsolata:300,400,500,700|Unica+One:300,400,500,700">
 		<!-- All theme style -->
 		<link rel="stylesheet" href="${resource(dir: 'sham/css', file: 'min.css')}" type="text/css">
-
         <g:layoutHead />
     </head>
     
@@ -45,8 +44,17 @@
 					
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-left">
+
 							<li><a href="/contact/about">Quienes somos</a></li>
 							<li><a href="/contact">Contactenos</a></li>
+							<!-- <li> -->
+								<!-- <a href="#!" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">Tablas <i class="caret"></i></a> -->
+								<!-- <ul class="dropdown-menu"> -->
+									<!-- <li><a href="raza">Razas</a></li> -->
+									<!-- <li><a href="categoria">Categorias</a></li> -->
+								<!-- </ul> -->
+							<!-- </li> -->
+							
 						</ul>
 					</div><!--/.nav-collapse -->
 				</div><!--/.container -->
@@ -89,6 +97,8 @@
 		<a href="#top" class="go-to-top">
 			<i class="lil-angle-double-down"></i>
 		</a>
+		
+		<!-- <script type="text/javascript" src="${resource(dir: 'sham/js', file: 'min.js')}"></script> -->
     </body>
 	
 </html>

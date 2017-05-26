@@ -13,7 +13,7 @@
 					<div class="col-md-8 col-sm-7">
 						<ol class="breadcrumb">
 							<li><a href="index.html">Home</a></li>
-							<li class="active"><a href="#!">Mis Lotes</a></li>
+							<li class="active"><a href="#!">Categorias</a></li>
 						</ol>
 					</div>					
 				</div><!-- /.row -->
@@ -24,8 +24,8 @@
 			
 				<div class="container">
 					<div class="row">
-						<h2>Razas</h2><br>
-						<div class="col-sm-12">
+						<h2>Categorias</h2><br>
+						<div class="col-sm-12">						
 						
 							<div class="table-responsive">
 								<table class="table cart-table wishlist-table" cellspacing="0">
@@ -37,31 +37,31 @@
 											<th class="product-name">nombre</th>											
 										</tr>
 									</thead>
-									
+
 									<tbody>
 
-										<g:each in="${razas}" var="raza" status="i">
+										<g:each in="${categorias}" var="categoria" status="i">
 											<tr class="item">
 												
 												<td class="product-name">
-													${raza.id}
+													${categoria.id}
 												</td>
 												
 												<td class="product-name">
-													${raza.fechaCreacion}
+													${categoria.fechaCreacion}
 												</td>
 												
 											    <td class="product-name">
-													${raza.usuario}
+													${categoria.usuario}
 												</td>
 												
 											    <td class="product-name">
-													${raza.nombre}
+													${categoria.nombre}
 												</td>
 												
 												<td class="product-add-to-cart">
 													<!-- <button class="btn btn-default" type="button">Editar</button> -->
-													<g:link action="edit" id="${raza.id}">[edit]</g:link>
+													<g:link action="edit" id="${categoria.id}">[edit]</g:link>
 
 												</td>
 											</tr><!-- <tr><td colspan="6"></td></tr> -->
@@ -72,7 +72,7 @@
 						</div>
 					</div><!-- /.row -->
 				</div><!-- /.container -->
-		
+			
 		</div><!-- /.page-wrapper -->
 
 	</body>

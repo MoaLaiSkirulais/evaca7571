@@ -6,6 +6,10 @@
 			<li><g:link controller="aviso" action="index">Mis Avisos</g:link></li>
 			<li><g:link controller="oferta" action="index">Mis Ofertas</g:link></li>
 			<li><g:link controller="resena" action="index">Mis Reseñas</g:link></li>
-		</ul>		
+		</ul>	
+		<ul class="col-xs-6">
+			<li><a href="/categoria" class="effect">Categorias</a></li>
+			<li><a href="/raza" class="effect">Razas</a></li>
+		</ul>
 	</div>
 </div><!-- ./widget -->

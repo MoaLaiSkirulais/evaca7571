@@ -12,15 +12,15 @@ class PopulateService {
 	def razas() {
 
 		log.info "Populando razas..."
-		new Raza(name: "Aberdeen Angus").save()
-		new Raza(name: "Braford").save()
-		new Raza(name: "Holando Argentino").save()
-		new Raza(name: "Cruza").save()
-		new Raza(name: "Hereford").save()
-		new Raza(name: "Jersey").save()
-		new Raza(name: "Bovino Criollo").save()
-		new Raza(name: "Brangus").save()
-		new Raza(name: "Careta").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Aberdeen Angus").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Braford").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Holando Argentino").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Cruza").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Hereford").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Jersey").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Bovino Criollo").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Brangus").save()
+		new Raza(usuario: Usuario.list()[2], nombre: "Careta").save()
 		return 1
 	}
 
@@ -28,11 +28,11 @@ class PopulateService {
 	def categorias() {
 
 		log.info "Populando categorias..."
-		new Categoria(name: "Preñadas").save()
-		new Categoria(name: "Con Ternero al Pie").save()
-		new Categoria(name: "Vacias").save()
-		new Categoria(name: "De Descarte").save()
-		new Categoria(name: "Con Servicio").save()
+		new Categoria(usuario: Usuario.list()[2], nombre: "Preñadas").save()
+		new Categoria(usuario: Usuario.list()[2], nombre: "Con Ternero al Pie").save()
+		new Categoria(usuario: Usuario.list()[2], nombre: "Vacias").save()
+		new Categoria(usuario: Usuario.list()[2], nombre: "De Descarte").save()
+		new Categoria(usuario: Usuario.list()[2], nombre: "Con Servicio").save()
 		return 1
 	}
 

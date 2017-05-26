@@ -17,17 +17,17 @@
 						
 						<g:hasErrors>
 							<div class="errors">
-								<g:renderErrors bean="${raza}" as="list" />
+								<g:renderErrors bean="${categoria}" as="list" />
 							</div>
 						</g:hasErrors>
 
 						<div class="col-sm-6">				
 							<div class="box">
-								<h2>raza</h2><br>
+								<h2>categoria</h2><br>
 								<table>
-								<g:form controller="raza" action="update" class="inputs-border">
+								<g:form controller="categoria" action="update" class="inputs-border">
 
-									<f:with bean="raza">
+									<f:with bean="categoria">
 
 										<f:display property="id"/><br>
 										<f:display property="usuario"/><br>
