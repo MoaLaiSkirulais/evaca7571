@@ -13,7 +13,7 @@ class LoteController {
 	/* edit */
 	def edit(Lote lote) {
         respond lote
-    }
+		}
 	
 	/* show */
 	def show(Lote lote) {
@@ -45,15 +45,14 @@ class LoteController {
             return
         }
 		
-		flash.message = "Heeee"
-		
+		flash.message = "El registro se actualizó exitosamente"		
 		lote.save()
         // lote.save flush:true
         // respond lote
-		
-		render(view: 'edit', model: [
-				params:params, 
-				lote: lote])
+		redirect(controller: "lote", action: "edit", id: lote.id, namespace: "evaca")
+		// render(view: 'edit', model: [
+				// params:params, 
+				// lote: lote])
         
     }
 

@@ -13,11 +13,14 @@
 			
 				<div class="container">
 					<div class="row">
+					
 						<g:if test="${flash.message}">
-							<div class="flash">
-								${flash.message}
+							<div class="alert alert-success active">
+								${flash.message}	
 							</div>
 						</g:if>
+						
+						
 						
 						<g:hasErrors>
 							<div class="errors">
@@ -33,10 +36,9 @@
 
 									<f:with bean="lote">
 
-										<f:display property="usuario"/><br>
-
-										<f:display property="fechaCreacion">
-											<g:formatDate format="dd MMM yyyy" date="${value}"/>
+										<b>usuario:</b>&nbsp;<f:display property="usuario"/><br>
+										<b>fechaCreacion:</b><f:display property="fechaCreacion">
+											<g:formatDate format="dd MMM yyyy hh:mm" date="${value}"/>
 										</f:display><br><br>
 										<f:field property="categoria" />
 										<f:field property="raza" />
