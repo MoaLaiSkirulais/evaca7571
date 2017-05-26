@@ -1,6 +1,8 @@
-<div class="form-group">
-	<div class="required">
-		<b>${label}</b>
-		<input class="form-control" type="text" placeholder="${label}" name="ubicacion" value="${value}"/></p>
-	</div>								
-</div>
+<tr class="cart-subtotal">
+	<td><b>${label}</b></td>
+	<td>
+		<input class="form-control" type="text" placeholder="" name="${property}" value="${value}"/></p>
+	</td>
+</tr>
+		
+		

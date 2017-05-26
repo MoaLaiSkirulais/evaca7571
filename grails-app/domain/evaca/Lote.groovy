@@ -40,8 +40,8 @@ class Lote {
 		pesoMaximo()
 		pesoMinimo()
 		edad()
-		trazada()
-		marcaLiquida()
+		trazada nullable: true
+		marcaLiquida nullable: true
 
     }
 	

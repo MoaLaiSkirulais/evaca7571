@@ -31,5 +31,30 @@ class LoteController {
 			]
 		)
     }
+	
+	def update() {
+        // if (lote == null) {
+            // notFound()
+            // return
+        // }
+
+		def lote = new Lote(params)
+        if (lote.hasErrors()) {
+			flash.message = "errors"
+            respond lote.errors, view:'edit'
+            return
+        }
+		
+		flash.message = "Heeee"
+		
+		lote.save()
+        // lote.save flush:true
+        // respond lote
+		
+		render(view: 'edit', model: [
+				params:params, 
+				lote: lote])
+        
+    }
 
 }

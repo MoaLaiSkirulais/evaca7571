@@ -18,15 +18,15 @@
 						
 						<g:hasErrors>
 							<div class="errors">
-								<g:renderErrors bean="${usuario}" as="list" />
+								<g:renderErrors bean="${lote}" as="list" />
 							</div>
 						</g:hasErrors>
 
 						<div class="col-sm-6">				
 							<div class="box">
 								<h2>Lote</h2><br>
-
-								<g:form controller="lote" action="create" class="inputs-border">
+								<table>
+								<g:form controller="lote" action="update" class="inputs-border">
 
 									<f:with bean="lote">
 
@@ -35,7 +35,6 @@
 										<f:display property="fechaCreacion">
 											<g:formatDate format="dd MMM yyyy" date="${value}"/>
 										</f:display><br><br>
-										
 										<f:field property="categoria" />
 										<f:field property="raza" />
 										<f:field property="edad" />
@@ -54,7 +53,7 @@
 									</div>
 								
 								</g:form>
-								
+								</table>
 							</div>
 						</div>
 						
