@@ -63,7 +63,9 @@
 												</td>    
 												
 												<td class="product-add-to-cart">
-													<button class="btn btn-default" type="button">Editar</button>
+													<!-- <button class="btn btn-default" type="button">Editar</button> -->
+													<g:link action="edit" id="${item.id}">Edit</g:link>
+
 												</td>
 											</tr><!-- <tr><td colspan="6"></td></tr> -->
 										</g:each>					            

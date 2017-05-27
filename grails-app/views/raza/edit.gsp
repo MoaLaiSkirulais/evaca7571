@@ -12,18 +12,8 @@
 			
 				<div class="container">
 					<div class="row">
-						<g:if test="${flash.message}">
-							<div class="flash">
-								${flash.message}
-							</div>
-						</g:if>
 						
-						<g:hasErrors>
-							<div class="errors">
-								<g:renderErrors bean="${raza}" as="list" />
-							</div>
-						</g:hasErrors>
-
+						<evaca:cruderror/>
 						<div class="col-sm-6">				
 							<div class="box">
 								<h2>raza</h2><br>

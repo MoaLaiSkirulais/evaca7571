@@ -17,26 +17,24 @@
 						<evaca:cruderror/>
 						<div class="col-sm-6">				
 							<div class="box">
-								<h2>Lote</h2><br>
+								<h2>Aviso</h2><br>
 								<table>
-								<g:form controller="lote" action="update" class="inputs-border">
+								<g:form controller="aviso" action="update" class="inputs-border">
 
-									<f:with bean="lote">
+									<f:with bean="aviso">
 
-										<b>usuario:</b>&nbsp;<f:display property="usuario"/><br>
 										<b>fechaCreacion:</b><f:display property="fechaCreacion">
 											<g:formatDate format="dd MMM yyyy hh:mm" date="${value}"/>
 										</f:display><br><br>
-										<f:field property="categoria" />
-										<f:field property="raza" />
-										<f:field property="edad" />
-										<f:field property="ubicacion" />
-										<f:field property="pesoMaximo" />
-										<f:field property="pesoMinimo" />
-										<f:field property="pesoPromedio" />
-										<f:field property="cantidad" />
-										<f:field property="trazada" />
-										<f:field property="marcaLiquida" />
+										
+										<b>fechaPublicacion:</b><f:display property="fechaPublicacion">
+											<g:formatDate format="dd MMM yyyy hh:mm" date="${value}"/>
+										</f:display><br><br>
+										<f:field property="id" />
+										<f:field property="precio" />
+										<f:field property="tbState" />
+										<f:field property="consignatario" />
+										<f:field property="lote" />
 
 									</f:with>
 									

@@ -6,5 +6,9 @@ class HeaderTagLib {
 		out << render(template:"/tagLibTemplates/BreadCrumTagLib")
 	}
 
+	def cruderror = {attrs ->		
+		out << render(template:"/tagLibTemplates/CrudErrorTagLib")
+	}
+
 
 }

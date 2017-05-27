@@ -31,7 +31,7 @@ class LoteController {
 			]
 		)
     }
-	
+
 	def update() {
         // if (lote == null) {
             // notFound()
@@ -39,14 +39,18 @@ class LoteController {
         // }
 
 		def lote = new Lote(params)
+		lote.save()
         if (lote.hasErrors()) {
 			flash.message = "errors"
-            respond lote.errors, view:'edit'
+			render "<h1>" + params + "</h1>"
+			render "<h1>" + lote.errors + "</h1>"
+            respond lote.errors, view:'edit', id: lote.id
             return
         }
-		
+		// render "<h1>" + params + "</h1>"
+
 		flash.message = "El registro se actualizó exitosamente"		
-		lote.save()
+		render "<h1>" + lote.errors + "</h1>"
         // lote.save flush:true
         // respond lote
 		redirect(controller: "lote", action: "edit", id: lote.id, namespace: "evaca")
