@@ -14,6 +14,11 @@ class Categoria {
 		fechaCreacion blank: true, nullable: true
 	}
 	
+	public Categoria() {
+		this.fechaCreacion = new Date();
+		// this.usuario = Usuario.list()[2]
+	}
+	
 	def beforeValidate() {
 		this.fechaCreacion = new Date()
 		this.usuario = Usuario.list()[2]

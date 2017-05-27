@@ -28,22 +28,23 @@
 							<div class="box">
 								<h2>categoria</h2><br>
 								<table>
-								<g:form controller="categoria" action="update" class="inputs-border">
+								<g:form controller="categoria" action="save" class="inputs-border">
 
 									<f:with bean="categoria">
 
-										<f:display property="id"/><br>
-										<f:display property="usuario"/><br>
-										<f:display property="fechaCreacion">
-											<g:formatDate format="dd MMM yyyy" date="${value}"/>
-										</f:display><br><br>
 										
+										<f:field property="id" />
+										<f:display property="usuario"/>
+										<f:display property="fechaCreacion">
+											<g:formatDate format="dd MMM yyyy hh:mm:ss" date="${value}"/>
+										</f:display>										
 										<f:field property="nombre" />
 
 									</f:with>
 									
 									<div class="form-group text-right">
-										<g:submitButton name="update" value="Update" class="btn btn-default"/></td></p>
+										<g:link class="btn btn-default" action="create">Nuevo</g:link>
+										<g:submitButton name="save" value="Guardar" class="btn btn-default"/>
 									</div>
 								
 								</g:form>
