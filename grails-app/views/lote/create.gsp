@@ -14,11 +14,11 @@
 					<evaca:cruderror/>
 					<div class="col-sm-6">
 						<div class="box">
-							<h2>raza</h2><br>
+							<h2>raza</h2>
 							<form method="post">
-							
+
 								<f:with bean="${model.lote}">
-								
+
 									id: <f:display property="id"/><br>
 									usuario: <f:display property="usuario"/><br>
 									fechaCreacion: <f:display property="fechaCreacion">

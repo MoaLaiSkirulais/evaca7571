@@ -28,11 +28,11 @@ class CategoriaController {
 	/* index */
 	def index() {
 
-		def razas = Raza.list()
+		def categorias = Categoria.list()
 
 		render(view: 'index', 
 			model: [
-				razas:razas
+				categorias:categorias
 			]
 		)
     }
