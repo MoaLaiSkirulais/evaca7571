@@ -2,66 +2,63 @@ package evaca
 
 class CategoriaController {
 
-
-	/* edit */
-	def edit(Categoria categoria) {
-        respond categoria
-    }
-	
 	/* create */
 	def create() {
-        // respond new Categoria(params)
-		render(view: 'edit', 
+	
+	    def model = [
+			categoria: new Categoria(params), 
+			categorias: Categoria.list()
+		]
+
+		[model: model]
+    }
+
+	/* edit */
+	def edit() {
+
+		def id=params.id
+	    def model = [
+			categoria: new Categoria().get(id), 
+			categorias: Categoria.list()
+		]
+
+		respond view:'create', [model:model]
+    }
+
+	/* index */
+	def index() {
+
+		def razas = Raza.list()
+
+		render(view: 'index', 
 			model: [
-				categoria:new Categoria(params)
+				razas:razas
 			]
 		)
     }
-	
+
 	/* save */
-	def save = {
+	def save(Categoria categoria) {
 	
-        def categoria = Categoria.get(params[id])
-		if (categoria) {
-            render "<h1>1</h1>"
-			return
-        } else {
-			render "<h1>2</h1>"
+		if (!params.id){
+			categoria = new Categoria(params)
+		}
+		
+		categoria.save(flush:true)
+
+		def model = [
+			categoria: categoria, 
+			categorias: Categoria.list()
+		]
+
+		if (categoria.hasErrors()) {
+			respond view:'create', [model:model]
 			return
 		}
 
-	
-        // def categoria = new Categoria(params)
-        // if (categoria.validate() && categoria.save()) {
-            // redirect action:"edit", id:categoria.id
-        // } else {  
-            // render view:"edit", model:[categoria:categoria]
-        // }
+		redirect action:"edit", id:categoria.id
+	    
     }
-	
-	/* update */
-	def update(Categoria categoria) {
-        if (categoria == null) {
-            notFound()
-            return
-        }
 
-        if (categoria.hasErrors()) {
-            respond categoria.errors, view:'create'
-            return
-        }
 
-        categoria.save flush:true
-    }
-    
-	/* index */
-	def index() {
-	
-		def categorias = Categoria.list()
-		render(view: 'index', 
-			model: [
-				categorias:categorias
-			]
-		)
-    }
 }

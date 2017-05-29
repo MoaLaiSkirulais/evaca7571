@@ -12,43 +12,43 @@
 			
 				<div class="container">
 					<div class="row">
+
 						<g:if test="${flash.message}">
 							<div class="flash">
 								${flash.message}
 							</div>
 						</g:if>
-						
+
 						<g:hasErrors>
 							<div class="errors">
-								<g:renderErrors bean="${categoria}" as="list" />
+								<g:renderErrors bean="${model.categoria}" as="list" />
 							</div>
 						</g:hasErrors>
 
-						<div class="col-sm-6">				
+						<div class="col-sm-6">
 							<div class="box">
 								<h2>categoria</h2><br>
-								<table>
-								<g:form controller="categoria" action="save" class="inputs-border">
 
-									<f:with bean="categoria">
+								<form method="post">
 
-										
-										<f:field property="id" />
-										<f:display property="usuario"/>
-										<f:display property="fechaCreacion">
+									<f:with bean="${model.categoria}">
+
+										id: <f:display property="id"/><br>
+										usuario: <f:display property="usuario"/><br>
+										fechaCreacion: <f:display property="fechaCreacion">
 											<g:formatDate format="dd MMM yyyy hh:mm:ss" date="${value}"/>
-										</f:display>										
+										</f:display><br>		
 										<f:field property="nombre" />
 
 									</f:with>
 									
 									<div class="form-group text-right">
-										<g:link class="btn btn-default" action="create">Nuevo</g:link>
-										<g:submitButton name="save" value="Guardar" class="btn btn-default"/>
-									</div>
+										<g:link action="create" class="btn btn-default">create</g:link>
+										<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
+   									</div>
+
+								</form>
 								
-								</g:form>
-								</table>
 							</div>
 						</div>
 						

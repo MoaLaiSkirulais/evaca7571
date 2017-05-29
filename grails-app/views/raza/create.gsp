@@ -1,38 +1,42 @@
-<!DOCTYPE html>
 <html>
+	
     <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'raza.label', default: 'Raza')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <meta name="layout" content="sham" />
     </head>
+	
     <body>
-        <a href="#create-raza" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="create-raza" class="content scaffold-create" role="main">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.raza}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.raza}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form action="save">
-                <fieldset class="form">
-                    <f:all bean="raza"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                </fieldset>
-            </g:form>
-        </div>
-    </body>
+
+		<evaca:breadcrums/>
+
+		<div class="page-wrapper">			
+			<div class="container">
+				<div class="row">
+					<evaca:cruderror/>
+					<div class="col-sm-6">
+						<div class="box">
+							<h2>raza</h2><br>
+							<form method="post">
+							
+								<f:with bean="${model.raza}">
+									id: <f:display property="id"/><br>
+									usuario: <f:display property="usuario"/><br>
+									fechaCreacion: <f:display property="fechaCreacion">
+										<g:formatDate format="dd MMM yyyy hh:mm:ss" date="${value}"/>
+									</f:display><br>		
+									<f:field property="nombre" />
+								</f:with>
+									
+								<div class="form-group text-right">
+									<g:link action="create" class="btn btn-default">create</g:link>
+									<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
+								</div>
+							</form>
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
 </html>

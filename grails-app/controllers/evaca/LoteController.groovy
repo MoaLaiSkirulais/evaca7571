@@ -2,27 +2,32 @@ package evaca
 
 class LoteController {
 
-	// static scaffold = Lote
-	
+	/* create */
 	def create() {
-		Lote l = new Lote();
-		l.usuario = Usuario.list()[2]
-        respond([lote:l]) 
-	}
 	
-	/* edit */
-	def edit(Lote lote) {
-        respond lote
-		}
-	
-	/* show */
-	def show(Lote lote) {
-        respond lote
+	    def model = [
+			lote: new Lote(params), 
+			lotes: Lote.list()
+		]
+
+		[model: model]
     }
-	
+
+	/* edit */
+	def edit() {
+
+		def id=params.id
+	    def model = [
+			lote: new Lote().get(id), 
+			lotes: Lote.list()
+		]
+
+		respond view:'create', [model:model]
+    }
+
 	/* index */
 	def index() {
-	
+
 		def lotes = Lote.list()
 
 		render(view: 'index', 
@@ -32,32 +37,28 @@ class LoteController {
 		)
     }
 
-	def update() {
-        // if (lote == null) {
-            // notFound()
-            // return
-        // }
+	/* save */
+	def save(Lote lote) {
+	
+		if (!params.id){
+			lote = new Lote(params)
+		}
+		
+		lote.save(flush:true)
 
-		def lote = new Lote(params)
-		lote.save()
-        if (lote.hasErrors()) {
-			flash.message = "errors"
-			render "<h1>" + params + "</h1>"
-			render "<h1>" + lote.errors + "</h1>"
-            respond lote.errors, view:'edit', id: lote.id
-            return
-        }
-		// render "<h1>" + params + "</h1>"
+		def model = [
+			lote: lote, 
+			lotes: Lote.list()
+		]
 
-		flash.message = "El registro se actualizó exitosamente"		
-		render "<h1>" + lote.errors + "</h1>"
-        // lote.save flush:true
-        // respond lote
-		redirect(controller: "lote", action: "edit", id: lote.id, namespace: "evaca")
-		// render(view: 'edit', model: [
-				// params:params, 
-				// lote: lote])
-        
+		if (lote.hasErrors()) {
+			respond view:'create', [model:model]
+			return
+		}
+
+		redirect action:"edit", id:lote.id
+	    
     }
+
 
 }

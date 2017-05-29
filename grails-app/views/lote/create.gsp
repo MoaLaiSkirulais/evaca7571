@@ -1,51 +1,52 @@
 <html>
 	
     <head>
-        <title>An Example Page</title>        
-        <meta name="layout" content="evaca" />
+        <meta name="layout" content="sham" />
     </head>
 	
     <body>
-	
-		<g:if test="${flash.message}">
-			<div class="flash">
-				${flash.message}
-			</div>
-		</g:if>
-		
-		<g:hasErrors>
-			<div class="errors">
-				<g:renderErrors bean="${usuario}" as="list" />
-			</div>
-		</g:hasErrors>
 
-		<div style="float:left; border: 1px solid red; width:400px">
-			<g:form action="login" >
-				<h1>login</h1>
-				<p>username<input name="username"/></p>
-				<p>password<input name="password"/></p>
-				<p><g:submitButton name="login" value="login"/></td></p>
-			</g:form>
-		</div>	
-				
-		<div style="float:left; border: 1px solid red; width:400px">
-			<g:form controller="usuario" action="register">
+		<evaca:breadcrums/>
 
-				<h1>nuevo usuario</h1>
-				<p>nombre<g:textField name="nombre" value="${params.nombre}" /></p>
-				<p>apellido<g:textField name="apellido" value="${params.apellido}" /></p>
-				<p>email<input name="email" value="${usuario?.email}"/></p>
-				<p>username<input value="${usuario?.username}" name="username"/></p> 
-				<p>tbTipo<input value="${usuario?.tbTipo}" name="tbTipo"/></p>
-				<p>tbState<input value="${usuario?.tbState}" name="tbState"/></p>
-				<p>comision<input value="${usuario?.comision}" name="comision"/></p>
-				<p>password<input value="${usuario?.password}" name="password"/></p>
-				<p>repassword<input name="repassword"/></p>
-				<p><g:submitButton name="update" value="Update"/></td></p>
-			
-			</g:form>
+		<div class="page-wrapper">			
+			<div class="container">
+				<div class="row">
+					<evaca:cruderror/>
+					<div class="col-sm-6">
+						<div class="box">
+							<h2>raza</h2><br>
+							<form method="post">
+							
+								<f:with bean="${model.lote}">
+								
+									id: <f:display property="id"/><br>
+									usuario: <f:display property="usuario"/><br>
+									fechaCreacion: <f:display property="fechaCreacion">
+										<g:formatDate format="dd MMM yyyy hh:mm:ss" date="${value}"/>
+									</f:display><br>		
+									<f:field property="categoria" />
+									<f:field property="raza" />
+									<f:field property="edad" />
+									<f:field property="ubicacion" />
+									<f:field property="pesoMaximo" />
+									<f:field property="pesoMinimo" />
+									<f:field property="pesoPromedio" />
+									<f:field property="cantidad" />
+									<f:field property="trazada" />
+									<f:field property="marcaLiquida" />									
+								</f:with>
+									
+								<div class="form-group text-right">
+									<g:link action="create" class="btn btn-default">create</g:link>
+									<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
+								</div>
+							</form>
+								
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
 	</body>
 
 </html>
