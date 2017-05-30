@@ -1,4 +1,6 @@
-${model.lote.errors}
+<div class="errors">
+	<g:renderErrors bean="${attrs.modelo}" as="list" />
+</div>
 
 <g:if test="${flash.message}">
 	<div class="alert alert-success active">
@@ -6,8 +8,8 @@ ${model.lote.errors}
 	</div>
 </g:if>
 
-<g:hasErrors>
-	<div class="errors">
-		<g:renderErrors bean="${model.lote}" as="list" />
-	</div>
-</g:hasErrors>
+<!-- <g:hasErrors> -->
+	<!-- <div class="errors"> -->
+		<!-- <g:renderErrors bean="${model.usuario}" as="list" /> -->
+	<!-- </div> -->
+<!-- </g:hasErrors> -->

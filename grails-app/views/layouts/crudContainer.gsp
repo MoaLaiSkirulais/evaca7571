@@ -10,7 +10,6 @@
 		<div class="page-wrapper">			
 			<div class="container">
 				<div class="row">
-					<evaca:cruderror/>
 
 					<div class="col-sm-6">
 						<div class="box">

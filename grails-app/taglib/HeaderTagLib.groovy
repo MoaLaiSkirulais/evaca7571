@@ -7,7 +7,7 @@ class HeaderTagLib {
 	}
 
 	def cruderror = {attrs ->		
-		out << render(template:"/tagLibTemplates/CrudErrorTagLib")
+		out << render(template:"/tagLibTemplates/CrudErrorTagLib", model:[attrs:attrs])
 	}
 
 

@@ -18,7 +18,6 @@ class Usuario {
         // nombre = "garcha"
     // }
 
-	
 	static hasMany = [ofertas: Oferta, resenas: Resena, lotes: Lote]
 
     static constraints = {

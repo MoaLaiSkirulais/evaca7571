@@ -1,6 +1,7 @@
 <g:applyLayout name="crudContainer">
 
 	<h2>raza</h2>
+	<evaca:cruderror modelo="${model.lote}"/>
 
 	<form method="post">
 		<table class="table table-condensed" cellspacing="0">
@@ -17,7 +18,7 @@
 					name="raza.id" 
 					from="${model.razas}" value="${model.lote?.raza?.id}" 
 					optionKey="id"
-				/>										
+				/>
 				<myform:display name="usuario" label="Usuario" value="${model.lote.usuario}"/>
 				<myform:display name="fechaCreacion" label="Fecha creacion" value="${model.lote.fechaCreacion}"/>
 				<myform:field name="edad" label="Edad" value="${model.lote.edad}"/>

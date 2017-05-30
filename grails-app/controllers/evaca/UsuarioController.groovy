@@ -2,62 +2,63 @@ package evaca
 
 class UsuarioController {
 
-	static scaffold = Usuario
-	def sessionService
+	/* create */
+	def create() {
 	
-	def register() {
+	    def model = [
+			usuario: new Usuario(params), 
+			usuarios: Usuario.list(),
+		]
 
-		ArrayList<Book> books = new ArrayList<Book>();
-		Book joe = new Book("Stephen King", "Joe"); 
-		books.add(joe);
-		Book steve = new Book("Steve", "Steve");
-		books.add(steve);            
+		[model: model]
+    }
 
-		def usuario = new Usuario(params)
-		if (usuario.validate()) {
-			usuario.save()
-			flash.message = "Successfully Created User"
-			// redirect(uri: '/')
-		} else {
-			flash.message = "Error Registering User"
-			// return [ user: user ]
-		}
- 
-		// render "<h1>" + params + "</h1>"
+	/* edit */
+	def edit() {
 
-		// render "<h1>register</h1>"
-		render(view: 'index', model: [
-				myBook:steve, 
-				params:params, 
-				// usuario: Usuario.last()])
-				usuario: usuario])
+		def id=params.id
+	    def model = [
+			usuario: new Usuario().get(id), 
+			usuarios: Usuario.list(),
+		]
 
-
-        // respond([myBook:steve]) 
+		respond view:'create', [model:model]
     }
 
 	/* index */
 	def index() {
 
-		Book joe = new Book("Stephen King", "Joe"); 
-        respond([myBook:joe]) 
+		def usuarios = Usuario.list()
+
+		render(view: 'index', 
+			model: [
+				usuarios:usuarios
+			]
+		)
     }
 
-	/* login */
-	def login() {
+	/* save */
+	def save(Usuario usuario) {
+
+		if (!params.id){
+			usuario = new Usuario(params)
+		}
+
+		usuario.save(flush:true)
+
+		def model = [
+			usuario: usuario, 
+			usuarios: Usuario.list(),
+		]
+
+		if (usuario.hasErrors()) {
+			respond view:'create', [model:model]
+			return
+		}
+
+		redirect action:"edit", id:usuario.id
 	    
-		sessionService.login()
-		def usuario = Usuario.findByUsername(params.username)		
-		render "<h1>" + usuario + "</h1>"
     }
 
-	/* logout */
-	def logout() {
-	    
-		sessionService.logout()
-		def usuario = Usuario.findByUsername(params.username)		
-		render "<h1>" + usuario + "</h1>"
-    }
-	
 
 }
