@@ -25,7 +25,7 @@
 				<div class="container">
 					<div class="row">
 						<h2>Categorias</h2><br>
-						<div class="col-sm-12">						
+						<div class="col-sm-12">
 						
 							<div class="table-responsive">
 								<table class="table cart-table wishlist-table" cellspacing="0">
@@ -61,7 +61,7 @@
 												
 												<td class="product-add-to-cart">
 													<!-- <button class="btn btn-default" type="button">Editar</button> -->
-													<g:link action="edit" id="${categoria.id}">[edit]</g:link>
+													<g:link action="edit" id="${categoria.id}" class="btn btn-default">edit</g:link>
 
 												</td>
 											</tr><!-- <tr><td colspan="6"></td></tr> -->

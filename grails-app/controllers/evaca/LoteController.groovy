@@ -7,9 +7,13 @@ class LoteController {
 	
 	    def model = [
 			lote: new Lote(params), 
-			lotes: Lote.list()
+			lotes: Lote.list(),
+			categorias: Categoria.list(),
+			razas: Raza.list()
 		]
-
+		
+		// render model.lote
+		// return
 		[model: model]
     }
 
@@ -19,7 +23,9 @@ class LoteController {
 		def id=params.id
 	    def model = [
 			lote: new Lote().get(id), 
-			lotes: Lote.list()
+			lotes: Lote.list(),
+			categorias: Categoria.list(),
+			razas: Raza.list()
 		]
 
 		respond view:'create', [model:model]
@@ -40,15 +46,24 @@ class LoteController {
 	/* save */
 	def save(Lote lote) {
 	
+		// render "<p>lote: " + lote + "</p>"
+		// render "<p>lote.raza: " + lote.raza + "</p>"
+		// render "<p>lote.raza.id: " + lote.raza.id + "</p>"
+		// render "<p>lote.categoria.id: " + lote.categoria.id + "</p>"
+		// render "<p>lote.id: " + lote.id
+		// return
+	
 		if (!params.id){
 			lote = new Lote(params)
 		}
-		
+
 		lote.save(flush:true)
 
 		def model = [
 			lote: lote, 
-			lotes: Lote.list()
+			lotes: Lote.list(),
+			categorias: Categoria.list(),
+			razas: Raza.list()
 		]
 
 		if (lote.hasErrors()) {

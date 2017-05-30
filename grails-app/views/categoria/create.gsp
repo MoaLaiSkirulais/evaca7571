@@ -26,28 +26,38 @@
 						</g:hasErrors>
 
 						<div class="col-sm-6">
-							<div class="box">
-								<h2>categoria</h2><br>
+						
+							<h2>Categoria</h2>
+							<form method="post">
+							<table class="table table-condensed" cellspacing="0">
+								<tbody>
+								
+									<myform:display label="Nombre" value="${model.categoria.id}"/>									
+									<myform:display label="Usuario" value="${model.categoria.usuario}"/>
+									<myform:display label="Fecha creacion" value="${model.categoria.fechaCreacion}"/>
+									<myform:field label="Nombre" value="${model.categoria.nombre}"/>
 
-								<form method="post">
+									<tr class="order-total">
+										<th>Nombre</th>
+										<td class="text-right">
+											<span class="amount">
+												<f:field bean="${model.categoria}" property="nombre" />
+											</span>
+										</td>
+									</tr>
 
-									<f:with bean="${model.categoria}">
-
-										id: <f:display property="id"/><br>
-										usuario: <f:display property="usuario"/><br>
-										fechaCreacion: <f:display property="fechaCreacion">
-											<g:formatDate format="dd MMM yyyy hh:mm:ss" date="${value}"/>
-										</f:display><br>		
-										<f:field property="nombre" />
-
-									</f:with>
-									
-									<div class="form-group text-right">
-										<g:link action="create" class="btn btn-default">create</g:link>
-										<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
-   									</div>
-
-								</form>
+									<tr class="order-total">
+										<th></th>
+										<td class="text-right">
+											<div class="form-group text-right">
+												<g:link action="create" class="btn btn-default">create</g:link>
+												<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							</form>
 								
 							</div>
 						</div>

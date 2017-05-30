@@ -61,7 +61,7 @@
 												
 												<td class="product-add-to-cart">
 													<!-- <button class="btn btn-default" type="button">Editar</button> -->
-													<g:link action="edit" id="${raza.id}">[edit]</g:link>
+													<g:link action="edit" id="${raza.id}" class="btn btn-default">[edit]</g:link>
 
 												</td>
 											</tr><!-- <tr><td colspan="6"></td></tr> -->

@@ -70,7 +70,7 @@
 												
 												<td class="product-add-to-cart">
 													<!-- <button class="btn btn-default" type="button">Editar</button> -->
-													<g:link action="edit" id="${lote.id}">Edit</g:link>
+													<g:link action="edit" id="${lote.id}" class="btn btn-default">Edit</g:link>
 
 												</td>
 											</tr><!-- <tr><td colspan="6"></td></tr> -->
