@@ -1,8 +1,8 @@
 <g:applyLayout name="crudContainer">
 
 	<h2>usuario</h2>
-	<evaca:cruderror/>
-		
+	<evaca:cruderror modelo="${model.usuario}"/>
+
 	<form method="post">
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
@@ -19,7 +19,7 @@
 				
 				<myform:radio name="tbState" label="tbState" from="['Activo', 'Inactivo', 'Pendiente']" value="${model.usuario.tbState}"/>
 				<myform:radio name="tbTipo" label="tbTipo" from="['Consignatario', 'Productor']" value="${model.usuario.tbTipo}"/>
-				
+
 				<myform:field name="comision" label="comision" value="${model.usuario.comision}"/>
 				<myform:field name="password" label="password" value="${model.usuario.password}"/>
 				<myform:field name="repassword" label="repassword" value=""/>
