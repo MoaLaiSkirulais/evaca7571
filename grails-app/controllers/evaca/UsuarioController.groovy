@@ -1,6 +1,8 @@
 package evaca
 
 class UsuarioController {
+	
+	def sessionService
 
 	/* create */
 	def create() {
@@ -24,6 +26,25 @@ class UsuarioController {
 
 		respond view:'create', [model:model]
     }
+
+	/* login */
+	def login() {
+
+		// render "<h1>---" + params + "---</h1>"
+		// return
+
+		sessionService.login(params.username, params.password)
+		def usuario = Usuario.findByUsername(params.username)
+		render(view: 'login')
+    }
+	
+	/* logout */
+	def logout() {
+
+		sessionService.logout()
+		def usuario = Usuario.findByUsername(params.username)
+		render(view: 'login')
+	}	
 
 	/* index */
 	def index() {

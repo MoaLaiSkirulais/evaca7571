@@ -5,19 +5,23 @@ class SessionService {
 	Date fechaCreacion
 	String username
 	
+	class UserRegistrationException extends RuntimeException {
+		String message
+	}
+	
 	/* 
 	 * login 
 	 */
-	def login() {
+	def login(username, password) {
 
 		println "---"
 		println this.username
 		println this.fechaCreacion
 		println "---"
-		
-		def u = "lcastro"
-		def p = "Castro"
-		
+
+		def u = username
+		def p = password
+
 		def usuario = Usuario.findByUsername(u)
 		if (usuario){
 			if (usuario.password == p){
@@ -25,15 +29,18 @@ class SessionService {
 				this.fechaCreacion = new Date()
 				println "ok!"
 			}
+		} else {
+            // throw new UserRegistrationException(message:"Passwords don't match")
 		}
+
 	}	
-	
+
 	/* 
 	 * logout
 	 */
 	def logout() {
 
-		println "logout"		
+		println "logout!"
 		this.username = null
 		this.fechaCreacion = null
 

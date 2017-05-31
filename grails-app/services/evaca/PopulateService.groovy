@@ -40,7 +40,7 @@ class PopulateService {
 	def usuarios() {
 
 		log.info "Populando usuarios..."
-		
+
 		new Usuario(
 			fechaCreacion: new Date(), 
 			username: "lcastro", 
@@ -53,7 +53,7 @@ class PopulateService {
 			// puntaje: 11, 
 			comision: 11					
 		).save()
-		
+
 		new Usuario(
 			fechaCreacion: new Date(), 
 			username: "mporto", 
@@ -66,7 +66,7 @@ class PopulateService {
 			// puntaje: 11, 
 			comision: 11					
 		).save()
-		
+
 		new Usuario(
 			fechaCreacion: new Date(),  
 			username: "dguglie", 
@@ -87,7 +87,7 @@ class PopulateService {
 	def lotes() {
 
 		log.info "Populando lotes..."
-		
+
 		// def r = Raza.first()
 		// def c = Categoria.first()
 
@@ -111,7 +111,6 @@ class PopulateService {
 			precio: 10000, 
 			tiempoDePago: 1
 		).save()
-		
 		
 		new Lote(
 			usuario: Usuario.last(), 
