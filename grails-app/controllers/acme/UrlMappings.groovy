@@ -16,8 +16,9 @@ class UrlMappings {
 	    "/caca"(view: "/caca")  
 	    "/field"(controller:"field", action:"index")
 	    "/plugins"(controller:"field", action:"plugins", view: "plugins")
-        "/"(view:"/index")
+        "/"{controller = "home"}
         "500"(view:'/error')
         "404"(view:'/notFound')
     }
 }
+
