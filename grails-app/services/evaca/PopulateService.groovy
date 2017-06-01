@@ -48,7 +48,7 @@ class PopulateService {
 			apellido: "Castro", 
 			email: "leocastro@gmail.com", 
 			tbTipo: "Consignatario", 
-			password: "Castro", 
+			password: "123456", 
 			tbState: "Activo", 
 			// puntaje: 11, 
 			comision: 11					
@@ -61,7 +61,7 @@ class PopulateService {
 			apellido: "Porto", 
 			email: "martinporto@gmail.com", 
 			tbTipo: "Productor", 
-			password: "Castro", 
+			password: "123456", 
 			tbState: "Activo", 
 			// puntaje: 11, 
 			comision: 11					
@@ -74,7 +74,7 @@ class PopulateService {
 			apellido: "Guglielmoti", 
 			email: "dguglie@gmail.com", 
 			tbTipo: "Productor", 
-			password: "Castro", 
+			password: "123456", 
 			tbState: "Pendiente", 
 			// puntaje: 11, 
 			comision: 11					

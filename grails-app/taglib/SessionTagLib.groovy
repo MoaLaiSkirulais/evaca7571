@@ -9,8 +9,13 @@ class SessionTagLib {
 		out << sessionService.fechaCreacion
 	}
 
-	def showSession = {attrs ->		
-		out << render(template:"/tagLibTemplates/SessionTagLib", model:[sessionService:sessionService])
+	def showSession = {attrs ->
+	 
+		if (sessionService.isLogged()) {			
+			out << render(template:"/tagLibTemplates/SessionTagLib", model:[sessionService:sessionService])
+		} else {
+			out << "<a href=\"/usuario/login\">login</a>"
+		}
 	}
 
 

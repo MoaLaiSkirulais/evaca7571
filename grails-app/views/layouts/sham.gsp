@@ -22,8 +22,8 @@
 		<div class="nav-container navbar-fixed-top nav-sticky" style="position: relative">
 			<nav class="sub-navbar">
 				<ul class="pull-right list-inline">
-					<li><a href="#!"><evaca:showSession/></a></li>
-					<li><a href="/usuario">Mi cuenta</a></li>
+					<li><evaca:showSession/></li>
+					<li><a href="">Mi cuenta</a></li>
 					<!-- <li><a href="wishlist.html">My Wishlist</a></li> -->
 				</ul>
 				<div class="clearfix"></div>
@@ -38,7 +38,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.html">
+						<a class="navbar-brand" href="/home">
 							<img style="border:0px solid red" src="${resource(dir: 'sham/img', file: 'logo.jpg')}" alt="Sham Theme">
 						</a>
 					</div>

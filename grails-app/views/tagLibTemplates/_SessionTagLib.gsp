@@ -1,3 +1,3 @@
-${sessionService.username}
-<!-- ${sessionService.fechaCreacion}<br> -->
-<!-- <g:link controller="usuario" action="logout">(logout)</g:link> -->
+<a href="/usuario/logout">${sessionService.username}  (logout)</a>
+	
+	

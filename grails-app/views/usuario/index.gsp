@@ -77,9 +77,10 @@
 													<g:link action="edit" id="${usuario.id}" class="btn btn-default">Edit</g:link>
 												</td>
 											</tr><!-- <tr><td colspan="6"></td></tr> -->
-										</g:each>					            
+										</g:each>
 									</tbody>
 								</table>
+								<g:link action="create" controller="usuario" class="btn btn-default">create</g:link>
 							</div><!-- /.table-responsive -->
 						</div>
 					</div><!-- /.row -->

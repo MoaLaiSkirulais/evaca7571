@@ -51,53 +51,53 @@
 			</div><!-- /.container -->
 		</section><!-- /.collections -->
 		
-		<section class="section promotions no-padding-bottom small-padding-top" id="promotions">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="promotion media">
-						<div class="media-left media-middle">
-							<i class="lil-local_atm"></i>
-						</div>
-						<div class="media-body">
-							<h3 class="media-heading">Money Back</h3>
-							<p>Lorem Ipsum is simply dummy text of the printing.</p>
-						</div>
-					</div>
-				</div>
+		<!-- <section class="section promotions no-padding-bottom small-padding-top" id="promotions"> -->
+		<!-- <div class="container"> -->
+			<!-- <div class="row"> -->
+				<!-- <div class="col-sm-4"> -->
+					<!-- <div class="promotion media"> -->
+						<!-- <div class="media-left media-middle"> -->
+							<!-- <i class="lil-local_atm"></i> -->
+						<!-- </div> -->
+						<!-- <div class="media-body"> -->
+							<!-- <h3 class="media-heading">Money Back</h3> -->
+							<!-- <p>Lorem Ipsum is simply dummy text of the printing.</p> -->
+						<!-- </div> -->
+					<!-- </div> -->
+				<!-- </div> -->
 
-				<div class="col-sm-4">
-					<div class="promotion media">
-						<div class="media-left media-middle">
-							<i class="lil-public"></i>
-						</div>
-						<div class="media-body">
-							<h3 class="media-heading">In Worldwide</h3>
-							<p>Lorem Ipsum is simply dummy text of the printing.</p>
-						</div>
-					</div>
-				</div>
+				<!-- <div class="col-sm-4"> -->
+					<!-- <div class="promotion media"> -->
+						<!-- <div class="media-left media-middle"> -->
+							<!-- <i class="lil-public"></i> -->
+						<!-- </div> -->
+						<!-- <div class="media-body"> -->
+							<!-- <h3 class="media-heading">In Worldwide</h3> -->
+							<!-- <p>Lorem Ipsum is simply dummy text of the printing.</p> -->
+						<!-- </div> -->
+					<!-- </div> -->
+				<!-- </div> -->
 
-				<div class="col-sm-4">
-					<div class="promotion media">
-						<div class="media-left media-middle">
-							<i class="lil-local_shipping"></i>
-						</div>
-						<div class="media-body">
-							<h3 class="media-heading">Free Shipping</h3>
-							<p>Lorem Ipsum is simply dummy text of the printing.</p>
-						</div>
-					</div>
-				</div>
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</section><!-- /.promotions -->
+				<!-- <div class="col-sm-4"> -->
+					<!-- <div class="promotion media"> -->
+						<!-- <div class="media-left media-middle"> -->
+							<!-- <i class="lil-local_shipping"></i> -->
+						<!-- </div> -->
+						<!-- <div class="media-body"> -->
+							<!-- <h3 class="media-heading">Free Shipping</h3> -->
+							<!-- <p>Lorem Ipsum is simply dummy text of the printing.</p> -->
+						<!-- </div> -->
+					<!-- </div> -->
+				<!-- </div> -->
+			<!-- </div> -->
+		<!-- </div> -->
+	<!-- </section> -->
 	
 	<section class="section products second-style" id="home-products">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 section-title text-center">
-					<h3><i class="line"></i>Latest Products<i class="line"></i></h3>
+					<h3><i class="line"></i>Ultimos Lotes<i class="line"></i></h3>
 					<p>Lorem Ipsum is simply dummy text.</p>
 				</div>
 				<div class="col-sm-12">
@@ -106,7 +106,7 @@
 							<div class="inner-product">
 								<span class="onsale">Sale!</span>
 								<div class="product-thumbnail">
-									<img src="${resource(dir: 'sham/img/products', file: '2.jpg')}" alt="Sham Theme">
+									<img src="${resource(dir: 'sham/img/products', file: 'v1.gif')}" alt="Sham Theme">
 								</div>
 								<div class="product-details text-center">
 									<div class="product-btns">
@@ -139,7 +139,7 @@
 						<div class="product col-md-3 col-sm-6 col-xs-12" data-product-id="1">
 							<div class="inner-product">
 								<div class="product-thumbnail">
-									<img src="build/img/products/24.jpg" class="img-responsive" alt="">
+									<img src="${resource(dir: 'sham/img/products', file: 'v2.gif')}" alt="Sham Theme">
 								</div>
 								<div class="product-details text-center">
 									<div class="product-btns">
@@ -170,7 +170,7 @@
 							<div class="inner-product">
 								<span class="onsale new">New!</span>
 								<div class="product-thumbnail">
-									<img src="build/img/products/3.jpg" class="img-responsive" alt="">
+									<img src="${resource(dir: 'sham/img/products', file: 'v3.gif')}" alt="Sham Theme">
 								</div>
 								<div class="product-details text-center">
 									<div class="product-btns">
@@ -200,7 +200,7 @@
 						<div class="product col-md-3 col-sm-6 col-xs-12" data-product-id="1">
 							<div class="inner-product">
 								<div class="product-thumbnail">
-									<img src="build/img/products/4.jpg" class="img-responsive" alt="">
+									<img src="${resource(dir: 'sham/img/products', file: 'v4.gif')}" alt="Sham Theme">
 								</div>
 								<div class="product-details text-center">
 									<div class="product-btns">
