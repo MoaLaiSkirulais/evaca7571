@@ -32,10 +32,21 @@ class UsuarioController {
 
 		// render "<h1>---" + params + "---</h1>"
 		// return
+		
+		try {
+   
+			sessionService.login(params.username, params.password)
+			def usuario = Usuario.findByUsername(params.username)
+			flash.message = "Welcome"
+			redirect controller: 'home'
+			return
+			// render(view: 'home')
 
-		sessionService.login(params.username, params.password)
-		def usuario = Usuario.findByUsername(params.username)
-		render(view: 'login')
+		 } catch (UserRegistrationException ure) {        
+
+			flash.message = ure.message        
+			render(view: 'login')
+		}
     }
 	
 	/* logout */

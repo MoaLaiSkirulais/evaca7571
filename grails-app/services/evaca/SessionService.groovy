@@ -1,14 +1,18 @@
 package evaca
 
+class UserRegistrationException extends RuntimeException {
+	String message
+}
+
 class SessionService {
 
 	Date fechaCreacion
 	String username
 	Boolean isLogged = false
 	
-	class UserRegistrationException extends RuntimeException {
-		String message
-	}
+	// class UserRegistrationException extends RuntimeException {
+		// String message
+	// }
 	
 	/* 
 	 * login 
@@ -32,9 +36,11 @@ class SessionService {
 
 				println this.isLogged
 				println "ok!"
+			} else {
+				throw new UserRegistrationException(message:"Passwords don't match")
 			}
 		} else {
-            // throw new UserRegistrationException(message:"Passwords don't match")
+            throw new UserRegistrationException(message:"Invalid user")
 		}
 
 	}	
