@@ -27,6 +27,7 @@
 				<myform:field name="pesoMaximo" label="Peso maximo" value="${model.lote.pesoMaximo}"/>
 				<myform:field name="pesoMinimo" label="Peso minimo" value="${model.lote.pesoMinimo}"/>
 				<myform:field name="pesoPromedio" label="Peso promedio" value="${model.lote.pesoPromedio}"/>
+				<myform:field name="imagen" label="Imagen url" value="${model.lote.imagen}"/>
 
 				<tr class="order-total">
 					<th></th>

@@ -15,6 +15,7 @@ class Lote {
 	Integer edad
 	Boolean trazada
 	Boolean marcaLiquida
+	String imagen
 	
 	// String cuit
 	// Integer tiempoDePago
@@ -42,12 +43,13 @@ class Lote {
 		edad()
 		trazada nullable: true
 		marcaLiquida nullable: true
+		imagen nullable: true
 
     }
 	
 	public Lote() {
 		this.fechaCreacion = new Date();
-		// this.usuario = Usuario.list()[2]
+		this.imagen = "static/sham/img/products/v0.gif"
     }
 	
 	def beforeInsert() {
