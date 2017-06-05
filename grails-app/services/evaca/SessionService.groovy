@@ -2,12 +2,16 @@ package evaca
 
 class UserRegistrationException extends RuntimeException {
 	String message
+	Map model
 }
 
 class SessionService {
+	
+    // static scope = "session"
 
 	Date fechaCreacion
 	String username
+	Usuario usuario
 	Boolean isLogged = false
 	
 	// class UserRegistrationException extends RuntimeException {
@@ -32,6 +36,7 @@ class SessionService {
 			if (usuario.password == p){
 				this.username = u
 				this.fechaCreacion = new Date()
+				this.usuario = usuario
 				this.isLogged = true
 
 				println this.isLogged

@@ -1,16 +1,22 @@
 package evaca
 
 class RazaController {
+	
+	def razaService
 
 	/* create */
 	def create() {
-	
-	    def model = [
-			raza: new Raza(params), 
-			razas: Raza.list()
-		]
+		
+		try {
+			
+			razaService.create()
+		
+		} catch (UserRegistrationException ure) {        
 
-		[model: model]
+			flash.message = ure.message        
+			redirect controller: 'usuario', action:"newlogin	"
+		}
+
     }
 
 	/* edit */
@@ -40,23 +46,35 @@ class RazaController {
 	/* save */
 	def save(Raza raza) {
 	
-		if (!params.id){
-			raza = new Raza(params)
-		}
-		
-		raza.save(flush:true)
+		try {
+			
+			razaService.save(raza)
+			redirect action:"edit", id:raza.id
 
-		def model = [
-			raza: raza, 
-			razas: Raza.list()
-		]
+		} catch (UserRegistrationException ure) {        
 
-		if (raza.hasErrors()) {
-			respond view:'create', [model:model]
+			flash.message = ure.message        
+			respond view:'create', [model:ure.model]
 			return
 		}
 
-		redirect action:"edit", id:raza.id
+		// if (!params.id){
+			// raza = new Raza(params)
+		// }
+		
+		// raza.save(flush:true)
+
+		// def model = [
+			// raza: raza, 
+			// razas: Raza.list()
+		// ]
+
+		// if (raza.hasErrors()) {
+			// respond view:'create', [model:model]
+			// return
+		// }
+
+		// redirect action:"edit", id:raza.id
 	    
     }
 

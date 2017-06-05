@@ -49,6 +49,13 @@ class UsuarioController {
 		}
     }
 	
+	/* login */
+	def newlogin() {
+
+		render(view: 'login')
+		
+    }
+	
 	/* logout */
 	def logout() {
 
