@@ -65,6 +65,18 @@ class AvisoController {
 		redirect action:"edit", id:aviso.id
 	    
     }
+	
+	/* show */
+	def show() {
+
+		def avisos = Aviso.list()
+
+		render(view: 'show', 
+			model: [
+				avisos:avisos
+			]
+		)
+    }
 
 
 }

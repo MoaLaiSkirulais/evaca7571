@@ -8,12 +8,10 @@ class LoteController {
 	    def model = [
 			lote: new Lote(params), 
 			lotes: Lote.list(),
-			categorias: Categoria.list(),
-			razas: Raza.list()
+			categorias: Categoria.list().sort{it.nombre},
+			razas: Raza.list().sort{it.nombre}
 		]
-		
-		// render model.lote
-		// return
+
 		[model: model]
     }
 
@@ -24,8 +22,8 @@ class LoteController {
 	    def model = [
 			lote: new Lote().get(id), 
 			lotes: Lote.list(),
-			categorias: Categoria.list(),
-			razas: Raza.list()
+			categorias: Categoria.list().sort{it.nombre},
+			razas: Raza.list().sort{it.nombre}
 		]
 
 		respond view:'create', [model:model]
