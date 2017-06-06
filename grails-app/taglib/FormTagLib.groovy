@@ -14,16 +14,7 @@ class FormTagLib {
 			attrs.value = ""
 		}
 
-		out << "<tr class=\"cart-subtotal\">"
-		out << 		"<th>${attrs.label}</th>"
-		out << 		"<td class=\"text-right\">"
-		out << 			"<span class=\"amount\">"
-		// out << 				"<f:field bean=\"${attrs.value}\" property=\"nombre\"/>"
-		out << 				"<input value=\"${attrs.value}\" name=\"${attrs.name}\"/>"
-		// out << 				 f.field(bean:"categoria", property:attrs.value)
-		out << 			"</span>"
-		out << 		"</td>"
-		out << "</tr>"
+		out << render(template:"/tagLibTemplates/FormTagLib/field", model:[attrs:attrs])
 	}
 
 	/* select */

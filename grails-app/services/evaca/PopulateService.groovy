@@ -108,8 +108,7 @@ class PopulateService {
 			pesada: "", 
 			desbaste: "", 
 			cuit: "1-22344566-22", 
-			precio: 10000, 
-			tiempoDePago: 1
+			imagen: "http://i.imgur.com/XMAPZSi.gif"
 		).save()
 		
 		new Lote(
@@ -129,8 +128,7 @@ class PopulateService {
 			pesada: "", 
 			desbaste: "", 
 			cuit: "1-22344566-22", 
-			precio: 2000, 
-			tiempoDePago: 1
+			imagen: "http://i.imgur.com/u5Fcrfd.gif"
 		).save()
 		
 		
@@ -151,8 +149,7 @@ class PopulateService {
 			pesada: "", 
 			desbaste: "", 
 			cuit: "1-22344566-22", 
-			precio: 3200, 
-			tiempoDePago: 1
+			imagen: "http://i.imgur.com/hmo2zOp.gif"
 		).save()
 
 		return 1
@@ -162,6 +159,7 @@ class PopulateService {
 	def avisos() {
 
 		log.info "Populando avisos..."
+		/* aca habrá que usar los command objects ? */
 		
 		new Aviso(
 			lote: Lote.list()[1], 

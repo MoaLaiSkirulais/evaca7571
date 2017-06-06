@@ -4,3 +4,8 @@
     /* visibility: visible !important; */
     /* top: 0; */
 /* } */
+
+.FormTagLib_field { 
+	width:90%;
+	height:30px;
+}

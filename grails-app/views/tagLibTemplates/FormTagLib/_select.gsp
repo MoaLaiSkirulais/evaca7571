@@ -2,11 +2,12 @@
 	<th>${attrs.label}</th>	
 	<td class="text-right">
 		<span class="amount">
-			<g:select 
+			<g:select
 				name="${attrs.name}" 
 				from="${attrs.from}" 
 				value="${attrs.value}" 
-				optionKey="${attrs.optionKey}" 
+				optionKey="${attrs.optionKey}"  
+				class="FormTagLib_field"
 				/>
 		</span>
 	</td>

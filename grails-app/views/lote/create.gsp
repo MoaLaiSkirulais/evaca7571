@@ -1,12 +1,16 @@
-<g:applyLayout name="crudContainer">
+<g:applyLayout name="crudContainerTwoCols">
 
 	<h2>raza</h2>
 	<evaca:cruderror modelo="${model.lote}"/>
 
+    <content tag="left1">
 	<form method="post">
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
 				<myform:display name="id" label="#id" value="${model.lote.id}"/>
+				<myform:display name="usuario" label="Usuario" value="${model.lote.usuario}"/>
+				<myform:display name="fechaCreacion" label="Fecha creacion" value="${model.lote.fechaCreacion}"/>
+				
 				<myform:select 
 					label="Categoria" 	
 					name="categoria.id" 
@@ -18,9 +22,7 @@
 					name="raza.id" 
 					from="${model.razas}" value="${model.lote?.raza?.id}" 
 					optionKey="id"
-				/>
-				<myform:display name="usuario" label="Usuario" value="${model.lote.usuario}"/>
-				<myform:display name="fechaCreacion" label="Fecha creacion" value="${model.lote.fechaCreacion}"/>
+				/>				
 				<myform:field name="edad" label="Edad" value="${model.lote.edad}"/>
 				<myform:field name="ubicacion" label="Ubicacion" value="${model.lote.ubicacion}"/>
 				<myform:field name="cantidad" label="Cantidad" value="${model.lote.cantidad}"/>
@@ -41,5 +43,11 @@
 			</tbody>
 		</table>
 	</form>
-
+	</content>
+	
+    <content tag="left2">
+		<img src="${model.lote.imagen}">
+	</content>
+	
+	</div>
 </g:applyLayout>
