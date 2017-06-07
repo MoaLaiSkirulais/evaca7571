@@ -1,44 +1,49 @@
-<g:applyLayout name="crudContainer">
+<html>
+	
+    <head>
+        <title>An Example Page</title>        
+        <meta name="layout" content="sham" />
+    </head>
+	
+    <body>
+	
+		<div class="page-head ">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-sm-7">
+						<ol class="breadcrumb">
+							<li><a href="index.html">Home</a></li>
+							<li class="active"><a href="#!">Mis Avisos</a></li>
+						</ol>
+					</div>					
+					
+					<div class="col-md-4 col-sm-5 header-nav text-right">
+						<a rel="previous" href="#!"><i class="lil-angle-left"></i> Previous</a>
+						<a rel="next" href="#!">Next <i class="lil-angle-right"></i></a>
+					</div>
 
-	<h2>aviso</h2>
-	<evaca:cruderror modelo="${model.aviso}"/>
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</div><!-- /.page-head -->
+			
+		<section class="section single-product-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-5">
+						<aviso:productImages/>
+					</div>
 
-	<form method="post">
-		<table class="table table-condensed" cellspacing="0">
-			<tbody>
-				
-				<myform:display name="id" label="#id" value="${model.aviso.id}"/>
-				<myform:display name="fechaCreacion" label="Fecha creacion" value="${model.aviso.fechaCreacion}"/>
-				<myform:display name="fechaPublicacion" label="Fecha Publicacion" value="${model.aviso.fechaPublicacion}"/>
-				<myform:field name="precio" label="precio" value="${model.aviso.precio}"/>
-				
-				<myform:select 
-					label="consignatario" 	
-					name="consignatario.id" 
-					from="${model.consignatarios}" value="${model.aviso?.consignatario?.id}" 
-					optionKey="id"
-				/>
-				
-				<myform:select 
-					label="lote" 	
-					name="lote.id" 
-					from="${model.lotes}" value="${model.aviso?.lote?.id}" 
-					optionKey="id"
-				/>
-				
-				<myform:radio name="tbState" label="tbState" from="['Borrador', 'Publicado', 'Finalizado', 'Vendido','Aprobacion']" value="${model.aviso.tbState}"/>
+					<div class="col-sm-6 col-sm-offset-1">
+						<aviso:productDetails/>						
+					</div>
 
-				<tr class="order-total">
-					<th></th>
-					<td class="text-right">
-						<div class="form-group text-right">
-							<g:link action="create" class="btn btn-default">create</g:link>
-							<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+					<div class="col-sm-12">
+						<aviso:tabsWrapper/>
+					</div>
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.products -->
+			
+	</body>
 
-</g:applyLayout>
+</html>
