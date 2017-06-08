@@ -1,5 +1,10 @@
 package evaca
 
+class RazaException extends RuntimeException {
+	String message
+	Map model
+}
+
 class RazaService {
 	
 	def sessionService
@@ -35,7 +40,8 @@ class RazaService {
 		]
 
 		if (raza.hasErrors()) {
-			UserRegistrationException error = new UserRegistrationException(message:"Errors!")
+			println "errores"
+			RazaException error = new RazaException(message:"Errors!")
 			error.model = model
 			throw error;
 		}

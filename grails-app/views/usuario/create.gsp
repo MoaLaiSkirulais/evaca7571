@@ -14,9 +14,6 @@
 				<myform:field name="email" label="email" value="${model.usuario.email}"/>
 				<myform:field name="username" label="username" value="${model.usuario.username}"/>
 				
-				<!-- <myform:field name="tbTipo" label="tbTipo" value="${model.usuario.tbTipo}"/> -->
-				<!-- <myform:field name="tbState" label="tbState"  value="${model.usuario.tbState}"/> -->
-				
 				<myform:radio name="tbState" label="tbState" from="['Activo', 'Inactivo', 'Pendiente']" value="${model.usuario.tbState}"/>
 				<myform:radio name="tbTipo" label="tbTipo" from="['Consignatario', 'Productor']" value="${model.usuario.tbTipo}"/>
 
@@ -28,8 +25,9 @@
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
-							<g:link action="create" class="btn btn-default">create</g:link>
-							<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
+							<g:link action="index" class="btn btn-default">Buscar</g:link>
+							<g:link action="create" class="btn btn-default">Nuevo</g:link>
+							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
 						</div>
 					</td>
 				</tr>

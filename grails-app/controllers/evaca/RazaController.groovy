@@ -45,36 +45,23 @@ class RazaController {
 
 	/* save */
 	def save(Raza raza) {
-	
+
 		try {
-			
+		
 			razaService.save(raza)
-			redirect action:"edit", id:raza.id
+			redirect action:"edit", id:raza.id			
 
-		} catch (UserRegistrationException ure) {        
+		} catch (UserRegistrationException error) {        
 
-			flash.message = ure.message        
-			respond view:'create', [model:ure.model]
+			flash.message = error.message        
+			redirect controller: 'usuario', action:"newlogin	"
+
+		} catch (RazaException error) {        
+
+			flash.message = error.message 
+			respond view:'create', [model:error.model]
 			return
 		}
-
-		// if (!params.id){
-			// raza = new Raza(params)
-		// }
-		
-		// raza.save(flush:true)
-
-		// def model = [
-			// raza: raza, 
-			// razas: Raza.list()
-		// ]
-
-		// if (raza.hasErrors()) {
-			// respond view:'create', [model:model]
-			// return
-		// }
-
-		// redirect action:"edit", id:raza.id
 	    
     }
 

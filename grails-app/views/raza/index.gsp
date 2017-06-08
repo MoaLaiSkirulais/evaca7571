@@ -36,15 +36,13 @@
 							</td>
 							
 							<td class="product-add-to-cart">
-								<!-- <button class="btn btn-default" type="button">Editar</button> -->
-								<g:link action="edit" style="color:#e74c3c" id="${raza.id}">[edit]</g:link>
-
+								<g:link action="edit" id="${raza.id}" class="btn btn-default">Modificar</g:link>
 							</td>
 						</tr><!-- <tr><td colspan="6"></td></tr> -->
 					</g:each>					            
 				</tbody>
 			</table>
-			<g:link action="create" class="btn btn-default">create</g:link>
+			<g:link action="create" class="btn btn-default">Nuevo</g:link>
 		</div><!-- /.table-responsive -->
 	</div>
 
