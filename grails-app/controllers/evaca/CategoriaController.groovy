@@ -1,16 +1,22 @@
 package evaca
 
 class CategoriaController {
+	
+	def categoriaService
 
 	/* create */
 	def create() {
 	
-	    def model = [
-			categoria: new Categoria(params), 
-			categorias: Categoria.list()
-		]
+		try {
+			
+			categoriaService.create()
+		
+		} catch (UserRegistrationException ure) {        
 
-		[model: model]
+			flash.message = ure.message        
+			redirect controller: 'usuario', action:"newlogin	"
+		}
+
     }
 
 	/* edit */
@@ -24,7 +30,7 @@ class CategoriaController {
 
 		respond view:'create', [model:model]
     }
-
+	
 	/* index */
 	def index() {
 
@@ -40,23 +46,27 @@ class CategoriaController {
 	/* save */
 	def save(Categoria categoria) {
 	
-		if (!params.id){
-			categoria = new Categoria(params)
-		}
+		println "pija1"
+
+		try {
 		
-		categoria.save(flush:true)
+			println "pija2"
+			println categoria
+			categoriaService.save(categoria)
+			redirect action:"edit", id:categoria.id			
 
-		def model = [
-			categoria: categoria, 
-			categorias: Categoria.list()
-		]
+		} catch (UserRegistrationException error) {        
 
-		if (categoria.hasErrors()) {
-			respond view:'create', [model:model]
+			flash.message = error.message        
+			redirect controller: 'usuario', action:"newlogin	"
+
+		} catch (CategoriaException error) {        
+
+			println "pija3"
+			flash.message = error.message 
+			respond view:'create', [model:error.model]
 			return
 		}
-
-		redirect action:"edit", id:categoria.id
 	    
     }
 

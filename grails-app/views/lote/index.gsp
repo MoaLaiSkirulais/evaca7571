@@ -77,6 +77,7 @@
 										</g:each>					            
 									</tbody>
 								</table>
+								<g:link action="create" class="btn btn-default">Nuevo</g:link>
 							</div><!-- /.table-responsive -->
 						</div>
 					</div><!-- /.row -->
