@@ -99,7 +99,7 @@
 			<i class="lil-angle-double-down"></i>
 		</a>
 		
-		<!-- <script type="text/javascript" src="${resource(dir: 'sham/js', file: 'min.js')}"></script> -->
+		<script type="text/javascript" src="${resource(dir: 'sham/js', file: 'min.js')}"></script>
     </body>
 	
 </html>

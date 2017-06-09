@@ -69,11 +69,10 @@ class AvisoController {
 	/* show */
 	def show() {
 
-		def avisos = Aviso.list()
-
+		def id=params.id
 		render(view: 'show', 
 			model: [
-				avisos:avisos
+				aviso:new Aviso().get(id)
 			]
 		)
     }

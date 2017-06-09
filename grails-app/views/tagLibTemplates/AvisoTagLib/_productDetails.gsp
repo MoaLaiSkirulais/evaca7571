@@ -4,18 +4,19 @@
 			<span style="width:90%"></span>
 		</div>
 		<span class="rating-text">3 Reviews</span>
-		<span class="pull-right">SKU: <span>29039</span></span>
+		<span class="pull-right">ID: <span>${attrs.aviso.id}</span></span>
 	</div>
 
 	<div class="product-title">
-		<h3 class="product-name">Twill Silk Scarf</h3>
-		<p class="product-available">In Stock / Shipping Available</p>
+		<h3 class="product-name">${attrs.aviso.lote.raza}</h3>
+		<p class="product-available">${attrs.aviso.consignatario} / ${attrs.aviso.fechaPublicacion}</p>
+		<p class="product-available">${attrs.aviso.lote.ubicacion}</p>
 		<hr>
 	</div>
 
 	<div class="description">
 		<p>
-			A handcrafted piece with beautiful detailing. It combines traditional craftsmanship with modern materials, making it a timeless piece with a variety of bespoke options.
+			Muy buenos animales, excelente sanidad.
 		</p>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -32,16 +33,16 @@
 
 	<p class="price">
 		<del>
-			<span class="amount">$750.00</span>
+			<span class="amount">$1000</span>
 		</del>
 		<ins>
-			<span class="amount">$450.00</span>
+			<span class="amount">$${attrs.aviso.precio}</span>
 		</ins>
 	</p>
 
 	<form action="#!" method="POST" class="inputs-border">
 		<div class="form-group">
-			<button type="button" class="btn btn-default"><i class="lil-add_shopping_cart"></i> Add to cart</button>
+			<button type="button" class="btn btn-default"><i class="lil-add_shopping_cart"></i> Ofertar</button>
 		</div>
 	</form>
 

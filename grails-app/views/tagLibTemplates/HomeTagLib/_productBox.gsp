@@ -20,7 +20,9 @@
 	</div>
 	<h3 class="product-title">
 		<a href="#!">
-			${attrs.aviso.lote.raza}
+			<g:link controller="aviso" action="show" id="${attrs.aviso.id}">
+				${attrs.aviso.lote.raza}
+			</g:link>
 		</a>
 	</h3>
 
