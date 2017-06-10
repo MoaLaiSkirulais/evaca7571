@@ -14,4 +14,8 @@ class AvisoTagLib {
 		out << render(template:"/tagLibTemplates/AvisoTagLib/tabsWrapper")
 	}
 
+	def oferta = {attrs ->		
+		out << render(template:"/tagLibTemplates/AvisoTagLib/oferta", model:[attrs:attrs])
+	}
+
 }

@@ -40,12 +40,8 @@
 		</ins>
 	</p>
 
-	<form action="#!" method="POST" class="inputs-border">
-		<div class="form-group">
-			<button type="button" class="btn btn-default"><i class="lil-add_shopping_cart"></i> Ofertar</button>
-		</div>
-	</form>
-
+	<aviso:oferta aviso="${aviso}"/>
+	
 	<div class="product-share">
 		<span>Share on</span>
 		<ul class="social">

@@ -53,12 +53,13 @@
 												</td>
 																							
 												<td class="product-add-to-cart">
-													<button class="btn btn-default" type="button">Editar</button>
+													<g:link action="edit" id="${item.id}" class="btn btn-default">Edit</g:link>
 												</td>
 											</tr><!-- <tr><td colspan="6"></td></tr> -->
 										</g:each>					            
 									</tbody>
 								</table>
+								<g:link action="create" class="btn btn-default">Nuevo</g:link>								
 							</div><!-- /.table-responsive -->
 						</div>
 					</div><!-- /.row -->
