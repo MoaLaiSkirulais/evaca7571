@@ -1,11 +1,11 @@
 package evaca
 
-class OfertaException extends RuntimeException {
+class PlazoException extends RuntimeException {
 	String message
 	Map model
 }
 
-class OfertaService {
+class PlazoService {
 	
 	def sessionService
 	
@@ -16,41 +16,39 @@ class OfertaService {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 		
-		def oferta = new Oferta()
-		oferta.usuario = sessionService.usuario
-
 		def model = [
-			oferta: oferta, 
-			avisos: Aviso.list(), 
-			plazos: Plazo.list()
+			plazo: new Plazo()
 		]
-		
+
 		[model: model]
 	}
 	
 	
 	/* save */
-	def save(Oferta oferta) {
+	def save(Plazo plazo) {
 	
 		if (!sessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 
-		oferta.usuario = sessionService.usuario
-		oferta.save(flush:true)
+		plazo.usuario = sessionService.usuario
+		plazo.save(flush:true)
 
 		def model = [
-			oferta: oferta, 
-			avisos: Aviso.list(), 
-			plazos: Plazo.list()
+			plazo: plazo
 		]
 
-		if (oferta.hasErrors()) {
-			OfertaException error = new OfertaException(message:"Errors!")
+		if (plazo.hasErrors()) {
+			PlazoException error = new PlazoException(message:"Errors!")
 			error.model = model
 			throw error;
 		}
 		
 	}		
+	
+	/* read */
+	def read() {
+	}	
+
 	
 }

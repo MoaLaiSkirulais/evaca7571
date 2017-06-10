@@ -36,6 +36,20 @@ class PopulateService {
 		return 1
 	}
 
+	/* plazos */
+	def plazos() {
+
+		log.info "Populando plazos..."
+		new Plazo(usuario: Usuario.list()[1], nombre: "Contado").save()
+		new Plazo(usuario: Usuario.list()[1], nombre: "30 días").save()
+		new Plazo(usuario: Usuario.list()[1], nombre: "30 y 60 días").save()
+		new Plazo(usuario: Usuario.list()[1], nombre: "60 días").save()
+		new Plazo(usuario: Usuario.list()[1], nombre: "30, 60 y 90 días").save()
+		new Plazo(usuario: Usuario.list()[1], nombre: "90 días").save()
+		new Plazo(usuario: Usuario.list()[1], nombre: "Otro").save()
+		return 1
+	}
+
 	/* usuarios */
 	def usuarios() {
 
@@ -216,44 +230,34 @@ class PopulateService {
 		
 		new Oferta(
 			aviso: Aviso.list()[2], 
-			usuario: Usuario.list()[3], 
-			fechaCreacion: new Date()
+			usuario: Usuario.list()[2], 
+			fechaCreacion: new Date(),
+			plazo: Plazo.list()[1],
+			precio: 1000
 		).save()
 		
 		new Oferta(
 			aviso: Aviso.list()[2], 
 			usuario: Usuario.list()[2], 
-			fechaCreacion: new Date()
-		).save()
-		
-		new Oferta(
-			aviso: Aviso.list()[2], 
-			usuario: Usuario.list()[1], 
-			fechaCreacion: new Date()
-		).save()
-		
-		new Oferta(
-			aviso: Aviso.list()[4], 
-			usuario: Usuario.list()[2], 
-			fechaCreacion: new Date()
-		).save()
-		
-		new Oferta(
-			aviso: Aviso.list()[5], 
-			usuario: Usuario.list()[3], 
-			fechaCreacion: new Date()
+			fechaCreacion: new Date(),
+			plazo: Plazo.list()[1],
+			precio: 1100
 		).save()
 		
 		new Oferta(
 			aviso: Aviso.list()[5], 
 			usuario: Usuario.list()[2], 
-			fechaCreacion: new Date()
+			fechaCreacion: new Date(),
+			plazo: Plazo.list()[1],
+			precio: 1200
 		).save()
 		
 		new Oferta(
 			aviso: Aviso.list()[5], 
 			usuario: Usuario.list()[1], 
-			fechaCreacion: new Date()
+			fechaCreacion: new Date(),
+			plazo: Plazo.list()[1],
+			precio: 1300
 		).save()
 
 		return
@@ -361,6 +365,7 @@ class PopulateService {
 		usuarios()
 		razas()
 		categorias()
+		plazos()
 		lotes()
 		avisos()
 		ofertas()
@@ -375,6 +380,7 @@ class PopulateService {
 		println Usuario.list().toString()
 		println Raza.list().toString()
 		println Categoria.list().toString()
+		println Plazo.list().toString()
 		println Lote.list().toString()
 		println Aviso.list().toString()
 		println Oferta.list().toString()
@@ -386,15 +392,16 @@ class PopulateService {
 	/* countAll */
 	def countAll() {
 
-		println "Raza" + Raza.list().size()
-		println "Categoria" + Categoria.list().size()
-		println "Usuario" + Usuario.list().size()
-		println "Lote" + Lote.list().size()
-		println "Aviso" + Aviso.list().size()
-		println "Oferta" + Oferta.list().size()
-		println "Venta" + Venta.list().size()
-		println "Resena" + Resena.list().size()
-		println "Pregunta" + Pregunta.list().size()
+		println "Raza: " + Raza.list().size()
+		println "Categoria: " + Categoria.list().size()
+		println "Plazo: " + Plazo.list().size()
+		println "Usuario: " + Usuario.list().size()
+		println "Lote: " + Lote.list().size()
+		println "Aviso: " + Aviso.list().size()
+		println "Oferta: " + Oferta.list().size()
+		println "Venta: " + Venta.list().size()
+		println "Resena: " + Resena.list().size()
+		println "Pregunta: " + Pregunta.list().size()
 
 	}
 }

@@ -10,6 +10,7 @@
 		<ul class="col-xs-6">
 			<li><a href="/categoria" class="effect">Categorias</a></li>
 			<li><a href="/raza" class="effect">Razas</a></li>
+			<li><a href="/plazo" class="effect">Plazos</a></li>
 			<li><a href="/usuario" class="effect">Usuarios</a></li>
 		</ul>
 	</div>

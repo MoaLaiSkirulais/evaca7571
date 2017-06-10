@@ -25,7 +25,8 @@ class OfertaController {
 		def id=params.id
 	    def model = [
 			oferta: new Oferta().get(id), 
-			avisos: Aviso.list()
+			avisos: Aviso.list(), 
+			plazos: Plazo.list()
 		]
 
 		respond view:'create', [model:model]
@@ -35,34 +36,26 @@ class OfertaController {
 	def index() {
 
 		def ofertas = Oferta.list()
-
-		render(view: 'index', 
-			model: [
-				ofertas:ofertas
-			]
-		)
+		render(view: 'index', model: [ofertas:ofertas])
     }
 
 	/* save */
-	def save(Oferta oferta) {
+	def save(Oferta oferta) {		
+		// oferta.aviso = null
+		ofertaService.save(oferta)
+		redirect action:"edit", id:oferta.id
+    }
 
-		try {
-		
-			ofertaService.save(oferta)
-			redirect action:"edit", id:oferta.id			
+	/* exception */
+	def exception(UserRegistrationException error) {
+		flash.message = error.message        
+		redirect controller: 'usuario', action:"newlogin"
+    }
 
-		} catch (UserRegistrationException error) {        
-
-			flash.message = error.message        
-			redirect controller: 'usuario', action:"newlogin"
-
-		} catch (OfertaException error) {        
-
-			flash.message = error.message 
-			respond view:'create', [model:error.model]
-			return
-		}
-
+	/* exception */
+	def exception(OfertaException error) {
+		flash.message = "error"
+		respond view:'create', [model:error.model]
     }
 
 

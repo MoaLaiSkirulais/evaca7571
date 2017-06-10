@@ -33,6 +33,8 @@
 											<th class="product-name">fechaCreacion</th>
 											<th class="product-name">usuario</th>
 											<th class="product-name">aviso</th>
+											<th class="product-name">plazo</th>
+											<th class="product-name">precio</th>
 										</tr>
 									</thead>
 									
@@ -44,12 +46,20 @@
 													${item.fechaCreacion}
 												</td>
 												
-											   <td class="product-name">
+												<td class="product-name">
 													${item.usuario}
 												</td>
 												
-											   <td class="product-name">
+												<td class="product-name">
 													${item.aviso}
+												</td>
+																							
+												<td class="product-name">
+													${item.plazo}
+												</td>
+																							
+												<td class="product-name">
+													${item.precio}
 												</td>
 																							
 												<td class="product-add-to-cart">
