@@ -2,5 +2,10 @@ package evaca
 
 class TestController {
 
-    def index() { }
+    def index() { 
+		
+		flash.message = "Test!"	
+		respond view:'index'
+		
+	}
 }
