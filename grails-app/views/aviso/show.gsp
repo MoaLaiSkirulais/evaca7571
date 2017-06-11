@@ -21,7 +21,7 @@
 					</div>
 
 					<div class="col-sm-12">
-						<aviso:tabsWrapper/>
+						<aviso:tabsWrapper aviso="${aviso}"/>
 					</div>
 				</div><!-- /.row -->
 			</div><!-- /.container -->

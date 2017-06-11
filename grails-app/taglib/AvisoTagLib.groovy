@@ -11,11 +11,19 @@ class AvisoTagLib {
 	}
 	
 	def tabsWrapper = {attrs ->		
-		out << render(template:"/tagLibTemplates/AvisoTagLib/tabsWrapper")
+		out << render(template:"/tagLibTemplates/AvisoTagLib/tabsWrapper", model:[attrs:attrs])
 	}
 
 	def oferta = {attrs ->		
 		out << render(template:"/tagLibTemplates/AvisoTagLib/oferta", model:[attrs:attrs])
+	}
+
+	def tabInformation = {attrs ->
+		out << render(template:"/tagLibTemplates/AvisoTagLib/tabInformation", model:[attrs:attrs])
+	}
+
+	def tabOfertas = {attrs ->
+		out << render(template:"/tagLibTemplates/AvisoTagLib/tabOfertas", model:[attrs:attrs])
 	}
 
 }

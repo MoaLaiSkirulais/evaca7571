@@ -40,7 +40,7 @@
 		</ins>
 	</p>
 
-	<aviso:oferta aviso="${aviso}"/>
+	<aviso:oferta aviso="${aviso}" plazos="${plazos}"/>
 	
 	<div class="product-share">
 		<span>Share on</span>

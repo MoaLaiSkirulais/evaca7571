@@ -1,10 +1,10 @@
 <div class="tabs-wrapper">
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
-		<li class="active">
+		<li>
 			<a href="#tab-description" aria-controls="tab-description" data-toggle="tab">Description</a>
 		</li>
-		<li>
+		<li class="active">
 			<a href="#tab-information" aria-controls="tab-information" data-toggle="tab">Additional Information</a>
 		</li>
 		<li>
@@ -13,35 +13,19 @@
 	</ul>
 	<!-- Tab panes -->
 	<div class="tab-content">
-		<div class="tab-pane active" id="tab-description">
+		<div class="tab-pane" id="tab-description">
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 		</div>
-		<div class="tab-pane" id="tab-information">
-			<table class="table shop_attributes">
-				<tbody>
-					<tr>
-						<th>Color</th>
-						<td>
-							<p>Red, Black, Yellow</p>
-						</td>
-					</tr>
-					<tr>
-						<th>Materials</th>
-						<td>
-							<p>Wood</p>
-						</td>
-					</tr>
-					<tr>
-						<th>Dimensions</th>
-						<td>
-							<p>H:1.5″ x W: 2.75″ x D: 3.0″</p>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+
+		<!-- <div class="tab-pane" id="tab-information"> -->
+			<!-- <aviso:tabInformation/> -->
+		<!-- </div> -->
+
+		<div class="tab-pane active" id="tab-information">
+			<aviso:tabOfertas ofertas="${attrs.aviso.ofertas}"/>
+		</div>		
 
 		<div class="tab-pane" id="tab-reviews">
 			<div class="row">

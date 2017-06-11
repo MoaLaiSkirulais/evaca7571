@@ -1,6 +1,8 @@
 package evaca
 
 class AvisoController {
+	
+	def ofertaService
 
 	/* create */
 	def create() {
@@ -72,9 +74,34 @@ class AvisoController {
 		def id=params.id
 		render(view: 'show', 
 			model: [
-				aviso:new Aviso().get(id)
+				aviso: new Aviso().get(id),
+				plazos: Plazo.list()
 			]
 		)
+    }
+	
+	/* ofertar */
+	def ofertar(Oferta oferta) {		
+		ofertaService.save(oferta)
+		redirect action:"show", id:oferta.aviso.id 
+		// render oferta.aviso.id 
+    }
+	
+	/* exception */
+	def exception(UserRegistrationException error) {
+		flash.message = error.message        
+		redirect controller: 'usuario', action:"newlogin"
+    }
+
+	/* exception */
+	def exception(OfertaException error) {
+		flash.message = "error"
+		render error.model.oferta.aviso
+		def model = [
+				aviso: error.model.oferta.aviso,
+				plazos: Plazo.list()
+			]
+		respond view:'show', [model:model]
     }
 
 
