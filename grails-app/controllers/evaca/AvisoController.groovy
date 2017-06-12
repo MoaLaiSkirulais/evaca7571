@@ -90,18 +90,18 @@ class AvisoController {
 	
 	/* exception */
 	def exception(UserRegistrationException error) {
-		println "error"
-		render "pija"
-		return
+		println "UserRegistrationException"
+		// render "pija"
+		// return
 		flash.message = error.message        
 		redirect controller: 'usuario', action:"newlogin"
     }
 
 	/* exception */
 	def exception(OfertaException error) {
-		println "error"
-		render "pija"
-		return
+		println "OfertaException"
+		// render "pija"
+		// return
 		flash.message = "error"
 		render error.model.oferta.aviso
 		def model = [
