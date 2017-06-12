@@ -82,6 +82,7 @@ class AvisoController {
 	
 	/* ofertar */
 	def ofertar(Oferta oferta) {		
+		println "error"
 		ofertaService.save(oferta)
 		redirect action:"show", id:oferta.aviso.id 
 		// render oferta.aviso.id 
@@ -89,12 +90,18 @@ class AvisoController {
 	
 	/* exception */
 	def exception(UserRegistrationException error) {
+		println "error"
+		render "pija"
+		return
 		flash.message = error.message        
 		redirect controller: 'usuario', action:"newlogin"
     }
 
 	/* exception */
 	def exception(OfertaException error) {
+		println "error"
+		render "pija"
+		return
 		flash.message = "error"
 		render error.model.oferta.aviso
 		def model = [
