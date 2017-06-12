@@ -2,7 +2,7 @@
 	<th>${attrs.label}</th>	
 	<td class="text-right">
 		<span class="amount">
-			<g:select
+			<g:select style="${attrs.style}"
 				name="${attrs.name}" 
 				from="${attrs.from}" 
 				value="${attrs.value}" 
