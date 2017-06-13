@@ -7,7 +7,7 @@ class UserRegistrationException extends RuntimeException {
 
 class SessionService {
 	
-    // static scope = "session"
+    static scope = "session"
 
 	Date fechaCreacion
 	String username
