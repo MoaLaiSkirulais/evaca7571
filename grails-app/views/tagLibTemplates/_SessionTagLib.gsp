@@ -1,3 +1,3 @@
-<a href="/usuario/logout">${sessionService.username}  (logout)</a>
+<a href="/usuario/logout">${mySessionService.getUsername()}  (logout)</a>
 	
 	

@@ -7,12 +7,14 @@ class UserRegistrationException extends RuntimeException {
 
 class SessionService {
 	
-    static scope = "session"
+    static scope = "singleton"
+	// static proxy = true
+
 
 	Date fechaCreacion
 	String username
 	Usuario usuario
-	Boolean _isLogged = false
+	// Boolean _isLogged = false
 	
 	// class UserRegistrationException extends RuntimeException {
 		// String message
@@ -22,6 +24,8 @@ class SessionService {
 	 * login 
 	 */
 	def login(username, password) {
+
+		def session = RequestContextHolder.currentRequestAttributes().getSession()
 
 		println "---"
 		println this.username
@@ -34,12 +38,18 @@ class SessionService {
 		def usuario = Usuario.findByUsername(u)
 		if (usuario){
 			if (usuario.password == p){
-				this.username = u
-				this.fechaCreacion = new Date()
-				this.usuario = usuario
-				this._isLogged = true
+			
+				// this.username = u
+				// this.fechaCreacion = new Date()
+				// this.usuario = usuario
+				// this._isLogged = true	
+				
+				session.username = u
+				session.fechaCreacion = new Date()
+				session.usuario = usuario
+				session.isLogged = true
 
-				println this._isLogged
+				println session.isLogged
 				println "ok!"
 			} else {
 				throw new UserRegistrationException(message:"Passwords don't match")
@@ -54,8 +64,8 @@ class SessionService {
 	 * isLogged
 	 */
 	def isLogged() {
-		println this._isLogged
-		return this._isLogged
+		println session.isLogged
+		return session.isLogged
 	}
 	
 	/* 
@@ -64,9 +74,9 @@ class SessionService {
 	def logout() {
 
 		println "logout!"
-		this._isLogged = false
-		this.username = null
-		this.fechaCreacion = null
+		session.isLogged = false
+		session.username = null
+		session.fechaCreacion = null
 		println "logout!!"
 
 	}

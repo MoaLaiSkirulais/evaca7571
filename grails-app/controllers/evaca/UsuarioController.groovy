@@ -2,7 +2,7 @@ package evaca
 
 class UsuarioController {
 	
-	def sessionService
+	def mySessionService
 
 	/* create */
 	def create() {
@@ -35,14 +35,14 @@ class UsuarioController {
 		
 		try {
    
-			sessionService.login(params.username, params.password)
+			mySessionService.login(params.username, params.password)
 			def usuario = Usuario.findByUsername(params.username)
 			flash.message = "Welcome"
 			redirect controller: 'home'
 			return
 			// render(view: 'home')
 
-		 } catch (UserRegistrationException ure) {        
+		 } catch (MyUserRegistrationException ure) {        
 
 			flash.message = ure.message        
 			render(view: 'login')
@@ -59,7 +59,7 @@ class UsuarioController {
 	/* logout */
 	def logout() {
 
-		sessionService.logout()
+		mySessionService.logout()
 		def usuario = Usuario.findByUsername(params.username)
 		render(view: 'login')
 	}	

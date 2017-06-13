@@ -1,22 +1,23 @@
+package evaca
+
 class SessionTagLib {
 	
 	static namespace = "evaca"
-	def sessionService
-	def persona = "jajaja"
+	MySessionService mySessionService
 
+	/* sayHi */ 
 	def sayHi = {attrs ->
-		out << sessionService.username
-		out << sessionService.fechaCreacion
+		out << mySessionService.username
+		out << mySessionService.fechaCreacion
 	}
 
+	/* showSession */ 
 	def showSession = {attrs ->
-	 
-		if (sessionService.isLogged()) {			
-			out << render(template:"/tagLibTemplates/SessionTagLib", model:[sessionService:sessionService])
+		if (mySessionService.isLogged()) {			
+			out << render(template:"/tagLibTemplates/SessionTagLib", model:[mySessionService:mySessionService])
 		} else {
 			out << "<a href=\"/usuario/login\">login</a>"
 		}
 	}
-
 
 }
