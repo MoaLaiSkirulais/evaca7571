@@ -3,7 +3,7 @@ package evaca
 class SessionTagLib {
 	
 	static namespace = "evaca"
-	MySessionService mySessionService
+	def mySessionService
 
 	/* sayHi */ 
 	def sayHi = {attrs ->

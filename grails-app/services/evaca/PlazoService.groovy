@@ -7,12 +7,12 @@ class PlazoException extends RuntimeException {
 
 class PlazoService {
 	
-	def sessionService
+	def mySessionService
 	
 	/* create */
 	def create() {
 	
-		if (!sessionService.isLogged()) {
+		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 		
@@ -27,11 +27,11 @@ class PlazoService {
 	/* save */
 	def save(Plazo plazo) {
 	
-		if (!sessionService.isLogged()) {
+		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 
-		plazo.usuario = sessionService.usuario
+		plazo.usuario = mySessionService.usuario
 		plazo.save(flush:true)
 
 		def model = [

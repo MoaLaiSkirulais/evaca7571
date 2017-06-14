@@ -7,12 +7,12 @@ class RazaException extends RuntimeException {
 
 class RazaService {
 	
-	def sessionService
+	def mySessionService
 	
 	/* create */
 	def create() {
 	
-		if (!sessionService.isLogged()) {
+		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 		
@@ -28,11 +28,11 @@ class RazaService {
 	/* save */
 	def save(Raza raza) {
 	
-		if (!sessionService.isLogged()) {
+		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 
-		raza.usuario = sessionService.usuario //tal vez no sea necesario ya que viene del create 
+		raza.usuario = mySessionService.usuario //tal vez no sea necesario ya que viene del create 
 		raza.save(flush:true)
 
 		def model = [

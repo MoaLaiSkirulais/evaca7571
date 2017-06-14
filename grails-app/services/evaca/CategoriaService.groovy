@@ -7,12 +7,12 @@ class CategoriaException extends RuntimeException {
 
 class CategoriaService {
 	
-	def sessionService
+	def mySessionService
 	
 	/* create */
 	def create() {
 	
-		if (!sessionService.isLogged()) {
+		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 		
@@ -28,11 +28,11 @@ class CategoriaService {
 	/* save */
 	def save(Categoria categoria) {
 	
-		if (!sessionService.isLogged()) {
+		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 
-		categoria.usuario = sessionService.usuario //tal vez no sea necesario ya que viene del create 
+		categoria.usuario = mySessionService.usuario //tal vez no sea necesario ya que viene del create 
 		categoria.save(flush:true)
 
 		def model = [

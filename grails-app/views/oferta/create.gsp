@@ -2,7 +2,7 @@
 
     <content tag="left1">
 
-		<h2>raza</h2>
+		<h2>Oferta</h2>
 		<evaca:cruderror modelo="${model.oferta}"/>
 
 		<form method="post">
@@ -27,14 +27,16 @@
 						from="${model.plazos}" value="${model.oferta?.plazo?.id}" 
 						optionKey="id"
 					/>
+					
+					<myform:radio name="tbState" label="tbState" from="['Activa', 'Rechazada', 'Aceptada', 'Cancelada']" value="${model.oferta.tbState}"/>
 
 					<tr class="order-total">
 						<th></th>
 						<td class="text-right">
 							<div class="form-group text-right">
 								<g:link action="index" class="btn btn-default">Buscar</g:link>
-								<g:link action="create" class="btn btn-default">create</g:link>
-								<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
+								<g:link action="create" class="btn btn-default">Nuevo</g:link>
+								<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
 							</div>
 						</td>
 					</tr>

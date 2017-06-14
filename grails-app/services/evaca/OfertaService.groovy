@@ -7,17 +7,17 @@ class OfertaException extends RuntimeException {
 
 class OfertaService {
 	
-	def sessionService
+	def mySessionService
 	
 	/* create */
 	def create() {
 	
-		if (!sessionService.isLogged()) {
+		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 		
 		def oferta = new Oferta()
-		oferta.usuario = sessionService.usuario
+		oferta.usuario = mySessionService.usuario
 
 		def model = [
 			oferta: oferta, 
@@ -32,11 +32,11 @@ class OfertaService {
 	/* save */
 	def save(Oferta oferta) {
 	
-		if (!sessionService.isLogged()) {
+		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 
-		oferta.usuario = sessionService.usuario
+		oferta.usuario = mySessionService.usuario
 		oferta.save(flush:true)
 
 		def model = [
@@ -50,6 +50,9 @@ class OfertaService {
 			error.model = model
 			throw error;
 		}
+
+		/* crea la venta si es tbState=V */
+		// println oferta.tbState
 		
 	}		
 	

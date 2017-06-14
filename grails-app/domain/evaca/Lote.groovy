@@ -16,15 +16,7 @@ class Lote {
 	Boolean trazada
 	Boolean marcaLiquida
 	String imagen
-	
-	// String cuit
-	// Integer tiempoDePago
-    // static hasMany = [names: String]
-	// String[] list = ["a", "n"]
-	// String descarte
-	// String pesada
-	// String desbaste
-	
+		
 	static belongsTo = [raza: Raza, categoria: Categoria, usuario:Usuario]
 	static hasMany = [avisos: Aviso]
 

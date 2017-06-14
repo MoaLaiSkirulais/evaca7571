@@ -63,6 +63,14 @@ class MySessionService {
 	}
 	
 	/* 
+	 * getUsuario
+	 */
+	def getUsuario() {			
+		def session = WebUtils.retrieveGrailsWebRequest().session
+		return session.usuario
+	}
+	
+	/* 
 	 * logout
 	 */
 	def logout() {
