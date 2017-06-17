@@ -29,10 +29,10 @@ class Oferta {
 		// tbState = tbState
 	// }
 	
-	// /* setPrecio() */
-	// public setPrecio(Float precio) {
+	/* setPrecio() */
+	// public setPrecio(Float p) {
 		// println "precio!!"
-		// this.precio = precio
+		// this.precio = p
 		// println this.precio
 	// }
 
