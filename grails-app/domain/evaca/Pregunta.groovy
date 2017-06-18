@@ -6,7 +6,7 @@ class Pregunta {
 	Date fechaCreacion
 	String label
 	
-	static hasMany = [resenaPreguntas: ResenaPregunta]
+	// static hasMany = [resenaPreguntas: ResenaPregunta]
 
 	static constraints = {
 	}

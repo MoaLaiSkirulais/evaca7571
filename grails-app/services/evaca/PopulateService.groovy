@@ -286,6 +286,39 @@ class PopulateService {
 		return
 	}	
 	
+	/* preguntas */
+	def preguntas() {
+
+		log.info "Populando preguntas..."
+		
+		new Pregunta( 						
+			usuario: Usuario.list()[2], 
+			label: "Como fue la comunicacion con el vendedor?"
+		).save()
+
+		new Pregunta( 			
+			usuario: Usuario.list()[2],
+			label: "Como fue la comunicacion con el consignatario?"
+		).save()
+
+		new Pregunta( 			
+			usuario: Usuario.list()[2],
+			label: "Cual es el estado del lote?"
+		).save()
+
+		new Pregunta( 			
+			usuario: Usuario.list()[2],
+			label: "Volveria a comprar?"
+		).save()
+
+		new Pregunta( 			
+			usuario: Usuario.list()[2],
+			label: "Que le parecio el sistema?"
+		).save()
+
+		return
+	}
+	
 	/* resenas */
 	def resenas() {
 
@@ -293,71 +326,25 @@ class PopulateService {
 		
 		new Resena( 
 			puntaje:3,
-			comentario: "muy bien todo",
-			venta: Venta.list()[1], 
-			usuario: Usuario.list()[2], 
-			fechaCreacion: new Date()
-		).save()
+			venta: Venta.list()[0], 
+			usuario: Usuario.list()[2]
+		).save(flush:true, failOnError: true)
 
 		new Resena( 
 			puntaje:5,
-			comentario: "excelente",
-			venta: Venta.list()[2], 
-			usuario: Usuario.list()[2], 
-			fechaCreacion: new Date()
-		).save()
+			venta: Venta.list()[0], 
+			usuario: Usuario.list()[2]
+		).save(flush:true, failOnError: true)
 
 		new Resena( 
 			puntaje:1,
-			comentario: "mala la experiencia",
-			venta: Venta.list()[3], 
-			usuario: Usuario.list()[2], 
-			fechaCreacion: new Date()
-		).save()
-
-		new Resena( 
-			puntaje:2,
-			comentario: "mal",
-			venta: Venta.list()[3], 
-			usuario: Usuario.list()[1], 
-			fechaCreacion: new Date()
-		).save()
+			venta: Venta.list()[0], 
+			usuario: Usuario.list()[2]
+		).save(flush:true, failOnError: true)
 
 		return
 	}
 	
-	/* preguntas */
-	def preguntas() {
-
-		log.info "Populando preguntas..."
-		
-		new Pregunta( 			
-			fechaCreacion: new Date(), 
-			label: "Como fue la comunicacion con el vendedor?"
-		).save()
-
-		new Pregunta( 			
-			fechaCreacion: new Date(), 
-			label: "Como fue la comunicacion con el consignatario?"
-		).save()
-
-		new Pregunta( 			
-			fechaCreacion: new Date(), 
-			label: "Cual es el estado del lote?"
-		).save()
-
-		new Pregunta( 			
-			fechaCreacion: new Date(), 
-			label: "Volveria a comprar?"
-		).save()
-
-		new Pregunta( 			
-			fechaCreacion: new Date(), 
-			label: "Que le parecio el sistema?"
-		).save()
-
-		return
-	}
 	
 	/* all */
 	def all() {

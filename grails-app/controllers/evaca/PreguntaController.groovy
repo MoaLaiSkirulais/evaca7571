@@ -7,14 +7,11 @@ class PreguntaController {
 	/* create */
 	def create() {
 		
-		try {
-			
-			preguntaService.create()
-		
+		try {			
+			preguntaService.create()		
 		} catch (UserRegistrationException ure) {        
-
 			flash.message = ure.message        
-			redirect controller: 'usuario', action:"newlogin	"
+			redirect controller: 'usuario', action:"newlogin"
 		}
 
     }
