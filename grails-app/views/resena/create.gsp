@@ -13,7 +13,6 @@
 				<myform:field label="Puntaje" name="puntaje" value="${model.resena.puntaje}"/>
 
 				<g:each in="${model.resena.respuestas}" var="respuesta">
-					11
 					<myform:display label="Pregunta" value="${respuesta.pregunta.label}"/>
 					<myform:field label="respuesta" name="respuesta" value="${respuesta.respuesta}"/>
 					<myform:field label="puntaje" name="puntaje" value="${respuesta.puntaje}"/>
