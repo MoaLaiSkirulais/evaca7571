@@ -9,3 +9,19 @@
 	width:90%;
 	height:30px;
 }
+
+
+
+input[type="checkbox"]:not(.browser-default), input[type="radio"]:not(.browser-default) {
+    position: relative !important;
+    left: 2px !important;
+    visibility: visible !important;
+    /* top: 10; */
+}
+
+input[type="checkbox"]:checked:not(.browser-default) + label.checkbox::before, input[type="radio"]:checked:not(.browser-default) + label.radio::before {
+    background-color: #e74c3c;
+    -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.1),inset 0 0 0 3px #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1),inset 0 0 0 3px #fff;
+	visibility: hidden !important;
+}

@@ -9,4 +9,8 @@ class Venta {
 
     static constraints = {
     }
+	
+	String toString(){
+		this.id + " | " + this.fechaCreacion + " | " + this.oferta.aviso.lote
+	}
 }

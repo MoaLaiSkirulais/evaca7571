@@ -13,13 +13,13 @@ class ResenaService {
 	def create() {
 
 		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
+			throw new UserRegistrationException(message: "You must be logged to perform this action")
 		}
 
 		def resena = new Resena()
 		resena.usuario = mySessionService.usuario
 		resena.venta = Venta.list()[0]
-		resena.prepare()
+		resena.prepare() /* este prepare podria hacer mas cosas, entre ellas validar en el domain */
 		def model = [
 			resena: resena
 		]

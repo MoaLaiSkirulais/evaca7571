@@ -10,7 +10,7 @@ class Respuesta {
 	static belongsTo = [resena:Resena] 
 
 	static constraints = {
-		puntaje(nullable:true, blank:true, min:1, max:5)
+		respuesta(nullable:true, blank:true)
 	}
 
 }

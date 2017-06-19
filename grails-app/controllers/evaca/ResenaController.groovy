@@ -46,8 +46,9 @@ class ResenaController {
 	/* save */
 	def save(Resena resena) {
 	
-		render params
-		return
+		if (!params.id){
+			resena = new Resena(params)
+		}
 
 		try {
 		

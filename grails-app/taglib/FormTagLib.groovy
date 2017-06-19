@@ -36,7 +36,8 @@ class FormTagLib {
 		out << 		"<td class=\"text-right\">"
 		out << 			"<span class=\"amount\">"
 		out <<				"<ul class=\"payment-methods\" ${ulStyle}>"
-				
+		out <<					"<fieldset id=\"${attrs.name}\">"
+
 		attrs.from.each {		
 			def checked = ""
 			if (it == attrs.value){
@@ -48,6 +49,7 @@ class FormTagLib {
 			out << "</li>"
 		}
 		
+		out <<					"</fieldset>"
 		out << 				"</ul>"
 		out << 			"</span>"
 		out << 		"</td>"
@@ -55,5 +57,26 @@ class FormTagLib {
 		
 		
 	}
+	
+	
+	// /* radio */
+	// def radio = {attrs, body ->
+	
+		// println attrs.type
+		// def ulStyle = ""
+		// def liStyle = ""
+	
+
+		// out <<	"<fieldset id=\"${attrs.name}\">"
+
+		// attrs.from.each {		
+			// def checked = ""
+			// out <<	"<input id=\"${it}\" name=\"${attrs.name}\" type=\"radio\">\r"
+		// }
+		
+		// out <<	"</fieldset>"
+
+		
+	// }
 
 }
