@@ -17,6 +17,8 @@ class ResenaService {
 		}
 
 		def resena = new Resena()
+		resena.usuario = mySessionService.usuario
+		resena.venta = Venta.list()[0]
 		resena.prepare()
 		def model = [
 			resena: resena

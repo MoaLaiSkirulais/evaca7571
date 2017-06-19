@@ -45,6 +45,9 @@ class ResenaController {
 
 	/* save */
 	def save(Resena resena) {
+	
+		render params
+		return
 
 		try {
 		
@@ -54,7 +57,7 @@ class ResenaController {
 		} catch (UserRegistrationException error) {        
 
 			flash.message = error.message        
-			redirect controller: 'usuario', action:"newlogin	"
+			redirect controller: 'usuario', action:"newlogin"
 
 		} catch (ResenaException error) {        
 

@@ -6,12 +6,15 @@ class Resena {
 	Integer puntaje	
 	Venta venta
 	Usuario usuario
+	List<Respuesta> respuestas
 
 	static belongsTo = [venta:Venta, usuario:Usuario] 
 	static hasMany = [respuestas: Respuesta]
 
 	/* Resena */
 	public Resena() {
+	
+		this.respuestas = []
 		this.fechaCreacion = new Date();		
 	}
 	

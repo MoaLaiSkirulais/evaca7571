@@ -1,6 +1,6 @@
 <g:applyLayout name="searchContainer">
 					
-	<h2>Resenas</h2>
+	<h2>Razas</h2>
 	<div class="col-sm-12">
 
 		<div class="table-responsive">
@@ -9,39 +9,34 @@
 					<tr>
 						<th class="product-name">id</th>
 						<th class="product-name">fechaCreacion</th>
-						<th class="product-name">usuario</th>
-						<th class="product-name">venta</th>											
-						<th class="product-name">puntaje</th>											
+						<th class="product-name">owner</th>
+						<th class="product-name">nombre</th>											
 					</tr>
 				</thead>
 
 				<tbody>
 
-					<g:each in="${resenas}" var="resena" status="i">
+					<g:each in="${razas}" var="raza" status="i">
 						<tr class="item">
 							
 							<td class="product-name">
-								${resena.id}
+								${raza.id}
 							</td>
 							
 							<td class="product-name">
-								${resena.fechaCreacion}
+								${raza.fechaCreacion}
 							</td>
 							
 							<td class="product-name">
-								${resena.usuario}
+								${raza.usuario}
 							</td>
 							
 							<td class="product-name">
-								${resena.venta}
-							</td>
-							
-							<td class="product-name">
-								${resena.puntaje}
+								${raza.nombre}
 							</td>
 							
 							<td class="product-add-to-cart">
-								<g:link action="edit" id="${resena.id}" class="btn btn-default">Modificar</g:link>
+								<g:link action="edit" id="${raza.id}" class="btn btn-default">Modificar</g:link>
 							</td>
 						</tr><!-- <tr><td colspan="6"></td></tr> -->
 					</g:each>					            

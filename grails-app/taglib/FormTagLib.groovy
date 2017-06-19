@@ -25,25 +25,29 @@ class FormTagLib {
 	/* radio */
 	def radio = {attrs, body ->
 	
+		println attrs.type
+		def ulStyle = ""
+		def liStyle = ""
+		if (attrs.type) {ulStyle = "style=\"list-style-type: none;\""} 
+		if (attrs.type) {liStyle = "style=\"display: inline;\""} 
+	
 		out << "<tr class=\"cart-subtotal\">"
 		out << 		"<th>${attrs.label}</th>"
 		out << 		"<td class=\"text-right\">"
 		out << 			"<span class=\"amount\">"
-		out <<				"<ul class=\"payment-methods\">"
+		out <<				"<ul class=\"payment-methods\" ${ulStyle}>"
 				
 		attrs.from.each {		
 			def checked = ""
 			if (it == attrs.value){
 				checked = "checked=\"checked\""
 			}
-			out << "<li class=\"payment-method\">"
+			out << "<li class=\"payment-method\" ${liStyle}>"
 			out << 		"<input id=\"${it}\" name=\"${attrs.name}\" type=\"radio\" value=\"${it}\" ${checked}>\r"
 			out << 		"<label for=\"${it}\" class=\"radio\">${it}</label>\r"
-			// out << g.radio(name:attrs.name, value:it, checked:(it == attrs.value))			
-			// out << "${it}<br>"
-			// out << attrs
 			out << "</li>"
 		}
+		
 		out << 				"</ul>"
 		out << 			"</span>"
 		out << 		"</td>"

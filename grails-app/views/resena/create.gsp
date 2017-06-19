@@ -10,14 +10,18 @@
 				<myform:display label="#id" value="${model.resena.id}"/>
 				<myform:display label="Usuario" value="${model.resena.usuario}"/>
 				<myform:display label="Fecha" value="${model.resena.fechaCreacion}"/>
-				<myform:field label="Puntaje" name="puntaje" value="${model.resena.puntaje}"/>
-
+				<myform:radio name="resena.puntaje" label="puntaje" from="${1..5}" value="${model.resena.puntaje}" type="inline"/>
+					
+				<myform:field name="resena.venta.id" label="Venta" value="${model.resena.venta.id}"/>	
+	
 				<g:each in="${model.resena.respuestas}" var="respuesta">
 					<myform:display label="Pregunta" value="${respuesta.pregunta.label}"/>
-					<myform:field label="respuesta" name="respuesta" value="${respuesta.respuesta}"/>
-					<myform:field label="puntaje" name="puntaje" value="${respuesta.puntaje}"/>
+					
+					<myform:field label="pregunta" name="respuesta.pregunta.id" value="${respuesta.pregunta.id}"/>
+					<myform:field label="respuesta" name="respuesta.respuesta" value="${respuesta.respuesta}"/>
+					<myform:radio name="respuesta.puntaje" label="puntaje" from="${1..5}" value="${respuesta.puntaje}" type="inline"/>
 				</g:each>
-
+				
 				<tr class="order-total">
 					<th></th>
 					<td class="text-right">
