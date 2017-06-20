@@ -11,14 +11,13 @@
 				<myform:display label="Usuario" value="${model.resena.usuario}"/>
 				<myform:display label="Fecha" value="${model.resena.fechaCreacion}"/>
 				<myform:display label="Venta" value="${model.resena.venta}"/>
-				<myform:radio label="puntaje" name="puntaje" from="${1..5}" value="${model.resena.puntaje}" type="inline"/>
-				<myform:field label="" name="venta.id" value="${model.resena.venta.id}" style="display:none"/>	
+				<myform:radio name="puntaje" label="puntaje" from="${1..5}" value="${model.resena.puntaje}" type="inline"/>
+				<myform:field name="venta.id" label="" value="${model.resena.venta.id}" style="display:none"/>	
 				
 				<g:each status="i" in="${model.resena.respuestas}" var="respuesta">
 					<myform:display label="" value="${respuesta.pregunta.label}"/>
 					<myform:field label="" name="respuestas[${i}].pregunta.id" value="${respuesta.pregunta.id}" style="display:none"/>
-					<myform:radio label="respuestas_${i}_puntaje" name="respuestas_${i}_puntaje" from="${1..5}" value="${respuesta.puntaje}" type="inline"/>
-					
+					<myform:radio label="Puntaje" name="respuestas[${i}].puntaje" from="${1..5}" value="${respuesta.puntaje}" type="inline"/>
 					<myform:field label="Comentarios" name="respuestas[${i}].respuesta" value="${respuesta.respuesta}"/>					
 				</g:each>
 				
