@@ -34,6 +34,8 @@ class Resena {
 
 	/* constraints */
 	static constraints = {
+	
+		// venta(unique: ['usuario'])
 
 		fechaCreacion()
 		puntaje min:1, max:5

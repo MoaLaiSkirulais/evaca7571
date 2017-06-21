@@ -33,12 +33,21 @@ class AvisoController {
 
 	/* index */
 	def index() {
+	
+		def avisos = Aviso.createCriteria().list (params) {
 
-		def avisos = Aviso.list()
+			if (params?.consignatario?.nombre) {
+				'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+				 // between("fechaCreacion", "01/01/2011", "01/01/2011")
+			}
 
+		}
+   
 		render(view: 'index', 
 			model: [
-				avisos:avisos
+				avisos:avisos,
+				lote:[categorias: Categoria.list().sort{it.nombre}],
+				lote:[razas: Raza.list().sort{it.nombre}]
 			]
 		)
     }

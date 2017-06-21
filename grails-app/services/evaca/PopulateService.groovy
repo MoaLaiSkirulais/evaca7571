@@ -36,7 +36,7 @@ class PopulateService {
 		return 1
 	}
 
-	/* plazos */
+/* plazos */
 	def plazos() {
 
 		log.info "Populando plazos..."
@@ -189,7 +189,7 @@ class PopulateService {
 			fechaCreacion: new Date(), 
 			fechaPublicacion: new Date(), 
 			tbState: "Borrador",
-			consignatario: Usuario.list()[2], 
+			consignatario: Usuario.list()[0], 
 			precio: 3200
 		).save()
 		
@@ -198,7 +198,7 @@ class PopulateService {
 			fechaCreacion: new Date(), 
 			fechaPublicacion: new Date(), 
 			tbState: "Borrador",
-			consignatario: Usuario.list()[2], 
+			consignatario: Usuario.list()[1], 
 			precio: 3200
 		).save()
 		
