@@ -34,22 +34,47 @@ class AvisoController {
 	/* index */
 	def index() {
 	
+		// render params
 		def avisos = Aviso.createCriteria().list (params) {
 
-			if (params?.consignatario?.nombre) {
-				'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
-				 // between("fechaCreacion", "01/01/2011", "01/01/2011")
+			if (params?.lote?.usuario?.id) {
+				lote{usuario{eq("id", params.lote.usuario.id.toLong())}}
 			}
+
+			if (params?.consignatario?.id) {
+				consignatario{eq("id", params.consignatario.id.toLong())}
+			}
+
+			// if (params?.consignatario?.nombre) {
+				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+			// }
+
+			// if (params?.consignatario?.nombre) {
+				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+			// }
+
+			// if (params?.consignatario?.nombre) {
+				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+			// }
+			
+			// if (params?.consignatario?.nombre) {
+				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+			// }
 
 		}
    
 		render(view: 'index', 
 			model: [
 				avisos:avisos,
-				lote:[categorias: Categoria.list().sort{it.nombre}],
-				lote:[razas: Raza.list().sort{it.nombre}]
+				lote:[
+					consignatarios: Usuario.list().sort{it.nombre}, 
+					categorias: Categoria.list().sort{it.nombre}, 
+					vendedores: Usuario.list().sort{it.nombre}, 
+					razas: Raza.list().sort{it.nombre}
+				]
 			]
 		)
+		
     }
 
 	/* save */
@@ -91,26 +116,18 @@ class AvisoController {
 	
 	/* ofertar */
 	def ofertar(Oferta oferta) {		
-		println "error"
 		ofertaService.save(oferta)
 		redirect action:"show", id:oferta.aviso.id 
-		// render oferta.aviso.id 
     }
 	
 	/* exception */
 	def exception(UserRegistrationException error) {
-		println "UserRegistrationException"
-		// render "pija"
-		// return
 		flash.message = error.message        
 		redirect controller: 'usuario', action:"newlogin"
     }
 
 	/* exception */
 	def exception(OfertaException error) {
-		println "OfertaException"
-		// render "pija"
-		// return
 		flash.message = "error"
 		render error.model.oferta.aviso
 		def model = [

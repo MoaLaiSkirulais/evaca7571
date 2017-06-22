@@ -7,25 +7,26 @@
 				<tbody>
 					<fieldset action="index" class="form">
 							<div class="fieldcontain">
-								<myform:field label="Nombre" name="nombre" value="${params.nombre}"/>
-								<myform:field label="consignatario" name="consignatario.nombre" value="${params?.consignatario?.nombre}"/>
-								<myform:field label="id" name="usuario.id" value="${params?.usuario?.id}"/>
-								<g:datePicker name="mydate" default="none" noSelection="['':'-Choose-']" years="${2012..2020}"/>
+								<!-- <myform:field label="Nombre" name="nombre" value="${params.nombre}"/> -->
+								<!-- <myform:field label="consignatario" name="consignatario.nombre" value="${params?.consignatario?.nombre}"/> -->
+								<!-- <myform:field label="id" name="usuario.id" value="${params?.usuario?.id}"/> -->
+								<!-- <g:datePicker name="mydate" default="none" noSelection="['':'-Choose-']" years="${2012..2020}"/> -->
 								
-								<myform:select 
-									label="Categoria" 	
-									name="categoria.id" 
-									from="${lote.categorias}" value="${lote?.categoria?.id}" 
-									optionKey="id"
-								/>
+								<myform:select label="Vendedor" name="lote.usuario.id" from="${lote["vendedores"]}" 
+								optionKey="id" optionValue="id"
+								value="${params.lote?.usuario?.id}"/>
+								
+								<myform:select label="Consignatarios" name="consignatario.id" from="${lote["consignatarios"]}"
+								optionKey="id" optionValue="id"
+								value="${params?.consignatario?.id}"/>
+								
+								<myform:select label="Categoria" name="categoria.id" from="${lote["categorias"]}" value="${params?.lote?.categoria?.id}"/>
 
-								<myform:select 
-									label="Raza" 	
-									name="raza.id" 
-									from="${lote.razas}" value="${lote?.raza?.id}" 
-									optionKey="id"
-								/>
-								
+								<myform:select label="Raza" name="raza.id" from="${lote["razas"]}" value="${params?.lote?.raza?.id}"/>
+
+								<myform:select label="tbState" name="tbState" 
+									from="['Borrador', 'Publicado', 'Finalizado', 'Vendido','Aprobacion']" value="${params?.tbState}"/>
+
 							</div>
 							
 					</fieldset>
@@ -39,8 +40,8 @@
 		<table class="table cart-table wishlist-table" cellspacing="0">
 			<thead>
 				<tr>
-					<th class="product-name">fechaCreacion</th>
-					<th class="product-name">lote</th>
+					<th class="product-name">fechaCreacion / lote</th>
+					<!-- <th class="product-name">lote</th> -->
 					<th class="product-name">tbState</th>
 					<th class="product-name">consignatario</th>
 					<th class="product-name">precio</th>
@@ -52,22 +53,23 @@
 					<tr class="item">
 						
 						<td class="product-name">
-							${item.fechaCreacion}
-						</td>
-						
-					   <td class="product-name">
+							${item.fechaCreacion}<br>
 							${item.lote}
 						</td>
 						
-					   <td class="product-name">
+						<!-- <td class="product-name"> -->
+							<!-- ${item.lote} -->
+						<!-- </td> -->
+						
+						<td class="product-name">
 							${item.tbState}
 						</td>
 						
-					   <td class="product-name">
+						<td class="product-name">
 							${item.consignatario}
 						</td>
 						
-					   <td class="product-name">
+						<td class="product-name">
 							${item.precio}
 						</td>    
 						

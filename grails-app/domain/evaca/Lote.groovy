@@ -48,13 +48,11 @@ class Lote {
 		this.fechaCreacion = new Date()
 		this.usuario = Usuario.list()[2]
 	}
-	
-	def beforeUpdate() {
+
+	String toString(){
+		this.id + " | " + this.usuario + " | " + this.raza + " | " + this.categoria + " | " + this.cantidad
 	}
-	
-    def beforeValidate() {
-    }
-	
+
 	// String toString(){
 		// this.fechaCreacion.toString()
 	// }
