@@ -1,35 +1,40 @@
 package evaca
 
+import spock.lang.Shared
 import spock.lang.Specification
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 import grails.test.mixin.Mock
 
-
-
-
 @TestFor(Oferta)
 @Mock([Usuario, Raza, Categoria, Lote, Aviso, Plazo])
 class OfertaSpec extends Specification {
+	
+	@Shared usuario;
+	@Shared raza;
+	@Shared categoria;
+	@Shared plazo;
+	@Shared lote;
+	@Shared aviso;
+	@Shared oferta;
 
-    def setup() {
-		// def oferta = Oferta.list()[1]
+	def setup() {
 		
-		def usuario = new Usuario(
-			username: "mporto", 
+		usuario = new Usuario(
+			username: "mporto1", 
 			nombre: "Martin", 
 			apellido: "Porto", 
-			email: "martinporto@gmail.com", 
+			email: "martinporto1@gmail.com", 
 			tbTipo: "Productor", 
 			password: "1234", 
 			comision: 11					
 		).save()
-		
-		def raza = new Raza(usuario: usuario, nombre: "Aberdeen Angus").save()
-		def categoria = new Categoria(usuario: usuario, nombre: "Preñadas").save()
-		def plazo = new Plazo(usuario: usuario, nombre: "Contado").save()
-		
-		def lote = new Lote(
+
+		raza = new Raza(usuario: usuario, nombre: "Aberdeen Angus1").save()
+		categoria = new Categoria(usuario: usuario, nombre: "Preñadas1").save()
+		plazo = new Plazo(usuario: usuario, nombre: "Contado1").save()
+
+		lote = new Lote(
 			usuario: usuario,  
 			raza: raza, 
 			categoria: categoria, 
@@ -47,28 +52,29 @@ class OfertaSpec extends Specification {
 			cuit: "1-22344566-22", 
 			imagen: "http://i.imgur.com/hmo2zOp.gif"
 		).save()
-		
-		def aviso = new Aviso(
+
+		aviso = new Aviso(
 			lote: lote, 
 			consignatario: usuario, 
 			precio: 3200
 		).save()
-		
-		def oferta = new Oferta(
+
+		oferta = new Oferta(
 			aviso: aviso, 
 			usuario: usuario, 
 			plazo: plazo,
 			precio: 1000
 		).save()
+		
     }
 
     def cleanup() {
     }
 
     void "No se puede aceptar una oferta Pendiente"() {
-		given:
+		given:		
 			setup()
-		
+
 		when: 
 			oferta.aceptar();
 		

@@ -20,11 +20,9 @@ class Raza {
 	
 	def beforeInsert() {
 		this.fechaCreacion = new Date()
-		// this.usuario = Usuario.list()[2]
 	}
 	
 	def beforeValidate() {
-		// this.usuario = Usuario.list()[2]
     }
 
 	String toString(){
