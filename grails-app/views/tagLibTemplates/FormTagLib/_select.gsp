@@ -7,6 +7,7 @@
 				from="${attrs.from}" 
 				value="${attrs.value}" 
 				optionKey="${attrs.optionKey}"  
+				noSelection="${['null':'Select One...']}"
 				class="FormTagLib_field"
 				/>
 		</span>
