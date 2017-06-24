@@ -42,6 +42,7 @@ class AvisoController {
 			}
 
 			if (params?.consignatario?.id) {
+				// render "pija"
 				consignatario{eq("id", params.consignatario.id.toLong())}
 			}
 

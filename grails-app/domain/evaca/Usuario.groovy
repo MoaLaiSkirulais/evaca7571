@@ -27,7 +27,7 @@ class Usuario {
 		apellido()
 		email email: true, unique: true
 		tbState nullable: true, inList: ['Activo', 'Inactivo', 'Pendiente']
-		tbTipo inList: ['Consignatario', 'Productor']		
+		tbTipo inList: ['Consignatario', 'Productor', 'Administrador']		
 		username size: 6..15, blank: false, unique: true		
 		password()
 		puntaje blank: true, nullable: true, editable: false, defaultValue: 0

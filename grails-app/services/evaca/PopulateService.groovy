@@ -36,7 +36,7 @@ class PopulateService {
 		return 1
 	}
 
-/* plazos */
+	/* plazos */
 	def plazos() {
 
 		log.info "Populando plazos..."
@@ -389,6 +389,34 @@ class PopulateService {
 		println "Venta: " + Venta.list().size()
 		println "Resena: " + Resena.list().size()
 		println "Pregunta: " + Pregunta.list().size()
+
+	}
+	
+	/* clearAll */
+	def clearAll() {
+	
+		Resena.executeUpdate('delete from Resena')
+		Venta.executeUpdate('delete from Venta')
+		Oferta.executeUpdate('delete from Oferta')
+		Aviso.executeUpdate('delete from Aviso')
+		Lote.executeUpdate('delete from Lote')
+		Plazo.executeUpdate('delete from Plazo')
+		Raza.executeUpdate('delete from Raza')
+		Categoria.executeUpdate('delete from Categoria')
+		Pregunta.executeUpdate('delete from Pregunta')
+		Usuario.executeUpdate('delete from Usuario')
+
+		// Usuario.findAll().each { it.delete() }
+		// Raza.findAll().each { it.delete() }
+		// Categoria.findAll().each { it.delete() }
+		// Plazo.findAll().each { it.delete() }
+		// Usuario.findAll().each { it.delete() }
+		// Lote.findAll().each { it.delete() }
+		// Aviso.findAll().each { it.delete() }
+		// Oferta.findAll().each { it.delete() }
+		// Venta.findAll().each { it.delete() }
+		// Resena.findAll().each { it.delete() }
+		// Pregunta.findAll().each { it.delete() }
 
 	}
 }
