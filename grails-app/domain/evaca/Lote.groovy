@@ -46,7 +46,7 @@ class Lote {
 	
 	def beforeInsert() {
 		this.fechaCreacion = new Date()
-		this.usuario = Usuario.list()[2]
+		// this.usuario = Usuario.list()[2]
 	}
 
 	String toString(){

@@ -31,7 +31,7 @@ class Oferta {
 	/* aceptar() */
 	public aceptar(Usuario usuario) {
 
-		if (this.aviso.lote.usuario != usuario){
+		if (this.aviso.lote.usuario.equals(usuario)){
 			throw new DomainException(message: "Solo el vendedor puede aceptar la oferta")
 		}
 
@@ -46,14 +46,15 @@ class Oferta {
 	/* activar() */
 	public activar(Usuario usuario) {
 		
-		if (Usuario.tbTipo != 'Administrador'){
-			throw new RuntimeException(message:"Solo un administrador puede aprobar la oferta")
+		if (usuario.tbTipo != 'Administrador'){
+			throw new DomainException(message:"Solo un administrador puede aprobar la oferta")
 		}
 		
 		if (this.tbState != 'Pendiente'){
-			throw new RuntimeException(message:"La oferta no está Pendiente")
+			throw new DomainException(message:"La oferta no está Pendiente")
 		}
 		
+		this.tbState = 'Activa'
 		return this
 	}
 

@@ -28,11 +28,11 @@ class OfertaSpec extends Specification {
 			tbTipo: "Productor", 
 			password: "1234", 
 			comision: 11					
-		).save()
+		)
 
-		raza = new Raza(usuario: usuario, nombre: "Aberdeen Angus1").save()
-		categoria = new Categoria(usuario: usuario, nombre: "Preñadas1").save()
-		plazo = new Plazo(usuario: usuario, nombre: "Contado1").save()
+		raza = new Raza(usuario: usuario, nombre: "Aberdeen Angus1")
+		categoria = new Categoria(usuario: usuario, nombre: "Preñadas1")
+		plazo = new Plazo(usuario: usuario, nombre: "Contado1")
 
 		lote = new Lote(
 			usuario: usuario,  
@@ -51,20 +51,20 @@ class OfertaSpec extends Specification {
 			desbaste: "", 
 			cuit: "1-22344566-22", 
 			imagen: "http://i.imgur.com/hmo2zOp.gif"
-		).save()
+		)
 
 		aviso = new Aviso(
 			lote: lote, 
 			consignatario: usuario, 
 			precio: 3200
-		).save()
+		)
 
 		oferta = new Oferta(
 			aviso: aviso, 
 			usuario: usuario, 
 			plazo: plazo,
 			precio: 1000
-		).save()
+		)
 		
     }
 
@@ -86,6 +86,8 @@ class OfertaSpec extends Specification {
 	void "Se puede aceptar una oferta Activa"() {
 		given:
 			setup()
+			usuario.tbTipo = 'Administrador'
+			oferta.activar(usuario);
 		
 		when: 
 			oferta.aceptar();

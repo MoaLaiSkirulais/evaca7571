@@ -1,5 +1,8 @@
 package evaca
 
+import groovy.transform.EqualsAndHashCode
+
+// @EqualsAndHashCode(includes='email')
 class Usuario {
 
 	Date fechaCreacion
