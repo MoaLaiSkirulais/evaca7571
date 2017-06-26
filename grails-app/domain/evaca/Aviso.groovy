@@ -19,28 +19,51 @@ class Aviso {
 
 		fechaCreacion nullable: true
 		fechaPublicacion nullable: true
-		tbState nullable: true, inList: ['Borrador', 'Publicado', 'Finalizado', 'Vendido','Aprobacion']
-
+		tbState nullable: true, inList: ['Borrador', 'Publicado', 'Vendido']
 	}
 	
-	/* 
-	 * beforeInsert() 
-	 */
-
+	/* beforeInsert() */
 	def beforeInsert() {
 		this.fechaCreacion = new Date()
-		this.tbState = "Borrador"
 	}
 	
-	/* 
-	 * Aviso() 
-	 */
-
+	/* Aviso() */
 	public Aviso() {
 		this.fechaCreacion = new Date();
-		this.tbState = "Borrador";
+		this.tbState = 'Borrador';
 	}
-	
+
+	/* setLote() */
+	public void setLote(Lote l){
+
+		if (l.tbState != 'Disponible'){
+			throw new DomainException(message : "El lote no está Disponible")
+		}
+
+		lote = l
+		// lote.tbState = 'Avisado'
+	}
+
+	/* setLote() */
+	public void setTbState(String tbState){
+
+		if (tbState == 'Publicado'){
+			if (this.tbState != 'Borrador'){
+				throw new DomainException(message : "El aviso no está Borrador")
+			}
+		}
+		
+		if (tbState == 'Vendido'){
+			if (this.tbState != 'Publicado'){
+				throw new DomainException(message : "El aviso no está Publicado")
+			}
+		}
+
+		this.tbState = tbState
+		
+	}
+
+
 	// String toString(){
 		// this.tbState + this.precio + this.consignatario
 	// }
