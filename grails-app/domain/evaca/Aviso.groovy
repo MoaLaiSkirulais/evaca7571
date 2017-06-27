@@ -15,13 +15,16 @@ class Aviso {
 	
 	static belongsTo = [lote:Lote, consignatario:Usuario]	
 	static hasMany = [ofertas: Oferta]
+
+	/* constraints */
 	static constraints = {
 
 		fechaCreacion nullable: true
 		fechaPublicacion nullable: true
 		tbState nullable: true, inList: ['Borrador', 'Publicado', 'Vendido']
+		consignatario (validator: AvisoValidator.consignatario)
 	}
-	
+
 	/* beforeInsert() */
 	def beforeInsert() {
 		this.fechaCreacion = new Date()
@@ -31,6 +34,12 @@ class Aviso {
 	public Aviso() {
 		this.fechaCreacion = new Date();
 		this.tbState = 'Borrador';
+	}
+	
+	/* setConsignatario() */
+	public void setConsignatario(Usuario consignatario){
+		AvisoValidator.consignatario(consignatario)
+		this.consignatario = consignatario
 	}
 
 	/* setLote() */
@@ -44,7 +53,7 @@ class Aviso {
 		// lote.tbState = 'Avisado'
 	}
 
-	/* setLote() */
+	/* setTbState() */
 	public void setTbState(String tbState){
 
 		if (tbState == 'Publicado'){
@@ -63,17 +72,9 @@ class Aviso {
 		
 	}
 
-
 	// String toString(){
 		// this.tbState + this.precio + this.consignatario
 	// }
-	
-    // public void setTbState(String tbState) {
-		// if (tbState == 'Active'){
-			// this.tbState = 'Finished'
-		// } else {
-			// this.tbState = tbState
-		// }
-    // }
+
 
 }
