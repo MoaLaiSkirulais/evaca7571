@@ -396,8 +396,8 @@ class PopulateService {
 	def clearAll() {
 	
 		Resena.executeUpdate('delete from Resena')
-		Venta.executeUpdate('delete from Venta')
 		Oferta.executeUpdate('delete from Oferta')
+		Venta.executeUpdate('delete from Venta')
 		Aviso.executeUpdate('delete from Aviso')
 		Lote.executeUpdate('delete from Lote')
 		Plazo.executeUpdate('delete from Plazo')

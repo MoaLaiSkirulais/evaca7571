@@ -4,13 +4,14 @@ class Venta {
 	
 	Date fechaCreacion
 	
-	Oferta oferta
+	// Oferta oferta
 	static belongsTo = [oferta:Oferta] 
 
-    static constraints = {
-    }
+    // static constraints = {
+		// oferta nullable: true
+    // }
 	
 	String toString(){
-		this.id + " | " + this.fechaCreacion + " | " + this.oferta.aviso.lote
+		// this.id + " | " + this.fechaCreacion + " | " + this.oferta.aviso.lote
 	}
 }

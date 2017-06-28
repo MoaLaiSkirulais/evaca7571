@@ -37,13 +37,13 @@ class Lote {
 		trazada nullable: true
 		marcaLiquida nullable: true
 		imagen nullable: true
-		tbState nullable: false, inList: ['Disponible', 'Avisado', 'Vendido']
+		tbState nullable: false, inList: ['Borrador', 'Publicado', 'Vendido']
 
     }
 
 	public Lote() {
 		this.fechaCreacion = new Date();
-		this.tbState = 'Disponible';
+		this.tbState = 'Borrador';
 		this.imagen = "static/sham/img/products/v0.gif"
     }
 
