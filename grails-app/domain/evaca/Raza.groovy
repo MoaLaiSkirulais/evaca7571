@@ -19,11 +19,18 @@ class Raza {
 	}
 	
 	def beforeInsert() {
-		this.fechaCreacion = new Date()
+		// this.fechaCreacion = new Date()
 	}
 	
 	def beforeValidate() {
     }
+	
+	/* setFechaCreacion() */
+	public setFechaCreacion(Date date) {
+		println "setFechaCreacion!!"
+		// println this.tbState		
+		// tbState = tbState
+	}
 
 	String toString(){
 		this.nombre
