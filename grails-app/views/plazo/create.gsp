@@ -1,13 +1,13 @@
 <g:applyLayout name="crudContainer">
 						
-	<h2>Raza</h2>
+	<h2>Plazo</h2>
 	<evaca:cruderror modelo="${model.plazo}"/>
 	
 	<form method="post">
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
 			
-				<myform:display label="#id" value="${model.plazo.id}"/>									
+				<myform:display label="#id" value="${model.plazo.id}"/>
 				<myform:display label="Usuario" value="${model.plazo.usuario}"/>
 				<myform:display label="Fecha creacion" value="${model.plazo.fechaCreacion}"/>
 				<myform:field label="Nombre" name="nombre" value="${model.plazo.nombre}"/>

@@ -35,7 +35,7 @@ class CategoriaService {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 
-		categoria.usuario = mySessionService.usuario //tal vez no sea necesario ya que viene del create 
+		categoria.usuario = mySessionService.usuario 
 		categoria.save(flush:true)
 
 		def model = [

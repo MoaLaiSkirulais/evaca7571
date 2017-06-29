@@ -3,11 +3,11 @@ package evaca
 class Plazo {
 
 	Date fechaCreacion	
-	Usuario usuario
 	String nombre
+	Usuario usuario
 	
-	// static hasMany = [oferta:Oferta]
-	// Set ofertas
+	static hasMany = [ofertas:Oferta]
+	Set ofertas
 
 	static constraints = {
 		nombre(nullable:false, blank:false, unique: true)
@@ -16,10 +16,6 @@ class Plazo {
 	
 	public Plazo() {
 		this.fechaCreacion = new Date();
-	}
-	
-	def beforeInsert() {
-		this.fechaCreacion = new Date()
 	}
 	
 	String toString(){

@@ -1,37 +1,28 @@
 package evaca
 
-class UsuarioController {
+class UsuarioController extends BaseController{
 	
 	def mySessionService
+	def usuarioService
+
+	
 
 	/* create */
 	def create() {
-	
-	    def model = [
-			usuario: new Usuario(params), 
-			usuarios: Usuario.list(),
-		]
-
-		[model: model]
+		usuarioService.create()
     }
+
+	
 
 	/* edit */
-	def edit() {
-
-		def id=params.id
-	    def model = [
-			usuario: new Usuario().get(id), 
-			usuarios: Usuario.list(),
-		]
-
-		respond view:'create', [model:model]
+	def edit() {		
+		respond view:'create', usuarioService.edit(params.id)
     }
+
+	
 
 	/* login */
 	def login() {
-
-		// render "<h1>---" + params + "---</h1>"
-		// return
 		
 		try {
    
@@ -40,7 +31,6 @@ class UsuarioController {
 			flash.message = "Welcome"
 			redirect controller: 'home'
 			return
-			// render(view: 'home')
 
 		 } catch (MyUserRegistrationException ure) {        
 
@@ -48,55 +38,36 @@ class UsuarioController {
 			render(view: 'login')
 		}
     }
+
 	
+
 	/* login */
 	def newlogin() {
-
-		render(view: 'login')
-		
+		render(view: 'login')		
     }
+
 	
+
 	/* logout */
 	def logout() {
-
 		mySessionService.logout()
 		def usuario = Usuario.findByUsername(params.username)
 		render(view: 'login')
 	}	
 
+	
+
 	/* index */
 	def index() {
-
-		def usuarios = Usuario.list()
-
-		render(view: 'index', 
-			model: [
-				usuarios:usuarios
-			]
-		)
+		render(view: 'index', model:usuarioService.search())		
     }
+
+	
 
 	/* save */
 	def save(Usuario usuario) {
-
-		if (!params.id){
-			usuario = new Usuario(params)
-		}
-
-		usuario.save(flush:true)
-
-		def model = [
-			usuario: usuario, 
-			usuarios: Usuario.list(),
-		]
-
-		if (usuario.hasErrors()) {
-			respond view:'create', [model:model]
-			return
-		}
-
+		usuarioService.save(usuario)
 		redirect action:"edit", id:usuario.id
-	    
     }
 
 
