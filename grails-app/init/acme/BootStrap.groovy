@@ -12,7 +12,7 @@ class BootStrap {
     def init = { servletContext ->
 	
 
-	// populateService.all()
+		populateService.all()
 		// myService.countAll()
 
     }

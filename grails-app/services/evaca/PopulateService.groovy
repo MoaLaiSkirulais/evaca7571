@@ -350,15 +350,15 @@ class PopulateService {
 	def all() {
 
 		usuarios()
-		razas()
-		categorias()
-		plazos()
-		lotes()
-		avisos()
-		ofertas()
-		ventas()
-		resenas()
-		preguntas()
+		// razas()
+		// categorias()
+		// plazos()
+		// lotes()
+		// avisos()
+		// ofertas()
+		// ventas()
+		// resenas()
+		// preguntas()
 	}
 	
 	/* showAll */
