@@ -16,8 +16,11 @@ class RazaService {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 		
+		def raza = new Raza()
+		raza.usuario = mySessionService.usuario
+		
 		def model = [
-			raza: new Raza(), 
+			raza: raza, 
 			razas: Raza.list()
 		]
 		
@@ -28,11 +31,14 @@ class RazaService {
 	/* save */
 	def save(Raza raza) {
 	
+		// println raza
+		// return
+	
 		if (!mySessionService.isLogged()) {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 
-		raza.usuario = mySessionService.usuario //tal vez no sea necesario ya que viene del create 
+		raza.usuario = mySessionService.usuario 
 		raza.save(flush:true)
 
 		def model = [

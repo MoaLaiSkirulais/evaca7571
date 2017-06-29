@@ -16,8 +16,11 @@ class CategoriaService {
 			throw new UserRegistrationException(message:"You must be logged in to perform this action")
 		}
 		
+		def categoria = new Categoria()
+		categoria.usuario = mySessionService.usuario
+		
 		def model = [
-			categoria: new Categoria(), 
+			categoria: categoria, 
 			categorias: Categoria.list()
 		]
 		

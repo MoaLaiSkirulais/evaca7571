@@ -14,7 +14,7 @@ class PlazoController {
 		} catch (UserRegistrationException ure) {
 		
 			flash.message = ure.message        
-			redirect controller: 'usuario', action:"newlogin	"
+			redirect controller: 'usuario', action:"newlogin"
 
 		}
 
@@ -54,7 +54,7 @@ class PlazoController {
 		flash.message = error.message        
 		redirect controller: 'usuario', action:"newlogin"
     }
-
+	
 	/* exception */
 	def exception(PlazoException error) {
 		flash.message = "error"

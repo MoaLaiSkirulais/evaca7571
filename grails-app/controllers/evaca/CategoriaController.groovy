@@ -46,23 +46,18 @@ class CategoriaController {
 	/* save */
 	def save(Categoria categoria) {
 	
-		println "pija1"
-
 		try {
-		
-			println "pija2"
-			println categoria
+
 			categoriaService.save(categoria)
 			redirect action:"edit", id:categoria.id			
 
 		} catch (UserRegistrationException error) {        
 
 			flash.message = error.message        
-			redirect controller: 'usuario', action:"newlogin	"
+			redirect controller: 'usuario', action:"newlogin"
 
 		} catch (CategoriaException error) {        
 
-			println "pija3"
 			flash.message = error.message 
 			respond view:'create', [model:error.model]
 			return

@@ -7,7 +7,10 @@
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
 			
-				<myform:display label="#id" value="${model.raza.id}"/>									
+				<myform:display label="#id" value="${model.raza.id}"/>
+				
+				<!-- <myform:field name="id" label="id" value="${model.raza.id}"/>	 -->
+				
 				<myform:display label="Usuario" value="${model.raza.usuario}"/>
 				<myform:display label="Fecha creacion" value="${model.raza.fechaCreacion}"/>
 				<myform:field label="Nombre" name="nombre" value="${model.raza.nombre}"/>

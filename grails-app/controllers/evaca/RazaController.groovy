@@ -69,6 +69,10 @@ class RazaController {
 
 	/* save */
 	def save(Raza raza) {
+	
+		// if (!params.id){
+			// raza = new Raza(params)
+		// }
 
 		try {
 		

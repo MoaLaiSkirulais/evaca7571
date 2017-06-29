@@ -11,24 +11,25 @@ class PlazoService {
 	
 	/* create */
 	def create() {
-	
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
+			
+		if (!mySessionService.isAdministrator()) {
+			throw new UserRegistrationException(message:"You must be Admin to perform this action")
 		}
 		
 		def model = [
-			plazo: new Plazo()
+			plazo: new Plazo([usuario:mySessionService.usuario])
 		]
 
 		[model: model]
 	}
+
 	
 	
 	/* save */
 	def save(Plazo plazo) {
 	
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
+		if (!mySessionService.isAdministrator()) {
+			throw new UserRegistrationException(message:"You must be Admin to perform this action")
 		}
 
 		plazo.usuario = mySessionService.usuario

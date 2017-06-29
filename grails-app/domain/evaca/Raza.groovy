@@ -18,12 +18,12 @@ class Raza {
 		this.fechaCreacion = new Date();
 	}
 	
-	def beforeInsert() {
-		// this.fechaCreacion = new Date()
-	}
+	// def beforeInsert() {
+		// // this.fechaCreacion = new Date()
+	// }
 	
-	def beforeValidate() {
-    }
+	// def beforeValidate() {
+    // }
 	
 	/* setFechaCreacion() */
 	public setFechaCreacion(Date date) {
@@ -32,9 +32,9 @@ class Raza {
 		// tbState = tbState
 	}
 
-	String toString(){
-		this.nombre
-	}
+	// String toString(){
+		// this.nombre
+	// }
 
 }
 

@@ -18,9 +18,9 @@ class MySessionService {
 	String username
 	Usuario usuario
 
-	/* 
-	 * login 
-	 */
+
+	
+	/* login */
 	def login(username, password) {
 		
 		def u = username
@@ -46,33 +46,43 @@ class MySessionService {
 
 	}	
 
-	/* 
-	 * isLogged
-	 */
+	
+	
+	/* isLogged */
 	def isLogged() {
 		def session = WebUtils.retrieveGrailsWebRequest().session
 		return session.isLogged
 	}
 	
-	/* 
-	 * getUsername
-	 */
+
+
+	/* isAdministrator */
+	def isAdministrator() {
+		if (isLogged()){
+			def session = WebUtils.retrieveGrailsWebRequest().session
+			[session.usuario.tbTipo == 'Administrador']
+		}
+	}
+
+	
+
+	/* getUsername */
 	def getUsername() {			
 		def session = WebUtils.retrieveGrailsWebRequest().session
 		return session.username
 	}
 	
-	/* 
-	 * getUsuario
-	 */
+
+	
+	/* getUsuario */
 	def getUsuario() {			
 		def session = WebUtils.retrieveGrailsWebRequest().session
 		return session.usuario
 	}
 	
-	/* 
-	 * logout
-	 */
+
+	
+	/* logout */
 	def logout() {
 		def session = WebUtils.retrieveGrailsWebRequest().session
 		session.isLogged = false

@@ -18,11 +18,6 @@ class Categoria {
 		this.fechaCreacion = new Date();
 	}
 
-	def beforeValidate() {
-		// this.fechaCreacion = new Date()
-		// this.usuario = Usuario.list()[2]
-    }
-
 	String toString(){
 		this.nombre
 	}
