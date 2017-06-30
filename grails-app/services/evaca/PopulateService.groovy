@@ -63,7 +63,6 @@ class PopulateService {
 			email: "leocastro@gmail.com", 
 			tbTipo: "Consignatario", 
 			password: "1234", 
-			tbState: "Activo", 
 			// puntaje: 11, 
 			comision: 11					
 		).save()
@@ -76,7 +75,6 @@ class PopulateService {
 			email: "martinporto@gmail.com", 
 			tbTipo: "Productor", 
 			password: "1234", 
-			tbState: "Activo", 
 			// puntaje: 11, 
 			comision: 11					
 		).save()
@@ -89,7 +87,6 @@ class PopulateService {
 			email: "dguglie@gmail.com", 
 			tbTipo: "Productor", 
 			password: "1234", 
-			tbState: "Pendiente", 
 			// puntaje: 11, 
 			comision: 11					
 		).save()

@@ -1,24 +1,24 @@
 <g:applyLayout name="crudContainer">
 
 	<h2>usuario</h2>
-	<evaca:cruderror modelo="${model.usuario}"/>
+	<evaca:cruderror modelo="${usuario}"/>
 
 	<form method="post">
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
-				<myform:display name="id" label="#id" value="${model.usuario.id}"/>
-				<myform:display name="fechaCreacion" label="Fecha creacion" value="${model.usuario.fechaCreacion}"/>
+				<myform:display name="id" label="#id" value="${usuario.id}"/>
+				<myform:display name="fechaCreacion" label="Fecha creacion" value="${usuario.fechaCreacion}"/>
 
-				<myform:field name="nombre" label="nombre" value="${model.usuario.nombre}"/>
-				<myform:field name="apellido" label="apellido" value="${model.usuario.apellido}"/>
-				<myform:field name="email" label="email" value="${model.usuario.email}"/>
-				<myform:field name="username" label="username" value="${model.usuario.username}"/>
-				
-				<myform:radio name="tbState" label="tbState" from="['Activo', 'Inactivo', 'Pendiente']" value="${model.usuario.tbState}"/>
-				<myform:radio name="tbTipo" label="tbTipo" from="['Consignatario', 'Productor']" value="${model.usuario.tbTipo}"/>
+				<myform:field name="nombre" label="nombre" value="${usuario.nombre}"/>
+				<myform:field name="apellido" label="apellido" value="${usuario.apellido}"/>
+				<myform:field name="email" label="email" value="${usuario.email}"/>
+				<myform:field name="username" label="username" value="${usuario.username}"/>
 
-				<myform:field name="comision" label="comision" value="${model.usuario.comision}"/>
-				<myform:field name="password" label="password" value="${model.usuario.password}"/>
+				<myform:radio name="tbState" label="tbState" from="${usuario.constrainedProperties ['tbState']['inList']}" value="${usuario.tbState}"/>
+				<myform:radio name="tbTipo" label="tbTipo" from="${usuario.constrainedProperties ['tbTipo']['inList']}" value="${usuario.tbTipo}"/>
+
+				<myform:field name="comision" label="comision" value="${usuario.comision}"/>
+				<myform:field name="password" label="password" value="${usuario.password}"/>
 				<myform:field name="repassword" label="repassword" value=""/>
 
 				<tr class="order-total">
@@ -27,7 +27,9 @@
 						<div class="form-group text-right">
 							<g:link action="index" class="btn btn-default">Buscar</g:link>
 							<g:link action="create" class="btn btn-default">Nuevo</g:link>
+							
 							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
+							<g:actionSubmit action="joder" value="Joder" class="btn btn-default"/>	
 						</div>
 					</td>
 				</tr>

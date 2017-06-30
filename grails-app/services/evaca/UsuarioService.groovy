@@ -11,27 +11,14 @@ class UsuarioService {
 	
 	/* create */
 	def create() {
-			
-		def model = [
-			usuario: new Usuario(), 
-			usuarios: Usuario.list(),
-		]
-
-		[model: model]
-		
+		[usuario: new Usuario()]
 	}
 
 	
-	
+
 	/* edit */
 	def edit(id) {
-		
-	    def model = [
-			usuario: new Usuario().get(id), 
-			usuarios: Usuario.list(),
-		]
-		return [model: model]
-		
+		[usuario: new Usuario().get(id)]		
 	}
 
 	
@@ -39,18 +26,37 @@ class UsuarioService {
 	/* save */
 	def save(Usuario usuario) {
 
-		usuario.save(flush:true)
-		def model = [usuario: usuario]
+		// try {
+			usuario.save(flush:true, failOnError: false)
+		// }  catch (org.springframework.orm.hibernate5.HibernateSystemException ure) {        
+		// }  catch (all) {        
+		// }  catch (DomainException ure) {        
+			println "noo"		
+			// def model = [usuario: usuario]
 
-		if (usuario.hasErrors()) {
-			UsuarioException error = new UsuarioException(message:"Errors!")
-			error.model = model
-			throw error;
-		}
+			if (usuario.hasErrors()) {
+				println "!!!!!!!!"
+				UsuarioException error = new UsuarioException(message:"mal")
+				error.model = [usuario: usuario]
+				throw error;
+			}
+		// }
+		
+		
 		
 	}		
-
 	
+
+
+	/* joder */
+	def joder(Usuario usuario) {
+		println "usuarioService.joder"
+		def aux = usuario.joder()		
+		println aux
+		aux
+	}		
+
+
 
 	/* search */
 	def search() {

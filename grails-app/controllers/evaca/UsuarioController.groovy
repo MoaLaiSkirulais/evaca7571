@@ -62,13 +62,39 @@ class UsuarioController extends BaseController{
 		render(view: 'index', model:usuarioService.search())		
     }
 
+
+
+	/* joder */
+	def joder(Usuario usuario) {
+	
+		try {
+			usuarioService.joder(usuario)			
+		} catch (DomainException ure) {			
+			flash.message = ure.message
+			render(view: 'create', model: [usuario: usuario])
+		}
+    }
+
 	
 
 	/* save */
 	def save(Usuario usuario) {
-		usuarioService.save(usuario)
-		redirect action:"edit", id:usuario.id
+		// usuario.tbState = 'Activo'
+		try {
+			usuarioService.save(usuario)
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect action:"edit", id:usuario.id
+		}  catch (grails.validation.ValidationException error) {        
+			flash.message = "Mal"
+			render(view: 'create', model: [usuario: error.model])
+			println "noo..........."
+		}  catch (UsuarioException error) {        
+			flash.message = "Mal"
+			render(view: 'create', model: error.model)
+			println "noo.........................-------------------"
+		}
     }
-
+	
 
 }
