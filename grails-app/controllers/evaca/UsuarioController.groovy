@@ -68,7 +68,7 @@ class UsuarioController extends BaseController{
 	def joder(Usuario usuario) {
 	
 		try {
-			usuarioService.joder(usuario)			
+			usuarioService.joder(usuario)
 		} catch (DomainException ure) {			
 			flash.message = ure.message
 			render(view: 'create', model: [usuario: usuario])
@@ -94,6 +94,11 @@ class UsuarioController extends BaseController{
 			render(view: 'create', model: error.model)
 			println "noo.........................-------------------"
 		}
+		
+		
+		    // } catch(Exception e){
+        // e.printStackTrace()
+
     }
 	
 

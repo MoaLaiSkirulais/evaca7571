@@ -15,6 +15,9 @@ class Usuario {
 	String tbState
 	Float puntaje
 	Float comision
+	
+	Boolean tbStateValid
+	String valid_tbState
 
 	static hasMany = [ofertas: Oferta, resenas: Resena, lotes: Lote]
 	
@@ -33,6 +36,26 @@ class Usuario {
 		password()
 		puntaje blank: true, nullable: true, editable: false, defaultValue: 0
 		comision()
+		
+		valid_tbState nullable: true
+		
+        tbState validator: { val, obj ->
+			return true
+			if (val == 'Aprobacion') {
+				return "Todo mal"
+			}
+        }
+
+		tbStateValid validator: { val, obj ->
+			println "val2: " + val
+			return val
+        }
+
+		valid_tbState validator: { val, obj ->
+			println "valid_tbState: " + val
+			return val
+        }
+
 
     }
 
@@ -50,6 +73,9 @@ class Usuario {
 		this.fechaCreacion = new Date();
 		this.tbState = "Aprobacion";
 		this.tbTipo = "Productor";
+		this.tbStateValid = true;
+		this.valid_tbState = null;
+		
     }
 	
 
@@ -57,34 +83,47 @@ class Usuario {
 	/* setTbState() */
 	public void setTbState(String tbState){
 	
-		println "this.tbState-" + this.tbState
-		println "tbState-" + tbState
-		// println "primero"
+		// this.tbStateValid = true
+		this.valid_tbState = null
+	
+
 		if (this.tbState == tbState){
 			println "mismo"
 			return
 		}
 
 		if (tbState == 'Aprobacion'){
-			if (this.tbState != 'Aprobacion'){
-				throw new DomainException(message : "El usuario ya fue Aprobado")
+			if (this.tbState == 'Activo' || this.tbState == 'Inactivo'){
+				// throw new DomainException(message : "El usuario ya fue Aprobado")
+				println "El usuario ya fue Aprobado"
+				this.valid_tbState = "El usuario ya fue Aprobado"
+				// this.tbStateValid = false
+				// return false
 			}
+
+			// this.errors.rejectValue('tbState', 'Aprobacion')				
 		}
 
 		if (tbState == 'Activo'){
-			// if (this.tbState != 'Aprobacion' && this.tbState != 'Activo'){
 			if (this.tbState != 'Aprobacion'){
-				println "pija"
-				throw new DomainException(message : "El usuario no está Aprobacion")
+				// throw new DomainException(message : "El usuario no está Aprobacion")
+				println "El usuario no está Aprobacion"
+				this.valid_tbState = "El usuario no está Aprobacion"
+				// this.tbStateValid = false
+				// return false
 			}
 		}
 
 		if (tbState == 'Inactivo'){
 			if (this.tbState != 'Activo'){
-				throw new DomainException(message : "El usuario no está Activo")
+				// throw new DomainException(message : "El usuario no está Activo")
+				println "El usuario no está Activo"
+				this.valid_tbState = "El usuario no está Activo"
+				// this.tbStateValid = false
+				// return false
 			}			
 		}
-
+		
 		this.tbState = tbState
 		
 	}

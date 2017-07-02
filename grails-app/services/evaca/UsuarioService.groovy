@@ -30,16 +30,16 @@ class UsuarioService {
 			usuario.save(flush:true, failOnError: false)
 		// }  catch (org.springframework.orm.hibernate5.HibernateSystemException ure) {        
 		// }  catch (all) {        
-		// }  catch (DomainException ure) {        
+		//}  catch (DomainException ure) {        
 			println "noo"		
 			// def model = [usuario: usuario]
 
-			if (usuario.hasErrors()) {
+			// if (usuario.hasErrors()) {
 				println "!!!!!!!!"
 				UsuarioException error = new UsuarioException(message:"mal")
 				error.model = [usuario: usuario]
 				throw error;
-			}
+			// }
 		// }
 		
 		
