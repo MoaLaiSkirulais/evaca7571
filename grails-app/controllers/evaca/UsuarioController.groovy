@@ -75,6 +75,31 @@ class UsuarioController extends BaseController{
 		}
     }
 
+
+	
+	/* setTbState */
+	def setTbState(Usuario usuario) {
+
+		try {
+			switch (params._action_setTbState){
+				case 'activar':
+					usuarioService.activar(usuario)
+					break
+
+				case 'inactivar':
+					usuarioService.inactivar(usuario)
+					break
+			}
+			
+			redirect action:"edit", id:usuario.id
+
+		} catch (DomainException ure) {			
+			println "mal"
+			flash.message = ure.message
+			render(view: 'create', model: [usuario: usuario])
+		}
+    }
+
 	
 
 	/* save */
@@ -88,11 +113,11 @@ class UsuarioController extends BaseController{
 		}  catch (grails.validation.ValidationException error) {        
 			flash.message = "Mal"
 			render(view: 'create', model: [usuario: error.model])
-			println "noo..........."
+			println "grails.validation.ValidationException error"
 		}  catch (UsuarioException error) {        
 			flash.message = "Mal"
 			render(view: 'create', model: error.model)
-			println "noo.........................-------------------"
+			println "UsuarioException"
 		}
 		
 		

@@ -31,15 +31,13 @@ class UsuarioService {
 		// }  catch (org.springframework.orm.hibernate5.HibernateSystemException ure) {        
 		// }  catch (all) {        
 		//}  catch (DomainException ure) {        
-			println "noo"		
 			// def model = [usuario: usuario]
 
-			// if (usuario.hasErrors()) {
-				println "!!!!!!!!"
+			if (usuario.hasErrors()) {
 				UsuarioException error = new UsuarioException(message:"mal")
 				error.model = [usuario: usuario]
 				throw error;
-			// }
+			}
 		// }
 		
 		
@@ -52,7 +50,34 @@ class UsuarioService {
 	def joder(Usuario usuario) {
 		println "usuarioService.joder"
 		def aux = usuario.joder()		
-		println aux
+		aux
+	}		
+	
+
+	
+	/* activar */
+	def activar(Usuario usuario) {
+	
+		if (!mySessionService.isAdministrator()) {
+			throw new UserRegistrationException(message:"You must be Admin to perform this action")
+		}
+
+		def aux = usuario.activar()
+		usuario.save(flush:true, failOnError: false)
+		aux
+	}		
+
+	
+
+	/* inactivar */
+	def inactivar(Usuario usuario) {
+	
+		if (!mySessionService.isAdministrator()) {
+			throw new UserRegistrationException(message:"You must be Admin to perform this action")
+		}
+
+		def aux = usuario.inactivar()		
+		usuario.save(flush:true, failOnError: false)
 		aux
 	}		
 
