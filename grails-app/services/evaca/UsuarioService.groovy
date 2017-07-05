@@ -1,4 +1,5 @@
 package evaca
+import grails.transaction.*
 
 class UsuarioException extends RuntimeException {
 	String message
@@ -18,37 +19,27 @@ class UsuarioService {
 
 	/* edit */
 	def edit(id) {
-		[usuario: new Usuario().get(id)]		
+		def usuario = new Usuario().get(id)
+		[usuario: usuario]
 	}
 
 	
 	
 	/* save */
 	def save(Usuario usuario) {
-
-		// try {
-			usuario.save(flush:true, failOnError: false)
-		// }  catch (org.springframework.orm.hibernate5.HibernateSystemException ure) {        
-		// }  catch (all) {        
-		//}  catch (DomainException ure) {        
-			// def model = [usuario: usuario]
-
-			if (usuario.hasErrors()) {
-				UsuarioException error = new UsuarioException(message:"mal")
-				error.model = [usuario: usuario]
-				throw error;
-			}
-		// }
 		
-		
-		
+		usuario.save(flush:true, failOnError: false)
+		if (usuario.hasErrors()) {
+			UsuarioException error = new UsuarioException(message:"mal")
+			error.model = [usuario: usuario]
+			throw error;
+		}
 	}		
 	
 
 
 	/* joder */
 	def joder(Usuario usuario) {
-		println "usuarioService.joder"
 		def aux = usuario.joder()		
 		aux
 	}		
@@ -56,27 +47,25 @@ class UsuarioService {
 
 	
 	/* activar */
+	@Transactional
 	def activar(Usuario usuario) {
-	
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be Admin to perform this action")
-		}
-
-		def aux = usuario.activar()
+		def aux = usuario.activar(mySessionService.usuario)
 		usuario.save(flush:true, failOnError: false)
-		aux
+		// if (usuario.hasErrors()) {
+			// UsuarioException error = new UsuarioException(message:"mal")
+			// error.model = [usuario: usuario]
+			// throw error;
+		// }
+		println "activar ------->"
+		println usuario.dump()
+		usuario
 	}		
 
 	
 
 	/* inactivar */
-	def inactivar(Usuario usuario) {
-	
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be Admin to perform this action")
-		}
-
-		def aux = usuario.inactivar()		
+	def inactivar(Usuario usuario) {	
+		def aux = usuario.inactivar(mySessionService.usuario)
 		usuario.save(flush:true, failOnError: false)
 		aux
 	}		

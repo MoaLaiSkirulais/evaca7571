@@ -10,19 +10,16 @@ class PlazoController extends BaseController {
     }
 	
 
-
 	/* edit */
 	def edit() {	
 		respond view:'create', plazoService.edit(params.id)
     }
 
-	
 
 	/* index */
 	def index() {
 		render(view: 'index', model:plazoService.search())
     }
-	
 
 
 	/* save */

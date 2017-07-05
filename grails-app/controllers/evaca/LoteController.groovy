@@ -1,75 +1,43 @@
 package evaca
 
-class LoteController {
+class LoteController extends BaseController{
+	
+	def loteService
 
 	/* create */
-	def create() {
+	def create() {	
+	    loteService.create()
+    }
+
 	
-	    def model = [
-			lote: new Lote(params), 
-			lotes: Lote.list(),
-			categorias: Categoria.list().sort{it.nombre},
-			razas: Raza.list().sort{it.nombre}
-		]
-
-		[model: model]
-    }
-
 	/* edit */
-	def edit() {
-
-		def id=params.id
-	    def model = [
-			lote: new Lote().get(id), 
-			lotes: Lote.list(),
-			categorias: Categoria.list().sort{it.nombre},
-			razas: Raza.list().sort{it.nombre}
-		]
-
-		respond view:'create', [model:model]
+	def edit() {	
+		respond view:'create', loteService.edit(params.id)		
     }
+
 
 	/* index */
-	def index() {
-
-		def lotes = Lote.list()
-
-		render(view: 'index', 
-			model: [
-				lotes:lotes
-			]
-		)
+	def index() {	
+		render(view: 'index', model:loteService.search())
     }
+
 
 	/* save */
 	def save(Lote lote) {
 	
-		// render "<p>lote: " + lote + "</p>"
-		// render "<p>lote.raza: " + lote.raza + "</p>"
-		// render "<p>lote.raza.id: " + lote.raza.id + "</p>"
-		// render "<p>lote.categoria.id: " + lote.categoria.id + "</p>"
-		// render "<p>lote.id: " + lote.id
-		// return
-	
-		if (!params.id){
-			lote = new Lote(params)
+		try {
+
+			loteService.save(lote)
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect action:"edit", id:lote.id
+
+		}  catch (UsuarioException error) {
+		
+			flash.message = "Mal"
+			render(view: 'create', model: error.model)
+			println "UsuarioException"
 		}
-
-		lote.save(flush:true)
-
-		def model = [
-			lote: lote, 
-			lotes: Lote.list(),
-			categorias: Categoria.list(),
-			razas: Raza.list()
-		]
-
-		if (lote.hasErrors()) {
-			respond view:'create', [model:model]
-			return
-		}
-
-		redirect action:"edit", id:lote.id
 	    
     }
 

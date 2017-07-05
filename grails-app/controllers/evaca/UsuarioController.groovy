@@ -15,8 +15,9 @@ class UsuarioController extends BaseController{
 	
 
 	/* edit */
-	def edit() {		
-		respond view:'create', usuarioService.edit(params.id)
+	def edit() {
+		def model = usuarioService.edit(params.id)
+		respond view:'create', model
     }
 
 	
@@ -59,14 +60,14 @@ class UsuarioController extends BaseController{
 
 	/* index */
 	def index() {
-		render(view: 'index', model:usuarioService.search())		
+		render(view: 'index', model:usuarioService.search())
     }
 
 
 
 	/* joder */
 	def joder(Usuario usuario) {
-	
+
 		try {
 			usuarioService.joder(usuario)
 		} catch (DomainException ure) {			
@@ -90,11 +91,10 @@ class UsuarioController extends BaseController{
 					usuarioService.inactivar(usuario)
 					break
 			}
-			
+
 			redirect action:"edit", id:usuario.id
 
 		} catch (DomainException ure) {			
-			println "mal"
 			flash.message = ure.message
 			render(view: 'create', model: [usuario: usuario])
 		}
@@ -104,7 +104,7 @@ class UsuarioController extends BaseController{
 
 	/* save */
 	def save(Usuario usuario) {
-		// usuario.tbState = 'Activo'
+
 		try {
 			usuarioService.save(usuario)
 			flash.message = "Cambios aplicados con exito"
@@ -119,7 +119,6 @@ class UsuarioController extends BaseController{
 			render(view: 'create', model: error.model)
 			println "UsuarioException"
 		}
-		
 		
 		    // } catch(Exception e){
         // e.printStackTrace()

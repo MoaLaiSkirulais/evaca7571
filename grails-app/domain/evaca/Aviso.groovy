@@ -15,6 +15,7 @@ class Aviso {
 
 	static belongsTo = [lote:Lote, consignatario:Usuario]	
 	static hasMany = [ofertas: Oferta]
+	
 
 	
 	

@@ -22,7 +22,7 @@ class PopulateService {
 		new Raza(usuario: Usuario.list()[2], nombre: "Brangus").save()
 		new Raza(usuario: Usuario.list()[2], nombre: "Careta").save()
 		return 1
-	}
+		}
 
 	/* categorias */
 	def categorias() {
@@ -73,7 +73,7 @@ class PopulateService {
 			nombre: "Martin", 
 			apellido: "Porto", 
 			email: "martinporto@gmail.com", 
-			tbTipo: "Productor", 
+			tbTipo: "Administrador", 
 			password: "1234", 
 			// puntaje: 11, 
 			comision: 11					
@@ -106,7 +106,6 @@ class PopulateService {
 			usuario: Usuario.last(), 
 			raza: Raza.list()[2], 
 			categoria: Categoria.list()[2], 
-			fechaCreacion: new Date(), 
 			cantidad: 90, 
 			pesoPromedio: 440, 
 			pesoMaximo: 500, 
@@ -122,46 +121,46 @@ class PopulateService {
 			imagen: "http://i.imgur.com/XMAPZSi.gif"
 		).save()
 		
-		new Lote(
-			usuario: Usuario.last(), 
-			raza: Raza.list()[1], 
-			categoria: Categoria.list()[1], 
-			fechaCreacion: new Date(), 
-			cantidad: 7, 
-			pesoPromedio: 440, 
-			pesoMaximo: 500, 
-			pesoMinimo: 350, 
-			trazada: true, 
-			ubicacion: "Lavalle, Buenos Aires", 
-			edad: 1, 
-			descarte: "", 
-			marcaLiquida: false, 
-			pesada: "", 
-			desbaste: "", 
-			cuit: "1-22344566-22", 
-			imagen: "http://i.imgur.com/u5Fcrfd.gif"
-		).save()
+		// new Lote(
+			// usuario: Usuario.last(), 
+			// raza: Raza.list()[1], 
+			// categoria: Categoria.list()[1], 
+			// fechaCreacion: new Date(), 
+			// cantidad: 7, 
+			// pesoPromedio: 440, 
+			// pesoMaximo: 500, 
+			// pesoMinimo: 350, 
+			// trazada: true, 
+			// ubicacion: "Lavalle, Buenos Aires", 
+			// edad: 1, 
+			// descarte: "", 
+			// marcaLiquida: false, 
+			// pesada: "", 
+			// desbaste: "", 
+			// cuit: "1-22344566-22", 
+			// imagen: "http://i.imgur.com/u5Fcrfd.gif"
+		// ).save()
 		
 		
-		new Lote(
-			usuario: Usuario.last(), 
-			raza: Raza.list()[3], 
-			categoria: Categoria.list()[3], 
-			fechaCreacion: new Date(), 
-			cantidad: 15, 
-			pesoPromedio: 300, 
-			pesoMaximo: 500, 
-			pesoMinimo: 250, 
-			trazada: true, 
-			ubicacion: "San Justo, Santa Fe", 
-			edad: 1, 
-			descarte: "", 
-			marcaLiquida: true, 
-			pesada: "", 
-			desbaste: "", 
-			cuit: "1-22344566-22", 
-			imagen: "http://i.imgur.com/hmo2zOp.gif"
-		).save()
+		// new Lote(
+			// usuario: Usuario.last(), 
+			// raza: Raza.list()[3], 
+			// categoria: Categoria.list()[3], 
+			// fechaCreacion: new Date(), 
+			// cantidad: 15, 
+			// pesoPromedio: 300, 
+			// pesoMaximo: 500, 
+			// pesoMinimo: 250, 
+			// trazada: true, 
+			// ubicacion: "San Justo, Santa Fe", 
+			// edad: 1, 
+			// descarte: "", 
+			// marcaLiquida: true, 
+			// pesada: "", 
+			// desbaste: "", 
+			// cuit: "1-22344566-22", 
+			// imagen: "http://i.imgur.com/hmo2zOp.gif"
+		// ).save()
 
 		return 1
 	}
@@ -347,10 +346,10 @@ class PopulateService {
 	def all() {
 
 		usuarios()
-		// razas()
-		// categorias()
-		// plazos()
-		// lotes()
+		razas()
+		categorias()
+		plazos()
+		lotes()
 		// avisos()
 		// ofertas()
 		// ventas()

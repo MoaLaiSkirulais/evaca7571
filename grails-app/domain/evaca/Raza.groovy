@@ -9,32 +9,32 @@ class Raza {
 	static hasMany = [lotes:Lote]
 	Set lotes
 
+	
+	/* constraints */
 	static constraints = {
 		nombre(nullable:false, blank:false, unique: true)
 		fechaCreacion blank: true, nullable: true
 	}
+
 	
+	/* Raza */
 	public Raza() {
 		this.fechaCreacion = new Date();
 	}
+
 	
-	// def beforeInsert() {
-		// // this.fechaCreacion = new Date()
-	// }
-	
-	// def beforeValidate() {
-    // }
-	
-	/* setFechaCreacion() */
+	/* setFechaCreacion */
 	public setFechaCreacion(Date date) {
 		println "setFechaCreacion!!"
 		// println this.tbState		
 		// tbState = tbState
 	}
 
-	// String toString(){
-		// this.nombre
-	// }
+	
+	/* toString */
+	String toString(){
+		this.nombre
+	}
 
 }
 

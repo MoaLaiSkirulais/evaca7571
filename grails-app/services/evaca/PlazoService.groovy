@@ -23,7 +23,8 @@ class PlazoService {
 		[model: model]
 	}
 
-	
+
+
 	/* edit */
 	def edit(id) {
 

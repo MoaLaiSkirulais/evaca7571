@@ -21,6 +21,8 @@ class Lote {
 	static belongsTo = [raza: Raza, categoria: Categoria, usuario:Usuario]
 	static hasMany = [avisos: Aviso]
 
+	
+	/* constraints */
 	static constraints = {
 
 		fechaCreacion nullable: false
@@ -41,16 +43,22 @@ class Lote {
 
     }
 
+	
+	/* Lote */
 	public Lote() {
 		this.fechaCreacion = new Date();
 		this.tbState = 'Borrador';
 		this.imagen = "static/sham/img/products/v0.gif"
     }
 
+	
+	/* beforeInsert */
 	def beforeInsert() {
 		this.fechaCreacion = new Date()
 	}
 
+	
+	/* toString */
 	String toString(){
 		this.id + " | " + this.usuario + " | " + this.raza + " | " + this.categoria + " | " + this.cantidad
 	}
