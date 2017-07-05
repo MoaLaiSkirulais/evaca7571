@@ -11,7 +11,7 @@ class PopulateService {
 	/* razas */
 	def razas() {
 
-		log.info "Populando razas..."
+log.info "Populando razas..."
 		new Raza(usuario: Usuario.list()[2], nombre: "Aberdeen Angus").save()
 		new Raza(usuario: Usuario.list()[2], nombre: "Braford").save()
 		new Raza(usuario: Usuario.list()[2], nombre: "Holando Argentino").save()
@@ -172,7 +172,7 @@ class PopulateService {
 		/* aca habrá que usar los command objects ? */
 		
 		new Aviso(
-			lote: Lote.list()[1], 
+			lote: Lote.list()[0], 
 			fechaCreacion: new Date(), 
 			fechaPublicacion: new Date(), 
 			tbState: "Borrador",
@@ -180,41 +180,41 @@ class PopulateService {
 			precio: 3200
 		).save()
 		
-		new Aviso(
-			lote: Lote.list()[1], 
-			fechaCreacion: new Date(), 
-			fechaPublicacion: new Date(), 
-			tbState: "Borrador",
-			consignatario: Usuario.list()[0], 
-			precio: 3200
-		).save()
+		// new Aviso(
+			// lote: Lote.list()[1], 
+			// fechaCreacion: new Date(), 
+			// fechaPublicacion: new Date(), 
+			// tbState: "Borrador",
+			// consignatario: Usuario.list()[0], 
+			// precio: 3200
+		// ).save()
 		
-		new Aviso(
-			lote: Lote.list()[2], 
-			fechaCreacion: new Date(), 
-			fechaPublicacion: new Date(), 
-			tbState: "Borrador",
-			consignatario: Usuario.list()[1], 
-			precio: 3200
-		).save()
+		// new Aviso(
+			// lote: Lote.list()[2], 
+			// fechaCreacion: new Date(), 
+			// fechaPublicacion: new Date(), 
+			// tbState: "Borrador",
+			// consignatario: Usuario.list()[1], 
+			// precio: 3200
+		// ).save()
 		
-		new Aviso(
-			lote: Lote.list()[2], 
-			fechaCreacion: new Date(), 
-			fechaPublicacion: new Date(), 
-			tbState: "Borrador",
-			consignatario: Usuario.list()[2], 
-			precio: 3200
-		).save()
+		// new Aviso(
+			// lote: Lote.list()[2], 
+			// fechaCreacion: new Date(), 
+			// fechaPublicacion: new Date(), 
+			// tbState: "Borrador",
+			// consignatario: Usuario.list()[2], 
+			// precio: 3200
+		// ).save()
 		
-		new Aviso(
-			lote: Lote.list()[3], 
-			fechaCreacion: new Date(), 
-			fechaPublicacion: new Date(), 
-			tbState: "Vendido",
-			consignatario: Usuario.list()[2], 
-			precio: 3200
-		).save()
+		// new Aviso(
+			// lote: Lote.list()[3], 
+			// fechaCreacion: new Date(), 
+			// fechaPublicacion: new Date(), 
+			// tbState: "Vendido",
+			// consignatario: Usuario.list()[2], 
+			// precio: 3200
+		// ).save()
 		
 		return
 	}
@@ -225,36 +225,36 @@ class PopulateService {
 		log.info "Populando ofertas..."
 		
 		new Oferta(
-			aviso: Aviso.list()[2], 
+			aviso: Aviso.list()[0], 
 			usuario: Usuario.list()[2], 
 			fechaCreacion: new Date(),
 			plazo: Plazo.list()[1],
 			precio: 1000
 		).save()
 		
-		new Oferta(
-			aviso: Aviso.list()[2], 
-			usuario: Usuario.list()[2], 
-			fechaCreacion: new Date(),
-			plazo: Plazo.list()[1],
-			precio: 1100
-		).save()
+		// new Oferta(
+			// aviso: Aviso.list()[2], 
+			// usuario: Usuario.list()[2], 
+			// fechaCreacion: new Date(),
+			// plazo: Plazo.list()[1],
+			// precio: 1100
+		// ).save()
 		
-		new Oferta(
-			aviso: Aviso.list()[5], 
-			usuario: Usuario.list()[2], 
-			fechaCreacion: new Date(),
-			plazo: Plazo.list()[1],
-			precio: 1200
-		).save()
+		// new Oferta(
+			// aviso: Aviso.list()[5], 
+			// usuario: Usuario.list()[2], 
+			// fechaCreacion: new Date(),
+			// plazo: Plazo.list()[1],
+			// precio: 1200
+		// ).save()
 		
-		new Oferta(
-			aviso: Aviso.list()[5], 
-			usuario: Usuario.list()[1], 
-			fechaCreacion: new Date(),
-			plazo: Plazo.list()[1],
-			precio: 1300
-		).save()
+		// new Oferta(
+			// aviso: Aviso.list()[5], 
+			// usuario: Usuario.list()[1], 
+			// fechaCreacion: new Date(),
+			// plazo: Plazo.list()[1],
+			// precio: 1300
+		// ).save()
 
 		return
 	}
@@ -265,19 +265,19 @@ class PopulateService {
 		log.info "Populando ventas..."
 		
 		new Venta(
-			oferta: Oferta.list()[1], 
+			oferta: Oferta.list()[0], 
 			fechaCreacion: new Date()
 		).save()
 
-		new Venta(
-			oferta: Oferta.list()[3], 
-			fechaCreacion: new Date()
-		).save()
+		// new Venta(
+			// oferta: Oferta.list()[3], 
+			// fechaCreacion: new Date()
+		// ).save()
 
-		new Venta(
-			oferta: Oferta.list()[6], 
-			fechaCreacion: new Date()
-		).save()
+		// new Venta(
+			// oferta: Oferta.list()[6], 
+			// fechaCreacion: new Date()
+		// ).save()
 
 		return
 	}	
@@ -326,17 +326,17 @@ class PopulateService {
 			usuario: Usuario.list()[2]
 		).save(flush:true, failOnError: true)
 
-		new Resena( 
-			puntaje:5,
-			venta: Venta.list()[0], 
-			usuario: Usuario.list()[2]
-		).save(flush:true, failOnError: true)
+		// new Resena( 
+			// puntaje:5,
+			// venta: Venta.list()[0], 
+			// usuario: Usuario.list()[2]
+		// ).save(flush:true, failOnError: true)
 
-		new Resena( 
-			puntaje:1,
-			venta: Venta.list()[0], 
-			usuario: Usuario.list()[2]
-		).save(flush:true, failOnError: true)
+		// new Resena( 
+			// puntaje:1,
+			// venta: Venta.list()[0], 
+			// usuario: Usuario.list()[2]
+		// ).save(flush:true, failOnError: true)
 
 		return
 	}
@@ -350,11 +350,11 @@ class PopulateService {
 		categorias()
 		plazos()
 		lotes()
-		// avisos()
-		// ofertas()
-		// ventas()
+		avisos()
+		ofertas()
+		ventas()
+		preguntas()
 		// resenas()
-		// preguntas()
 	}
 	
 	/* showAll */
