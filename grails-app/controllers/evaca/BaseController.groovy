@@ -35,9 +35,9 @@ class BaseController {
 	
 	
 	/* exception */
-	def exception(org.springframework.orm.hibernate5.HibernateSystemException error) {
-		flash.message = "error"
-		respond view:'create', [model:error.model]
-    }
+	// def exception(org.springframework.orm.hibernate5.HibernateSystemException error) {
+		// flash.message = "error"
+		// respond view:'create', [model:error.model]
+    // }
 
 }

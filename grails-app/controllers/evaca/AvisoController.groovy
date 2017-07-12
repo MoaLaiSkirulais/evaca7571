@@ -1,50 +1,35 @@
 package evaca
 
-class AvisoController {
+class AvisoController extends BaseController{
 	
-	def ofertaService
+	def loteService
 
 	/* create */
-	def create() {
+	def create() {	
+	    avisoService.create()
+    }
+
 	
-	    def model = [
-			aviso: new Aviso(params), 
-			consignatarios: Usuario.list(),
-			lotes: Lote.list()
-		]
-		
-		// render model.aviso
-		// return
-		[model: model]
-    }
-
 	/* edit */
-	def edit() {
-
-		def id=params.id
-	    def model = [
-			aviso: new Aviso().get(id), 
-			consignatarios: Usuario.list(),
-			lotes: Lote.list()
-		]
-
-		respond view:'create', [model:model]
+	def edit() {	
+		respond view:'create', avisoService.edit(params.id)		
     }
+
 
 	/* index */
 	def index() {
 	
 		// render params
-		def avisos = Aviso.createCriteria().list (params) {
+		// def avisos = Aviso.createCriteria().list (params) {
 
-			if (params?.lote?.usuario?.id) {
-				lote{usuario{eq("id", params.lote.usuario.id.toLong())}}
-			}
+			// if (params?.lote?.usuario?.id) {
+				// lote{usuario{eq("id", params.lote.usuario.id.toLong())}}
+			// }
 
-			if (params?.consignatario?.id) {
-				// render "pija"
-				consignatario{eq("id", params.consignatario.id.toLong())}
-			}
+			// if (params?.consignatario?.id) {
+				// // render "pija"
+				// consignatario{eq("id", params.consignatario.id.toLong())}
+			// }
 
 			// if (params?.consignatario?.nombre) {
 				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
@@ -62,44 +47,39 @@ class AvisoController {
 				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
 			// }
 
-		}
+		// }
    
-		render(view: 'index', 
-			model: [
-				avisos:avisos,
-				lote:[
-					consignatarios: Usuario.list().sort{it.nombre}, 
-					categorias: Categoria.list().sort{it.nombre}, 
-					vendedores: Usuario.list().sort{it.nombre}, 
-					razas: Raza.list().sort{it.nombre}
-				]
-			]
-		)
+		def avisos = Aviso.list()
+		// render(view: 'index', 
+			// model: [
+				// avisos:avisos,
+				// lote:[
+					// consignatarios: Usuario.list().sort{it.nombre}, 
+					// categorias: Categoria.list().sort{it.nombre}, 
+					// vendedores: Usuario.list().sort{it.nombre}, 
+					// razas: Raza.list().sort{it.nombre}
+				// ]
+			// ]
+		// )
 		
     }
 
 	/* save */
 	def save(Aviso aviso) {
 	
-		if (!params.id){
-			aviso = new Aviso(params)
+		try {
+
+			avisoService.save(lote)
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect action:"edit", id:aviso.id
+
+		}  catch (UsuarioException error) {
+		
+			flash.message = "Mal"
+			render(view: 'create', model: error.model)
+			println "UsuarioException"
 		}
-
-		aviso.save(flush:true)
-
-		def model = [
-			aviso: aviso, 
-			avisos: Aviso.list(),
-			categorias: Categoria.list(),
-			razas: Raza.list()
-		]
-
-		if (aviso.hasErrors()) {
-			respond view:'create', [model:model]
-			return
-		}
-
-		redirect action:"edit", id:aviso.id
 	    
     }
 	

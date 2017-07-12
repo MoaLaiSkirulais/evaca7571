@@ -63,7 +63,7 @@ class Usuario {
 
 	/* setFechaCreacion */
     void setFechaCreacion(Date f) {
-		println "this.fechaCreacion" + this.fechaCreacion
+		// println "this.fechaCreacion" + this.fechaCreacion
     }
 
 

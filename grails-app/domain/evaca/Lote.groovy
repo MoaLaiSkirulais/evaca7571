@@ -1,5 +1,9 @@
 package evaca
 
+public enum LoteState {
+		DISPONIBLE, OCUPADO;
+	}
+
 class Lote {
 	
 	Date fechaCreacion
@@ -16,10 +20,12 @@ class Lote {
 	Boolean trazada
 	Boolean marcaLiquida
 	String imagen
-	String tbState
+	LoteState tbState
 
 	static belongsTo = [raza: Raza, categoria: Categoria, usuario:Usuario]
 	static hasMany = [avisos: Aviso]
+	
+	
 
 	
 	/* constraints */
@@ -39,7 +45,7 @@ class Lote {
 		trazada nullable: true
 		marcaLiquida nullable: true
 		imagen nullable: true
-		tbState nullable: false, inList: ['Borrador', 'Publicado', 'Vendido']
+		// tbState nullable: false, inList: ['Borrador', 'Publicado', 'Vendido']
 
     }
 
@@ -47,8 +53,9 @@ class Lote {
 	/* Lote */
 	public Lote() {
 		this.fechaCreacion = new Date();
-		this.tbState = 'Borrador';
+		// this.tbState = 'Borrador';
 		this.imagen = "static/sham/img/products/v0.gif"
+		this.tbState = LoteState.DISPONIBLE;
     }
 
 	
