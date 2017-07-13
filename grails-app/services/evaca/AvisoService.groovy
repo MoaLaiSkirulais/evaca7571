@@ -28,11 +28,22 @@ class AvisoService {
 			throw new UserRegistrationException(message:"You must be logged to perform this action")
 		}
 	    
-	    def model = [
-			aviso: new Aviso().get(id), 
+		println id
+		
+	    def aviso = new Aviso().get(id)
+		aviso.refresh()
+		println aviso.tbState
+		def model = [
+			aviso: aviso, 
 			consignatarios: Usuario.list(),
 			lotes: Lote.list()
 		]
+		// println "--- edit ---"
+		println aviso.id
+		println aviso.tbState
+		println "!!!"
+		// render "!!!"
+		// return
 		return [model: model]
 	}
 	
@@ -59,7 +70,23 @@ class AvisoService {
 			throw error;
 		}
 		
-	}		
+	}
+	
+	/* changeState */
+	def changeState(id) {		
+		def aviso = new Aviso().get(id)
+		aviso.changeState(AvisoState.PUBLICADO)
+		//aviso.precio = 10
+		aviso.save(flush:true, failOnError: true)	
+		//println aviso.precio
+		
+		// def model = [
+			// aviso: aviso, 
+			// avisos: Aviso.list(),
+			// categorias: Categoria.list(),
+			// razas: Raza.list()
+		// ]
+    }
 	
 
 	/* search */

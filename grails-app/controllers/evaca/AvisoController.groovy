@@ -2,7 +2,7 @@ package evaca
 
 class AvisoController extends BaseController{
 	
-	def loteService
+	def avisoService
 
 	/* create */
 	def create() {	
@@ -11,8 +11,9 @@ class AvisoController extends BaseController{
 
 	
 	/* edit */
-	def edit() {	
-		respond view:'create', avisoService.edit(params.id)		
+	def edit() {
+		// render params.id
+		respond view:'create', avisoService.edit(params.id)
     }
 
 
@@ -20,67 +21,67 @@ class AvisoController extends BaseController{
 	def index() {
 	
 		// render params
-		// def avisos = Aviso.createCriteria().list (params) {
+		def avisos = Aviso.createCriteria().list (params) {
 
-			// if (params?.lote?.usuario?.id) {
-				// lote{usuario{eq("id", params.lote.usuario.id.toLong())}}
-			// }
+			if (params?.lote?.usuario?.id) {
+				lote{usuario{eq("id", params.lote.usuario.id.toLong())}}
+			}
 
-			// if (params?.consignatario?.id) {
-				// // render "pija"
-				// consignatario{eq("id", params.consignatario.id.toLong())}
-			// }
+			if (params?.consignatario?.id) {
+				// render "pija"
+				consignatario{eq("id", params.consignatario.id.toLong())}
+			}
 
-			// if (params?.consignatario?.nombre) {
-				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
-			// }
+			if (params?.consignatario?.nombre) {
+				'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+			}
 
-			// if (params?.consignatario?.nombre) {
-				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
-			// }
+			if (params?.consignatario?.nombre) {
+				'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+			}
 
-			// if (params?.consignatario?.nombre) {
-				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
-			// }
+			if (params?.consignatario?.nombre) {
+				'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+			}
 			
-			// if (params?.consignatario?.nombre) {
-				// 'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
-			// }
+			if (params?.consignatario?.nombre) {
+				'consignatario'{ilike('nombre', "%${params.consignatario.nombre}%")}
+			}
 
-		// }
-   
-		def avisos = Aviso.list()
-		// render(view: 'index', 
-			// model: [
-				// avisos:avisos,
-				// lote:[
-					// consignatarios: Usuario.list().sort{it.nombre}, 
-					// categorias: Categoria.list().sort{it.nombre}, 
-					// vendedores: Usuario.list().sort{it.nombre}, 
-					// razas: Raza.list().sort{it.nombre}
-				// ]
-			// ]
-		// )
-		
+		}
+
+		// def avisos = Aviso.list()
+		render(view: 'index', 
+			model: [
+				avisos:avisos,
+				lote:[
+					consignatarios: Usuario.list().sort{it.nombre}, 
+					categorias: Categoria.list().sort{it.nombre}, 
+					vendedores: Usuario.list().sort{it.nombre}, 
+					razas: Raza.list().sort{it.nombre}
+				]
+			]
+		)
+
     }
 
 	/* save */
 	def save(Aviso aviso) {
-	
-		try {
 
-			avisoService.save(lote)
+		// try {
+
+			avisoService.save(aviso)
 			flash.message = "Cambios aplicados con exito"
 			flash.type = "ok"
 			redirect action:"edit", id:aviso.id
 
-		}  catch (UsuarioException error) {
+		// }  catch (UsuarioException error) {
 		
-			flash.message = "Mal"
-			render(view: 'create', model: error.model)
-			println "UsuarioException"
-		}
-	    
+			// flash.message = "Mal"
+			// render(view: 'create', model: error.model)
+			// println "UsuarioException"
+		// }
+
     }
 	
 	/* show */
@@ -93,6 +94,19 @@ class AvisoController extends BaseController{
 				plazos: Plazo.list()
 			]
 		)
+    }
+	
+	/* changeState */
+	def changeState() {		
+
+		// def aviso = new Aviso().get(params.id)
+		// try {
+		avisoService.changeState(params.id)
+		redirect action:"edit", id:params.id
+		// }  catch (DomainException error) {  
+			// flash.message = error.message
+			// redirect action:"edit", id:params.id
+		// }
     }
 	
 	/* ofertar */
@@ -117,6 +131,12 @@ class AvisoController extends BaseController{
 			]
 		respond view:'show', [model:model]
     }
+	
+	/* exception */
+	def exception(DomainException error) {
+		render "eeeee"
+		render(view: 'create', [model: model])
+    }	
 
 
 }

@@ -8,6 +8,8 @@
 			<tbody>
 				
 				<myform:display name="id" label="#id" value="${model.aviso.id}"/>
+				<myform:display name="id" label="#id" value="${model.aviso.tbState}"/>
+				
 				<myform:display name="fechaCreacion" label="Fecha creacion" value="${model.aviso.fechaCreacion}"/>				
 				<myform:field name="precio" label="precio" value="${model.aviso.precio}"/>
 				
@@ -26,8 +28,8 @@
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
-							<g:link action="create" class="btn btn-default">create</g:link>
-							<g:actionSubmit action="save" value="save" class="btn btn-default"/>	
+							<g:link action="create" class="btn btn-default">Nuevo</g:link>
+							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
 						</div>
 					</td>
 				</tr>
@@ -41,18 +43,13 @@
 			<tbody>
 				<myform:display name="id" label="#id" value="${model.aviso.id}"/>
 				<myform:display name="tbState" label="tbState" value="${model.aviso.tbState}"/>
-				<myform:display name="fechaActivacion" label="fechaActivacion" />
-				<myform:display name="usuarioActivacion" label="usuarioActivacion" />
-				
-				<myform:display name="fechaPublicacion" label="Fecha Publicacion" value="${model.aviso.fechaPublicacion}"/>
-				
+
 				<tr class="order-total">
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
-							<g:actionSubmit value="Pedir" action="setTbState" class="btn btn-default"/>
-							<g:actionSubmit value="Aprobar" action="setTbState" class="btn btn-default"/>
-							<g:actionSubmit value="Finalizar" action="setTbState" class="btn btn-default"/>	
+							<g:actionSubmit value="Publicar" action="changeState" class="btn btn-default"/>
+							<g:actionSubmit value="Aprobar" action="changeState" class="btn btn-default"/>							
 						</div>
 					</td>
 				</tr>

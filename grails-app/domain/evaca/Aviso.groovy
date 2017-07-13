@@ -1,9 +1,8 @@
 package evaca
 
-/* 
- * Aviso
- */
 
+
+/* Aviso */	
 class Aviso {
 
 	Date fechaCreacion
@@ -20,9 +19,6 @@ class Aviso {
 	static belongsTo = [lote:Lote, consignatario:Usuario]	
 	static hasMany = [ofertas: Oferta]
 	
-	enum AvisoState {
-		BORRADOR, APROBACION, PUBLICADO, VENDIDO;
-	}
 	
 	
 	/* constraints */
@@ -49,6 +45,11 @@ class Aviso {
 
 	}
 	
+	/* mapping */
+    static mapping = {
+		tbState lazy: false
+    }
+	
 	/* Aviso() */
 	public Aviso() {
 		this.fechaCreacion = new Date();
@@ -61,16 +62,19 @@ class Aviso {
 	}
 
 	/* setPrecio */
-	public void setPrecio(Float precio){
+	public void _setPrecio(Float precio){
 		// println "setPrecio"
 		if (this.tbState == AvisoState.VENDIDO){
 			throw new DomainException(message : "No puede cambiar un aviso VENDIDO")
 		}
 		this.precio = precio
 	}
+	
+	public void _setTbState(AvisoState tbState){ /* si lo desactivo arruino el gorm */
+	}
 
-	/* setTbState */
-	public void setTbState(AvisoState tbState){
+	/* changeState */
+	public changeState(AvisoState tbState){
 		
 		println "setTbState: " + tbState
 		println "this.setTbState: " + this.tbState
@@ -85,26 +89,42 @@ class Aviso {
 			case AvisoState.BORRADOR:
 
 				if (this.tbState == AvisoState.PUBLICADO || this.tbState == AvisoState.APROBACION ){
+					println "No puede volver a BORRADOR"
 					throw new DomainException(message : "No puede volver a BORRADOR")
 				}
+				break
+	
+			case AvisoState.APROBACION:
+
+				throw new DomainException(message : "No puede pasarse a APROBACION")
 				break
 	
 			case AvisoState.VENDIDO:
 
 				if (this.tbState != AvisoState.PUBLICADO){
+					println "El aviso no esta PUBLICADO"
 					throw new DomainException(message : "El aviso no esta PUBLICADO")
 				}
 				break
 
 			case AvisoState.PUBLICADO:	
-
-				/* en aprobacion? */
-				if (this.tbState != AvisoState.APROBACION){
-					throw new DomainException(message : "No puede publicar un aviso no APROBACION")
+			
+				/* en borrador? */
+				if (this.tbState == AvisoState.BORRADOR){
+					println "en borrador"
+					this.tbState = AvisoState.APROBACION
+					return;
 				}
+
+				// /* en aprobacion? */
+				// if (this.tbState != AvisoState.APROBACION){
+					// println "No puede publicar un aviso no APROBACION"
+					// throw new DomainException(message : "No puede publicar un aviso no APROBACION")
+				// }
 
 				/* lote esta dispponible? */
 				if (this.lote.tbState != LoteState.DISPONIBLE){
+					println "Lote no disponible"
 					throw new DomainException(message : "Lote no disponible")
 				}
 
