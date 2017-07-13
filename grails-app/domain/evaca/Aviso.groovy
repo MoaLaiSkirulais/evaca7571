@@ -84,56 +84,77 @@ class Aviso {
 			throw new DomainException(message : "No puede cambiar un aviso VENDIDO")
 		}
 
+		if (this.tbState == AvisoState.CANCELADO){
+			throw new DomainException(message : "No puede cambiar un aviso CANCELADO")
+		}
+
 		switch (tbState) {
 
+			/* Borrador */
 			case AvisoState.BORRADOR:
 
 				if (this.tbState == AvisoState.PUBLICADO || this.tbState == AvisoState.APROBACION ){
-					println "No puede volver a BORRADOR"
 					throw new DomainException(message : "No puede volver a BORRADOR")
 				}
+				this.tbState = tbState
 				break
 	
+			/* Aprobacion */
 			case AvisoState.APROBACION:
 
-				throw new DomainException(message : "No puede pasarse a APROBACION")
+				throw new DomainException(message : "No puede pasarse a APROBACION manualmente")
+				break
+			
+			/* Cancelado */
+			case AvisoState.CANCELADO:
+			
+				this.tbState = tbState
 				break
 	
+			/* Rechazado */
+			case AvisoState.RECHAZADO:
+
+				if (this.tbState != AvisoState.APROBACION){
+					throw new DomainException(message : "El aviso no está en APROBACION")
+				}
+				this.tbState = AvisoState.BORRADOR
+				return
+
+			/* Vendido */
 			case AvisoState.VENDIDO:
 
 				if (this.tbState != AvisoState.PUBLICADO){
-					println "El aviso no esta PUBLICADO"
 					throw new DomainException(message : "El aviso no esta PUBLICADO")
 				}
+				this.tbState = tbState
 				break
 
+			/* Publicado */
 			case AvisoState.PUBLICADO:	
 			
 				/* en borrador? */
 				if (this.tbState == AvisoState.BORRADOR){
-					println "en borrador"
 					this.tbState = AvisoState.APROBACION
 					return;
 				}
+				
+				/* está aprobado? */
+				if (this.tbState != AvisoState.APROBACION){
+					throw new DomainException(message : "El aviso no está en APROBACION")
+				}				
 
-				// /* en aprobacion? */
-				// if (this.tbState != AvisoState.APROBACION){
-					// println "No puede publicar un aviso no APROBACION"
-					// throw new DomainException(message : "No puede publicar un aviso no APROBACION")
-				// }
-
-				/* lote esta dispponible? */
+				/* lote disponible? */
 				if (this.lote.tbState != LoteState.DISPONIBLE){
-					println "Lote no disponible"
 					throw new DomainException(message : "Lote no disponible")
 				}
 
-				/* publicado */
+				/* publíquese */
 				this.lote.tbState = LoteState.OCUPADO //esto puede delegarse
+				this.tbState = tbState
 				break
 		}
 
-		this.tbState = tbState
+		
 	}
 
 	/* setConsignatario */

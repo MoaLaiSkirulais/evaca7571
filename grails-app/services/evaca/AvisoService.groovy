@@ -73,9 +73,11 @@ class AvisoService {
 	}
 	
 	/* changeState */
-	def changeState(id) {		
+	def changeState(id, AvisoState newTbState) {
 		def aviso = new Aviso().get(id)
-		aviso.changeState(AvisoState.PUBLICADO)
+		println "---" + newTbState
+		//aviso.changeState(AvisoState.PUBLICADO)
+		aviso.changeState(newTbState)
 		//aviso.precio = 10
 		aviso.save(flush:true, failOnError: true)	
 		//println aviso.precio

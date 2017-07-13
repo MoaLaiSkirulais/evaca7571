@@ -98,15 +98,34 @@ class AvisoController extends BaseController{
 	
 	/* changeState */
 	def changeState() {		
+	
+		// render params
+		// return
 
 		// def aviso = new Aviso().get(params.id)
-		// try {
-		avisoService.changeState(params.id)
-		redirect action:"edit", id:params.id
-		// }  catch (DomainException error) {  
-			// flash.message = error.message
-			// redirect action:"edit", id:params.id
-		// }
+		
+		def auxState
+		if (params.newTbState == "AvisoState.PUBLICADO"){
+			auxState = AvisoState.PUBLICADO
+		}
+		
+		if (params.newTbState == "AvisoState.RECHAZADO"){
+			auxState = AvisoState.RECHAZADO
+		}
+		
+		if (params.newTbState == "AvisoState.CANCELADO"){
+			auxState = AvisoState.CANCELADO
+		}
+
+		try {
+			avisoService.changeState(params.id, auxState)
+			flash.message = "bien!"
+			flash.type = "ok"
+			redirect action:"edit", id:params.id
+		}  catch (DomainException error) {  
+			flash.message = error.message
+			redirect action:"edit", id:params.id
+		}
     }
 	
 	/* ofertar */

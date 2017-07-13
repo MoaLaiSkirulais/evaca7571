@@ -38,23 +38,46 @@
 	</form>
 	
 	<h2>Actividad</h2>
-	<form method="post">
+	
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
-				<myform:display name="id" label="#id" value="${model.aviso.id}"/>
+				
 				<myform:display name="tbState" label="tbState" value="${model.aviso.tbState}"/>
 
 				<tr class="order-total">
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
-							<g:actionSubmit value="Publicar" action="changeState" class="btn btn-default"/>
-							<g:actionSubmit value="Aprobar" action="changeState" class="btn btn-default"/>							
+						
+							<form method="post">
+								<myform:display name="id" label="#id" value="${model.aviso.id}"/>
+								<myform:field name="newTbState" label="newTbState" value="AvisoState.PUBLICADO"/>
+								<g:actionSubmit value="Publicar" action="changeState" class="btn btn-default"/>								
+							</form>
+							
+							<form method="post">
+								<myform:display name="id" label="#id" value="${model.aviso.id}"/>
+								<myform:field name="newTbState" label="newTbState" value="AvisoState.RECHAZADO"/>
+								<g:actionSubmit value="Rechazar" action="changeState" class="btn btn-default"/>								
+							</form>
+							
+							<form method="post">
+								<myform:display name="id" label="#id" value="${model.aviso.id}"/>
+								<myform:field name="newTbState" label="newTbState" value="AvisoState.CANCELADO"/>
+								<g:actionSubmit value="Cancelar" action="changeState" class="btn btn-default"/>								
+							</form>
+							
+							<!-- <form method="post"> -->
+								<!-- <myform:display name="id" label="#id" value="${model.aviso.id}"/> -->
+								<!-- <myform:display name="tbState" label="tbState" value="PUBLICADO"/> -->
+								<!-- <g:actionSubmit value="Aprobar" action="changeState" class="btn btn-default"/> -->
+							<!-- </form> -->
+								
 						</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-	</form>
+	
 
 </g:applyLayout>
