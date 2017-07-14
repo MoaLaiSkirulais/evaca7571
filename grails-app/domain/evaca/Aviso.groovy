@@ -74,8 +74,16 @@ class Aviso {
 	}
 
 	/* changeState */
-	public changeState(AvisoState tbState){
+	public changeState(AvisoState tbState, Usuario ejecutor){
+	
+		/* roles */
+		println ejecutor
+		println ejecutor?.tbTipo
+		if (ejecutor.tbTipo != 'Administrador'){
+			throw new DomainException(message:"You must be Admin to perform this action")
+		}		
 		
+		/* state flow */		
 		println "setTbState: " + tbState
 		println "this.setTbState: " + this.tbState
 		println "this.lote.tbState: " + this.lote.tbState
@@ -87,80 +95,15 @@ class Aviso {
 		if (this.tbState == AvisoState.CANCELADO){
 			throw new DomainException(message : "No puede cambiar un aviso CANCELADO")
 		}
-
-		switch (tbState) {
-
-			/* Borrador */
-			case AvisoState.BORRADOR:
-
-				if (this.tbState == AvisoState.PUBLICADO || this.tbState == AvisoState.APROBACION ){
-					throw new DomainException(message : "No puede volver a BORRADOR")
-				}
-				this.tbState = tbState
-				break
-	
-			/* Aprobacion */
-			case AvisoState.APROBACION:
-
-				throw new DomainException(message : "No puede pasarse a APROBACION manualmente")
-				break
-			
-			/* Cancelado */
-			case AvisoState.CANCELADO:
-			
-				this.tbState = tbState
-				break
-	
-			/* Rechazado */
-			case AvisoState.RECHAZADO:
-
-				if (this.tbState != AvisoState.APROBACION){
-					throw new DomainException(message : "El aviso no está en APROBACION")
-				}
-				this.tbState = AvisoState.BORRADOR
-				return
-
-			/* Vendido */
-			case AvisoState.VENDIDO:
-
-				if (this.tbState != AvisoState.PUBLICADO){
-					throw new DomainException(message : "El aviso no esta PUBLICADO")
-				}
-				this.tbState = tbState
-				break
-
-			/* Publicado */
-			case AvisoState.PUBLICADO:	
-			
-				/* en borrador? */
-				if (this.tbState == AvisoState.BORRADOR){
-					this.tbState = AvisoState.APROBACION
-					return;
-				}
-				
-				/* está aprobado? */
-				if (this.tbState != AvisoState.APROBACION){
-					throw new DomainException(message : "El aviso no está en APROBACION")
-				}				
-
-				/* lote disponible? */
-				if (this.lote.tbState != LoteState.DISPONIBLE){
-					throw new DomainException(message : "Lote no disponible")
-				}
-
-				/* publíquese */
-				this.lote.tbState = LoteState.OCUPADO //esto puede delegarse
-				this.tbState = tbState
-				break
-		}
-
 		
+		tbState.validateStateFlow(this);
+
 	}
 
 	/* setConsignatario */
-	public void setConsignatario(Usuario consignatario){
+	public void _setConsignatario(Usuario consignatario){
 
-		if (this.tbState == AvisoState.VENDIDO){
+		if (this.tbState == AvisoState.VENDIDO || this.tbState == AvisoState.PUBLICADO || this.tbState == AvisoState.CANCELADO){
 			throw new DomainException(message : "No puede cambiar un aviso VENDIDO")
 		}
 		this.consignatario = consignatario
@@ -198,31 +141,9 @@ class Aviso {
 		// // lote.tbState = 'Avisado'
 	// }
 
-	/* setTbState() */
-	// public void setTbState(String tbState){
-
-		// if (tbState == 'Publicado'){
-			// if (this.tbState != 'Borrador'){
-				// throw new DomainException(message : "El aviso no está Borrador")
-			// }
-		// }
-
-		// if (tbState == 'Vendido'){
-			// if (this.tbState != 'Publicado'){
-				// throw new DomainException(message : "El aviso no está Publicado")
-			// }
-			
-			// this.lote.tbState = 'Vendido'
-			
-		// }
-
-		// this.tbState = tbState
-		
-	// }
-
-	// String toString(){
-		// this.tbState + this.precio + this.consignatario
-	// }
+	String toString(){
+		this.tbState + this.precio + this.consignatario
+	}
 
 
 }

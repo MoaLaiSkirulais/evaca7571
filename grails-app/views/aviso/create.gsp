@@ -48,31 +48,25 @@
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
-						
+
 							<form method="post">
 								<myform:display name="id" label="#id" value="${model.aviso.id}"/>
 								<myform:field name="newTbState" label="newTbState" value="AvisoState.PUBLICADO"/>
 								<g:actionSubmit value="Publicar" action="changeState" class="btn btn-default"/>								
 							</form>
-							
+
 							<form method="post">
 								<myform:display name="id" label="#id" value="${model.aviso.id}"/>
 								<myform:field name="newTbState" label="newTbState" value="AvisoState.RECHAZADO"/>
 								<g:actionSubmit value="Rechazar" action="changeState" class="btn btn-default"/>								
 							</form>
-							
+
 							<form method="post">
 								<myform:display name="id" label="#id" value="${model.aviso.id}"/>
 								<myform:field name="newTbState" label="newTbState" value="AvisoState.CANCELADO"/>
 								<g:actionSubmit value="Cancelar" action="changeState" class="btn btn-default"/>								
 							</form>
-							
-							<!-- <form method="post"> -->
-								<!-- <myform:display name="id" label="#id" value="${model.aviso.id}"/> -->
-								<!-- <myform:display name="tbState" label="tbState" value="PUBLICADO"/> -->
-								<!-- <g:actionSubmit value="Aprobar" action="changeState" class="btn btn-default"/> -->
-							<!-- </form> -->
-								
+
 						</div>
 					</td>
 				</tr>

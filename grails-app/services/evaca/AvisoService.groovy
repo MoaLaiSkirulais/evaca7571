@@ -77,7 +77,7 @@ class AvisoService {
 		def aviso = new Aviso().get(id)
 		println "---" + newTbState
 		//aviso.changeState(AvisoState.PUBLICADO)
-		aviso.changeState(newTbState)
+		aviso.changeState(newTbState, mySessionService.usuario)
 		//aviso.precio = 10
 		aviso.save(flush:true, failOnError: true)	
 		//println aviso.precio
