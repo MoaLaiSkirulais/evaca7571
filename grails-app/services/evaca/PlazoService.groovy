@@ -12,10 +12,6 @@ class PlazoService {
 	/* create */
 	def create() {
 			
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be Admin to perform this action")
-		}
-		
 		def model = [
 			plazo: new Plazo([usuario:mySessionService.usuario])
 		]
@@ -28,10 +24,6 @@ class PlazoService {
 	/* edit */
 	def edit(id) {
 
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be Admin to perform this action")
-		}
-
 	    def model = [plazo: new Plazo().get(id)]
 		return [model: model]
 	}
@@ -40,10 +32,6 @@ class PlazoService {
 	
 	/* save */
 	def save(Plazo plazo) {
-	
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be Admin to perform this action")
-		}
 
 		plazo.usuario = mySessionService.usuario
 		plazo.save(flush:true)
@@ -62,10 +50,6 @@ class PlazoService {
 
 	/* search */
 	def search() {
-	
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be Admin to perform this action")
-		}
 
 		def plazos = Plazo.list()
 		return  [plazos:plazos]

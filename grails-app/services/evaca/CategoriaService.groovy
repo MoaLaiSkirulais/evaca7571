@@ -12,10 +12,6 @@ class CategoriaService {
 	/* create */
 	def create() {
 	
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
-		}
-		
 		def categoria = new Categoria()
 		categoria.usuario = mySessionService.usuario
 		
@@ -31,10 +27,6 @@ class CategoriaService {
 	/* save */
 	def save(Categoria categoria) {
 	
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
-		}
-
 		categoria.usuario = mySessionService.usuario 
 		categoria.save(flush:true)
 

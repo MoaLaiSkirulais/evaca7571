@@ -7,10 +7,6 @@ class LoteService {
 	/* create */
 	def create() {
 			
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged to perform this action")
-		}
-
 		def model = [
 			lote: new Lote([usuario:mySessionService.usuario]), 
 			lotes: Lote.list(),
@@ -25,10 +21,6 @@ class LoteService {
 	/* edit */
 	def edit(id) {
 
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be logged to perform this action")
-		}
-	    
 		def model = [
 			lote: new Lote().get(id), 
 			lotes: Lote.list(),
@@ -42,10 +34,6 @@ class LoteService {
 	/* save */
 	def save(Lote lote) {
 	
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be logged to perform this action")
-		}
-
 		lote.usuario = mySessionService.usuario
 		lote.save(flush:true)
 
@@ -67,10 +55,6 @@ class LoteService {
 
 	/* search */
 	def search() {
-	
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be Admin to perform this action")
-		}
 
 		def lotes = Lote.list()
 		return [lotes:lotes]

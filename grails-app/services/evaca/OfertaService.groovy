@@ -12,10 +12,6 @@ class OfertaService {
 	/* create */
 	def create() {
 	
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
-		}
-		
 		def oferta = new Oferta()
 		oferta.usuario = mySessionService.usuario
 
@@ -32,10 +28,6 @@ class OfertaService {
 	/* save */
 	def save(Oferta oferta) {
 	
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
-		}
-
 		oferta.usuario = mySessionService.usuario
 		oferta.save(flush:true)
 

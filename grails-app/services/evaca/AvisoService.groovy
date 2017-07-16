@@ -7,10 +7,6 @@ class AvisoService {
 	/* create */
 	def create() {
 			
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged to perform this action")
-		}
-
 		def model = [
 			lote: new Aviso(), 
 			consignatarios: Usuario.list(),
@@ -24,12 +20,6 @@ class AvisoService {
 	/* edit */
 	def edit(id) {
 
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be logged to perform this action")
-		}
-	    
-		println id
-		
 	    def aviso = new Aviso().get(id)
 		aviso.refresh()
 		println aviso.tbState
@@ -51,10 +41,6 @@ class AvisoService {
 	/* save */
 	def save(Aviso aviso) {
 	
-		if (!mySessionService.isAdministrator()) {
-			throw new UserRegistrationException(message:"You must be logged to perform this action")
-		}
-
 		aviso.save(flush:true)
 
 		def model = [
