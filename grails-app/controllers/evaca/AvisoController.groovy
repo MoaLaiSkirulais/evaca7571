@@ -2,6 +2,7 @@ package evaca
 
 class AvisoController extends BaseController{
 	
+	public String casa = "casa"
 	def avisoService
 
 	/* create */

@@ -34,30 +34,6 @@ class RazaController {
 	/* index */
 	def index() {
 	
-		// params.max = Math.min(params.max ? params.int('max') : 10, 100)
-			// [taskInstanceList: Task.list(params), taskInstanceTotal: Task.count()]
-		// }
-		
-		// def razas = Raza.createCriteria().list (params) {
-            // // if (params.nombre) {
-                // // ilike("nombre", "%${params.nombre}%")
-            // // }
-			
-            // ilike("nombre", "%${params.nombre}%")
-			// 'usuario'{ilike('nombre', "%${params.usuario.nombre}%")}
-        // }
- 
-
-
-
-		// def razas = Raza.list()
-
-		// render(view: 'index', 
-			// model: [
-				// razas:razas
-			// ]
-		// )
-		
 		def razas = Raza.list()
 
 		render(view: 'index', 

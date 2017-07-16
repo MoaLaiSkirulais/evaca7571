@@ -19,6 +19,8 @@ class CategoriaController {
 
     }
 
+	
+	
 	/* edit */
 	def edit() {
 
@@ -31,6 +33,8 @@ class CategoriaController {
 		respond view:'create', [model:model]
     }
 	
+	
+	
 	/* index */
 	def index() {
 
@@ -42,6 +46,8 @@ class CategoriaController {
 			]
 		)
     }
+	
+	
 
 	/* save */
 	def save(Categoria categoria) {

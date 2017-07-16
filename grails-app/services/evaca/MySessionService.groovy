@@ -90,5 +90,6 @@ class MySessionService {
 		session.isLogged = false
 		session.username = null
 		session.fechaCreacion = null
+		session.usuario = null
 	}
 }

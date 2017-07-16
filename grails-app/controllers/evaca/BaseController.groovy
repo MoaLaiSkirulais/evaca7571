@@ -2,7 +2,6 @@ package evaca
 
 class BaseController {
 	
-	
 	/* exception */
 	def exception(UserRegistrationException error) {
 		flash.message = error.message        
