@@ -45,10 +45,12 @@ class Aviso {
 
 	}
 	
+	
 	/* mapping */
     static mapping = {
 		tbState lazy: false
     }
+	
 	
 	/* Aviso() */
 	public Aviso() {
@@ -60,6 +62,7 @@ class Aviso {
 		this.consignatario = null
 		this.lote = null
 	}
+	
 
 	/* setPrecio */
 	public void _setPrecio(Float precio){
@@ -70,9 +73,7 @@ class Aviso {
 		this.precio = precio
 	}
 	
-	public void _setTbState(AvisoState tbState){ /* si lo desactivo arruino el gorm */
-	}
-
+	
 	/* changeState */
 	public changeState(AvisoState tbState, Usuario ejecutor){
 	
@@ -99,6 +100,7 @@ class Aviso {
 		tbState.validateStateFlow(this);
 
 	}
+
 
 	/* setConsignatario */
 	public void _setConsignatario(Usuario consignatario){

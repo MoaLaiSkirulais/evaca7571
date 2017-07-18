@@ -14,7 +14,6 @@ class UsuarioService {
 	def create() {
 		[usuario: new Usuario()]
 	}
-
 	
 
 	/* edit */
@@ -23,7 +22,6 @@ class UsuarioService {
 		[usuario: usuario]
 	}
 
-	
 	
 	/* save */
 	def save(Usuario usuario) {
@@ -34,42 +32,17 @@ class UsuarioService {
 			error.model = [usuario: usuario]
 			throw error;
 		}
-	}		
+	}
 	
-
-
-	/* joder */
-	def joder(Usuario usuario) {
-		def aux = usuario.joder()		
-		aux
-	}		
 	
+	/* changeState */
+	def changeState(id, UsuarioState newState) {
 
-	
-	/* activar */
-	@Transactional
-	def activar(Usuario usuario) {
-		def aux = usuario.activar(mySessionService.usuario)
-		usuario.save(flush:true, failOnError: false)
-		// if (usuario.hasErrors()) {
-			// UsuarioException error = new UsuarioException(message:"mal")
-			// error.model = [usuario: usuario]
-			// throw error;
-		// }
-		println "activar ------->"
-		println usuario.dump()
-		usuario
-	}		
+		def usuario = new Usuario().get(id)
+		usuario.changeState(newState, mySessionService.usuario)
+		usuario.save(flush:true, failOnError: true)
 
-	
-
-	/* inactivar */
-	def inactivar(Usuario usuario) {	
-		def aux = usuario.inactivar(mySessionService.usuario)
-		usuario.save(flush:true, failOnError: false)
-		aux
-	}		
-
+    }	
 
 
 	/* search */
@@ -83,7 +56,5 @@ class UsuarioService {
 		return  [usuarios:usuarios]
 
 	}		
-
-
 	
 }
