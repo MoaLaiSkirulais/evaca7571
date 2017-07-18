@@ -48,4 +48,13 @@ class OfertaService {
 		
 	}		
 	
+	/* changeState */
+	def changeState(id, OfertaState newTbState) {
+
+		def oferta = new Oferta().get(id)
+		oferta.changeState(newTbState, mySessionService.usuario)
+		oferta.save(flush:true, failOnError: true)
+
+    }
+	
 }

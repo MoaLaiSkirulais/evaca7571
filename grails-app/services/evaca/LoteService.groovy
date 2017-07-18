@@ -1,5 +1,7 @@
 package evaca
 
+import org.springframework.transaction.annotation.Transactional
+
 class LoteService {
 	
 	def mySessionService
@@ -54,6 +56,7 @@ class LoteService {
 	
 
 	/* search */
+	@Transactional(readOnly = true)
 	def search() {
 
 		def lotes = Lote.list()

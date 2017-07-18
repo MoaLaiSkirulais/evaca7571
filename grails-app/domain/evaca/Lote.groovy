@@ -1,9 +1,5 @@
 package evaca
 
-public enum LoteState {
-		DISPONIBLE, OCUPADO;
-	}
-
 class Lote {
 	
 	Date fechaCreacion
@@ -24,8 +20,6 @@ class Lote {
 
 	static belongsTo = [raza: Raza, categoria: Categoria, usuario:Usuario]
 	static hasMany = [avisos: Aviso]
-	
-	
 
 	
 	/* constraints */
@@ -53,15 +47,26 @@ class Lote {
 	/* Lote */
 	public Lote() {
 		this.fechaCreacion = new Date();
-		// this.tbState = 'Borrador';
 		this.imagen = "static/sham/img/products/v0.gif"
 		this.tbState = LoteState.DISPONIBLE;
     }
 
-	
+
+	/* changeState */
+	public changeState(LoteState tbState){
+
+		/* state flow */		
+		println "setTbState: " + tbState
+		println "this.setTbState: " + this.tbState
+
+		this.tbState = tbState.validateStateFlow(this);
+
+	}
+
+
 	/* beforeInsert */
 	def beforeInsert() {
-		this.fechaCreacion = new Date()
+		// this.fechaCreacion = new Date()
 	}
 
 	

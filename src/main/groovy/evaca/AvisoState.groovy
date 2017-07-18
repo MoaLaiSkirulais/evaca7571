@@ -1,5 +1,6 @@
 package evaca
 
+
 /* AvisoState */	
 public enum AvisoState {
 
@@ -8,7 +9,7 @@ public enum AvisoState {
 			if (aviso.tbState == AvisoState.PUBLICADO || aviso.tbState == AvisoState.APROBACION ){
 					throw new DomainException(message : "No puede volver a BORRADOR")
 			}
-			this.tbState = AvisoState.BORRADOR
+			aviso.tbState = AvisoState.BORRADOR
 		}
 	}, 
 	
@@ -47,7 +48,8 @@ public enum AvisoState {
 			}
 
 			/* publíquese */
-			aviso.lote.tbState = LoteState.OCUPADO //esto puede delegarse
+			// aviso.lote.tbState = LoteState.OCUPADO //esto puede delegarse
+			aviso.lote.changeState(LoteState.PUBLICADO)
 			aviso.tbState = AvisoState.PUBLICADO
 		}
 	}, 
@@ -66,6 +68,10 @@ public enum AvisoState {
 			aviso.tbState = AvisoState.CANCELADO
 		}
 	}
+	
+
+
 }
 
 
+ 
