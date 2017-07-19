@@ -1,5 +1,5 @@
 package evaca
-
+ 
 /* UsuarioState */	
 public enum UsuarioState { 
 	
@@ -20,7 +20,10 @@ public enum UsuarioState {
         public UsuarioState validateStateAccess(Usuario usuario, Usuario ejecutor) {		
 		
 			if (usuario.state == UsuarioState.APROBACION){
-				if (ejecutor.profile != UsuarioProfile.ADMINISTRADOR){
+				println "---" + ejecutor 
+				println "---" + ejecutor?.profile
+				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+					println "!"
 					throw new DomainException(message: "You must be Admin")
 				}
 			}
@@ -41,7 +44,7 @@ public enum UsuarioState {
         public UsuarioState validateStateAccess(Usuario usuario, Usuario ejecutor) {		
 		
 			if (usuario.state == UsuarioState.APROBACION){
-				if (ejecutor.profile != UsuarioProfile.ADMINISTRADOR){
+				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
 					throw new DomainException(message: "You must be Admin")
 				}
 			}

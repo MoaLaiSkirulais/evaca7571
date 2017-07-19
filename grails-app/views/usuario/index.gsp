@@ -43,11 +43,11 @@
 							</td>
 							
 						   <td class="product-name">
-								${usuario.tbTipo}
+								${usuario.profile}
 							</td>    
 							
 						   <td class="product-name">
-								${usuario.tbState}
+								${usuario.state}
 							</td>
 							
 							<td class="product-add-to-cart">

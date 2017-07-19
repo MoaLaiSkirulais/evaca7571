@@ -22,8 +22,8 @@ class Usuario {
 	/* constraints */
     static constraints = {
 	
-		fechaCreacion blank: true, nullable: true
-		email nullable: true, email: true, unique: true
+		fechaCreacion blank: false, nullable: false
+		email nullable: false, email: true, unique: true
 		state nullable: false
 		profile nullable: false
 		username size: 6..15, blank: false, unique: true
@@ -43,8 +43,8 @@ class Usuario {
     public Usuario() {
 
 		this.fechaCreacion = new Date()
-		this.state = UsuarioState.APROBACION
 		this.profile = UsuarioProfile.PRODUCTOR
+		this.state = UsuarioState.APROBACION
     }
 	
 	
@@ -55,6 +55,7 @@ class Usuario {
 		this.state = state.validateStateFlow(this);
 
 	}
+
 	
 	/* toString */	
 	String toString(){

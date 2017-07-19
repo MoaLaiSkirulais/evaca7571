@@ -5,21 +5,18 @@ class UsuarioController extends BaseController{
 	def mySessionService
 	def usuarioService
 
-	
 
 	/* create */
 	def create() {
 		usuarioService.create()
     }
-
 	
 
 	/* edit */
 	def edit() {
 		def model = usuarioService.edit(params.id)
-		respond view:'create', model
+		respond view:'create', model		
     }
-
 	
 
 	/* login */
@@ -39,7 +36,6 @@ class UsuarioController extends BaseController{
 			render(view: 'login')
 		}
     }
-
 	
 
 	/* login */
@@ -47,7 +43,6 @@ class UsuarioController extends BaseController{
 		render(view: 'login')		
     }
 
-	
 
 	/* logout */
 	def logout() {
@@ -55,7 +50,6 @@ class UsuarioController extends BaseController{
 		def usuario = Usuario.findByUsername(params.username)
 		render(view: 'login')
 	}	
-
 	
 
 	/* index */
@@ -64,20 +58,6 @@ class UsuarioController extends BaseController{
     }
 
 
-
-	/* joder */
-	def joder(Usuario usuario) {
-
-		try {
-			usuarioService.joder(usuario)
-		} catch (DomainException ure) {			
-			flash.message = ure.message
-			render(view: 'create', model: [usuario: usuario])
-		}
-    }
-
-
-	
 	/* setTbState */
 	def setTbState(Usuario usuario) {
 
@@ -99,8 +79,43 @@ class UsuarioController extends BaseController{
 			render(view: 'create', model: [usuario: usuario])
 		}
     }
-
 	
+	/* changeState */
+	def changeState() {		
+	
+		// render params
+		// return
+
+		// def aviso = new Aviso().get(params.id)
+		
+		def auxState
+		if (params.newTbState == "UsuarioState.APROBACION"){
+			auxState = UsuarioState.APROBACION
+		}
+		
+		if (params.newTbState == "UsuarioState.ACTIVO"){
+			auxState = UsuarioState.ACTIVO
+		}
+		
+		if (params.newTbState == "UsuarioState.INACTIVO"){
+			auxState = UsuarioState.INACTIVO
+		}
+
+		try {
+
+			usuarioService.changeState(params.id, auxState)
+			flash.message = "bien!"
+			flash.type = "ok"
+			redirect action:"edit", id:params.id
+			
+		}  catch (DomainException error) {  
+		
+			println "redirect"
+			flash.message = error.message
+			redirect action:"edit", id:params.id
+		}
+    }
+
 
 	/* save */
 	def save(Usuario usuario) {

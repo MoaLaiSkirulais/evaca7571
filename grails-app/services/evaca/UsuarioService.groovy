@@ -1,4 +1,5 @@
 package evaca
+
 import grails.transaction.*
 
 class UsuarioException extends RuntimeException {
@@ -12,13 +13,19 @@ class UsuarioService {
 	
 	/* create */
 	def create() {
-		[usuario: new Usuario()]
+		[
+			usuario: new Usuario(), 
+			profiles: UsuarioProfile.values()
+		]
 	}
 	
 
 	/* edit */
 	def edit(id) {
 		def usuario = new Usuario().get(id)
+		if (!usuario){
+			throw new UsuarioNotFoundException()
+		}
 		[usuario: usuario]
 	}
 
@@ -39,6 +46,9 @@ class UsuarioService {
 	def changeState(id, UsuarioState newState) {
 
 		def usuario = new Usuario().get(id)
+		if (!usuario){
+			throw new DomainException(message:"Usuario not found")
+		}
 		usuario.changeState(newState, mySessionService.usuario)
 		usuario.save(flush:true, failOnError: true)
 

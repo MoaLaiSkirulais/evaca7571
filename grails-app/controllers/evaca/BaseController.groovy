@@ -7,7 +7,6 @@ class BaseController {
 		flash.message = error.message        
 		redirect controller: 'usuario', action:"newlogin"
     }
-
 	
 	
 	/* exception */
@@ -17,7 +16,6 @@ class BaseController {
     }
 	
 	
-
 	/* exception */
 	def exception(UsuarioException error) {
 		flash.message = error
@@ -25,13 +23,19 @@ class BaseController {
     }
 
 
-
 	/* exception */
 	def exception(DomainException error) {
 		flash.message = "error"
 		respond view:'create', [model:error.model]
     }	
-	
+
+
+	/* exception */
+	def exception(UsuarioNotFoundException e) {			
+		flash.message = e.message        
+		render e.message
+		return
+	}
 	
 	/* exception */
 	// def exception(org.springframework.orm.hibernate5.HibernateSystemException error) {

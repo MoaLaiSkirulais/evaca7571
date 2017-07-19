@@ -62,7 +62,7 @@ class MySessionService {
 		// return true
 		if (isLogged()){
 			def session = WebUtils.retrieveGrailsWebRequest().session
-			[session.usuario.tbTipo == 'Administrador']
+			[session.usuario.profile == UsuarioProfile.ADMINISTRADOR]
 		}
 	}
 

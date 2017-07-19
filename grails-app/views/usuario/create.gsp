@@ -14,10 +14,10 @@
 				<myform:field name="email" label="email" value="${usuario.email}"/>
 				<myform:field name="username" label="username" value="${usuario.username}"/>
 				
-				<myform:display name="tbState" label="tbState" value="${usuario.tbState}"/>
+				<myform:display name="tbState" label="tbState" value="${usuario.state}"/>
 
-				<!-- <myform:radio name="tbState" label="tbState" from="${usuario.constrainedProperties ['tbState']['inList']}" value="${usuario.tbState}"/> -->
-				<myform:radio name="tbTipo" label="tbTipo" from="${usuario.constrainedProperties ['tbTipo']['inList']}" value="${usuario.tbTipo}"/>
+				<myform:radio name="profile" label="profile" from="${profiles}" value="${usuario.profile}"/>
+				
 
 				<myform:field name="comision" label="comision" value="${usuario.comision}"/>
 				<myform:field name="password" label="password" value="${usuario.password}"/>
@@ -37,26 +37,33 @@
 		</table>
 	</form>
 	
-	<h2>Activacion</h2>
-	<form method="post">
-		<table class="table table-condensed" cellspacing="0">
-			<tbody>
-				<myform:display name="id" label="#id" value="${usuario.id}"/>
-				<myform:display name="tbState" label="tbState" value="${usuario.tbState}"/>
-				<myform:display name="fechaActivacion" label="fechaActivacion" value="${usuario.fechaActivacion}"/>
-				<myform:display name="usuarioActivacion" label="usuarioActivacion" value="${usuario.usuarioActivacion}"/>
-				
-				<tr class="order-total">
-					<th></th>
-					<td class="text-right">
-						<div class="form-group text-right">
-							<g:actionSubmit value="activar" action="setTbState" class="btn btn-default"/>
-							<g:actionSubmit value="inactivar" action="setTbState" class="btn btn-default"/>	
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+	<h2>Acciones</h2>
+	
+	<table class="table table-condensed" cellspacing="0">
+		<tbody>
+			
+			<tr class="order-total">
+				<th></th>
+				<td class="text-right">
+					<div class="form-group text-right">
+					
+						<form method="post">
+							<myform:display name="id" label="#id" value="${usuario.id}"/>
+							<myform:field name="newTbState" label="newTbState" value="UsuarioState.ACTIVO"/>
+							<g:actionSubmit value="Activar" action="changeState" class="btn btn-default"/>								
+						</form>
+						
+						<form method="post">
+							<myform:display name="id" label="#id" value="${usuario.id}"/>
+							<myform:field name="newTbState" label="newTbState" value="UsuarioState.INACTIVO"/>
+							<g:actionSubmit value="Inactivar" action="changeState" class="btn btn-default"/>								
+						</form>
+						
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
 
 </g:applyLayout>

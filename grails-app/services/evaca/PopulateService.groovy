@@ -11,7 +11,7 @@ class PopulateService {
 	/* razas */
 	def razas() {
 
-log.info "Populando razas..."
+		log.info "Populando razas..."
 		new Raza(usuario: Usuario.list()[2], nombre: "Aberdeen Angus").save()
 		new Raza(usuario: Usuario.list()[2], nombre: "Braford").save()
 		new Raza(usuario: Usuario.list()[2], nombre: "Holando Argentino").save()
@@ -56,38 +56,34 @@ log.info "Populando razas..."
 		log.info "Populando usuarios..."
 
 		new Usuario(
-			fechaCreacion: new Date(), 
-			username: "lcastro", 
-			nombre: "Leo", 
-			apellido: "Castro", 
-			email: "leocastro@gmail.com", 
-			tbTipo: "Consignatario", 
+			username: "consignatario", 
+			nombre: "consignatario", 
+			apellido: "consignatario", 
+			email: "consignatario@gmail.com", 
+			profile: UsuarioProfile.CONSIGNATARIO, 
 			password: "1234", 
-			// puntaje: 11, 
 			comision: 11					
 		).save()
 
 		new Usuario(
 			fechaCreacion: new Date(), 
-			username: "mporto", 
-			nombre: "Martin", 
-			apellido: "Porto", 
-			email: "martinporto@gmail.com", 
-			tbTipo: "Administrador", 
+			username: "productor", 
+			nombre: "productor", 
+			apellido: "productor", 
+			email: "productor@gmail.com", 
+			profile: UsuarioProfile.PRODUCTOR, 
 			password: "1234", 
-			// puntaje: 11, 
 			comision: 11					
 		).save()
 
 		new Usuario(
-			fechaCreacion: new Date(),  
-			username: "dguglie", 
-			nombre: "Damian", 
-			apellido: "Guglielmoti", 
-			email: "dguglie@gmail.com", 
-			tbTipo: "Productor", 
+			fechaCreacion: new Date(), 
+			username: "administrador", 
+			nombre: "administrador", 
+			apellido: "administrador", 
+			email: "administrador@gmail.com", 
+			profile: UsuarioProfile.ADMINISTRADOR, 
 			password: "1234", 
-			// puntaje: 11, 
 			comision: 11					
 		).save()
 
