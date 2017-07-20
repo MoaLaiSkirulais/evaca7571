@@ -58,28 +58,6 @@ class UsuarioController extends BaseController{
     }
 
 
-	/* setTbState */
-	def setTbState(Usuario usuario) {
-
-		try {
-			switch (params._action_setTbState){
-				case 'activar':
-					usuarioService.activar(usuario)
-					break
-
-				case 'inactivar':
-					usuarioService.inactivar(usuario)
-					break
-			}
-
-			redirect action:"edit", id:usuario.id
-
-		} catch (DomainException ure) {			
-			flash.message = ure.message
-			render(view: 'create', model: [usuario: usuario])
-		}
-    }
-	
 	/* changeState */
 	def changeState() {		
 	

@@ -8,10 +8,12 @@
 			<tbody>
 				
 				<myform:display name="id" label="#id" value="${model.aviso.id}"/>
-				<myform:display name="id" label="#id" value="${model.aviso.tbState}"/>
+				<myform:display name="id" label="#id" value="${model.aviso.state}"/>
 				
 				<myform:display name="fechaCreacion" label="Fecha creacion" value="${model.aviso.fechaCreacion}"/>				
 				<myform:field name="precio" label="precio" value="${model.aviso.precio}"/>
+				
+				<myform:display name="tbState" label="tbState" value="${model.aviso.state}"/>
 				
 				<myform:select 
 					label="consignatario" 	
@@ -22,14 +24,14 @@
 				
 				<!-- <myform:select label="lote" name="lote.id" from="${model.lotes}" value="${model.aviso?.lote?.id}" optionKey="id"/> -->
 				
-				<!-- <myform:radio name="tbState" label="tbState" from="['Borrador', 'Publicado', 'Finalizado', 'Vendido','Aprobacion']" value="${model.aviso.tbState}"/> -->
-
 				<tr class="order-total">
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
 							<g:link action="create" class="btn btn-default">Nuevo</g:link>
 							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
+							
+							<g:actionSubmit name="changeState" action="changeState" value="changeState" class="btn btn-default"/>
 						</div>
 					</td>
 				</tr>
@@ -42,7 +44,7 @@
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
 				
-				<myform:display name="tbState" label="tbState" value="${model.aviso.tbState}"/>
+				<myform:display name="tbState" label="tbState" value="${model.aviso.state}"/>
 
 				<tr class="order-total">
 					<th></th>

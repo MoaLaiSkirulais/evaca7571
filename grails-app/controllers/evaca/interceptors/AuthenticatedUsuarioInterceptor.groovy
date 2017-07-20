@@ -1,12 +1,12 @@
 package evaca
 
-
 class AuthenticatedUsuarioInterceptor {
 	
 	def mySessionService	
 	
+	/* AuthenticatedUsuarioInterceptor */
 	public AuthenticatedUsuarioInterceptor() {
-        match controller: ~/(lote|oferta|resena)/, 
+        match controller: ~/(aviso|lote|oferta|resena)/, 
 			action: ~/(index|edit|create|save)/
     }
    
@@ -15,11 +15,9 @@ class AuthenticatedUsuarioInterceptor {
     boolean before() { 
 		println ">> AuthenticatedUsuarioInterceptor"
 		if (!mySessionService.isLogged()) {
-			// throw new UserRegistrationException(message:"You must be logged to perform this action")
+			// throw new UsuarioNotLoggedException()
 			flash.message = "You must be logged to perform this action"
             redirect controller: 'usuario', action:"newlogin"
-            return false
-
 		}
 		true 
 	}
@@ -31,8 +29,17 @@ class AuthenticatedUsuarioInterceptor {
 	}
 
 	
+	/* afterView */
 	void afterView() {
     }
+	
+	
+	/* exception */
+	def handleUsuarioNotLoggedException (UsuarioNotLoggedException e) {			
+		flash.message = e.message        
+		redirect controller: 'usuario', action:"newlogin"
+	}
+
 
 
 }

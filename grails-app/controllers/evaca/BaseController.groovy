@@ -38,6 +38,12 @@ class BaseController {
 	}
 	
 	/* exception */
+	def handleUsuarioNotLoggedException (UsuarioNotLoggedException e) {			
+		flash.message = e.message        
+		redirect controller: 'usuario', action:"newlogin"
+	}
+	
+	/* exception */
 	// def exception(org.springframework.orm.hibernate5.HibernateSystemException error) {
 		// flash.message = "error"
 		// respond view:'create', [model:error.model]

@@ -30,6 +30,9 @@ class MySessionService {
 
 		def usuario = Usuario.findByUsername(u)
 		if (usuario){
+			println "-->" + p
+			println "-->" + usuario.password
+			println "-->" + usuario
 			if (usuario.password == p){
 
 				session.username = u

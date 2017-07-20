@@ -8,6 +8,7 @@
 				<thead>
 					<tr>
 						<th class="product-name">fechaCreacion</th>
+						<th class="product-name">usuario</th>
 						<th class="product-name">raza</th>
 						<th class="product-name">categoria</th>
 						<th class="product-name">cantidad</th>
@@ -24,24 +25,28 @@
 							<td class="product-name">
 								${lote.fechaCreacion}
 							</td>
+
+							<td class="product-name">
+								${lote.usuario}
+							</td>
 							
-						   <td class="product-name">
+							<td class="product-name">
 								${lote.raza}
 							</td>
 							
-						   <td class="product-name">
+							<td class="product-name">
 								${lote.categoria}
 							</td>
 							
-						   <td class="product-name">
+							<td class="product-name">
 								${lote.cantidad}
 							</td>
 							
-						   <td class="product-name">
+							<td class="product-name">
 								${lote.ubicacion}
 							</td>    
 							
-						   <td class="product-name">
+							<td class="product-name">
 								${lote.pesoPromedio}
 							</td>
 							

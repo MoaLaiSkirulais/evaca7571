@@ -3,6 +3,7 @@ package evaca
 class AvisoService {
 	
 	def mySessionService
+
 	
 	/* create */
 	def create() {
@@ -22,18 +23,13 @@ class AvisoService {
 
 	    def aviso = new Aviso().get(id)
 		aviso.refresh()
-		println aviso.tbState
+
 		def model = [
 			aviso: aviso, 
 			consignatarios: Usuario.list(),
 			lotes: Lote.list()
 		]
-		// println "--- edit ---"
-		println aviso.id
-		println aviso.tbState
-		println "!!!"
-		// render "!!!"
-		// return
+
 		return [model: model]
 	}
 	
@@ -58,34 +54,38 @@ class AvisoService {
 		
 	}
 	
+	
 	/* changeState */
 	def changeState(id, AvisoState newTbState) {
+
 		def aviso = new Aviso().get(id)
-		println "---" + newTbState
-		//aviso.changeState(AvisoState.PUBLICADO)
+		if (!aviso){
+			throw new DomainException(message:"Aviso not found")
+		}
 		aviso.changeState(newTbState, mySessionService.usuario)
-		//aviso.precio = 10
 		aviso.save(flush:true, failOnError: true)	
-		//println aviso.precio
-		
-		// def model = [
-			// aviso: aviso, 
-			// avisos: Aviso.list(),
-			// categorias: Categoria.list(),
-			// razas: Raza.list()
-		// ]
+	
     }
 	
 
 	/* search */
-	def search() {
-	
-		// if (!mySessionService.isAdministrator()) {
-			// throw new UserRegistrationException(message:"You must be Admin to perform this action")
-		// }
+	def search(params) {
 
-		// def lotes = Lote.list()
-		// return [lotes:lotes]
+		def avisos = Aviso.createCriteria().list () {
+		
+			// aviso{eq("id", mySessionService.aviso.id.toLong())}
+
+			if (params?.lote?.usuario?.id) {
+				lote{usuario{eq("id", params.lote.usuario.id.toLong())}}
+			}
+
+			if (params?.consignatario?.id) {
+				consignatario{eq("id", params.consignatario.id.toLong())}
+			}
+
+		}
+		
+		return avisos
 
 	}
 	

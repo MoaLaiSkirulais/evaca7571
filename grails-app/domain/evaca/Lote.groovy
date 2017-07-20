@@ -18,24 +18,25 @@ class Lote {
 	String imagen
 	LoteState tbState
 
-	static belongsTo = [raza: Raza, categoria: Categoria, usuario:Usuario]
+	static belongsTo = [
+		raza: Raza, 
+		categoria: Categoria, 
+		usuario:Usuario
+	]
+
 	static hasMany = [avisos: Aviso]
 
-	
+
 	/* constraints */
 	static constraints = {
 
-		fechaCreacion nullable: false
-		usuario nullable: true
-		raza()	
-		categoria()
-		cantidad()
-		ubicacion()
+		cantidad nullable: true
+		ubicacion nullable: true
 		provincia nullable: true
-		pesoPromedio()
-		pesoMaximo()
-		pesoMinimo()
-		edad()
+		pesoPromedio nullable: true
+		pesoMaximo nullable: true
+		pesoMinimo nullable: true
+		edad nullable: true		
 		trazada nullable: true
 		marcaLiquida nullable: true
 		imagen nullable: true

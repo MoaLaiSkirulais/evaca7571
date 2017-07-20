@@ -7,20 +7,66 @@ import grails.transaction.Transactional
 
 @Transactional
 class PopulateService {
+	
+	/* usuarios */
+	def usuarios() {
+
+		log.info "Populando usuarios..."
+
+		def consignatario = new Usuario(
+			username: "consignatario", 
+			nombre: "consignatario", 
+			apellido: "consignatario", 
+			email: "consignatario@gmail.com", 
+			profile: UsuarioProfile.CONSIGNATARIO, 
+			comision: 11					
+		)
+		consignatario.password = ''
+		consignatario.save()
+
+		def productor = new Usuario(
+			fechaCreacion: new Date(), 
+			username: "productor", 
+			nombre: "productor", 
+			apellido: "productor", 
+			email: "productor@gmail.com", 
+			profile: UsuarioProfile.PRODUCTOR, 
+			password: "", 
+			comision: 11					
+		)
+		productor.password = ''
+		productor.save()
+
+		def administrador = new Usuario(
+			fechaCreacion: new Date(), 
+			username: "administrador", 
+			nombre: "administrador", 
+			apellido: "administrador", 
+			email: "administrador@gmail.com", 
+			profile: UsuarioProfile.ADMINISTRADOR, 
+			password: "", 
+			comision: 11					
+		)
+		administrador.password = ''
+		administrador.save()
+
+		return 1
+	}
+	
  
 	/* razas */
 	def razas() {
 
 		log.info "Populando razas..."
-		new Raza(usuario: Usuario.list()[2], nombre: "Aberdeen Angus").save()
-		new Raza(usuario: Usuario.list()[2], nombre: "Braford").save()
-		new Raza(usuario: Usuario.list()[2], nombre: "Holando Argentino").save()
-		new Raza(usuario: Usuario.list()[2], nombre: "Cruza").save()
-		new Raza(usuario: Usuario.list()[2], nombre: "Hereford").save()
-		new Raza(usuario: Usuario.list()[2], nombre: "Jersey").save()
-		new Raza(usuario: Usuario.list()[2], nombre: "Bovino Criollo").save()
-		new Raza(usuario: Usuario.list()[2], nombre: "Brangus").save()
-		new Raza(usuario: Usuario.list()[2], nombre: "Careta").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Aberdeen Angus").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Braford").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Holando Argentino").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Cruza").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Hereford").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Jersey").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Bovino Criollo").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Brangus").save()
+		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Careta").save()
 		return 1
 		}
 
@@ -28,11 +74,11 @@ class PopulateService {
 	def categorias() {
 
 		log.info "Populando categorias..."
-		new Categoria(usuario: Usuario.list()[2], nombre: "Preñadas").save()
-		new Categoria(usuario: Usuario.list()[2], nombre: "Con Ternero al Pie").save()
-		new Categoria(usuario: Usuario.list()[2], nombre: "Vacias").save()
-		new Categoria(usuario: Usuario.list()[2], nombre: "De Descarte").save()
-		new Categoria(usuario: Usuario.list()[2], nombre: "Con Servicio").save()
+		new Categoria(usuario: Usuario.findByNombre("administrador"), nombre: "Preñadas").save()
+		new Categoria(usuario: Usuario.findByNombre("administrador"), nombre: "Con Ternero al Pie").save()
+		new Categoria(usuario: Usuario.findByNombre("administrador"), nombre: "Vacias").save()
+		new Categoria(usuario: Usuario.findByNombre("administrador"), nombre: "De Descarte").save()
+		new Categoria(usuario: Usuario.findByNombre("administrador"), nombre: "Con Servicio").save()
 		return 1
 	}
 
@@ -40,82 +86,49 @@ class PopulateService {
 	def plazos() {
 
 		log.info "Populando plazos..."
-		new Plazo(usuario: Usuario.list()[1], nombre: "Contado").save()
-		new Plazo(usuario: Usuario.list()[1], nombre: "30 días").save()
-		new Plazo(usuario: Usuario.list()[1], nombre: "30 y 60 días").save()
-		new Plazo(usuario: Usuario.list()[1], nombre: "60 días").save()
-		new Plazo(usuario: Usuario.list()[1], nombre: "30, 60 y 90 días").save()
-		new Plazo(usuario: Usuario.list()[1], nombre: "90 días").save()
-		new Plazo(usuario: Usuario.list()[1], nombre: "Otro").save()
+		new Plazo(usuario: Usuario.findByNombre("administrador"), nombre: "Contado").save()
+		new Plazo(usuario: Usuario.findByNombre("administrador"), nombre: "30 días").save()
+		new Plazo(usuario: Usuario.findByNombre("administrador"), nombre: "30 y 60 días").save()
+		new Plazo(usuario: Usuario.findByNombre("administrador"), nombre: "60 días").save()
+		new Plazo(usuario: Usuario.findByNombre("administrador"), nombre: "30, 60 y 90 días").save()
+		new Plazo(usuario: Usuario.findByNombre("administrador"), nombre: "90 días").save()
+		new Plazo(usuario: Usuario.findByNombre("administrador"), nombre: "Otro").save()
 		return 1
 	}
 
-	/* usuarios */
-	def usuarios() {
-
-		log.info "Populando usuarios..."
-
-		new Usuario(
-			username: "consignatario", 
-			nombre: "consignatario", 
-			apellido: "consignatario", 
-			email: "consignatario@gmail.com", 
-			profile: UsuarioProfile.CONSIGNATARIO, 
-			password: "1234", 
-			comision: 11					
-		).save()
-
-		new Usuario(
-			fechaCreacion: new Date(), 
-			username: "productor", 
-			nombre: "productor", 
-			apellido: "productor", 
-			email: "productor@gmail.com", 
-			profile: UsuarioProfile.PRODUCTOR, 
-			password: "1234", 
-			comision: 11					
-		).save()
-
-		new Usuario(
-			fechaCreacion: new Date(), 
-			username: "administrador", 
-			nombre: "administrador", 
-			apellido: "administrador", 
-			email: "administrador@gmail.com", 
-			profile: UsuarioProfile.ADMINISTRADOR, 
-			password: "1234", 
-			comision: 11					
-		).save()
-
-		return 1
-	}
 
 	/* lotes */
 	def lotes() {
 
 		log.info "Populando lotes..."
 
-		// def r = Raza.first()
-		// def c = Categoria.first()
-
-		new Lote(
-			usuario: Usuario.last(), 
+		def lote1 = new Lote(
+			usuario: Usuario.findByNombre("productor"), 
 			raza: Raza.list()[2], 
 			categoria: Categoria.list()[2], 
-			cantidad: 90, 
-			pesoPromedio: 440, 
-			pesoMaximo: 500, 
-			pesoMinimo: 350, 
-			trazada: true, 
-			ubicacion: "Pila, Buenos Aires", 
-			edad: 1, 
-			descarte: "", 
-			marcaLiquida: true, 
-			pesada: "", 
-			desbaste: "", 
-			cuit: "1-22344566-22", 
-			imagen: "http://i.imgur.com/XMAPZSi.gif"
-		).save()
+			tbState : LoteState.DISPONIBLE
+		).save(flush:true, failOnError: true)
+		
+		def lote2 = new Lote(
+			usuario: Usuario.findByNombre("productor"), 
+			raza: Raza.list()[2], 
+			categoria: Categoria.list()[2], 
+			tbState : LoteState.DISPONIBLE
+		).save(flush:true, failOnError: true)
+		
+		def lote3 = new Lote(
+			usuario: Usuario.findByNombre("consignatario"), 
+			raza: Raza.list()[2], 
+			categoria: Categoria.list()[2], 
+			tbState : LoteState.DISPONIBLE
+		).save(flush:true, failOnError: true)
+		
+		def lote4 = new Lote(
+			usuario: Usuario.findByNombre("productor"), 
+			raza: Raza.list()[2], 
+			categoria: Categoria.list()[2], 
+			tbState : LoteState.DISPONIBLE
+		).save(flush:true, failOnError: true)
 		
 		// new Lote(
 			// usuario: Usuario.last(), 
@@ -137,26 +150,6 @@ class PopulateService {
 			// imagen: "http://i.imgur.com/u5Fcrfd.gif"
 		// ).save()
 		
-		
-		// new Lote(
-			// usuario: Usuario.last(), 
-			// raza: Raza.list()[3], 
-			// categoria: Categoria.list()[3], 
-			// fechaCreacion: new Date(), 
-			// cantidad: 15, 
-			// pesoPromedio: 300, 
-			// pesoMaximo: 500, 
-			// pesoMinimo: 250, 
-			// trazada: true, 
-			// ubicacion: "San Justo, Santa Fe", 
-			// edad: 1, 
-			// descarte: "", 
-			// marcaLiquida: true, 
-			// pesada: "", 
-			// desbaste: "", 
-			// cuit: "1-22344566-22", 
-			// imagen: "http://i.imgur.com/hmo2zOp.gif"
-		// ).save()
 
 		return 1
 	}
@@ -165,52 +158,18 @@ class PopulateService {
 	def avisos() {
 
 		log.info "Populando avisos..."
-		/* aca habrá que usar los command objects ? */
 		
 		new Aviso(
 			lote: Lote.list()[0], 
-			fechaCreacion: new Date(), 
-			fechaPublicacion: new Date(), 
-			tbState: "Borrador",
-			consignatario: Usuario.list()[2], 
-			precio: 3200
+			consignatario: Usuario.findByNombre("productor"), 
+			precio: 100
 		).save()
 		
-		// new Aviso(
-			// lote: Lote.list()[1], 
-			// fechaCreacion: new Date(), 
-			// fechaPublicacion: new Date(), 
-			// tbState: "Borrador",
-			// consignatario: Usuario.list()[0], 
-			// precio: 3200
-		// ).save()
-		
-		// new Aviso(
-			// lote: Lote.list()[2], 
-			// fechaCreacion: new Date(), 
-			// fechaPublicacion: new Date(), 
-			// tbState: "Borrador",
-			// consignatario: Usuario.list()[1], 
-			// precio: 3200
-		// ).save()
-		
-		// new Aviso(
-			// lote: Lote.list()[2], 
-			// fechaCreacion: new Date(), 
-			// fechaPublicacion: new Date(), 
-			// tbState: "Borrador",
-			// consignatario: Usuario.list()[2], 
-			// precio: 3200
-		// ).save()
-		
-		// new Aviso(
-			// lote: Lote.list()[3], 
-			// fechaCreacion: new Date(), 
-			// fechaPublicacion: new Date(), 
-			// tbState: "Vendido",
-			// consignatario: Usuario.list()[2], 
-			// precio: 3200
-		// ).save()
+		new Aviso(
+			lote: Lote.list()[1], 
+			consignatario: Usuario.findByNombre("productor"), 
+			precio: 101
+		).save()
 		
 		return
 	}

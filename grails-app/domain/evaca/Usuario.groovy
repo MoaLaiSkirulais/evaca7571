@@ -24,6 +24,7 @@ class Usuario {
 	
 		fechaCreacion blank: false, nullable: false
 		email nullable: false, email: true, unique: true
+		password nullable: true, blank: true
 		state nullable: false
 		profile nullable: false
 		username size: 6..15, blank: false, unique: true
@@ -45,6 +46,7 @@ class Usuario {
 		this.fechaCreacion = new Date()
 		this.profile = UsuarioProfile.PRODUCTOR
 		this.state = UsuarioState.APROBACION
+		this.password = ""
     }
 	
 	
