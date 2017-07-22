@@ -29,9 +29,20 @@
 					<td class="text-right">
 						<div class="form-group text-right">
 							<g:link action="create" class="btn btn-default">Nuevo</g:link>
-							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
 							
-							<g:actionSubmit name="changeState" action="changeState" value="changeState" class="btn btn-default"/>
+							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
+							<br><br>
+							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default"
+							value="AvisoState.PUBLICADO"/>
+							
+							
+							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default"
+							value="AvisoState.RECHAZADO"/>
+							
+							
+							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default"
+							value="AvisoState.CANCELADO"/>
+							
 						</div>
 					</td>
 				</tr>

@@ -31,17 +31,19 @@ class UsuarioService {
 
 	
 	/* save */
+	// def save(Usuario usuario) {
 	def save(Usuario usuario) {
-		
+
 		usuario.save(flush:true, failOnError: false)
 		if (usuario.hasErrors()) {
 			UsuarioException error = new UsuarioException(message:"mal")
 			error.model = [usuario: usuario]
 			throw error;
 		}
+		return usuario
 	}
-	
-	
+
+
 	/* changeState */
 	def changeState(id, UsuarioState newState) {
 

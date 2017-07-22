@@ -97,12 +97,24 @@ class UsuarioController extends BaseController{
 
 	/* save */
 	def save(Usuario usuario) {
+	
+		
+		// render params.id
+		// render params._action_save
+		// return
+
 
 		try {
 			usuarioService.save(usuario)
+			render usuario.id
+			return
+			usuarioService.changeState(usuario.id, params._action_save as UsuarioState)
 			flash.message = "Cambios aplicados con exito"
 			flash.type = "ok"
 			redirect action:"edit", id:usuario.id
+			
+			
+			
 		}  catch (grails.validation.ValidationException error) {        
 			flash.message = "Mal"
 			render(view: 'create', model: [usuario: error.model])

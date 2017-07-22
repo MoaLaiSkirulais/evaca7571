@@ -31,6 +31,13 @@
 							<g:link action="create" class="btn btn-default">Nuevo</g:link>
 							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>
 							
+							
+							<br><br>
+							<g:actionSubmit name="changeState" action="save" class="btn btn-default" value="ACTIVO"/>
+							
+							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default"
+							value="UsuarioState.INACTIVO"/>
+							
 						</div>
 					</td>
 				</tr>

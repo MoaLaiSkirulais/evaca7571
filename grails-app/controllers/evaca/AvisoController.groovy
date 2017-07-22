@@ -69,8 +69,8 @@ class AvisoController extends BaseController{
 	/* changeState */
 	def changeState() {		
 	
-		// render params
-		// return
+		render params
+		return
 
 		// def aviso = new Aviso().get(params.id)
 		
