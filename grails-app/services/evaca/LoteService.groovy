@@ -39,11 +39,6 @@ class LoteService {
 		lote.save(flush:true, failOnError: false)
 
 		if (lote.hasErrors()) {
-		
-			println "errores"
-			println lote.errors.allErrors.dump()
-
-			// def model = 
 
 			LoteException error = new LoteException()
 			error.model = [

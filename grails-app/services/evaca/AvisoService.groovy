@@ -7,48 +7,49 @@ class AvisoService {
 	
 	/* create */
 	def create() {
-			
-		def model = [
-			lote: new Aviso(), 
+
+		[
+			aviso: new Aviso(), 
 			consignatarios: Usuario.list(),
 			lotes: Lote.list()
 		]
-
-		[model: model]
 	}
 
 	
 	/* edit */
 	def edit(id) {
+	
+		def consignatarios = Usuario.createCriteria().list () {
+			eq("profile", UsuarioProfile.CONSIGNATARIO)
+		}
 
-	    def aviso = new Aviso().get(id)
-		aviso.refresh()
-
-		def model = [
-			aviso: aviso, 
-			consignatarios: Usuario.list(),
+		[
+			aviso: new Aviso().get(id), , 
+			consignatarios: consignatarios,
 			lotes: Lote.list()
 		]
 
-		return [model: model]
+		
 	}
 	
 	
 	/* save */
 	def save(Aviso aviso) {
-	
+
 		aviso.save(flush:true)
 
-		def model = [
-			aviso: aviso, 
-			avisos: Aviso.list(),
-			categorias: Categoria.list(),
-			razas: Raza.list()
-		]
-
 		if (aviso.hasErrors()) {
-			DomainException error = new DomainException(message:"Errors!")
-			error.model = model
+
+			def consignatarios = Usuario.createCriteria().list () {
+				eq("profile", UsuarioProfile.CONSIGNATARIO)
+			}
+
+			AvisoException error = new AvisoException()
+			error.model = [
+				aviso: aviso, 
+				consignatarios: consignatarios,
+				lotes: Lote.list()
+			]
 			throw error;
 		}
 		
@@ -56,7 +57,7 @@ class AvisoService {
 	
 	
 	/* changeState */
-	def changeState(id, AvisoState newTbState) {
+	def changeState(id, AvisoState newTbState) { /* si le mando la instancia? vale para todos y para el save */
 
 		def aviso = new Aviso().get(id)
 		if (!aviso){
@@ -72,9 +73,7 @@ class AvisoService {
 	def search(params) {
 
 		def avisos = Aviso.createCriteria().list () {
-		
-			// aviso{eq("id", mySessionService.aviso.id.toLong())}
-
+	
 			if (params?.lote?.usuario?.id) {
 				lote{usuario{eq("id", params.lote.usuario.id.toLong())}}
 			}

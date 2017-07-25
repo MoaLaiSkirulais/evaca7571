@@ -4,11 +4,7 @@ package evaca
 /* Aviso */	
 class Aviso {
 
-	Date fechaCreacion
-	
-    // Date dateCreated
-    // Date lastUpdated
-
+	Date fechaCreacion	
 	Float precio
 	AvisoState state
 	Usuario consignatario
@@ -21,16 +17,6 @@ class Aviso {
 	/* constraints */
 	static constraints = {
 
-		// validator: {val, obj ->
-			// if (val == 'Publicado') {
-				// if (obj.lote.tbState != '') {
-					// throw new DomainException(message : "No publicar")
-				// }
-			// }
-		// }
-
-		// consignatario (validator: AvisoValidator.consignatario)
-		
 		state nullable: false
 		consignatario nullable: false
 		lote nullable: false
@@ -54,7 +40,7 @@ class Aviso {
 
 	/* changeState */
 	public changeState(AvisoState state, Usuario ejecutor){
-		tbState.validateStateFlow(this);
+		state.validateStateFlow(this);
 	}
 
 
@@ -62,7 +48,6 @@ class Aviso {
 	String toString(){
 		this.state 
 	}
-	
 
 
 }

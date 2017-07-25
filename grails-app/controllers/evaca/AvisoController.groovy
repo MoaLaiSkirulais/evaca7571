@@ -1,8 +1,7 @@
 package evaca
 
-class AvisoController extends BaseController{
+class AvisoController extends BaseController implements AvisoExceptionHandler{
 	
-	public String casa = "casa"
 	def avisoService
 
 
@@ -38,19 +37,10 @@ class AvisoController extends BaseController{
 	/* save */
 	def save(Aviso aviso) {
 
-		// try {
-
-			avisoService.save(aviso)
-			flash.message = "Cambios aplicados con exito"
-			flash.type = "ok"
-			redirect action:"edit", id:aviso.id
-
-		// }  catch (UsuarioException error) {
-		
-			// flash.message = "Mal"
-			// render(view: 'create', model: error.model)
-			// println "UsuarioException"
-		// }
+		avisoService.save(aviso)
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:aviso.id
 
     }
 	
@@ -67,65 +57,13 @@ class AvisoController extends BaseController{
     }
 	
 	/* changeState */
-	def changeState() {		
-	
-		render params
-		return
+	def changeState() {
 
-		// def aviso = new Aviso().get(params.id)
-		
-		def auxState
-		if (params.newTbState == "AvisoState.PUBLICADO"){
-			auxState = AvisoState.PUBLICADO
-		}
-		
-		if (params.newTbState == "AvisoState.RECHAZADO"){
-			auxState = AvisoState.RECHAZADO
-		}
-		
-		if (params.newTbState == "AvisoState.CANCELADO"){
-			auxState = AvisoState.CANCELADO
-		}
-
-		try {
-			avisoService.changeState(params.id, auxState)
-			flash.message = "bien!"
-			flash.type = "ok"
-			redirect action:"edit", id:params.id
-		}  catch (DomainException error) {  
-			flash.message = error.message
-			redirect action:"edit", id:params.id
-		}
-    }
-	
-	/* ofertar */
-	def ofertar(Oferta oferta) {		
-		ofertaService.save(oferta)
-		redirect action:"show", id:oferta.aviso.id 
-    }
-	
-	/* exception */
-	def exception(UserRegistrationException error) {
-		flash.message = error.message        
-		redirect controller: 'usuario', action:"newlogin"
-    }
-
-	/* exception */
-	def exception(OfertaException error) {
-		flash.message = "error"
-		render error.model.oferta.aviso
-		def model = [
-				aviso: error.model.oferta.aviso,
-				plazos: Plazo.list()
-			]
-		respond view:'show', [model:model]
-    }
-	
-	/* exception */
-	def exception(DomainException error) {
-		render "eeeee"
-		render(view: 'create', [model: model])
-    }	
-
+		def auxState = params._action_changeState as AvisoState
+		avisoService.changeState(params.id, auxState)
+		flash.message = "Estado cambió con éxito!"
+		flash.type = "ok"
+		redirect action:"edit", id:params.id
+	}
 
 }

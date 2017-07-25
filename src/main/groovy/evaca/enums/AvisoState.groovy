@@ -43,7 +43,7 @@ public enum AvisoState {
 			}				
 
 			/* lote disponible? */
-			if (aviso.lote.state != LoteState.DISPONIBLE){
+			if (aviso.lote.tbState != LoteState.DISPONIBLE){
 				throw new DomainException(message : "Lote no disponible")
 			}
 
