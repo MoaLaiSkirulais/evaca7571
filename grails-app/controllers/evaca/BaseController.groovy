@@ -15,13 +15,6 @@ class BaseController {
 		respond view:'create', [model:error.model]
     }
 	
-	
-	/* exception */
-	def exception(UsuarioException error) {
-		flash.message = error
-		respond view:'create', [model:error.model]
-    }
-
 
 	/* exception */
 	def exception(DomainException error) {
@@ -36,6 +29,7 @@ class BaseController {
 		render e.message
 		return
 	}
+
 	
 	/* exception */
 	def handleUsuarioNotLoggedException (UsuarioNotLoggedException e) {			
@@ -43,10 +37,5 @@ class BaseController {
 		redirect controller: 'usuario', action:"newlogin"
 	}
 	
-	/* exception */
-	// def exception(org.springframework.orm.hibernate5.HibernateSystemException error) {
-		// flash.message = "error"
-		// respond view:'create', [model:error.model]
-    // }
 
 }

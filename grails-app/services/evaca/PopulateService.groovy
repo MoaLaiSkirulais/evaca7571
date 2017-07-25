@@ -36,7 +36,7 @@ class PopulateService {
 		)
 		productor.password = ''
 		productor.save()
-
+		
 		def administrador = new Usuario(
 			fechaCreacion: new Date(), 
 			username: "administrador", 
@@ -49,6 +49,13 @@ class PopulateService {
 		)
 		administrador.password = ''
 		administrador.save()
+		
+		/* permisos */
+		productor.changeState(UsuarioState.ACTIVO, administrador)
+		productor.save(flush:true, failOnError: true)
+
+		consignatario.changeState(UsuarioState.ACTIVO, administrador)
+		consignatario.save(flush:true, failOnError: true)
 
 		return 1
 	}

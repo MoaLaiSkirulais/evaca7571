@@ -5,15 +5,19 @@ public enum UsuarioState {
 	
 	APROBACION { 
 		public UsuarioState validateStateFlow(Usuario usuario) {		
-			throw new DomainException(message : "No se puede pasar manualmente a Aprobacion")
+			throw new UsuarioStateFlowException(message : "No se puede pasar manualmente a Aprobacion")
 		}
 	}, 
 
 	ACTIVO { 
 		public UsuarioState validateStateFlow(Usuario usuario) {
-			if (usuario.state == UsuarioState.APROBACION){
-				return UsuarioState.ACTIVO
+			println "---!!"
+			if (usuario.state != UsuarioState.APROBACION && usuario.state != UsuarioState.INACTIVO){
+				throw new UsuarioStateFlowException(message : "No se puede pasar a Activo")
+				println "---!!"
 			}
+			return UsuarioState.ACTIVO
+			
 		}
 
 		@Override
@@ -24,7 +28,7 @@ public enum UsuarioState {
 				println "---" + ejecutor?.profile
 				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
 					println "!"
-					throw new DomainException(message: "You must be Admin")
+					throw new UsuarioStateFlowException(message: "Se necesita un administrador para ejecutar esta accion")
 				}
 			}
         }
@@ -35,7 +39,7 @@ public enum UsuarioState {
 		public UsuarioState validateStateFlow(Usuario usuario) {
 			
 			if (usuario.state != UsuarioState.ACTIVO){
-				throw new DomainException(message : "El usuario no está Activo")
+				throw new UsuarioStateFlowException(message : "El usuario no está Activo")
 			}
 			return UsuarioState.INACTIVO
 		}
@@ -45,7 +49,7 @@ public enum UsuarioState {
 		
 			if (usuario.state == UsuarioState.APROBACION){
 				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
-					throw new DomainException(message: "You must be Admin")
+					throw new UsuarioStateFlowException(message: "Se necesita un administrador para ejecutar esta accion")
 				}
 			}
         }

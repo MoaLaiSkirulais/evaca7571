@@ -1,6 +1,6 @@
 package evaca
 
-class LoteController extends BaseController{
+class LoteController extends BaseController implements LoteExceptionHandler{
 	
 	def loteService
 
@@ -25,19 +25,10 @@ class LoteController extends BaseController{
 	/* save */
 	def save(Lote lote) {
 	
-		try {
-
-			loteService.save(lote)
-			flash.message = "Cambios aplicados con exito"
-			flash.type = "ok"
-			redirect action:"edit", id:lote.id
-
-		}  catch (UsuarioException error) {
-		
-			flash.message = "Mal"
-			render(view: 'create', model: error.model)
-			println "UsuarioException"
-		}
+		loteService.save(lote)		
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:lote.id
 	    
     }
 

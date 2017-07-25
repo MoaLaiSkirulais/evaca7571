@@ -11,7 +11,6 @@
 	</g:else>
 </g:if>
 
-
 <div class="errors">
 	<g:renderErrors bean="${attrs.modelo}" as="list" />
 </div>

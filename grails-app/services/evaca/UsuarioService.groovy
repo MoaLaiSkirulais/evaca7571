@@ -2,11 +2,6 @@ package evaca
 
 import grails.transaction.*
 
-class UsuarioException extends RuntimeException {
-	String message
-	Map model
-}
-
 class UsuarioService {
 	
 	def mySessionService
@@ -31,12 +26,11 @@ class UsuarioService {
 
 	
 	/* save */
-	// def save(Usuario usuario) {
 	def save(Usuario usuario) {
 
 		usuario.save(flush:true, failOnError: false)
 		if (usuario.hasErrors()) {
-			UsuarioException error = new UsuarioException(message:"mal")
+			UsuarioException error = new UsuarioException(message:"mal!")
 			error.model = [usuario: usuario]
 			throw error;
 		}

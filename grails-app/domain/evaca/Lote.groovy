@@ -6,6 +6,7 @@ class Lote {
 	Usuario usuario
 	Raza raza	
 	Categoria categoria
+
 	Integer cantidad
 	String ubicacion
 	String provincia
@@ -40,7 +41,6 @@ class Lote {
 		trazada nullable: true
 		marcaLiquida nullable: true
 		imagen nullable: true
-		// tbState nullable: false, inList: ['Borrador', 'Publicado', 'Vendido']
 
     }
 
@@ -65,12 +65,6 @@ class Lote {
 	}
 
 
-	/* beforeInsert */
-	def beforeInsert() {
-		// this.fechaCreacion = new Date()
-	}
-
-	
 	/* toString */
 	String toString(){
 		this.id + " | " + this.usuario + " | " + this.raza + " | " + this.categoria + " | " + this.cantidad

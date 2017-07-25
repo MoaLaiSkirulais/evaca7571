@@ -1,6 +1,6 @@
 package evaca
 
-class UsuarioController extends BaseController{
+class UsuarioController extends BaseController implements UsuarioExceptionHandler{ 
 	
 	def mySessionService
 	def usuarioService
@@ -21,20 +21,10 @@ class UsuarioController extends BaseController{
 
 	/* login */
 	def login() {
-		
-		try {
-   
-			mySessionService.login(params.username, params.password)
-			def usuario = Usuario.findByUsername(params.username)
-			flash.message = "Welcome"
-			redirect controller: 'home'
-			return
-
-		 } catch (MyUserRegistrationException ure) {        
-
-			flash.message = ure.message        
-			render(view: 'login')
-		}
+		mySessionService.login(params.username, params.password)
+		def usuario = Usuario.findByUsername(params.username)
+		flash.message = "Welcome"
+		redirect controller: 'home'	 
     }
 	
 
@@ -60,75 +50,25 @@ class UsuarioController extends BaseController{
 
 	/* changeState */
 	def changeState() {		
+
+		def auxState = params._action_changeState as UsuarioState
+		usuarioService.changeState(params.id, auxState)
+		flash.message = "Cambio el estado con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:params.id
 	
-		// render params
-		// return
-
-		// def aviso = new Aviso().get(params.id)
-		
-		def auxState
-		if (params.newTbState == "UsuarioState.APROBACION"){
-			auxState = UsuarioState.APROBACION
-		}
-		
-		if (params.newTbState == "UsuarioState.ACTIVO"){
-			auxState = UsuarioState.ACTIVO
-		}
-		
-		if (params.newTbState == "UsuarioState.INACTIVO"){
-			auxState = UsuarioState.INACTIVO
-		}
-
-		try {
-
-			usuarioService.changeState(params.id, auxState)
-			flash.message = "bien!"
-			flash.type = "ok"
-			redirect action:"edit", id:params.id
-			
-		}  catch (DomainException error) {  
-		
-			println "redirect"
-			flash.message = error.message
-			redirect action:"edit", id:params.id
-		}
     }
 
 
 	/* save */
 	def save(Usuario usuario) {
-	
-		
-		// render params.id
-		// render params._action_save
-		// return
 
-
-		try {
-			usuarioService.save(usuario)
-			render usuario.id
-			return
-			usuarioService.changeState(usuario.id, params._action_save as UsuarioState)
-			flash.message = "Cambios aplicados con exito"
-			flash.type = "ok"
-			redirect action:"edit", id:usuario.id
-			
-			
-			
-		}  catch (grails.validation.ValidationException error) {        
-			flash.message = "Mal"
-			render(view: 'create', model: [usuario: error.model])
-			println "grails.validation.ValidationException error"
-		}  catch (UsuarioException error) {        
-			flash.message = "Mal"
-			render(view: 'create', model: error.model)
-			println "UsuarioException"
-		}
-		
-		    // } catch(Exception e){
-        // e.printStackTrace()
+		usuarioService.save(usuario)
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:usuario.id
 
     }
-	
 
+	
 }

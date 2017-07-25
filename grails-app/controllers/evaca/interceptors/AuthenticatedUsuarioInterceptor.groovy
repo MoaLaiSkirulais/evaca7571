@@ -18,6 +18,7 @@ class AuthenticatedUsuarioInterceptor {
 			// throw new UsuarioNotLoggedException()
 			flash.message = "You must be logged to perform this action"
             redirect controller: 'usuario', action:"newlogin"
+			return /* importante este return */
 		}
 		true 
 	}

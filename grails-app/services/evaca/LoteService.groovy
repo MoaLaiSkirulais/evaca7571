@@ -9,27 +9,26 @@ class LoteService {
 	/* create */
 	def create() {
 			
-		def model = [
+		[
 			lote: new Lote([usuario:mySessionService.usuario]), 
 			lotes: Lote.list(),
 			categorias: Categoria.list().sort{it.nombre},
 			razas: Raza.list().sort{it.nombre}
 		]
 
-		[model: model]
 	}
 
 	
 	/* edit */
 	def edit(id) {
 
-		def model = [
+		[
 			lote: new Lote().get(id), 
 			lotes: Lote.list(),
 			categorias: Categoria.list().sort{it.nombre},
 			razas: Raza.list().sort{it.nombre}
 		]
-		return [model: model]
+		
 	}
 	
 	
@@ -37,19 +36,23 @@ class LoteService {
 	def save(Lote lote) {
 	
 		lote.usuario = mySessionService.usuario
-		lote.save(flush:true)
-
-		def model = [
-			lote: lote, 
-			lotes: Lote.list(),
-			categorias: Categoria.list(),
-			razas: Raza.list()
-		]
+		lote.save(flush:true, failOnError: false)
 
 		if (lote.hasErrors()) {
-			DomainException error = new DomainException(message:"Errors!")
-			error.model = model
-			throw error;
+		
+			println "errores"
+			println lote.errors.allErrors.dump()
+
+			// def model = 
+
+			LoteException error = new LoteException()
+			error.model = [
+				lote: lote, 
+				lotes: Lote.list(),
+				categorias: Categoria.list(),
+				razas: Raza.list()
+			]
+			throw error
 		}
 		
 	}		
@@ -61,7 +64,7 @@ class LoteService {
 	
 		// def avisos = Aviso.createCriteria().list (params) {
 		def lotes = Lote.createCriteria().list(){
-			usuario{eq("id", mySessionService.usuario.id.toLong())}
+			usuario{eq("id", mySessionService?.usuario.id.toLong())}
 			// consignatario{eq("id", params.consignatario.id.toLong())}
 			
 		}

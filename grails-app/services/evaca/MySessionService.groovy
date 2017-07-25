@@ -33,6 +33,12 @@ class MySessionService {
 			println "-->" + p
 			println "-->" + usuario.password
 			println "-->" + usuario
+			
+			if (usuario.state != UsuarioState.ACTIVO){
+				throw new LoginException(message:"La cuenta no esta aun activa")
+			}
+			
+			
 			if (usuario.password == p){
 
 				session.username = u
@@ -41,10 +47,10 @@ class MySessionService {
 				session.isLogged = true
 				
 			} else {
-				throw new MyUserRegistrationException(message:"Passwords don't match")
+				throw new LoginException(message:"Passwords don't match")
 			}
 		} else {
-            throw new MyUserRegistrationException(message:"Invalid user")
+            throw new LoginException(message:"Invalid user")
 		}
 
 	}	

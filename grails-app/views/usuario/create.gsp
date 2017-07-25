@@ -27,16 +27,16 @@
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
+
 							<g:link action="index" class="btn btn-default">Buscar</g:link>
 							<g:link action="create" class="btn btn-default">Nuevo</g:link>
 							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>
 							
-							
 							<br><br>
-							<g:actionSubmit name="changeState" action="save" class="btn btn-default" value="ACTIVO"/>
-							
-							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default"
-							value="UsuarioState.INACTIVO"/>
+
+							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default" value="ACTIVO"/>
+
+							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default" value="INACTIVO"/>
 							
 						</div>
 					</td>
@@ -45,33 +45,5 @@
 		</table>
 	</form>
 	
-	<h2>Acciones</h2>
-	
-	<table class="table table-condensed" cellspacing="0">
-		<tbody>
-			
-			<tr class="order-total">
-				<th></th>
-				<td class="text-right">
-					<div class="form-group text-right">
-					
-						<form method="post">
-							<myform:display name="id" label="#id" value="${usuario.id}"/>
-							<myform:field name="newTbState" label="newTbState" value="UsuarioState.ACTIVO"/>
-							<g:actionSubmit value="Activar" action="changeState" class="btn btn-default"/>								
-						</form>
-						
-						<form method="post">
-							<myform:display name="id" label="#id" value="${usuario.id}"/>
-							<myform:field name="newTbState" label="newTbState" value="UsuarioState.INACTIVO"/>
-							<g:actionSubmit value="Inactivar" action="changeState" class="btn btn-default"/>								
-						</form>
-						
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-
 
 </g:applyLayout>
