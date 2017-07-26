@@ -46,7 +46,7 @@ class Aviso {
 
 	/* toString */
 	String toString(){
-		this.state 
+		this.id + "| owner:" + this.lote.usuario + "| consignatario: " +  this.consignatario + " | " + this.state 
 	}
 
 

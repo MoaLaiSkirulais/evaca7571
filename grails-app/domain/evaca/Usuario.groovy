@@ -61,7 +61,7 @@ class Usuario {
 	
 	/* toString */	
 	String toString(){
-		this.nombre + " " + this.apellido
+		this.username
 	}
 
 }

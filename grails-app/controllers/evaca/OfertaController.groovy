@@ -1,37 +1,22 @@
 package evaca
 
-class OfertaController {
+class OfertaController extends BaseController implements OfertaExceptionHandler{
 	
 	def ofertaService
 
+	
 	/* create */
-	def create() {
-		
-		try {
-			
-			ofertaService.create()
-		
-		} catch (UserRegistrationException ure) {        
-
-			flash.message = ure.message        
-			redirect controller: 'usuario', action:"newlogin	"
-		}
-
+	def create() {		
+		ofertaService.create()
     }
+
 
 	/* edit */
 	def edit() {
-
-		def id=params.id
-	    def model = [
-			oferta: new Oferta().get(id), 
-			avisos: Aviso.list(), 
-			plazos: Plazo.list()
-		]
-
-		respond view:'create', [model:model]
+		respond view:'create', ofertaService.edit(params.id)		
     }
 	
+
 	/* index */
 	def index() {
 
@@ -39,23 +24,26 @@ class OfertaController {
 		render(view: 'index', model: [ofertas:ofertas])
     }
 
+
 	/* save */
-	def save(Oferta oferta) {		
-		// oferta.aviso = null
+	def save(Oferta oferta) {
+
 		ofertaService.save(oferta)
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
 		redirect action:"edit", id:oferta.id
     }
+	
+	
+	/* changeState */
+	def changeState() {		
 
-	/* exception */
-	def exception(UserRegistrationException error) {
-		flash.message = error.message        
-		redirect controller: 'usuario', action:"newlogin"
-    }
-
-	/* exception */
-	def exception(OfertaException error) {
-		flash.message = "error"
-		respond view:'create', [model:error.model]
+		def auxState = params._action_changeState as OfertaState
+		ofertaService.changeState(params.id, auxState)
+		flash.message = "Cambio el estado con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:params.id
+	
     }
 
 

@@ -7,7 +7,7 @@ class Oferta {
 	Usuario usuario
 	Plazo plazo
 	Float precio
-	OfertaState tbState
+	OfertaState state
 	Venta venta 
 
 	static belongsTo = [aviso:Aviso, usuario:Usuario, plazo:Plazo]	
@@ -16,7 +16,7 @@ class Oferta {
 	/* Oferta() */
 	public Oferta() {
 		this.fechaCreacion = new Date();
-		this.tbState = OfertaState.BORRADOR;
+		this.state = OfertaState.BORRADOR;
 	}	
 	
 	
@@ -27,35 +27,15 @@ class Oferta {
 	
 	
 	/* changeState */
-	public changeState(OfertaState tbState, Usuario ejecutor){
+	public changeState(OfertaState state, Usuario ejecutor){
 	
-		println "setTbState: " + tbState
-		println "this.setTbState: " + this.tbState
+		println "setTbState: " + state
+		println "this.setTbState: " + this.state
 
-		tbState.validateStateAccess(this, ejecutor);
-		this.tbState = tbState.validateStateFlow(this);
+		state.validateStateAccess(this, ejecutor);
+		this.state = state.validateStateFlow(this);
 
 	}
 
-	/* setTbState() */
-	// public void setTbState(String tbState){
-
-
-		// if (tbState == 'Aceptada'){
-			// if (this.tbState != 'Vigente'){
-				// throw new DomainException(message : "La oferta no está Vigente")
-			// }
-			// this.aviso.tbState = 'Vendido'
-
-			// /* genero la venta */
-			// this.venta = new Venta(
-				// oferta: this, 
-				// fechaCreacion: new Date()
-			// )
-		// }
-
-		
-	// }
-	
 	
 }

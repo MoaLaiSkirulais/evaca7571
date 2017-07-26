@@ -42,7 +42,7 @@
 							</td>
 																		
 							<td class="product-name">
-								${item.tbState}
+								${item.state}
 							</td>
 																		
 							<td class="product-add-to-cart">

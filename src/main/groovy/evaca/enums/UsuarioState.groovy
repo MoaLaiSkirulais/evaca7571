@@ -11,10 +11,8 @@ public enum UsuarioState {
 
 	ACTIVO { 
 		public UsuarioState validateStateFlow(Usuario usuario) {
-			println "---!!"
 			if (usuario.state != UsuarioState.APROBACION && usuario.state != UsuarioState.INACTIVO){
 				throw new UsuarioStateFlowException(message : "No se puede pasar a Activo")
-				println "---!!"
 			}
 			return UsuarioState.ACTIVO
 			
@@ -24,10 +22,7 @@ public enum UsuarioState {
         public UsuarioState validateStateAccess(Usuario usuario, Usuario ejecutor) {		
 		
 			if (usuario.state == UsuarioState.APROBACION){
-				println "---" + ejecutor 
-				println "---" + ejecutor?.profile
 				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
-					println "!"
 					throw new UsuarioStateFlowException(message: "Se necesita un administrador para ejecutar esta accion")
 				}
 			}
