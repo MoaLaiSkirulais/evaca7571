@@ -67,11 +67,11 @@ class MySessionService {
 
 
 	/* isAdministrator */
-	def isAdministrator() {
+	def isAdministrator() { /* esta logica deberia pasar al domain */
 		// return true
 		if (isLogged()){
 			def session = WebUtils.retrieveGrailsWebRequest().session
-			[session.usuario.profile == UsuarioProfile.ADMINISTRADOR]
+			session.usuario.profile == UsuarioProfile.ADMINISTRADOR			
 		}
 	}
 

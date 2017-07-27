@@ -26,7 +26,7 @@ class RazaController extends BaseController implements RazaExceptionHandler {
 	/* save */
 	def save(Raza raza) {
 	
-		razaService.save(usuario)
+		razaService.save(raza)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
 		redirect action:"edit", id:raza.id	    

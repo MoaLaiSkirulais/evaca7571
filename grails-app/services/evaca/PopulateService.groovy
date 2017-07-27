@@ -77,6 +77,9 @@ class PopulateService {
 		consignatario.changeState(UsuarioState.ACTIVO, administrador)
 		consignatario.save(flush:true, failOnError: true)
 
+		administrador.changeState(UsuarioState.ACTIVO, administrador)
+		administrador.save(flush:true, failOnError: true)
+
 		return 1
 	}
 	

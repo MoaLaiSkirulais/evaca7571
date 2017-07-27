@@ -26,7 +26,7 @@ class PlazoController extends BaseController implements PlazoExceptionHandler {
 	/* save */
 	def save(Plazo plazo) {
 	
-		plazoService.save(usuario)
+		plazoService.save(plazo)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
 		redirect action:"edit", id:plazo.id	    

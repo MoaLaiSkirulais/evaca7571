@@ -38,4 +38,13 @@ class RazaService {
 	}		
 	
 	
+	/* search */
+	def search() {
+	
+		def razas = Raza.list()
+		return  [razas:razas]
+
+	}		
+	
+	
 }

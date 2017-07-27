@@ -16,6 +16,7 @@
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
+							<g:link action="index" class="btn btn-default">Buscar</g:link>
 							<g:link action="create" class="btn btn-default">Nuevo</g:link>
 							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
 						</div>

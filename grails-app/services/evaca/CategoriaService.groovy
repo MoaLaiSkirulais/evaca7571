@@ -36,6 +36,15 @@ class CategoriaService {
 		return categoria
 		
 	}		
+
+	
+	/* search */
+	def search() {
+	
+		def categorias = Categoria.list()
+		return  [categorias:categorias]
+
+	}		
 	
 	
 }

@@ -35,7 +35,6 @@
 							<br><br>
 
 							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default" value="ACTIVO"/>
-
 							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default" value="INACTIVO"/>
 							
 						</div>

@@ -26,7 +26,7 @@ class CategoriaController extends BaseController implements CategoriaExceptionHa
 	/* save */
 	def save(Categoria categoria) {
 	
-		categoriaService.save(usuario)
+		categoriaService.save(categoria)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
 		redirect action:"edit", id:categoria.id	    

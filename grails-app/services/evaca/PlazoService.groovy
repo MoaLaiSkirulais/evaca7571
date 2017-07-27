@@ -36,6 +36,15 @@ class PlazoService {
 		return plazo
 		
 	}		
+
+	
+	/* search */
+	def search() {
+	
+		def plazos = Plazo.list()
+		return  [plazos:plazos]
+
+	}			
 	
 	
 }
