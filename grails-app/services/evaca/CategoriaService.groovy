@@ -1,51 +1,41 @@
 package evaca
 
-class CategoriaException extends RuntimeException {
-	String message
-	Map model
-}
-
 class CategoriaService {
 	
 	def mySessionService
 	
 	/* create */
 	def create() {
-	
-		def categoria = new Categoria()
-		categoria.usuario = mySessionService.usuario
-		
-		def model = [
-			categoria: categoria, 
+
+		[
+			categoria: new Categoria(usuario:mySessionService.usuario), 
 			categorias: Categoria.list()
 		]
-		
-		[model: model]
+	}
+	
+	
+	/* edit */
+	def edit(id) {
+		def categoria = new Categoria().get(id)
+		if (!categoria){
+			throw new CategoriaNotFoundException()
+		}
+		[categoria: categoria]
 	}
 	
 	
 	/* save */
 	def save(Categoria categoria) {
 	
-		categoria.usuario = mySessionService.usuario 
-		categoria.save(flush:true)
-
-		def model = [
-			categoria: categoria
-		]
-
+		categoria.save(flush:true, failOnError: false)
 		if (categoria.hasErrors()) {
-			CategoriaException error = new CategoriaException(message:"Error actualizando el registro")
-			error.model = model
+			CategoriaException error = new CategoriaException()
+			error.model = [categoria: categoria]
 			throw error;
 		}
+		return categoria
 		
 	}		
 	
-	
-	/* read */
-	def read() {
-	}	
-
 	
 }

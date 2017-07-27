@@ -13,6 +13,7 @@ class PopulateService {
 
 		log.info "Populando usuarios..."
 
+		/* consignatario */
 		def consignatario = new Usuario(
 			username: "consignatario", 
 			nombre: "consignatario", 
@@ -24,19 +25,35 @@ class PopulateService {
 		consignatario.password = ''
 		consignatario.save()
 
-		def productor = new Usuario(
+		/* productor1 */
+		def productor1 = new Usuario(
 			fechaCreacion: new Date(), 
-			username: "productor", 
-			nombre: "productor", 
-			apellido: "productor", 
-			email: "productor@gmail.com", 
+			username: "productor1", 
+			nombre: "productor1", 
+			apellido: "productor1", 
+			email: "productor1@gmail.com", 
 			profile: UsuarioProfile.PRODUCTOR, 
 			password: "", 
 			comision: 11					
 		)
-		productor.password = ''
-		productor.save()
+		productor1.password = ''
+		productor1.save()		
 		
+		/* productor2 */
+		def productor2 = new Usuario(
+			fechaCreacion: new Date(), 
+			username: "productor2", 
+			nombre: "productor2", 
+			apellido: "productor2", 
+			email: "productor2@gmail.com", 
+			profile: UsuarioProfile.PRODUCTOR, 
+			password: "", 
+			comision: 11					
+		)
+		productor2.password = ''
+		productor2.save()
+		
+		/* administrador */
 		def administrador = new Usuario(
 			fechaCreacion: new Date(), 
 			username: "administrador", 
@@ -51,8 +68,11 @@ class PopulateService {
 		administrador.save()
 		
 		/* permisos */
-		productor.changeState(UsuarioState.ACTIVO, administrador)
-		productor.save(flush:true, failOnError: true)
+		productor1.changeState(UsuarioState.ACTIVO, administrador)
+		productor1.save(flush:true, failOnError: true)
+		
+		productor2.changeState(UsuarioState.ACTIVO, administrador)
+		productor2.save(flush:true, failOnError: true)
 
 		consignatario.changeState(UsuarioState.ACTIVO, administrador)
 		consignatario.save(flush:true, failOnError: true)
@@ -109,55 +129,23 @@ class PopulateService {
 
 		log.info "Populando lotes..."
 
+		/* lote1 */
 		def lote1 = new Lote(
-			usuario: Usuario.findByNombre("productor"), 
-			raza: Raza.list()[2], 
-			categoria: Categoria.list()[2], 
+			usuario: Usuario.findByNombre("productor1"), 
+			raza: Raza.findByNombre("Braford"),
+			categoria: Categoria.findByNombre("Preñadas"),
 			tbState : LoteState.DISPONIBLE
 		).save(flush:true, failOnError: true)
 		
+		/* lote2 */
 		def lote2 = new Lote(
-			usuario: Usuario.findByNombre("productor"), 
-			raza: Raza.list()[2], 
-			categoria: Categoria.list()[2], 
+			usuario: Usuario.findByNombre("productor2"), 
+			raza: Raza.findByNombre("Braford"),
+			categoria: Categoria.findByNombre("Preñadas"),
 			tbState : LoteState.DISPONIBLE
 		).save(flush:true, failOnError: true)
 		
-		def lote3 = new Lote(
-			usuario: Usuario.findByNombre("consignatario"), 
-			raza: Raza.list()[2], 
-			categoria: Categoria.list()[2], 
-			tbState : LoteState.DISPONIBLE
-		).save(flush:true, failOnError: true)
 		
-		def lote4 = new Lote(
-			usuario: Usuario.findByNombre("productor"), 
-			raza: Raza.list()[2], 
-			categoria: Categoria.list()[2], 
-			tbState : LoteState.DISPONIBLE
-		).save(flush:true, failOnError: true)
-		
-		// new Lote(
-			// usuario: Usuario.last(), 
-			// raza: Raza.list()[1], 
-			// categoria: Categoria.list()[1], 
-			// fechaCreacion: new Date(), 
-			// cantidad: 7, 
-			// pesoPromedio: 440, 
-			// pesoMaximo: 500, 
-			// pesoMinimo: 350, 
-			// trazada: true, 
-			// ubicacion: "Lavalle, Buenos Aires", 
-			// edad: 1, 
-			// descarte: "", 
-			// marcaLiquida: false, 
-			// pesada: "", 
-			// desbaste: "", 
-			// cuit: "1-22344566-22", 
-			// imagen: "http://i.imgur.com/u5Fcrfd.gif"
-		// ).save()
-		
-
 		return 1
 	}
 
@@ -167,15 +155,16 @@ class PopulateService {
 		log.info "Populando avisos..."
 		
 		new Aviso(
-			lote: Lote.list()[0], 
-			consignatario: Usuario.findByNombre("productor"), 
-			precio: 100
+			
+			lote: Lote.createCriteria().list () {usuario{eq("nombre", "productor1")}}, 
+			consignatario: Usuario.findByNombre("consignatario"), 
+			precio: 101
 		).save()
 		
 		new Aviso(
-			lote: Lote.list()[1], 
-			consignatario: Usuario.findByNombre("productor"), 
-			precio: 101
+			lote: Lote.createCriteria().list () {usuario{eq("nombre", "productor2")}}, 
+			consignatario: Usuario.findByNombre("consignatario"), 
+			precio: 102
 		).save()
 		
 		return
@@ -194,30 +183,6 @@ class PopulateService {
 			precio: 1000
 		).save()
 		
-		// new Oferta(
-			// aviso: Aviso.list()[2], 
-			// usuario: Usuario.list()[2], 
-			// fechaCreacion: new Date(),
-			// plazo: Plazo.list()[1],
-			// precio: 1100
-		// ).save()
-		
-		// new Oferta(
-			// aviso: Aviso.list()[5], 
-			// usuario: Usuario.list()[2], 
-			// fechaCreacion: new Date(),
-			// plazo: Plazo.list()[1],
-			// precio: 1200
-		// ).save()
-		
-		// new Oferta(
-			// aviso: Aviso.list()[5], 
-			// usuario: Usuario.list()[1], 
-			// fechaCreacion: new Date(),
-			// plazo: Plazo.list()[1],
-			// precio: 1300
-		// ).save()
-
 		return
 	}
 	

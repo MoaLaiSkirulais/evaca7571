@@ -1,6 +1,6 @@
 package evaca
 
-class PlazoController extends BaseController {
+class PlazoController extends BaseController implements PlazoExceptionHandler {
 	
 	def plazoService
 
@@ -8,24 +8,29 @@ class PlazoController extends BaseController {
 	def create() {
 		plazoService.create()
     }
-	
 
+	
 	/* edit */
 	def edit() {	
-		respond view:'create', plazoService.edit(params.id)
+		def model = plazoService.edit(params.id)
+		respond view:'create', model		
     }
-
+	
 
 	/* index */
-	def index() {
+	def index() {	
 		render(view: 'index', model:plazoService.search())
     }
-
+		
 
 	/* save */
 	def save(Plazo plazo) {
-		plazoService.save(plazo)
-		redirect action:"edit", id:plazo.id
-	}	
+	
+		plazoService.save(usuario)
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:plazo.id	    
+    }
+
 
 }

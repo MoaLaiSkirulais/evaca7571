@@ -1,54 +1,41 @@
 package evaca
 
-class RazaException extends RuntimeException {
-	String message
-	Map model
-}
-
 class RazaService {
 	
 	def mySessionService
 	
 	/* create */
 	def create() {
-	
-		def raza = new Raza()
-		raza.usuario = mySessionService.usuario 
 
-		def model = [
-			raza: raza, 
+		[
+			raza: new Raza(usuario:mySessionService.usuario), 
 			razas: Raza.list()
 		]
-		
-		[model: model]
 	}
-
-
+	
+	
+	/* edit */
+	def edit(id) {
+		def raza = new Raza().get(id)
+		if (!raza){
+			throw new RazaNotFoundException()
+		}
+		[raza: raza]
+	}
+	
 	
 	/* save */
 	def save(Raza raza) {
-
-		raza.usuario = mySessionService.usuario 
-		raza.save(flush:true)
-
-		def model = [
-			raza: raza
-		]
-
+	
+		raza.save(flush:true, failOnError: false)
 		if (raza.hasErrors()) {
-			println "errores"
-			RazaException error = new RazaException(message:"Errors!")
-			error.model = model
+			RazaException error = new RazaException()
+			error.model = [raza: raza]
 			throw error;
 		}
+		return raza
 		
 	}		
-
 	
-	
-	/* read */
-	def read() {
-	}	
-
 	
 }

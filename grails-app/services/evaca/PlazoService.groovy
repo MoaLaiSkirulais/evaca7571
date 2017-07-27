@@ -1,66 +1,41 @@
 package evaca
 
-class PlazoException extends RuntimeException {
-	String message
-	Map model
-}
-
 class PlazoService {
 	
 	def mySessionService
 	
 	/* create */
 	def create() {
-			
-		def model = [
-			plazo: new Plazo([usuario:mySessionService.usuario])
+
+		[
+			plazo: new Plazo(usuario:mySessionService.usuario), 
+			plazos: Plazo.list()
 		]
-
-		[model: model]
 	}
-
-
-
+	
+	
 	/* edit */
 	def edit(id) {
-
-	    def model = [plazo: new Plazo().get(id)]
-		return [model: model]
+		def plazo = new Plazo().get(id)
+		if (!plazo){
+			throw new PlazoNotFoundException()
+		}
+		[plazo: plazo]
 	}
-
 	
 	
 	/* save */
 	def save(Plazo plazo) {
-
-		plazo.usuario = mySessionService.usuario
-		plazo.save(flush:true)
-
-		def model = [plazo: plazo]
-
+	
+		plazo.save(flush:true, failOnError: false)
 		if (plazo.hasErrors()) {
-			PlazoException error = new PlazoException(message:"Errors!")
-			error.model = model
+			PlazoException error = new PlazoException()
+			error.model = [plazo: plazo]
 			throw error;
 		}
+		return plazo
 		
 	}		
-
 	
-
-	/* search */
-	def search() {
-
-		def plazos = Plazo.list()
-		return  [plazos:plazos]
-
-	}		
-	
-
-	
-	/* read */
-	def read() {
-	}	
-
 	
 }

@@ -1,74 +1,35 @@
 package evaca
 
-class CategoriaController {
+class CategoriaController extends BaseController implements CategoriaExceptionHandler {
 	
 	def categoriaService
 
 	/* create */
 	def create() {
-	
-		try {
-			
-			categoriaService.create()
-		
-		} catch (UserRegistrationException ure) {        
-
-			flash.message = ure.message        
-			redirect controller: 'usuario', action:"newlogin	"
-		}
-
+		categoriaService.create()
     }
 
-	
 	
 	/* edit */
-	def edit() {
-
-		def id=params.id
-	    def model = [
-			categoria: new Categoria().get(id), 
-			categorias: Categoria.list()
-		]
-
-		respond view:'create', [model:model]
+	def edit() {	
+		def model = categoriaService.edit(params.id)
+		respond view:'create', model		
     }
 	
-	
-	
+
 	/* index */
-	def index() {
-
-		def categorias = Categoria.list()
-
-		render(view: 'index', 
-			model: [
-				categorias:categorias
-			]
-		)
+	def index() {	
+		render(view: 'index', model:categoriaService.search())
     }
-	
-	
+		
 
 	/* save */
 	def save(Categoria categoria) {
 	
-		try {
-
-			categoriaService.save(categoria)
-			redirect action:"edit", id:categoria.id			
-
-		} catch (UserRegistrationException error) {        
-
-			flash.message = error.message        
-			redirect controller: 'usuario', action:"newlogin"
-
-		} catch (CategoriaException error) {        
-
-			flash.message = error.message 
-			respond view:'create', [model:error.model]
-			return
-		}
-	    
+		categoriaService.save(usuario)
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:categoria.id	    
     }
 
 

@@ -73,6 +73,8 @@ class AvisoService {
 	def search(params) {
 
 		def avisos = Aviso.createCriteria().list () {
+
+			// lote{usuario{eq("id", mySessionService?.usuario.id.toLong())}}
 	
 			if (params?.lote?.usuario?.id) {
 				lote{usuario{eq("id", params.lote.usuario.id.toLong())}}
