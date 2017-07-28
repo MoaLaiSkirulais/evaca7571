@@ -1,6 +1,11 @@
 <g:applyLayout name="searchContainer">
 	
 	<h2>Lotes</h2>
+	
+	<div class="alert alert-success active">
+		${flash.message}
+	</div>
+
 	<div class="col-sm-12">						
 	
 		<div class="table-responsive">

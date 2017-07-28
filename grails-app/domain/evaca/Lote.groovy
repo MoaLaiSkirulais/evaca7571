@@ -55,13 +55,7 @@ class Lote {
 
 	/* changeState */
 	public changeState(LoteState tbState){
-
-		/* state flow */		
-		println "setTbState: " + tbState
-		println "this.setTbState: " + this.tbState
-
 		this.tbState = tbState.validateStateFlow(this);
-
 	}
 
 

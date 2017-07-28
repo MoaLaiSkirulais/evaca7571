@@ -7,6 +7,7 @@ class Aviso {
 	Date fechaCreacion	
 	Float precio
 	AvisoState state
+	Usuario propietario
 	Usuario consignatario
 	Lote lote     
 
@@ -36,7 +37,7 @@ class Aviso {
 		this.fechaCreacion = new Date();
 		this.state = AvisoState.BORRADOR;		
 	}
-	
+
 
 	/* changeState */
 	public changeState(AvisoState state, Usuario ejecutor){

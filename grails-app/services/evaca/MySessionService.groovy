@@ -30,14 +30,10 @@ class MySessionService {
 
 		def usuario = Usuario.findByUsername(u)
 		if (usuario){
-			println "-->" + p
-			println "-->" + usuario.password
-			println "-->" + usuario
-			
+		
 			if (usuario.state != UsuarioState.ACTIVO){
 				throw new LoginException(message:"La cuenta no esta aun activa")
 			}
-			
 			
 			if (usuario.password == p){
 

@@ -2,16 +2,18 @@ package evaca
  
 trait LoteExceptionHandler {
 	
-	/* LoteExceptionHandler */
+	/* LoteException */
 	def exception(LoteException error) {
-		// render "todo mal!!!!!!!!!"
-		// render "todo mal!!!!!!!!!"
-		println "--->" + error.model
-		println "------->" + error.model.lote.errors
 		flash.message = error.message
-		render(view: 'create', model: error.model)
+		redirect(action: "index")
     }
 	
+	/* LoteNotFoundException */
+	def exception(LoteNotFoundException error) {
+		flash.message = error.message
+		redirect(action: "index")
+    }
+	 
 
 }
 

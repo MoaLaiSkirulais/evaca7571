@@ -22,8 +22,20 @@ class LoteService {
 	/* edit */
 	def edit(id) {
 
+		/* existencia */
+		def lote = new Lote().get(id) 
+		if (!lote){
+			throw new LoteNotFoundException()
+		}
+
+		/* valida owner */
+		if (mySessionService.usuario != lote.usuario){
+			throw new LoteNotFoundException(message:"No puede editar un lote no propio")
+		}
+
+		/* response */
 		[
-			lote: new Lote().get(id), 
+			lote: lote, 
 			lotes: Lote.list(),
 			categorias: Categoria.list().sort{it.nombre},
 			razas: Raza.list().sort{it.nombre}
@@ -34,10 +46,17 @@ class LoteService {
 	
 	/* save */
 	def save(Lote lote) {
+
+		/* valida owner */
+		if (mySessionService.usuario != lote.usuario){
+			throw new LoteNotFoundException(message:"No puede editar un lote no propio")
+		}
 	
+		/* save */
 		lote.usuario = mySessionService.usuario
 		lote.save(flush:true, failOnError: false)
 
+		/* response */
 		if (lote.hasErrors()) {
 
 			LoteException error = new LoteException()

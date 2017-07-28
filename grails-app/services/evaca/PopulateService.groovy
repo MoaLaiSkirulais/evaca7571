@@ -82,8 +82,8 @@ class PopulateService {
 
 		return 1
 	}
-	
- 
+
+
 	/* razas */
 	def razas() {
 
@@ -98,7 +98,8 @@ class PopulateService {
 		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Brangus").save()
 		new Raza(usuario: Usuario.findByNombre("administrador"), nombre: "Careta").save()
 		return 1
-		}
+	}
+
 
 	/* categorias */
 	def categorias() {
@@ -111,6 +112,7 @@ class PopulateService {
 		new Categoria(usuario: Usuario.findByNombre("administrador"), nombre: "Con Servicio").save()
 		return 1
 	}
+
 
 	/* plazos */
 	def plazos() {
@@ -147,37 +149,39 @@ class PopulateService {
 			categoria: Categoria.findByNombre("Preñadas"),
 			tbState : LoteState.DISPONIBLE
 		).save(flush:true, failOnError: true)
-		
-		
+
 		return 1
 	}
+
 
 	/* avisos */
 	def avisos() {
 
 		log.info "Populando avisos..."
-		
+
 		new Aviso(
-			
+			propietario: Usuario.findByNombre("productor1"), /* esto solo por ahora pq no puedo validar correspondecia quizas con un constraint? */
 			lote: Lote.createCriteria().list () {usuario{eq("nombre", "productor1")}}, 
 			consignatario: Usuario.findByNombre("consignatario"), 
 			precio: 101
-		).save()
-		
+		).save(flush:true, failOnError: true)
+
 		new Aviso(
+			propietario: Usuario.findByNombre("productor2"), 
 			lote: Lote.createCriteria().list () {usuario{eq("nombre", "productor2")}}, 
 			consignatario: Usuario.findByNombre("consignatario"), 
 			precio: 102
-		).save()
-		
+		).save(flush:true, failOnError: true)
+
 		return
 	}
+
 
 	/* ofertas */
 	def ofertas() {
 
 		log.info "Populando ofertas..."
-		
+
 		new Oferta(
 			aviso: Aviso.list()[0], 
 			usuario: Usuario.list()[2], 
@@ -188,7 +192,8 @@ class PopulateService {
 		
 		return
 	}
-	
+
+
 	/* ventas */
 	def ventas() {
 
@@ -211,7 +216,8 @@ class PopulateService {
 
 		return
 	}	
-	
+
+
 	/* preguntas */
 	def preguntas() {
 
@@ -244,7 +250,8 @@ class PopulateService {
 
 		return
 	}
-	
+
+
 	/* resenas */
 	def resenas() {
 
@@ -286,7 +293,8 @@ class PopulateService {
 		preguntas()
 		// resenas()
 	}
-	
+
+
 	/* showAll */
 	def showAll() {
 
@@ -301,7 +309,8 @@ class PopulateService {
 		println Resena.list().toString()
 		println Pregunta.list().toString()
 	}	
-	
+
+
 	/* countAll */
 	def countAll() {
 
@@ -317,7 +326,8 @@ class PopulateService {
 		println "Pregunta: " + Pregunta.list().size()
 
 	}
-	
+
+
 	/* clearAll */
 	def clearAll() {
 	
