@@ -138,16 +138,14 @@ class PopulateService {
 		def lote1 = new Lote(
 			usuario: Usuario.findByNombre("productor1"), 
 			raza: Raza.findByNombre("Braford"),
-			categoria: Categoria.findByNombre("Preñadas"),
-			tbState : LoteState.DISPONIBLE
+			categoria: Categoria.findByNombre("Preñadas")
 		).save(flush:true, failOnError: true)
 		
 		/* lote2 */
 		def lote2 = new Lote(
 			usuario: Usuario.findByNombre("productor2"), 
 			raza: Raza.findByNombre("Braford"),
-			categoria: Categoria.findByNombre("Preñadas"),
-			tbState : LoteState.DISPONIBLE
+			categoria: Categoria.findByNombre("Preñadas")
 		).save(flush:true, failOnError: true)
 
 		return 1

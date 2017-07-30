@@ -26,13 +26,14 @@
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
-							<g:link action="create" class="btn btn-default">Nuevo</g:link>							
-							<g:actionSubmit action="save" value="Guardar" class="btn btn-default"/>	
+
+							<g:actionSubmit name="1" action="save" class="btn btn-default" value="publicar()"/>
+							<g:actionSubmit name="2" action="save" class="btn btn-default"	value="aprobar()"/>
+							<g:actionSubmit name="3" action="save" class="btn btn-default" value="rechazar()"/>
 							<br><br>
 
-							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default"	value="PUBLICADO"/>							
-							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default"	value="RECHAZADO"/>							
-							<g:actionSubmit name="changeState" action="changeState" class="btn btn-default"	value="CANCELADO"/>
+							<g:link action="index" class="btn btn-default">Buscar</g:link>
+							<g:link action="create" class="btn btn-default">Nuevo</g:link>
 							
 						</div>
 					</td>

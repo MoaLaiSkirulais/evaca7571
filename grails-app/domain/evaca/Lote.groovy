@@ -17,7 +17,7 @@ class Lote {
 	Boolean trazada
 	Boolean marcaLiquida
 	String imagen
-	LoteState tbState
+	LoteState state
 
 	static belongsTo = [
 		raza: Raza, 
@@ -49,13 +49,13 @@ class Lote {
 	public Lote() {
 		this.fechaCreacion = new Date();
 		this.imagen = "static/sham/img/products/v0.gif"
-		this.tbState = LoteState.DISPONIBLE;
+		this.state = LoteState.DISPONIBLE;
     }
 
 
 	/* changeState */
-	public changeState(LoteState tbState){
-		this.tbState = tbState.validateStateFlow(this);
+	public changeState(LoteState state){
+		this.state = state.validateStateFlow(this);
 	}
 
 

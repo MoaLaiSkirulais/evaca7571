@@ -14,7 +14,7 @@ class Aviso {
 	static belongsTo = [lote:Lote, consignatario:Usuario]	
 	static hasMany = [ofertas: Oferta]
 
-	
+
 	/* constraints */
 	static constraints = {
 
@@ -22,6 +22,9 @@ class Aviso {
 		consignatario nullable: false
 		lote nullable: false
 		precio nullable: false
+		// lote : { val, obj ->
+			// obj.propietario == val.usuario
+		// }
 
 	}
 	
@@ -41,7 +44,9 @@ class Aviso {
 
 	/* changeState */
 	public changeState(AvisoState state, Usuario ejecutor){
+		state.validateStateAccess(this, ejecutor);
 		state.validateStateFlow(this);
+		this.state = state
 	}
 
 

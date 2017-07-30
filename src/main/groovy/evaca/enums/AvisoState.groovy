@@ -7,7 +7,7 @@ public enum AvisoState {
 	BORRADOR { 
 		public AvisoState validateStateFlow(Aviso aviso) {
 			if (aviso.state == AvisoState.PUBLICADO || aviso.state == AvisoState.APROBACION ){
-					throw new DomainException(message : "No puede volver a BORRADOR")
+					throw new AvisoException(message : "No puede volver a BORRADOR")
 			}
 			aviso.state = AvisoState.BORRADOR
 		}
@@ -15,49 +15,68 @@ public enum AvisoState {
 	
 	APROBACION { 
 		public AvisoState validateStateFlow(Aviso aviso) {
-			throw new DomainException(message : "No puede pasarse a APROBACION manualmente")
+			if (aviso.state != AvisoState.BORRADOR) { 
+				throw new AvisoException(message : "El aviso no está en BORRADOR")
+			}
 		}
+		
+		@Override
+        public AvisoState validateStateAccess(Aviso aviso, Usuario ejecutor) {
+			if (aviso.propietario != ejecutor){
+				throw new AvisoException(message: "Solo el dueño del aviso puede pedir aprobacion")
+			}
+        }
+		
 	}, 
 	
 	RECHAZADO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
 			if (aviso.state != AvisoState.APROBACION){
-				throw new DomainException(message : "El aviso no está en APROBACION")
-			}
-			aviso.state = AvisoState.BORRADOR
+				throw new AvisoException(message : "El aviso no está en APROBACION")
+			}			
 		}
+		
+		@Override
+        public AvisoState validateStateAccess(Aviso aviso, Usuario ejecutor) {		
+
+			if (aviso.state == AvisoState.APROBACION){
+				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+					throw new AvisoException(message: "Se necesita un administrador para ejecutar esta accion")
+				}
+			}
+        }
 	}, 
 	
 	PUBLICADO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
 		
-			/* en borrador? */
-			if (aviso.state == AvisoState.BORRADOR){
-				aviso.state = AvisoState.APROBACION
-				return;
-			}
-			
+			/* está publicado? */
+			if (aviso.state == AvisoState.PUBLICADO){
+				println "El aviso ya está PUBLICADO"
+				throw new AvisoException(message : "El aviso ya está PUBLICADO")
+			}				
+		
 			/* está aprobado? */
 			if (aviso.state != AvisoState.APROBACION){
-				throw new DomainException(message : "El aviso no está en APROBACION")
-			}				
-
-			/* lote disponible? */
-			if (aviso.lote.tbState != LoteState.DISPONIBLE){
-				throw new DomainException(message : "Lote no disponible")
+				throw new AvisoException(message : "El aviso no está en APROBACION")
 			}
 
-			/* publíquese */
-			// aviso.lote.state = LoteState.OCUPADO //esto puede delegarse
-			aviso.lote.changeState(LoteState.PUBLICADO)
-			aviso.state = AvisoState.PUBLICADO
 		}
+		
+		@Override
+        public AvisoState validateStateAccess(Aviso aviso, Usuario ejecutor) {
+			if (aviso.state == AvisoState.APROBACION){
+				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+					throw new AvisoException(message: "Se necesita un administrador para ejecutar esta accion")
+				}
+			}
+        }
 	}, 
-	
+
 	VENDIDO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
 			if (aviso.state != AvisoState.PUBLICADO){
-				throw new DomainException(message : "El aviso no esta PUBLICADO")
+				throw new AvisoException(message : "El aviso no esta PUBLICADO")
 			}
 			aviso.state = AvisoState.VENDIDO
 		}
@@ -65,26 +84,29 @@ public enum AvisoState {
 	
 	CANCELADO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
-			aviso.state = AvisoState.CANCELADO
+			if (aviso.state == AvisoState.CANCELADO){
+				throw new AvisoException(message : "El aviso ya esta CANCELADO")
+			}
 		}
+		
+		@Override
+        public AvisoState validateStateAccess(Aviso aviso, Usuario ejecutor) {		
+
+			if (aviso.propietario != ejecutor){
+				throw new AvisoException(message: "Solo el dueño del aviso puede cancelar")
+			}
+        }
 	}
 	
 	/* validateStateAccess hay que ejecutarlo como super? */
 	public AvisoState validateStateFlow(Aviso aviso) {
-
-		if (this.state == AvisoState.VENDIDO){
-			throw new DomainException(message : "No puede cambiar un aviso VENDIDO")
-		}
-
-		if (this.state == AvisoState.CANCELADO){
-			throw new DomainException(message : "No puede cambiar un aviso CANCELADO")
-		}
+		return true
 	}
 	
 	
 	/* validateStateAccess */
 	public AvisoState validateStateAccess(Aviso aviso, Usuario ejecutor) {		
-		return this
+		return true
 	}	
 
 

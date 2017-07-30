@@ -56,7 +56,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 		flash.message = "Cambio el estado con exito"
 		flash.type = "ok"
 		redirect action:"edit", id:params.id
-	
+
     }
 
 
