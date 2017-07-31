@@ -5,100 +5,127 @@ public enum OfertaState {
 	
 	BORRADOR { 
 		public OfertaState validateStateFlow(Oferta oferta) {
-			throw new OfertaStateFlowException(message : "No se puede pasar manualmente a Borrador")
+			throw new OfertaStateFlowException(message : "No se puede pasar manualmente a borrador")
 		}
-	}, 
+	}, 	
 
-	ACEPTADO { 
+	APROBACION{ //
 		public OfertaState validateStateFlow(Oferta oferta) {
-			
-			if (oferta.state != OfertaState.PUBLICADO){
-				throw new OfertaStateFlowException(message : "Oferta debe estar en Publicado")
+			if (oferta.state != OfertaState.BORRADOR) { 
+				throw new OfertaException(message : "La oferta debe estar en borrador")
 			}
-			return OfertaState.ACEPTADO
 		}
 		
 		@Override
-        public OfertaState validateStateAccess(Oferta oferta, Usuario ejecutor) {		
-		
-			if (ejecutor != oferta.aviso.lote.usuario){
-				throw new OfertaStateFlowException(message: "Solo el dueño del aviso puede aceptar la oferta")
-			}			
+        public OfertaState validateStateAccess(Oferta oferta, Usuario ejecutor) {
+			if (oferta.propietario != ejecutor){
+				// throw new AvisoException(message: "Solo el dueño de la oferta puede pedir aprobacion")
+			}
         }
-	}, 
 
-	PUBLICADO { 
+	}, 
+	
+	APROBADO { // 
 		public OfertaState validateStateFlow(Oferta oferta) {
 
-			if (oferta.state == OfertaState.BORRADOR){
-				return OfertaState.APROBACION
+			/* está publicado? */
+			if (oferta.state == OfertaState.APROBADO){
+				throw new OfertaException(message : "La oferta no está aprobada")
 			}
 
-			if (oferta.state == OfertaState.APROBACION){
-				return OfertaState.PUBLICADO
+			/* está aprobacion? */
+			if (oferta.state != OfertaState.APROBACION){
+				throw new OfertaException(message : "La oferta no está en aprobación")
 			}
-
-			throw new OfertaStateFlowException(message : "No puede pasar a Publicado")
 		}
 
 		@Override
         public OfertaState validateStateAccess(Oferta oferta, Usuario ejecutor) {		
 		
-			if (oferta.state == OfertaState.BORRADOR){
-				if (ejecutor == oferta.aviso.lote.usuario){
-					throw new OfertaStateFlowException(message: "No puede ofertar su propio aviso")
-				}
+			if (ejecutor.profile != UsuarioProfile.ADMINISTRADOR){
+				throw new OfertaStateFlowException(message: "Sólo un administrador puede aprobar la oferta")
+			}
+		
+			// if (oferta.state == OfertaState.BORRADOR){
 
-				if (ejecutor == oferta.aviso.consignatario){
-					throw new OfertaStateFlowException(message: "No puede ofertar el consignatario")
-				}
-			}
+				// if (ejecutor == oferta.aviso.lote.usuario){
+					// throw new OfertaStateFlowException(message: "No puede ofertar su propio aviso")
+				// }
+
+				// if (ejecutor == oferta.aviso.consignatario){
+					// throw new OfertaStateFlowException(message: "No puede ofertar el consignatario")
+				// }
+			// }
 			
-			if (oferta.state == OfertaState.APROBACION){
-				if (ejecutor.profile != 'Administrador'){
-					throw new OfertaStateFlowException(message: "You must be Admin")
-				}
-			}
+			// if (oferta.state == OfertaState.APROBACION){
+				// if (ejecutor.profile != 'Administrador'){
+					// throw new OfertaStateFlowException(message: "You must be Admin")
+				// }
+			// }
         }
 	}, 
-
-	APROBACION{ 
-		public OfertaState validateStateFlow(Oferta oferta) {
-			throw new OfertaStateFlowException(message : "No se puede pasar manualmente a Aprobacion")
-		}		
-
-	}, 
-
-	RECHAZADO { 
+	
+	DESAPROBADO { //
 		public OfertaState validateStateFlow(Oferta oferta) {
 			if (oferta.state != OfertaState.APROBACION){
-				throw new OfertaStateFlowException(message : "Oferta debe estar en Aprobacion")
+				throw new OfertaStateFlowException(message : "La oferta debe estar en aprobacion")
 			}
-			return OfertaState.BORRADOR
 		}
 
 		@Override
         public OfertaState validateStateAccess(Oferta oferta, Usuario ejecutor) {			
-			if (ejecutor.profile != 'Administrador'){
-				throw new OfertaStateFlowException(message: "You must be Admin")
+			if (ejecutor.profile != UsuarioProfile.ADMINISTRADOR){
+				throw new OfertaStateFlowException(message: "Sólo un administrador puede desaprobar la oferta")
 			}			
         }
 	}, 
 
-	CANCELADO { 
-		public OfertaState validateStateFlow(Oferta oferta) {		
-			if (oferta.state == OfertaState.CANCELADO){
-				throw new OfertaStateFlowException(message : "Oferta ya está Cancelado")
+	ACEPTADO { //
+		public OfertaState validateStateFlow(Oferta oferta) {
+			
+			if (oferta.state != OfertaState.APROBADO){
+				throw new OfertaStateFlowException(message : "La oferta debe estar aprobada")
 			}
-
-			return OfertaState.CANCELADO
 		}
 		
 		@Override
         public OfertaState validateStateAccess(Oferta oferta, Usuario ejecutor) {		
 		
 			if (ejecutor != oferta.aviso.lote.usuario){
-				throw new OfertaStateFlowException(message: "Solo el dueño del aviso puede cancelar la oferta")
+				throw new OfertaStateFlowException(message: "Sólo el anunciante puede aceptar la oferta")
+			}			
+        }
+	}, 
+	
+	RECHAZADO { //
+		public OfertaState validateStateFlow(Oferta oferta) {
+			
+			if (oferta.state != OfertaState.APROBADO){
+				throw new OfertaStateFlowException(message : "La oferta debe estar aprobada")
+			}
+		}
+		
+		@Override
+        public OfertaState validateStateAccess(Oferta oferta, Usuario ejecutor) {		
+		
+			if (ejecutor != oferta.aviso.lote.usuario){
+				throw new OfertaStateFlowException(message: "Sólo el anunciante puede rechazar la oferta")
+			}			
+        }
+	}, 
+
+	CANCELADO { //
+		public OfertaState validateStateFlow(Oferta oferta) {		
+			if (oferta.state == OfertaState.CANCELADO){
+				throw new OfertaStateFlowException(message : "La oferta ya se encuentra cancelada")
+			}
+		}
+		
+		@Override
+        public OfertaState validateStateAccess(Oferta oferta, Usuario ejecutor) {		
+		
+			if (ejecutor != oferta.aviso.lote.usuario){
+				throw new OfertaStateFlowException(message: "Sólo el ofertante puede cancelar la oferta")
 			}			
         }
 	}

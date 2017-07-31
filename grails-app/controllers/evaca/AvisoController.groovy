@@ -37,6 +37,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
     }
 
+	
 	/* aprobar */
 	def aprobar(Aviso aviso) {
 
@@ -54,10 +55,12 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
     }
 
+
 	/* publicar (admin) */
 	def publicar() {
 		changeState.call(avisoService.&publicar)
     }
+
 
 	/* rechazar */
 	def rechazar() {	
@@ -81,7 +84,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 			redirect action:"edit", id:params.int('id')
 			return
 		}
-		
+
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
 		redirect action:"edit", id:params.int('id')

@@ -4,13 +4,13 @@ class Oferta {
 
 	Date fechaCreacion	
 	Aviso aviso
-	Usuario usuario
+	Usuario propietario
 	Plazo plazo
 	Float precio
 	OfertaState state
 	Venta venta 
 
-	static belongsTo = [aviso:Aviso, usuario:Usuario, plazo:Plazo]	
+	static belongsTo = [aviso:Aviso, propietario:Usuario, plazo:Plazo]	
 	
 	
 	/* Oferta() */
@@ -24,16 +24,13 @@ class Oferta {
     static constraints = {
 		venta nullable: true
     }
-	
-	
+
+
 	/* changeState */
 	public changeState(OfertaState state, Usuario ejecutor){
-	
-		println "setTbState: " + state
-		println "this.setTbState: " + this.state
-
-		state.validateStateAccess(this, ejecutor);
-		this.state = state.validateStateFlow(this);
+		state.validateStateAccess(this, ejecutor)
+		state.validateStateFlow(this)
+		this.state = state
 
 	}
 

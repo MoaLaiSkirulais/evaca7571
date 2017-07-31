@@ -11,7 +11,7 @@ class Aviso {
 	Usuario consignatario
 	Lote lote     
 
-	static belongsTo = [lote:Lote, consignatario:Usuario]	
+	static belongsTo = [lote:Lote, propietario:Usuario, consignatario:Usuario]	
 	static hasMany = [ofertas: Oferta]
 
 

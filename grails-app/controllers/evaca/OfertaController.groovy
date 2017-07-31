@@ -6,8 +6,8 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
 
 	
 	/* create */
-	def create() {		
-		ofertaService.create()
+	def create() {
+		render(view: 'create', model:ofertaService.create())
     }
 
 
@@ -15,13 +15,11 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
 	def edit() {
 		respond view:'create', ofertaService.edit(params.id)		
     }
-	
+
 
 	/* index */
 	def index() {
-
-		def ofertas = Oferta.list()
-		render(view: 'index', model: [ofertas:ofertas])
+		render(view: 'index', model: [ofertas:ofertaService.search()])
     }
 
 
@@ -33,18 +31,81 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
 		flash.type = "ok"
 		redirect action:"edit", id:oferta.id
     }
+
+
+	/* setStateAprobacion (ofertante) */
+	def setStateAprobacion(Oferta oferta) {
+
+		try {
+			ofertaService.setStateAprobacion(oferta);  
+		} catch (OfertaException e){
+			flash.message = e.message
+			render(view: 'create', model:getViewModel(oferta))
+			return
+		}
+
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:oferta.id
+    }
 	
+	
+	/* setStateCancelado (ofertante) */
+	def setStateCancelado() {
+		changeState.call(ofertaService.&setStateCancelado)
+    }
+
+
+	/* setStateAprobado (admin) */
+	def setStateAprobado() {
+		changeState.call(ofertaService.&setStateAprobado)
+    }
+
+	
+	/* setStateDesaprobado (admin) */
+	def setStateDesaprobado() {
+		changeState.call(ofertaService.&setStateDesaprobado)
+    }
+
+
+	/* setStateAceptado (vendedor) */
+	def setStateAceptado() {
+		changeState.call(ofertaService.&setStateAceptado)
+    }
+
+
+	/* setStateRechazado (vendedor) */
+	def setStateRechazado() {
+		changeState.call(ofertaService.&setStateRechazado)
+    }
+
 	
 	/* changeState */
-	def changeState() {		
+	def changeState = { 
+		
+		try {			
+			it(params.int('id'));  
+		} catch (OfertaException e){
+			flash.message = e.message
+			redirect action:"edit", id:params.int('id')
+			return
+		}
 
-		def auxState = params._action_changeState as OfertaState
-		ofertaService.changeState(params.id, auxState)
-		flash.message = "Cambio el estado con exito"
+		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"edit", id:params.id
+		redirect action:"edit", id:params.int('id')
+		
+	}   
+
 	
-    }
+	/* getViewModel */ /* closure? trait? service? */
+	def getViewModel(Oferta oferta){
+		[
+			oferta: oferta, 
+			plazos: ofertaService.getPlazos(), 
+			avisos: ofertaService.getAvisos()
+		]
+	}
 
 
 }

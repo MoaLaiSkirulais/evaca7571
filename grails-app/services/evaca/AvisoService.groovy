@@ -139,7 +139,7 @@ class AvisoService {
 	}
 
 
-	/* search */
+	/* handleErrors */
 	def handleErrors(Aviso aviso) {
 
 		if (aviso.hasErrors()) {

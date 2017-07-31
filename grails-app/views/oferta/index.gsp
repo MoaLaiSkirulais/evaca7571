@@ -9,7 +9,7 @@
 				<thead>
 					<tr>
 						<th class="product-name">fechaCreacion</th>
-						<th class="product-name">usuario</th>
+						<th class="product-name">propietario</th>
 						<th class="product-name">aviso</th>
 						<th class="product-name">plazo</th>
 						<th class="product-name">precio</th>
@@ -26,7 +26,7 @@
 							</td>
 							
 							<td class="product-name">
-								${item.usuario}
+								${item.propietario}
 							</td>
 							
 							<td class="product-name">
