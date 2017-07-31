@@ -50,30 +50,45 @@ class AvisoService {
 
 
 	/* publicar */
-	def publicar(Aviso aviso) {	
+	def publicar(Long id) {	
+	
+		def aviso = new Aviso().get(id)
+		if (!aviso){
+			throw new AvisoNotFoundException();
+		}
 
 		aviso.changeState(AvisoState.PUBLICADO, mySessionService.usuario)
 		aviso.save(flush:true, failOnError: false)
-		handleErrors(aviso)
 	}
 
 
 	/* rechazar */
-	def rechazar(Aviso aviso) {
+	def rechazar(Long id) {
+	
+		def aviso = new Aviso().get(id)
+		if (!aviso){
+			throw new AvisoNotFoundException();
+		}
 
 		aviso.changeState(AvisoState.RECHAZADO, mySessionService.usuario)
 		aviso.save(flush:true, failOnError: true)
-		handleErrors(aviso);
 	}
 
 
 	/* cancelar */
-	def cancelar(Aviso aviso) {
+	def cancelar(Long id) {
+	
+		def aviso = new Aviso().get(id)
+		if (!aviso){
+			throw new AvisoNotFoundException();
+		}
 
 		aviso.changeState(AvisoState.CANCELADO, mySessionService.usuario)
-		/* liberar el lote */		
+		
+		/* liberar el lote */
+		aviso.lote.state = LoteState.DISPONIBLE
+				
 		aviso.save(flush:true, failOnError: true)
-		handleErrors(aviso);
 	}
 
 
@@ -93,7 +108,7 @@ class AvisoService {
 		}
 
 		/* lockea lote */
-		aviso.lote.state == LoteState.PUBLICADO
+		aviso.lote.state = LoteState.PUBLICADO
 
 		/* save */
 		aviso.save(flush:true, failOnError: true)

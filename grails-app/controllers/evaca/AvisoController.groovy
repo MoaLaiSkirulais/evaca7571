@@ -37,20 +37,12 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
     }
 
-	
-	/* save */
-	def save(Aviso aviso) {
-	
-		try {
-		
-			def action  = [:]
-			action.'aprobar()' = {avisoService.aprobar(it)}; 
-			action.'rechazar()' = {avisoService.rechazar(it)}; 
-			action.'publicar()' = {avisoService.publicar(it)}; 
-			action.(params._action_save)(aviso)
+	/* aprobar */
+	def aprobar(Aviso aviso) {
 
+		try {			
+			avisoService.aprobar(aviso);  
 		} catch (AvisoException e){
-
 			flash.message = e.message
 			render(view: 'create', model:getViewModel(aviso))
 			return
@@ -58,9 +50,44 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"edit", id:aviso.id
+		redirect action:"edit", id:params.int('id')
 
     }
+
+	/* publicar (admin) */
+	def publicar() {
+		changeState.call(avisoService.&publicar)
+    }
+
+	/* rechazar */
+	def rechazar() {	
+		changeState.call(avisoService.&rechazar)
+    }
+
+	
+	/* cancelar */
+	def cancelar() {
+		changeState.call(avisoService.&cancelar)
+    }
+	
+
+	/* changeState */
+	def changeState = { 
+		
+		try {			
+			it(params.int('id'));  
+		} catch (AvisoException e){
+			flash.message = e.message
+			redirect action:"edit", id:params.int('id')
+			return
+		}
+		
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:params.int('id')
+		
+	}   
+
 
 	
 	/* show */

@@ -27,9 +27,13 @@
 					<td class="text-right">
 						<div class="form-group text-right">
 
-							<g:actionSubmit name="1" action="save" class="btn btn-default" value="publicar()"/>
-							<g:actionSubmit name="2" action="save" class="btn btn-default"	value="aprobar()"/>
-							<g:actionSubmit name="3" action="save" class="btn btn-default" value="rechazar()"/>
+							<g:actionSubmit action="aprobar" class="btn btn-default"	value="aprobar()"/>
+							<g:actionSubmit action="cancelar" class="btn btn-default" value="cancelar()"/>
+							
+							<br><br>
+							
+							<g:actionSubmit action="publicar" class="btn btn-default" value="publicar()"/>
+							<g:actionSubmit action="rechazar" class="btn btn-default" value="rechazar()"/>
 							<br><br>
 
 							<g:link action="index" class="btn btn-default">Buscar</g:link>

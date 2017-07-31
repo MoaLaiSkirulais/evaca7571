@@ -61,7 +61,8 @@ class Lote {
 
 	/* toString */
 	String toString(){
-		this.id + " | " + this.usuario + " | " + this.raza + " | " + this.categoria + " | " + this.cantidad
+		// this.id + " | " + this.usuario + " | " + this.raza + " | " + this.categoria + " | " + this.cantidad
+		this.id + " | " + this.usuario + " | " + this.raza + " | " + this.state
 	}
 
 }
