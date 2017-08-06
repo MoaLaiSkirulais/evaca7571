@@ -9,7 +9,7 @@ public enum OfertaState {
 		}
 	}, 	
 
-	APROBACION{ //
+	POSTULADO { //
 		public OfertaState validateStateFlow(Oferta oferta) {
 			if (oferta.state != OfertaState.BORRADOR) { 
 				throw new OfertaException(message : "La oferta debe estar en borrador")
@@ -30,12 +30,12 @@ public enum OfertaState {
 
 			/* está publicado? */
 			if (oferta.state == OfertaState.APROBADO){
-				throw new OfertaException(message : "La oferta no está aprobada")
+				throw new OfertaException(message : "La oferta ya está aprobada")
 			}
 
 			/* está aprobacion? */
-			if (oferta.state != OfertaState.APROBACION){
-				throw new OfertaException(message : "La oferta no está en aprobación")
+			if (oferta.state != OfertaState.POSTULADO){
+				throw new OfertaException(message : "La oferta no está postulada")
 			}
 		}
 
@@ -67,7 +67,7 @@ public enum OfertaState {
 	
 	DESAPROBADO { //
 		public OfertaState validateStateFlow(Oferta oferta) {
-			if (oferta.state != OfertaState.APROBACION){
+			if (oferta.state != OfertaState.POSTULADO){
 				throw new OfertaStateFlowException(message : "La oferta debe estar en aprobacion")
 			}
 		}

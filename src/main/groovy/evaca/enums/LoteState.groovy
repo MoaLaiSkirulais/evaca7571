@@ -8,7 +8,6 @@ public enum LoteState {
 			if (lote.state == LoteState.VENDIDO){
 				throw new DomainException(message : "El lote ya fue Vendido")
 			}
-			return LoteState.DISPONIBLE
 		}
 	}, 
 	
@@ -17,7 +16,6 @@ public enum LoteState {
 			if (lote.state != LoteState.DISPONIBLE){
 				throw new DomainException(message : "El lote no está Disponible")
 			}
-			return LoteState.PUBLICADO
 		}
 	}, 
 
@@ -26,7 +24,6 @@ public enum LoteState {
 			if (lote.state != LoteState.PUBLICADO){
 				throw new DomainException(message : "El lote no está Publicado")
 			}
-			return LoteState.VENDIDO
 		}
 
 	}

@@ -27,18 +27,14 @@ class AvisoService {
 
 	/* create */
 	def create() {
-
-		[
-			aviso: new Aviso(), 
-			consignatarios: Usuario.list(),
-			lotes: Lote.list()
-		]
+		new Aviso([propietario:mySessionService.usuario])
 	}
 
 	
 	/* edit */
 	def edit(id) {
 		
+		println "id: " + id
 		def aviso = new Aviso().get(id)
 		if (!aviso){
 			throw new AvisoNotFoundException()
@@ -49,15 +45,15 @@ class AvisoService {
 	}
 
 
-	/* publicar */
-	def publicar(Long id) {	
+	/* aprobar */
+	def aprobar(Long id) {	
 	
 		def aviso = new Aviso().get(id)
 		if (!aviso){
 			throw new AvisoNotFoundException();
 		}
 
-		aviso.changeState(AvisoState.PUBLICADO, mySessionService.usuario)
+		aviso.changeState(AvisoState.APROBADO, mySessionService.usuario)
 		aviso.save(flush:true, failOnError: false)
 	}
 
@@ -71,7 +67,7 @@ class AvisoService {
 		}
 
 		aviso.changeState(AvisoState.RECHAZADO, mySessionService.usuario)
-		aviso.save(flush:true, failOnError: true)
+		aviso.save(flush:true, failOnError: false)
 	}
 
 
@@ -86,33 +82,38 @@ class AvisoService {
 		aviso.changeState(AvisoState.CANCELADO, mySessionService.usuario)
 		
 		/* liberar el lote */
-		aviso.lote.state = LoteState.DISPONIBLE
-				
-		aviso.save(flush:true, failOnError: true)
+		aviso.lote.state = LoteState.DISPONIBLE				
+		aviso.save(flush:true, failOnError: false)
 	}
 
 
 	/* aprobar */
-	def aprobar(Aviso aviso) {
+	def postular(Aviso aviso) {
 	
-		aviso.changeState(AvisoState.APROBACION, mySessionService.usuario)
+		/* fuerza el propietario al logged */
+		aviso.propietario = mySessionService.usuario
+		
+		println "--> " + mySessionService.usuario
+		aviso.changeState(AvisoState.POSTULADO, mySessionService.usuario)
 
 		/* valida lote propio */
-		if (aviso.propietario != aviso.lote.usuario){
-			throw new DomainException(message : "El lote no pertenece al dueño del aviso")	
+		if (aviso.propietario != aviso.lote?.usuario){
+			throw new AvisoException(message : "El lote no pertenece al dueño del aviso")	
 		}
 
 		/* valida lote libre */
-		if (aviso.lote.state != LoteState.DISPONIBLE){
-			throw new DomainException(message : "El lote no está disponible")	
+		if (aviso.lote?.state != LoteState.DISPONIBLE){
+			throw new AvisoException(message : "El lote no está disponible")	
 		}
 
 		/* lockea lote */
 		aviso.lote.state = LoteState.PUBLICADO
 
 		/* save */
-		aviso.save(flush:true, failOnError: true)
-		handleErrors(aviso);	
+		aviso.save(flush:true, failOnError: false)
+		if (aviso.hasErrors()) {
+			throw new AvisoException()
+		}
 		
 	}
 

@@ -33,11 +33,11 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
     }
 
 
-	/* setStateAprobacion (ofertante) */
-	def setStateAprobacion(Oferta oferta) {
+	/* postular (ofertante) */
+	def postular(Oferta oferta) {
 
 		try {
-			ofertaService.setStateAprobacion(oferta);  
+			ofertaService.postular(oferta);  
 		} catch (OfertaException e){
 			flash.message = e.message
 			render(view: 'create', model:getViewModel(oferta))
@@ -50,36 +50,36 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
     }
 	
 	
-	/* setStateCancelado (ofertante) */
-	def setStateCancelado() {
-		changeState.call(ofertaService.&setStateCancelado)
+	/* cancelar (ofertante) */
+	def cancelar() {
+		changeState.call(ofertaService.&cancelar)
     }
 
 
-	/* setStateAprobado (admin) */
-	def setStateAprobado() {
-		changeState.call(ofertaService.&setStateAprobado)
-    }
-
-	
-	/* setStateDesaprobado (admin) */
-	def setStateDesaprobado() {
-		changeState.call(ofertaService.&setStateDesaprobado)
-    }
-
-
-	/* setStateAceptado (vendedor) */
-	def setStateAceptado() {
-		changeState.call(ofertaService.&setStateAceptado)
-    }
-
-
-	/* setStateRechazado (vendedor) */
-	def setStateRechazado() {
-		changeState.call(ofertaService.&setStateRechazado)
+	/* aprobar (admin) */
+	def aprobar() {
+		changeState.call(ofertaService.&aprobar)
     }
 
 	
+	/* desaprobar (admin) */
+	def desaprobar() {
+		changeState.call(ofertaService.&desaprobar)
+    }
+
+
+	/* aceptar (vendedor) */
+	def aceptar() {
+		changeState.call(ofertaService.&aceptar)
+    }
+
+
+	/* rechazar (vendedor) */
+	def rechazar() {
+		changeState.call(ofertaService.&rechazar)
+    }
+
+
 	/* changeState */
 	def changeState = { 
 		

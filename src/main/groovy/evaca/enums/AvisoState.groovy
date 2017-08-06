@@ -6,20 +6,19 @@ public enum AvisoState {
 
 	BORRADOR { 
 		public AvisoState validateStateFlow(Aviso aviso) {
-			if (aviso.state == AvisoState.PUBLICADO || aviso.state == AvisoState.APROBACION ){
-					throw new AvisoException(message : "No puede volver a BORRADOR")
+			if (aviso.state == AvisoState.APROBADO || aviso.state == AvisoState.POSTULADO ){
+				throw new AvisoException(message : "No puede volver a BORRADOR")
 			}
-			aviso.state = AvisoState.BORRADOR
 		}
 	}, 
 	
-	APROBACION { 
+	POSTULADO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
 			if (aviso.state != AvisoState.BORRADOR) { 
 				throw new AvisoException(message : "El aviso no está en BORRADOR")
 			}
 		}
-		
+
 		@Override
         public AvisoState validateStateAccess(Aviso aviso, Usuario ejecutor) {
 			if (aviso.propietario != ejecutor){
@@ -31,15 +30,14 @@ public enum AvisoState {
 	
 	RECHAZADO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
-			if (aviso.state != AvisoState.APROBACION){
-				throw new AvisoException(message : "El aviso no está en APROBACION")
+			if (aviso.state != AvisoState.POSTULADO){
+				throw new AvisoException(message : "El aviso no está en POSTULADO")
 			}			
 		}
 		
 		@Override
         public AvisoState validateStateAccess(Aviso aviso, Usuario ejecutor) {		
-
-			if (aviso.state == AvisoState.APROBACION){
+			if (aviso.state == AvisoState.POSTULADO){
 				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
 					throw new AvisoException(message: "Se necesita un administrador para ejecutar esta accion")
 				}
@@ -47,36 +45,35 @@ public enum AvisoState {
         }
 	}, 
 	
-	PUBLICADO { 
+	APROBADO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
 		
-			/* está publicado? */
-			if (aviso.state == AvisoState.PUBLICADO){
-				println "El aviso ya está PUBLICADO"
-				throw new AvisoException(message : "El aviso ya está PUBLICADO")
+			/* está aprobado? */
+			if (aviso.state == AvisoState.APROBADO){
+				throw new AvisoException(message : "El aviso ya está APROBADO")
 			}				
 		
-			/* está aprobado? */
-			if (aviso.state != AvisoState.APROBACION){
-				throw new AvisoException(message : "El aviso no está en APROBACION")
+			/* está postulado? */
+			if (aviso.state != AvisoState.POSTULADO){
+				throw new AvisoException(message : "El aviso no está POSTULADO")
 			}
 
 		}
 		
 		@Override
         public AvisoState validateStateAccess(Aviso aviso, Usuario ejecutor) {
-			if (aviso.state == AvisoState.APROBACION){
-				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
-					throw new AvisoException(message: "Se necesita un administrador para ejecutar esta accion")
-				}
+
+			if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+				throw new AvisoException(message: "Se necesita un administrador para ejecutar esta accion")
 			}
+
         }
 	}, 
 
 	VENDIDO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
-			if (aviso.state != AvisoState.PUBLICADO){
-				throw new AvisoException(message : "El aviso no esta PUBLICADO")
+			if (aviso.state != AvisoState.APROBADO){
+				throw new AvisoException(message : "El aviso no esta APROBADO")
 			}
 			aviso.state = AvisoState.VENDIDO
 		}
@@ -84,8 +81,10 @@ public enum AvisoState {
 	
 	CANCELADO { 
 		public AvisoState validateStateFlow(Aviso aviso) {
+			
 			if (aviso.state == AvisoState.CANCELADO){
-				throw new AvisoException(message : "El aviso ya esta CANCELADO")
+				println "bien!"
+				throw new AvisoException(message : "El aviso ya está CANCELADO")
 			}
 		}
 		

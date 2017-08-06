@@ -46,29 +46,61 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	def index() {
 		render(view: 'index', model:usuarioService.search())
     }
+	
+	
+	/* aprobar (admin) */
+	def aprobar() {
+		changeState.call(usuarioService.&aprobar)
+    }
 
-
-	/* changeState */
-	def changeState() {		
-
-		def auxState = params._action_changeState as UsuarioState
-		usuarioService.changeState(params.id, auxState)
-		flash.message = "Cambio el estado con exito"
-		flash.type = "ok"
-		redirect action:"edit", id:params.id
-
+	
+	/* desaprobar (admin) */
+	def desaprobar() {
+		changeState.call(usuarioService.&desaprobar)
     }
 
 
-	/* save */
-	def save(Usuario usuario) {
+	/* postular (visitante) */
+	def postular(Usuario usuario) {
+		try {
+			usuarioService.postular(usuario)
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect action:"edit", id:usuario.id
+		} catch (UsuarioException error){
+			flash.message = error.message
+			render(view: 'create', model: [usuario:usuario])
+		}
+    }
 
-		usuarioService.save(usuario)
+	
+	/* changeState */
+	def changeState = { 
+		
+		try {			
+			it(params.int('id'));  
+		} catch (OfertaException e){
+			flash.message = e.message
+			redirect action:"edit", id:params.int('id')
+			return
+		}
+
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"edit", id:usuario.id
+		redirect action:"edit", id:params.int('id')
+		
+	}   
 
-    }
+
+	// /* save */
+	// def save(Usuario usuario) {
+
+		// usuarioService.save(usuario)
+		// flash.message = "Cambios aplicados con exito"
+		// flash.type = "ok"
+		// redirect action:"edit", id:usuario.id
+
+    // }
 
 	
 }

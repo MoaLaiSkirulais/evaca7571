@@ -8,9 +8,9 @@
 .FormTagLib_field { 
 	width:90%;
 	height:30px;
+	border: none;
+	border-bottom: 1px solid #eee;
 }
-
-
 
 input[type="checkbox"]:not(.browser-default), input[type="radio"]:not(.browser-default) {
     position: relative !important;
@@ -24,4 +24,17 @@ input[type="checkbox"]:checked:not(.browser-default) + label.checkbox::before, i
     -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.1),inset 0 0 0 3px #fff;
     box-shadow: 0 0 0 1px rgba(0,0,0,.1),inset 0 0 0 3px #fff;
 	visibility: hidden !important;
+}
+
+
+.description{
+	font-weight: 300 !important;
+}
+
+th {
+	font-weight: 300 !important;	
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    border-top: 0px solid #ddd;
 }

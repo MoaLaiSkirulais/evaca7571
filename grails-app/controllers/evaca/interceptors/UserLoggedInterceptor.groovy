@@ -8,8 +8,13 @@ class UserLoggedInterceptor {
 	public UserLoggedInterceptor() {
 
 		match (
-			controller: ~/(aviso|oferta)/, 
+			controller: ~/(aviso|oferta|lote)/, 
 			action: ~/(|index|edit|create)/
+		)
+		
+		match (
+			controller: ~/(usuario)/, 
+			action: ~/(|index|edit)/
 		)
     }
    

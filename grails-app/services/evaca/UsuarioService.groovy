@@ -23,6 +23,44 @@ class UsuarioService {
 		}
 		[usuario: usuario]
 	}
+	
+	
+	/* aprobar */
+	def aprobar(Long id) {	
+	
+		def usuario = new Usuario().get(id)
+		if (!usuario){
+			throw new UsuarioNotFoundException();
+		}
+
+		usuario.changeState(UsuarioState.APROBADO, mySessionService.usuario)
+		usuario.save(flush:true, failOnError: false)
+	}	
+
+	
+	/* desaprobar */
+	def desaprobar(Long id) {	
+	
+		def usuario = new Usuario().get(id)
+		if (!usuario){
+			throw new UsuarioNotFoundException();
+		}
+
+		usuario.changeState(UsuarioState.DESAPROBADO, mySessionService.usuario)
+		usuario.save(flush:true, failOnError: false)
+	}	
+
+	
+	/* postular */
+	def postular(Usuario usuario) {	
+
+		usuario.changeState(UsuarioState.POSTULADO, mySessionService.usuario)
+		usuario.save(flush:true, failOnError: false)
+
+		if (usuario.hasErrors()) {
+			throw new UsuarioException();
+		}
+	}	
 
 	
 	/* save */

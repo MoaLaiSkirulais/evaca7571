@@ -10,7 +10,7 @@
 		<div class="page-wrapper">			
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-6">
 			            <g:pageProperty name="page.left1"/>
 					</div>
 					<div class="col-sm-4">

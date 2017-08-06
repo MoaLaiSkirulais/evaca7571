@@ -55,7 +55,8 @@ class Lote {
 
 	/* changeState */
 	public changeState(LoteState state){
-		this.state = state.validateStateFlow(this);
+		state.validateStateFlow(this);
+		this.state = state
 	}
 
 

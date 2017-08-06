@@ -8,42 +8,37 @@
 			<tbody>
 				
 				<myform:display name="id" label="#id" value="${aviso.id}"/>
-				<myform:display name="id" label="state" value="${aviso.state}"/>
-				<myform:display name="propietario" label="propietario" value="${aviso.propietario}"/>
-				<myform:display name="fechaCreacion" label="Fecha creacion" value="${aviso.fechaCreacion}"/>
-				<myform:field name="precio" label="precio" value="${aviso.precio}"/>
+				<myform:display name="state" label="State" value="${aviso.state}"/>
+				<myform:display name="propietario" label="Propietario" value="${aviso.propietario}"/>
+				<myform:display name="fechaCreacion" label="Ingreso" value="${aviso.fechaCreacion}"/>
+				<myform:field name="precio" label="Precio" value="${aviso.precio}"/>
 				
 				<myform:select 
-					label="consignatario" 	
+					label="Consignatario" 	
 					name="consignatario.id" 
 					from="${consignatarios}" value="${aviso?.consignatario?.id}" 
 					optionKey="id"
 				/>
 				
-				<myform:select label="lote" name="lote.id" from="${lotes}" value="${aviso?.lote?.id}" optionKey="id"/>
-				
-				<tr class="order-total">
-					<th></th>
-					<td class="text-right">
-						<div class="form-group text-right">
+				<myform:select label="Lote" name="lote.id" from="${lotes}" value="${aviso?.lote?.id}" optionKey="id"/>
 
-							<g:actionSubmit action="aprobar" class="btn btn-default"	value="aprobar()"/>
-							<g:actionSubmit action="cancelar" class="btn btn-default" value="cancelar()"/>
-							
-							<br><br>
-							
-							<g:actionSubmit action="publicar" class="btn btn-default" value="publicar()"/>
-							<g:actionSubmit action="rechazar" class="btn btn-default" value="rechazar()"/>
-							<br><br>
-
-							<g:link action="index" class="btn btn-default">Buscar</g:link>
-							<g:link action="create" class="btn btn-default">Nuevo</g:link>
-							
-						</div>
-					</td>
-				</tr>
 			</tbody>
 		</table>
+		
+		<div class="buttons">
+			<g:actionSubmit action="postular" class="btn btn-default" value="vendedor.postular()"/>
+			<g:actionSubmit action="cancelar" class="btn btn-default" value="vendedor.cancelar()"/>
+			
+			<br><br>
+			
+			<g:actionSubmit action="aprobar" class="btn btn-default" value="admin.aprobar()"/>
+			<g:actionSubmit action="rechazar" class="btn btn-default" value="admin.rechazar()"/>
+			<br><br>
+
+			<g:link action="index" class="btn btn-default">Buscar aviso</g:link>
+			<g:link action="create" class="btn btn-default">Nuevo aviso</g:link>
+		</div>
+			
 	</form>
 	
 </g:applyLayout>

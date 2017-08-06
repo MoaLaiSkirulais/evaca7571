@@ -31,7 +31,7 @@ class MySessionService {
 		def usuario = Usuario.findByUsername(u)
 		if (usuario){
 		
-			if (usuario.state != UsuarioState.ACTIVO){
+			if (usuario.state != UsuarioState.APROBADO){
 				throw new LoginException(message:"La cuenta no esta aun activa")
 			}
 			

@@ -7,16 +7,19 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
 	/* create */
 	def create() {	
-		render(view: 'create', model:avisoService.create())
+		render(
+			view: 'create', 
+			model: getViewModel(avisoService.create())			
+		)
     }
 
 	
 	/* edit */
 	def edit() {
-		respond view:'create', 
-			getViewModel(
-				avisoService.edit(params.id)
-			)
+		respond(
+			view:'create', 
+			getViewModel(avisoService.edit(params.id))
+		)
     }
 
 
@@ -25,7 +28,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	
 		render(view: 'index', 
 			model: [
-				avisos: avisoService.search(), 
+				avisos: avisoService.search(params), 
 				lote:[
 					consignatarios: Usuario.list().sort{it.nombre}, 
 					categorias: Categoria.list().sort{it.nombre}, 
@@ -38,27 +41,30 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 
 	
-	/* aprobar */
-	def aprobar(Aviso aviso) {
+	/* postular */
+	def postular(Aviso aviso) {
 
-		try {			
-			avisoService.aprobar(aviso);  
+		try {
+
+			avisoService.postular(aviso); 
+
 		} catch (AvisoException e){
+
 			flash.message = e.message
 			render(view: 'create', model:getViewModel(aviso))
 			return
-		}
+		} 
 		
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"edit", id:params.int('id')
+		redirect action:"edit", id:aviso.id
 
     }
 
 
-	/* publicar (admin) */
-	def publicar() {
-		changeState.call(avisoService.&publicar)
+	/* aprobar (admin) */
+	def aprobar() {
+		changeState.call(avisoService.&aprobar)
     }
 
 
@@ -77,14 +83,18 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	/* changeState */
 	def changeState = { 
 		
-		try {			
+		try {
+		
 			it(params.int('id'));  
+
 		} catch (AvisoException e){
+
 			flash.message = e.message
 			redirect action:"edit", id:params.int('id')
 			return
 		}
 
+		println "bien"
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
 		redirect action:"edit", id:params.int('id')

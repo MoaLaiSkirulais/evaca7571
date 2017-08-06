@@ -15,6 +15,7 @@ class Usuario {
 	UsuarioState state
 	Float puntaje
 	Float comision
+	String avatar
 
 	static hasMany = [ofertas: Oferta, resenas: Resena, lotes: Lote]
 
@@ -45,8 +46,9 @@ class Usuario {
 
 		this.fechaCreacion = new Date()
 		this.profile = UsuarioProfile.PRODUCTOR
-		this.state = UsuarioState.APROBACION
+		this.state = UsuarioState.BORRADOR
 		this.password = ""
+		this.avatar = "/static/sham/img/users/5.jpg"
     }
 	
 	
@@ -54,7 +56,8 @@ class Usuario {
 	public changeState(UsuarioState state, Usuario ejecutor){
 
 		state.validateStateAccess(this, ejecutor);
-		this.state = state.validateStateFlow(this);
+		state.validateStateFlow(this);
+		this.state = state
 
 	}
 

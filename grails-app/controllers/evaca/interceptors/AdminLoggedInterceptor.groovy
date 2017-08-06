@@ -13,7 +13,7 @@ class AdminLoggedInterceptor {
 		)
 		
 		match(controller: ~/(aviso)/, 
-			action: ~/(rechazar|publicar)/
+			action: ~/(rechazar|aprobar)/
 		)		
     }
    

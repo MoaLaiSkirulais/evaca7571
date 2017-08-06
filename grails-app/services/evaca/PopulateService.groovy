@@ -68,16 +68,20 @@ class PopulateService {
 		administrador.save()
 		
 		/* permisos */
-		productor1.changeState(UsuarioState.ACTIVO, administrador)
+		productor1.changeState(UsuarioState.POSTULADO, administrador)
+		productor1.changeState(UsuarioState.APROBADO, administrador)
 		productor1.save(flush:true, failOnError: true)
 		
-		productor2.changeState(UsuarioState.ACTIVO, administrador)
+		productor2.changeState(UsuarioState.POSTULADO, administrador)
+		productor2.changeState(UsuarioState.APROBADO, administrador)
 		productor2.save(flush:true, failOnError: true)
 
-		consignatario.changeState(UsuarioState.ACTIVO, administrador)
+		consignatario.changeState(UsuarioState.POSTULADO, administrador)
+		consignatario.changeState(UsuarioState.APROBADO, administrador)
 		consignatario.save(flush:true, failOnError: true)
 
-		administrador.changeState(UsuarioState.ACTIVO, administrador)
+		administrador.changeState(UsuarioState.POSTULADO, administrador)
+		administrador.changeState(UsuarioState.APROBADO, administrador)
 		administrador.save(flush:true, failOnError: true)
 
 		return 1

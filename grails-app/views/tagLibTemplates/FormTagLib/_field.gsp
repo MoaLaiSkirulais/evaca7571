@@ -1,4 +1,4 @@
-<tr class="cart-subtotal">
+<tr class="description">
 	<th>${attrs.label}</th>
 	<td class="text-right">
 		<span class="amount">

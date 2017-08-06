@@ -3,50 +3,61 @@ package evaca
 /* UsuarioState */	
 public enum UsuarioState { 
 	
-	APROBACION { 
+	BORRADOR { 
+		public UsuarioState validateStateFlow(Usuario usuario) {
+			throw new UsuarioStateFlowException(message : "No se puede pasar manualmente a borrador")
+		}
+	}, 	
+	
+	POSTULADO { 
 		public UsuarioState validateStateFlow(Usuario usuario) {		
-			throw new UsuarioStateFlowException(message : "No se puede pasar manualmente a Aprobacion")
+			if (usuario.state != UsuarioState.BORRADOR) { 
+				throw new UsuarioStateFlowException(message : "El usuario no está en BORRADOR")
+			}
 		}
 	}, 
 
-	ACTIVO { 
+	APROBADO { 
 		public UsuarioState validateStateFlow(Usuario usuario) {
-			if (usuario.state != UsuarioState.APROBACION && usuario.state != UsuarioState.INACTIVO){
-				throw new UsuarioStateFlowException(message : "No se puede pasar a Activo")
+			
+			/* ya está aprobado? */
+			if (usuario.state == UsuarioState.APROBADO){
+				throw new UsuarioStateFlowException(message : "El usuario ya está aprobado")
 			}
-			return UsuarioState.ACTIVO
+
+			/* está aprobacion? */
+			if (usuario.state != UsuarioState.POSTULADO){
+				throw new UsuarioStateFlowException(message : "El usuario no está postulado")
+			}
 			
 		}
 
 		@Override
         public UsuarioState validateStateAccess(Usuario usuario, Usuario ejecutor) {		
 		
-			if (usuario.state == UsuarioState.APROBACION){
-				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
-					throw new UsuarioStateFlowException(message: "Se necesita un administrador para ejecutar esta accion")
-				}
+			if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+				throw new UsuarioStateFlowException(message: "Se necesita un administrador para ejecutar esta accion")
 			}
+
         }
 		
 	},
 	
-	INACTIVO { 
+	DESAPROBADO { 
 		public UsuarioState validateStateFlow(Usuario usuario) {
-			
-			if (usuario.state != UsuarioState.ACTIVO){
-				throw new UsuarioStateFlowException(message : "El usuario no está Activo")
+		
+			if (usuario.state != UsuarioState.DESAPROBADO){
+				throw new UsuarioStateFlowException(message : "El usuario ya está desaprobado")
 			}
-			return UsuarioState.INACTIVO
 		}
 		
 		@Override
         public UsuarioState validateStateAccess(Usuario usuario, Usuario ejecutor) {		
-		
-			if (usuario.state == UsuarioState.APROBACION){
-				if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
-					throw new UsuarioStateFlowException(message: "Se necesita un administrador para ejecutar esta accion")
-				}
+
+			if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+				throw new UsuarioStateFlowException(message: "Se necesita un administrador para ejecutar esta accion")
 			}
+
         }
 	}
 
