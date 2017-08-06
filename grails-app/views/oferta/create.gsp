@@ -9,9 +9,9 @@
 			<table class="table table-condensed" cellspacing="0">
 				<tbody>
 					<myform:display name="id" label="#id" value="${oferta.id}"/>
-					<myform:display name="state" label="state" value="${oferta.state}"/>
-					<myform:display name="propietario" label="propietario" value="${oferta.propietario}"/>
-					<myform:display name="fechaCreacion" label="Fecha creacion" value="${oferta.fechaCreacion}"/>
+					<myform:display name="state" label="State" value="${oferta.state}"/>
+					<myform:display name="propietario" label="Propietario" value="${oferta.propietario}"/>
+					<myform:display name="fechaCreacion" label="Ingreso" value="${oferta.fechaCreacion}"/>
 
 					<myform:field name="precio" label="Precio" value="${oferta.precio}"/>
 
@@ -28,36 +28,30 @@
 						from="${plazos}" value="${oferta?.plazo?.id}" 
 						optionKey="id"
 					/>
-					
-					<tr class="order-total">
-						<th></th>
-						<td class="text-right">
-							<div class="form-group text-right">
 
-								<g:link action="index" class="btn btn-default">Buscar</g:link>
-								<g:link action="create" class="btn btn-default">Nuevo</g:link>
-								
-								<br><br>
-								
-								<g:actionSubmit action="setStateAceptado" class="btn btn-default" value="vendedor.aceptar"/>
-								<g:actionSubmit action="setStateRechazado" class="btn btn-default" value="vendedor.rechazar"/>
-								
-								<br><br>
-
-								<g:actionSubmit action="setStateAprobado" class="btn btn-default" value="administrador.aprobar"/>
-								<g:actionSubmit action="setStateDesaprobado" class="btn btn-default" value="administrador.desaprobar"/>
-								
-								<br><br>
-								
-								<g:actionSubmit action="setStateAprobacion" class="btn btn-default" value="ofertante.publicar"/>
-								<g:actionSubmit action="setStateCancelado" class="btn btn-default" value="ofertante.cancelar"/>
-								
-								
-							</div>
-						</td>
-					</tr>
 				</tbody>
 			</table>
+			
+			<div class="buttons">
+
+				<g:actionSubmit action="postular" class="btn btn-default" value="oferente.postular()"/>
+				<g:actionSubmit action="cancelar" class="btn btn-default" value="oferente.cancelar()"/>
+				
+				<br><br>
+				
+				<g:actionSubmit action="aprobar" class="btn btn-default" value="admin.aprobar()"/>
+				<g:actionSubmit action="desaprobar" class="btn btn-default" value="admin.desaprobar()"/>
+
+				<br><br>
+
+				<g:actionSubmit action="aceptar" class="btn btn-default" value="vendedor.aceptar()"/>
+				<g:actionSubmit action="rechazar" class="btn btn-default" value="vendedor.rechazar()"/>
+
+				<br><br>
+
+				<g:link action="index" class="btn btn-default">all.buscar()</g:link>
+				<g:link action="create" class="btn btn-default">oferente.nueva()</g:link>
+			</div>
 		</form>
 	</content>
 

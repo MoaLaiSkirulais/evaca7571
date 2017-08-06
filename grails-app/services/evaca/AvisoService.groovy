@@ -87,7 +87,7 @@ class AvisoService {
 	}
 
 
-	/* aprobar */
+	/* postular */
 	def postular(Aviso aviso) {
 	
 		/* fuerza el propietario al logged */

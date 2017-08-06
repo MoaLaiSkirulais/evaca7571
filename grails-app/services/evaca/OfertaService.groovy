@@ -26,13 +26,8 @@ class OfertaService {
 	
 	
 	/* create */
-	def create() {
-		
-		[
-			oferta: new Oferta([propietario:mySessionService.usuario]), 
-			avisos: Aviso.list(), 
-			plazos: Plazo.list()
-		]
+	def create() {		
+		return new Oferta([propietario:mySessionService.usuario])
 	}
 
 	
@@ -44,12 +39,7 @@ class OfertaService {
 			throw new OfertaNotFoundException()
 		}
 
-		[
-			oferta: oferta, 
-			avisos: Aviso.list(), 
-			plazos: Plazo.list()
-		]
-
+		return oferta
 	}
 	
 	
@@ -146,23 +136,90 @@ class OfertaService {
 	}	
 
 
-	/* save */
-	def save(Oferta oferta) {
-		
+	/* postular (oferente) */
+	def postular(Oferta oferta) {
+	
+		/* fuerza el propietario al logged */
 		oferta.propietario = mySessionService.usuario
-		oferta.save(flush:true, failOnError: false)
+		oferta.changeState(OfertaState.POSTULADO, mySessionService.usuario)
 
+		/* valida aviso publicado */
+		// if (aviso.lote?.state != LoteState.DISPONIBLE){
+			// throw new AvisoException(message : "El lote no está disponible")	
+		// }
+
+		/* save */
+		oferta.save(flush:true, failOnError: false)
 		if (oferta.hasErrors()) {
+			throw new OfertaException()
+		}
 		
-			OfertaException error = new OfertaException(message:"Errors!")
-			error.model = [
-					oferta: oferta, 
-					avisos: Aviso.list(), 
-					plazos: Plazo.list()
-				]
-			throw error;
-		}		
-	}	
+	}
+	
+
+	/* cancelar (oferente) */
+	def cancelar(Long id) {
+	
+		def oferta = new Oferta().get(id)
+		if (!oferta){
+			throw new OfertaNotFoundException();
+		}
+
+		oferta.changeState(OfertaState.CANCELADO, mySessionService.usuario)
+		oferta.save(flush:true, failOnError: false)
+	}
+	
+
+	/* aprobar (admin) */
+	def aprobar(Long id) {
+	
+		def oferta = new Oferta().get(id)
+		if (!oferta){
+			throw new OfertaNotFoundException();
+		}
+
+		oferta.changeState(OfertaState.APROBADO, mySessionService.usuario)
+		oferta.save(flush:true, failOnError: false)
+	}
+	
+
+	/* desaprobar (admin) */
+	def desaprobar(Long id) {
+	
+		def oferta = new Oferta().get(id)
+		if (!oferta){
+			throw new OfertaNotFoundException();
+		}
+
+		oferta.changeState(OfertaState.DESAPROBADO, mySessionService.usuario)
+		oferta.save(flush:true, failOnError: false)
+	}
+
+	
+	/* aceptar (vendedor) */
+	def aceptar(Long id) {
+	
+		def oferta = new Oferta().get(id)
+		if (!oferta){
+			throw new OfertaNotFoundException();
+		}
+
+		oferta.changeState(OfertaState.ACEPTADO, mySessionService.usuario)
+		oferta.save(flush:true, failOnError: false)
+	}
+
+	
+	/* rechazar (vendedor) */
+	def rechazar(Long id) {
+	
+		def oferta = new Oferta().get(id)
+		if (!oferta){
+			throw new OfertaNotFoundException();
+		}
+
+		oferta.changeState(OfertaState.RECHAZADO, mySessionService.usuario)
+		oferta.save(flush:true, failOnError: false)
+	}
 
 	
 	/* changeState */
@@ -177,20 +234,5 @@ class OfertaService {
 		oferta.save(flush:true, failOnError: true)
 
     }
-	
-	/* handleErrors */
-	def handleErrors(Oferta oferta) {
-
-		// if (oferta.hasErrors()) {
-
-			// AvisoException error = new AvisoException()
-			// error.model = [
-				// aviso: aviso, 
-				// consignatarios: consignatarios,
-				// lotes: Lote.list()
-			// ]
-			// throw error;
-		// }
-	}
 	
 }

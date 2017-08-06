@@ -7,29 +7,28 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
 	
 	/* create */
 	def create() {
-		render(view: 'create', model:ofertaService.create())
+		render(
+			view: 'create', 
+			model: getViewModel(ofertaService.create())			
+		)
     }
 
 
 	/* edit */
 	def edit() {
-		respond view:'create', ofertaService.edit(params.id)		
+		respond(
+			view:'create', 
+			getViewModel(ofertaService.edit(params.id))
+		)
     }
 
 
 	/* index */
 	def index() {
-		render(view: 'index', model: [ofertas:ofertaService.search()])
-    }
-
-
-	/* save */
-	def save(Oferta oferta) {
-
-		ofertaService.save(oferta)
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"edit", id:oferta.id
+		render(
+			view: 'index', 
+			model: [ofertas:ofertaService.search()]
+		)
     }
 
 
@@ -37,10 +36,16 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
 	def postular(Oferta oferta) {
 
 		try {
+		
 			ofertaService.postular(oferta);  
+			
 		} catch (OfertaException e){
+
 			flash.message = e.message
-			render(view: 'create', model:getViewModel(oferta))
+			render(
+				view: 'create', 
+				model:getViewModel(oferta)
+			)
 			return
 		}
 

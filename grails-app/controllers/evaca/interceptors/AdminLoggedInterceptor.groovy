@@ -12,8 +12,8 @@ class AdminLoggedInterceptor {
 			action: ~/(|index|edit|create|save)/
 		)
 		
-		match(controller: ~/(aviso)/, 
-			action: ~/(rechazar|aprobar)/
+		match(controller: ~/(aviso|oferta)/, 
+			action: ~/(desaprobar|aprobar)/
 		)		
     }
    

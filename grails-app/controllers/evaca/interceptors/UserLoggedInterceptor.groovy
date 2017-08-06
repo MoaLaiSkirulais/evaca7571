@@ -16,6 +16,11 @@ class UserLoggedInterceptor {
 			controller: ~/(usuario)/, 
 			action: ~/(|index|edit)/
 		)
+		
+		match (
+			controller: ~/(oferta)/, 
+			action: ~/(aceptar|rechazar|postular|cancelar)/
+		)
     }
    
 

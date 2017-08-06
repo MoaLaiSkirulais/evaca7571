@@ -54,7 +54,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 			render(view: 'create', model:getViewModel(aviso))
 			return
 		} 
-		
+
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
 		redirect action:"edit", id:aviso.id
