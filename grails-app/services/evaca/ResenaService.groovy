@@ -1,51 +1,84 @@
 package evaca
 
-class ResenaException extends RuntimeException {
-	String message
-	Map model
-}
 
+/* ResenaService */
 class ResenaService {
 
 	def mySessionService
+	
+	
+	/* getVentas */
+	def getVentas() {
+		Venta.list()
+	}
+
 
 	/* create */
 	def create() {
 
 		def resena = new Resena()
-		resena.usuario = mySessionService.usuario
+		resena.propietario = mySessionService.usuario
 		resena.venta = Venta.list()[0]
 		resena.prepare() /* este prepare podria hacer mas cosas, entre ellas validar en el domain */
-		def model = [
-			resena: resena
-		]
-		
-		[model: model]
+		return resena
+
 	}	
-	
-	/* save */
-	def save(Resena resena) {
-	
-		resena.usuario = mySessionService.usuario //tal vez no sea necesario ya que viene del create 
-		resena.save(flush:true)
 
-		def model = [
-			resena: resena
-		]
+	
+	/* postular (oferente) */
+	def postular(Resena resena) {
+	
+		/* fuerza el propietario al logged */
+		resena.propietario = mySessionService.usuario
+		resena.changeState(ResenaState.POSTULADO, mySessionService.usuario)
 
+		/* save */
+		resena.save(flush:true, failOnError: false)
 		if (resena.hasErrors()) {
-			println "errores"
-			ResenaException error = new ResenaException(message:"Errors!")
-			error.model = model
-			throw error;
+			throw new ResenaException()
 		}
 		
-	}		
+	}
 	
+
+	/* aprobar (vendedor/comprador) */
+	def aprobar(Long id) {
 	
-	/* read */
-	def read() {
-	}	
+		def resena = new Resena().get(id)
+		if (!resena){
+			throw new ResenaException();
+		}
+
+		resena.changeState(ResenaState.APROBADO, mySessionService.usuario)
+		resena.save(flush:true, failOnError: false)
+	}
+	
+
+	/* desaprobar (vendedor/comprador) */
+	def desaprobar(Long id) {
+	
+		def resena = new Resena().get(id)
+		if (!resena){
+			throw new ResenaException();
+		}
+
+		resena.changeState(ResenaState.DESAPROBADO, mySessionService.usuario)
+		resena.save(flush:true, failOnError: false)
+	}
+	
+
+	// /* changeState */
+	// def changeState(id, ResenaState newTbState) {
+
+		// def resena = new Resena().get(id)		
+		// if (!resena){
+			// throw new ResenaException()
+		// }
+
+		// resena.changeState(newTbState, mySessionService.usuario)
+		// resena.save(flush:true, failOnError: false)
+
+    // }
 
 	
 }

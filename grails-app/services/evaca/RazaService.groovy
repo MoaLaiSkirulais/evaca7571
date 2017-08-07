@@ -6,12 +6,18 @@ class RazaService {
 	
 	/* create */
 	def create() {
-
-		[
-			raza: new Raza(usuario:mySessionService.usuario), 
-			razas: Raza.list()
-		]
+		new Raza(usuario:mySessionService.usuario)
 	}
+	
+	
+	// /* create */
+	// def create() {
+
+		// [
+			// raza: new Raza(usuario:mySessionService.usuario), 
+			// razas: Raza.list()
+		// ]
+	// }
 	
 	
 	/* edit */

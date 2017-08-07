@@ -3,33 +3,52 @@ package evaca
 class ResenaController {
 	
 	def resenaService
-
+	
+	
 	/* create */
 	def create() {
-		
-		try {
-			
-			resenaService.create()
-		
-		} catch (UserRegistrationException ure) {        
-
-			flash.message = ure.message        
-			redirect controller: 'usuario', action:"newlogin	"
-		}
-
+		render(
+			view: 'create', 
+			model: getViewModel(resenaService.create())			
+		)
     }
 
+	// /* create */
+	// def create() {
+		
+		// try {
+			
+			// resenaService.create()
+		
+		// } catch (UserRegistrationException ure) {        
+
+			// flash.message = ure.message        
+			// redirect controller: 'usuario', action:"newlogin	"
+		// }
+
+    // }
+	
+	
 	/* edit */
 	def edit() {
-
-		def id=params.id
-	    def model = [
-			resena: new Resena().get(id), 
-			resenas: Resena.list()
-		]
-
-		respond view:'create', [model:model]
+		respond(
+			view:'create', 
+			getViewModel(resenaService.edit(params.id))
+		)
     }
+
+
+	// /* edit */
+	// def edit() {
+
+		// def id=params.id
+	    // def model = [
+			// resena: new Resena().get(id), 
+			// resenas: Resena.list()
+		// ]
+
+		// respond view:'create', [model:model]
+    // }
 	
 	/* index */
 	def index() {
@@ -43,31 +62,67 @@ class ResenaController {
 		)
     }
 
-	/* save */
-	def save(Resena resena) {
 	
-		if (!params.id){
-			resena = new Resena(params)
-		}
-
-		try {
-		
-			resenaService.save(resena)
-			redirect action:"edit", id:resena.id			
-
-		} catch (UserRegistrationException error) {        
-
-			flash.message = error.message        
-			redirect controller: 'usuario', action:"newlogin"
-
-		} catch (ResenaException error) {        
-
-			flash.message = error.message 
-			respond view:'create', [model:error.model]
-			return
-		}
-	    
+	/* aprobar (admin) */
+	def aprobar() {
+		changeState.call(resenaService.&aprobar)
     }
 
+	
+	/* desaprobar (admin) */
+	def desaprobar() {
+		changeState.call(resenaService.&desaprobar)
+    }
+	
+
+	/* postular (vendedor | comprador) */
+	def postular(Resena resena) {
+
+		try {
+
+			resenaService.postular(resena);  
+
+		} catch (ResenaException e){
+
+			flash.message = e.message
+			render(
+				view: 'create', 
+				model:getViewModel(resena)
+			)
+			return
+		}
+
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:resena.id
+    }
+	
+	
+	/* changeState */
+	def changeState = { 
+		
+		try {			
+			it(params.int('id'));  
+		} catch (ResenaException e){
+			flash.message = e.message
+			redirect action:"edit", id:params.int('id')
+			return
+		}
+
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:params.int('id')
+		
+	}   
+
+	
+	/* getViewModel */ 
+	def getViewModel(Resena resena){
+		[
+			resena: resena,
+			ventas: ventaService.getVentas()
+		]
+	}
+	
 
 }

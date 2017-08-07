@@ -2,7 +2,7 @@ package evaca;
 
 class RazaException extends RuntimeException {
 	
-	String message = "Error en cambio de estado";
+	String message = "Error editando raza";
 	Map model
 
 }

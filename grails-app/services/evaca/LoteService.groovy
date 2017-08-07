@@ -23,7 +23,7 @@ class LoteService {
 
 		/* valida owner */
 		if (mySessionService.usuario != lote.usuario){
-			throw new LoteNotFoundException(message:"No puede editar un lote no propio")
+			throw new LoteNotFoundException(message: "Solo puede editar sus propios lotes")
 		}
 
 		/* response */
@@ -37,7 +37,8 @@ class LoteService {
 
 		/* valida owner */
 		if (mySessionService.usuario != lote.usuario){
-			throw new LoteNotFoundException(message:"No puede editar un lote no propio")
+			throw new LoteNotFoundException(message: "Solo puede editar sus propios lotes")
+			/* queda medio feo esto pero donde debe ir? */
 		}
 
 		/* save */

@@ -57,11 +57,6 @@ public enum OfertaState {
 				// }
 			// }
 			
-			// if (oferta.state == OfertaState.APROBACION){
-				// if (ejecutor.profile != 'Administrador'){
-					// throw new OfertaStateFlowException(message: "You must be Admin")
-				// }
-			// }
         }
 	}, 
 	

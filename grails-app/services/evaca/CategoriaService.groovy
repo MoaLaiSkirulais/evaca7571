@@ -6,12 +6,18 @@ class CategoriaService {
 	
 	/* create */
 	def create() {
-
-		[
-			categoria: new Categoria(usuario:mySessionService.usuario), 
-			categorias: Categoria.list()
-		]
+		new Categoria(usuario:mySessionService.usuario)
 	}
+
+	
+	// /* create */
+	// def create() {
+
+		// [
+			// categoria: new Categoria(usuario:mySessionService.usuario), 
+			// categorias: Categoria.list()
+		// ]
+	// }
 	
 	
 	/* edit */

@@ -6,12 +6,18 @@ class PlazoService {
 	
 	/* create */
 	def create() {
-
-		[
-			plazo: new Plazo(usuario:mySessionService.usuario), 
-			plazos: Plazo.list()
-		]
+		new Plazo(usuario:mySessionService.usuario)
 	}
+
+	
+	// /* create */
+	// def create() {
+
+		// [
+			// plazo: new Plazo(usuario:mySessionService.usuario), 
+			// plazos: Plazo.list()
+		// ]
+	// }
 	
 	
 	/* edit */
