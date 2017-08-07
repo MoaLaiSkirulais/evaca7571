@@ -201,10 +201,10 @@ class PopulateService {
 
 		log.info "Populando ventas..."
 		
-		new Venta(
-			oferta: Oferta.list()[0], 
-			fechaCreacion: new Date()
-		).save()
+		// new Venta(
+			// oferta: Oferta.list()[0], 
+			// fechaCreacion: new Date()
+		// ).save()
 
 		// new Venta(
 			// oferta: Oferta.list()[3], 
@@ -259,11 +259,11 @@ class PopulateService {
 
 		log.info "Populando resenas..."
 		
-		new Resena( 
-			puntaje:3,
-			venta: Venta.list()[0], 
-			usuario: Usuario.list()[2]
-		).save(flush:true, failOnError: true)
+		// new Resena( 
+			// puntaje:3,
+			// venta: Venta.list()[0], 
+			// usuario: Usuario.list()[2]
+		// ).save(flush:true, failOnError: true)
 
 		// new Resena( 
 			// puntaje:5,

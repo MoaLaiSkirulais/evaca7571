@@ -126,11 +126,13 @@ class OfertaService {
 		}
 
 		oferta.changeState(OfertaState.ACEPTADO, mySessionService.usuario)
-		oferta.save(flush:true, failOnError: false)
 
-		def venta = new Venta(
-			oferta: oferta
-		)
+		// def venta = new Venta(
+			// // oferta: oferta
+		// )
+
+		// oferta.venta = new Venta()
+		oferta.save(flush:true, failOnError: false)
 		// venta.save(flush:true, failOnError: false)
 
 		// oferta.venta = venta
