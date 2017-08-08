@@ -6,7 +6,7 @@ class Resena {
 	Integer puntaje	
 	Venta venta
 	Usuario propietario
-	List<Respuesta> respuestas
+	List<Respuesta> respuestas /* esto es genial tener muy en cuenta, es ofertas che */
 	ResenaState state
 
 	static belongsTo = [venta:Venta, propietario:Usuario] 
@@ -46,7 +46,9 @@ class Resena {
 		fechaCreacion()
 		puntaje min:1, max:5
 		venta()
-		propietario()
+		propietario unique: 'venta'
+		
+
 	}
 
 	

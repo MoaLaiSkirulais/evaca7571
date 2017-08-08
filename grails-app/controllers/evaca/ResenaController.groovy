@@ -92,8 +92,7 @@ class ResenaController {
 	/* getViewModel */ 
 	def getViewModel(Resena resena){
 		[
-			resena: resena,
-			ventas: ventaService.getVentas()
+			resena: resena
 		]
 	}
 	

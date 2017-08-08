@@ -8,6 +8,7 @@
 			<tbody>
 			
 				<myform:display label="#id" value="${resena.id}"/>
+				<myform:display name="state" label="State" value="${resena.state}"/>
 				<myform:display label="propietario" value="${resena.propietario}"/>
 				<myform:display label="Fecha" value="${resena.fechaCreacion}"/>
 				<myform:display label="Venta" value="${resena.venta}"/>

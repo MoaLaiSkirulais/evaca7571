@@ -334,12 +334,12 @@ class PopulateProService {
 		razas()
 		categorias()
 		plazos()
+		preguntas()
 		lotes()
 		avisos()
 		ofertas()
-		ventas()
-		preguntas()
-		resenas()
+		// resenas()
+		
 	}
 
 
@@ -372,6 +372,7 @@ class PopulateProService {
 		println "Venta: " + Venta.list().size()
 		println "Resena: " + Resena.list().size()
 		println "Pregunta: " + Pregunta.list().size()
+		println "Respuesta: " + Respuesta.list().size()
 
 	}
 
@@ -379,6 +380,7 @@ class PopulateProService {
 	/* clearAll */
 	def clearAll() {
 	
+		Resena.executeUpdate('delete from Respuesta')
 		Resena.executeUpdate('delete from Resena')
 		Venta.executeUpdate('delete from Venta')
 		Oferta.executeUpdate('delete from Oferta')

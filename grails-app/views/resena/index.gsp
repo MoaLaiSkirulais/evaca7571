@@ -29,7 +29,7 @@
 							</td>
 							
 							<td class="product-name">
-								${resena.usuario}
+								${resena.propietario}
 							</td>
 							
 							<td class="product-name">
