@@ -8,7 +8,7 @@ class AdminLoggedInterceptor {
 	/* AdminLoggedInterceptor */
 	public AdminLoggedInterceptor() {
         match(
-			controller: ~/(categoria|plazo|raza)/, 
+			controller: ~/(categoria|plazo|raza|pregunta)/, 
 			action: ~/(|index|edit|create|save)/
 		)
 		

@@ -8,10 +8,13 @@ class Oferta {
 	Plazo plazo
 	Float precio
 	OfertaState state
-	// Venta venta 
+	Venta venta 
 
 	static belongsTo = [aviso:Aviso, propietario:Usuario, plazo:Plazo]	
 	static hasOne = [venta: Venta]
+    // static mappedBy = [child: 'parent']
+	// static mappedBy = [venta: "oferta"]
+
 
 	
 	/* Oferta() */

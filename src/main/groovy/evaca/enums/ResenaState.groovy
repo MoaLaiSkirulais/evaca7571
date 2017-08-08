@@ -48,12 +48,12 @@ public enum ResenaState {
 		
 			/* está aprobado? */
 			if (resena.state == ResenaState.APROBADO){
-				throw new ResenaException(message : "El resena ya está APROBADO")
+				throw new ResenaException(message : "La reseña ya está aprobada")
 			}				
 		
 			/* está postulado? */
 			if (resena.state != ResenaState.POSTULADO){
-				throw new ResenaException(message : "El resena no está POSTULADO")
+				throw new ResenaException(message : "La reseña no está postulada")
 			}
 
 		}

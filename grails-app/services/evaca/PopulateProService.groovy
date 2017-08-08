@@ -10,6 +10,7 @@ class PopulateProService {
 	def categoriaService
 	def plazoService
 	def razaService	
+	def preguntaService	
 
 	def loteService	
 	def avisoService	
@@ -202,6 +203,36 @@ class PopulateProService {
 	}
 
 
+	/* preguntas */
+	def preguntas() {
+
+		log.info "Populando preguntas..."
+		
+		def pregunta
+
+		pregunta = preguntaService.create()
+		pregunta.label = "Como fue la comunicacion con el vendedor?"
+		preguntaService.save(pregunta)		
+		
+		pregunta = preguntaService.create()
+		pregunta.label = "Como fue la comunicacion con el consignatario?"
+		preguntaService.save(pregunta)
+		
+		pregunta = preguntaService.create()
+		pregunta.label = "Cual es el estado del lote?"
+		preguntaService.save(pregunta)
+		
+		pregunta = preguntaService.create()
+		pregunta.label = "Volveria a comprar?"
+		preguntaService.save(pregunta)
+		
+		pregunta = preguntaService.create()
+		pregunta.label = "Que le parecio el sistema?"
+		preguntaService.save(pregunta)
+		
+	}
+
+
 	/* lotes */
 	def lotes() {
 
@@ -281,64 +312,6 @@ class PopulateProService {
 	}
 
 
-	// /* ventas */
-	// def ventas() {
-
-		// log.info "Populando ventas..."
-		
-		// new Venta(
-			// oferta: Oferta.list()[0], 
-			// fechaCreacion: new Date()
-		// ).save()
-
-		// // new Venta(
-			// // oferta: Oferta.list()[3], 
-			// // fechaCreacion: new Date()
-		// // ).save()
-
-		// // new Venta(
-			// // oferta: Oferta.list()[6], 
-			// // fechaCreacion: new Date()
-		// // ).save()
-
-		// return
-	// }	
-
-
-	/* preguntas */
-	def preguntas() {
-
-		log.info "Populando preguntas..."
-		
-		new Pregunta( 						
-			usuario: Usuario.list()[2], 
-			label: "Como fue la comunicacion con el vendedor?"
-		).save()
-
-		new Pregunta( 			
-			usuario: Usuario.list()[2],
-			label: "Como fue la comunicacion con el consignatario?"
-		).save()
-
-		new Pregunta( 			
-			usuario: Usuario.list()[2],
-			label: "Cual es el estado del lote?"
-		).save()
-
-		new Pregunta( 			
-			usuario: Usuario.list()[2],
-			label: "Volveria a comprar?"
-		).save()
-
-		new Pregunta( 			
-			usuario: Usuario.list()[2],
-			label: "Que le parecio el sistema?"
-		).save()
-
-		return
-	}
-
-
 	/* resenas */
 	def resenas() {
 
@@ -349,18 +322,6 @@ class PopulateProService {
 			venta: Venta.list()[0], 
 			usuario: Usuario.list()[2]
 		).save(flush:true, failOnError: true)
-
-		// new Resena( 
-			// puntaje:5,
-			// venta: Venta.list()[0], 
-			// usuario: Usuario.list()[2]
-		// ).save(flush:true, failOnError: true)
-
-		// new Resena( 
-			// puntaje:1,
-			// venta: Venta.list()[0], 
-			// usuario: Usuario.list()[2]
-		// ).save(flush:true, failOnError: true)
 
 		return
 	}
@@ -378,7 +339,7 @@ class PopulateProService {
 		ofertas()
 		ventas()
 		preguntas()
-		// resenas()
+		resenas()
 	}
 
 
@@ -419,8 +380,8 @@ class PopulateProService {
 	def clearAll() {
 	
 		Resena.executeUpdate('delete from Resena')
-		Oferta.executeUpdate('delete from Oferta')
 		Venta.executeUpdate('delete from Venta')
+		Oferta.executeUpdate('delete from Oferta')
 		Aviso.executeUpdate('delete from Aviso')
 		Lote.executeUpdate('delete from Lote')
 		Plazo.executeUpdate('delete from Plazo')

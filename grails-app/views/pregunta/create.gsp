@@ -1,16 +1,16 @@
 <g:applyLayout name="crudContainer">
 						
 	<h2>Pregunta</h2>
-	<evaca:cruderror modelo="${model.pregunta}"/>
+	<evaca:cruderror modelo="${pregunta}"/>
 	
 	<form method="post">
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
 			
-				<myform:display label="#id" value="${model.pregunta.id}"/>									
-				<myform:display label="Usuario" value="${model.pregunta.usuario}"/>
-				<myform:display label="Fecha creacion" value="${model.pregunta.fechaCreacion}"/>
-				<myform:field label="Nombre" name="label" value="${model.pregunta.label}"/>
+				<myform:display label="#id" value="${pregunta.id}"/>
+				<myform:display label="Usuario" value="${pregunta.usuario}"/>
+				<myform:display label="Fecha creacion" value="${pregunta.fechaCreacion}"/>
+				<myform:field label="Nombre" name="label" value="${pregunta.label}"/>
 
 				<tr class="order-total">
 					<th></th>
@@ -27,4 +27,3 @@
 	</form>
 					
 </g:applyLayout>
-							

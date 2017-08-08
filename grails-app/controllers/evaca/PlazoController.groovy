@@ -13,7 +13,7 @@ class PlazoController extends BaseController implements PlazoExceptionHandler {
 	/* edit */
 	def edit() {	
 		def model = plazoService.edit(params.id)
-		respond view:'create', model		
+		respond view:'create', model
     }
 	
 

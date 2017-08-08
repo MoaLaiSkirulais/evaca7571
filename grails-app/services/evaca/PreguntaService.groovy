@@ -1,60 +1,48 @@
 package evaca
 
-class PreguntaException extends RuntimeException {
-	String message
-	Map model
-}
 
 class PreguntaService {
 	
 	def mySessionService
 	
+	
 	/* create */
 	def create() {
-	
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
-		}
-
-		def pregunta = new Pregunta()
-		pregunta.usuario = mySessionService.usuario
-		
-		def model = [
-			pregunta: pregunta, 
-			preguntas: Pregunta.list()
-		]
-		
-		[model: model]
+		new Pregunta(usuario:mySessionService.usuario)
 	}
 	
 	
+	/* edit */
+	def edit(id) {
+
+		def pregunta = new Pregunta().get(id)
+		if (!pregunta){
+			throw new PreguntaException()
+		}
+
+		return pregunta
+	}
+	
+
 	/* save */
 	def save(Pregunta pregunta) {
 	
-		if (!mySessionService.isLogged()) {
-			throw new UserRegistrationException(message:"You must be logged in to perform this action")
-		}
-
-		pregunta.usuario = mySessionService.usuario //tal vez no sea necesario ya que viene del create 
-		pregunta.save(flush:true)
-
-		def model = [
-			pregunta: pregunta
-		]
-
+		pregunta.save(flush:true, failOnError: false)
 		if (pregunta.hasErrors()) {
-			println "errores"
-			PreguntaException error = new PreguntaException(message:"Errors!")
-			error.model = model
-			throw error;
+			throw new PreguntaException();
 		}
+		return pregunta
 		
 	}		
 	
 	
-	/* read */
-	def read() {
-	}	
+	/* search */
+	def search() {
+	
+		def preguntas = Pregunta.list()
+		return  [preguntas : preguntas]
+
+	}			
 
 	
 }

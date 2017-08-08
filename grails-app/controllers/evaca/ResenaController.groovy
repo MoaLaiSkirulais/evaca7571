@@ -13,22 +13,7 @@ class ResenaController {
 		)
     }
 
-	// /* create */
-	// def create() {
-		
-		// try {
-			
-			// resenaService.create()
-		
-		// } catch (UserRegistrationException ure) {        
 
-			// flash.message = ure.message        
-			// redirect controller: 'usuario', action:"newlogin	"
-		// }
-
-    // }
-	
-	
 	/* edit */
 	def edit() {
 		respond(
@@ -37,18 +22,6 @@ class ResenaController {
 		)
     }
 
-
-	// /* edit */
-	// def edit() {
-
-		// def id=params.id
-	    // def model = [
-			// resena: new Resena().get(id), 
-			// resenas: Resena.list()
-		// ]
-
-		// respond view:'create', [model:model]
-    // }
 	
 	/* index */
 	def index() {

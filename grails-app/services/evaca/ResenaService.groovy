@@ -66,19 +66,5 @@ class ResenaService {
 		resena.save(flush:true, failOnError: false)
 	}
 	
-
-	// /* changeState */
-	// def changeState(id, ResenaState newTbState) {
-
-		// def resena = new Resena().get(id)		
-		// if (!resena){
-			// throw new ResenaException()
-		// }
-
-		// resena.changeState(newTbState, mySessionService.usuario)
-		// resena.save(flush:true, failOnError: false)
-
-    // }
-
 	
 }
