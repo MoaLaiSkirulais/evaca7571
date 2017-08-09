@@ -55,7 +55,7 @@ class UsuarioService {
 	def postular(Usuario usuario) {	
 
 		usuario.changeState(UsuarioState.POSTULADO, mySessionService.usuario)
-		usuario.save(flush:true, failOnError: false)
+		usuario.save(flush:true, failOnError: true)
 
 		if (usuario.hasErrors()) {
 			throw new UsuarioException();

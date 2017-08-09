@@ -15,6 +15,7 @@ class PopulateProService {
 	def loteService	
 	def avisoService	
 	def ofertaService	
+	def resenaService
 	
 	/* usuarios */
 	def usuarios() {
@@ -32,7 +33,7 @@ class PopulateProService {
 		)
 		consignatario.password = ''
 		usuarioService.postular(consignatario)
-
+		// return
 		/* productor1 */
 		def productor1 = new Usuario(
 			username: "productor1", 
@@ -316,14 +317,12 @@ class PopulateProService {
 	def resenas() {
 
 		log.info "Populando resenas..."
-		
-		new Resena( 
-			puntaje:3,
-			venta: Venta.list()[0], 
-			usuario: Usuario.list()[2]
-		).save(flush:true, failOnError: true)
+		mySessionService.login('productor2', '')
 
-		return
+		def resena = resenaService.create()
+		resena.puntaje = 4
+		resenaService.postular(resena)
+
 	}
 	
 	
@@ -338,7 +337,7 @@ class PopulateProService {
 		lotes()
 		avisos()
 		ofertas()
-		// resenas()
+		resenas()
 		
 	}
 

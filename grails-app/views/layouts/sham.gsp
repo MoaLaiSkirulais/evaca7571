@@ -10,7 +10,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<!-- Load Fonts -->
-		<link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Inconsolata:300,400,500,700|Unica+One:300,400,500,700">
+		<!-- <link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Inconsolata:300,400,500,700|Unica+One:300,400,500,700"> -->
+		<link rel="stylesheet" href="${resource(dir: 'sham/fonts', file: 'Inconsolata.css')}" type="text/css">
+
 		<!-- All theme style -->
 		<link rel="stylesheet" href="${resource(dir: 'sham/css', file: 'min.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'sham/css', file: 'myMin.css')}" type="text/css">

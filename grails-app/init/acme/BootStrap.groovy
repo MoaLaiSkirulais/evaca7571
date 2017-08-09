@@ -6,13 +6,15 @@ import evaca.Usuario
 
 class BootStrap {
 	
-   def populateService
+   // def populateService
+   def populateProService
 
 
     def init = { servletContext ->
 	
 
-		populateService.all()
+		// populateProService.all()
+		// populateService.all()
 		// myService.countAll()
 
     }
