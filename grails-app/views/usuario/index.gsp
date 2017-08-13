@@ -47,7 +47,7 @@
 							</td>    
 							
 						   <td class="product-name">
-								${usuario.state}
+								<usuario:state value="${usuario.state}"/>
 							</td>
 							
 							<td class="product-add-to-cart">

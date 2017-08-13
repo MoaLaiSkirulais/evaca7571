@@ -30,14 +30,7 @@
 				<g:link action="create" class="btn btn-default">visitante.nuevo usuario</g:link>
 				<g:actionSubmit action="postular" class="btn btn-default" value="visitante.postular"/>
 
-				<br><br>
-
-				<g:link action="index" class="btn btn-default">admin.buscar</g:link>
-				<g:actionSubmit action="aprobar" class="btn btn-default" value="admin.aprobar"/>
-				<g:actionSubmit action="desaprobar" class="btn btn-default" value="admin.desaprobar"/>
-
-			</div>
-			
+			</div>			
 			
 		</form>
 	

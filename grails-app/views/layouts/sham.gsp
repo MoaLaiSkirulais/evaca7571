@@ -16,6 +16,8 @@
 		<!-- All theme style -->
 		<link rel="stylesheet" href="${resource(dir: 'sham/css', file: 'min.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'sham/css', file: 'myMin.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'sham/css', file: 'usuario.css')}" type="text/css">
+
         <g:layoutHead />
     </head>
     

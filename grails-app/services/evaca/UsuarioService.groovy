@@ -6,12 +6,20 @@ class UsuarioService {
 	
 	def mySessionService
 	
+	/* getConsignatarios */
+	def getProfiles() {
+
+		// def consignatarios = Usuario.createCriteria().list () {
+			// eq("profile", UsuarioProfile.CONSIGNATARIO)
+		// }
+		println "---" + UsuarioProfile.values()
+		return UsuarioProfile.values()
+	}
+
+	
 	/* create */
 	def create() {
-		[
-			usuario: new Usuario(), 
-			profiles: UsuarioProfile.values()
-		]
+		return new Usuario()
 	}
 	
 
@@ -21,10 +29,10 @@ class UsuarioService {
 		if (!usuario){
 			throw new UsuarioNotFoundException()
 		}
-		[usuario: usuario]
+		return usuario
 	}
-	
-	
+
+
 	/* aprobar */
 	def aprobar(Long id) {	
 	
@@ -55,7 +63,7 @@ class UsuarioService {
 	def postular(Usuario usuario) {	
 
 		usuario.changeState(UsuarioState.POSTULADO, mySessionService.usuario)
-		usuario.save(flush:true, failOnError: true)
+		usuario.save(flush:true, failOnError: false)
 
 		if (usuario.hasErrors()) {
 			throw new UsuarioException();

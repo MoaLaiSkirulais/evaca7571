@@ -13,10 +13,21 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	
 
 	/* edit */
-	def edit() {
-		def model = usuarioService.edit(params.id)
-		respond view:'create', model		
-    }
+	def edit() {		
+		respond ( 
+			view:'create', 
+			getViewModel(usuarioService.edit(params.id))
+		)		
+    } 
+	
+	
+	/* admin */
+	def admin() {		
+		respond ( 
+			view:'admin', 
+			getViewModel(usuarioService.edit(params.id))
+		)		
+    } 
 	
 
 	/* login */
@@ -63,11 +74,14 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	/* postular (visitante) */
 	def postular(Usuario usuario) {
 		try {
+
 			usuarioService.postular(usuario)
-			flash.message = "Cambios aplicados con exito"
+			flash.message = "La cuenta fue creada. Ahora deberá ser activada para poder utilizarla."
 			flash.type = "ok"
-			redirect action:"edit", id:usuario.id
+			redirect controller:"message", action:"show"
+
 		} catch (UsuarioException error){
+
 			flash.message = error.message
 			render(view: 'create', model: [usuario:usuario])
 		}
@@ -90,6 +104,15 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 		redirect action:"edit", id:params.int('id')
 		
 	}   
+	
+	
+	/* getViewModel */ /* closure? trait? service? */
+	def getViewModel(Usuario usuario){
+		[
+			usuario: usuario, 
+			profiles: usuarioService.getProfiles()
+		]
+	}
 
 
 	// /* save */
