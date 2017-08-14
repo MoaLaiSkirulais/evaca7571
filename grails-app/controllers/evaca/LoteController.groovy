@@ -18,7 +18,15 @@ class LoteController extends BaseController implements LoteExceptionHandler{
 
 	/* index */
 	def index() {	
-		render(view: 'index', model:loteService.search())
+	
+		// render params
+		// render params?.usuario?.id
+		// return 
+		
+		render(
+			view: 'index', 
+			model:loteService.search(params)
+		)
     }
 
 

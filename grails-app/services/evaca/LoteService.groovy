@@ -54,11 +54,18 @@ class LoteService {
 
 	/* search */
 	@Transactional(readOnly = true)
-	def search() {
+	def search(params) {
 	
+			
 		// def avisos = Aviso.createCriteria().list (params) {
 		def lotes = Lote.createCriteria().list(){
-			usuario{eq("id", mySessionService?.usuario?.id?.toLong())}
+				
+			if (params?.usuario?.id) {
+				// println "hehe"
+				usuario { eq("id", params.usuario.id.toLong())}
+			}
+		
+			// usuario{eq("id", mySessionService?.usuario?.id?.toLong())}
 			// consignatario{eq("id", params.consignatario.id.toLong())}
 			
 		}

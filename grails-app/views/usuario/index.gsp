@@ -51,7 +51,7 @@
 							</td>
 							
 							<td class="product-add-to-cart">
-								<g:link action="edit" id="${usuario.id}" class="btn btn-default">Modificar</g:link>
+								<g:link action="admin" id="${usuario.id}" class="btn btn-default">Modificar</g:link>
 							</td>
 						</tr><!-- <tr><td colspan="6"></td></tr> -->
 					</g:each>
