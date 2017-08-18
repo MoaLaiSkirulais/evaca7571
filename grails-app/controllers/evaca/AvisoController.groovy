@@ -4,22 +4,22 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	
 	def avisoService
 
+	
+	/* admin */
+	def admin() {		
+		respond (view:'admin', getViewModel(avisoService.edit(params.id)))		
+    } 
+
 
 	/* create */
 	def create() {	
-		render(
-			view: 'create', 
-			model: getViewModel(avisoService.create())			
-		)
+		render (view: 'create', model: getViewModel(avisoService.create()))
     }
 
 	
 	/* edit */
 	def edit() {
-		respond(
-			view:'create', 
-			getViewModel(avisoService.edit(params.id))
-		)
+		respond (view:'create', getViewModel(avisoService.edit(params.id)))
     }
 
 
@@ -102,7 +102,6 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	}   
 
 
-	
 	/* show */
 	def show() {
  

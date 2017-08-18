@@ -3,6 +3,14 @@ package evaca
 class LoteController extends BaseController implements LoteExceptionHandler{
 	
 	def loteService
+	def uploadRestaurantFeaturedImageService
+
+
+	/* admin */
+	def admin() {		
+		respond (view:'admin', getViewModel(loteService.edit(params.id)))		
+    } 
+	
 
 	/* create */
 	def create() {		    
@@ -55,10 +63,11 @@ class LoteController extends BaseController implements LoteExceptionHandler{
 
 		[
 			lote: lote, 
-			categorias: Categoria.list(),
-			razas: Raza.list()
+			categorias: Categoria.list().sort{it.nombre},
+			razas: Raza.list().sort{it.nombre}
 		]
 	}
+ 
 
 
 }

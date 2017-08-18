@@ -46,6 +46,33 @@ class UsuarioService {
 	}	
 
 	
+	/* avatar */
+	// def avatar(Usuario usuario) {	
+	def avatar(AvatarImageCommand cmd) {	
+	
+		def usuario = new Usuario().get(1)
+		if (!usuario){
+			throw new UsuarioNotFoundException();
+		}
+ 	
+		// byte[] bytes = cmd.featuredImageFile.bytes
+		// String contentType = cmd.featuredImageFile.contentType
+		
+		// byte[] bytes = cmd.featuredImageFile.bytes
+		// String contentType = cmd.featuredImageFile.contentType
+
+		// println (cmd.avatarImageFile)
+		println (cmd.avatarImageFile.bytes)
+		// println (usuario.avatarImageBytes)
+		// println (usuario.avatarImageContentType )
+		
+		usuario.avatarImageBytes = cmd.avatarImageFile.bytes
+ 
+		println ("avatar()")		
+		usuario.save(flush:true, failOnError: false)
+	}	
+
+	
 	/* desaprobar */
 	def desaprobar(Long id) {	
 	
@@ -69,8 +96,8 @@ class UsuarioService {
 			throw new UsuarioException();
 		}
 	}	
-
 	
+
 	/* save */
 	def save(Usuario usuario) {
 

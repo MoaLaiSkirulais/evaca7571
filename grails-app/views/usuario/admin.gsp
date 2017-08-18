@@ -1,7 +1,7 @@
-<g:applyLayout name="crudContainerTwoCols">
+<g:applyLayout name="usuario">
 
     <content tag="left1">
-		<h2>usuario</h2>
+
 		<evaca:cruderror modelo="${usuario}"/>
 
 		<form method="post">

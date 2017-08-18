@@ -5,21 +5,21 @@ class ResenaController {
 	def resenaService
 	
 	
+	/* admin */
+	def admin() {
+		render (view: 'admin', model: getViewModel(resenaService.edit(params.id)))
+    }
+
+	
 	/* create */
 	def create() {
-		render(
-			view: 'create', 
-			model: getViewModel(resenaService.create())			
-		)
+		render (view: 'create', model: getViewModel(resenaService.create()))
     }
 
 
 	/* edit */
 	def edit() {
-		respond(
-			view:'create', 
-			getViewModel(resenaService.edit(params.id))
-		)
+		respond (view:'create', getViewModel(resenaService.edit(params.id)))
     }
 
 	
@@ -29,7 +29,7 @@ class ResenaController {
 		def resenas = Resena.list()
 
 		render(view: 'index', 
-			model: [
+		model: [
 				resenas:resenas
 			]
 		)

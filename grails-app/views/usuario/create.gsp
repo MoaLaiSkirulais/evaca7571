@@ -39,6 +39,9 @@
     <content tag="left2">
 		<h2>Avatar</h2>
 		<img src="${usuario.avatar}"/>
+		
+
+
 	</content>
 
 </g:applyLayout>

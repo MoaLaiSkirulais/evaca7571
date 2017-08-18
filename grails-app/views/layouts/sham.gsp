@@ -27,7 +27,7 @@
 			<nav class="sub-navbar">
 				<ul class="pull-right list-inline">
 					<li><evaca:showSession/></li>
-					<li><a href="">Mi cuenta</a></li>
+					<li><a href="/usuario/showProfile">Mi cuenta</a></li>
 					<!-- <li><a href="wishlist.html">My Wishlist</a></li> -->
 				</ul>
 				<div class="clearfix"></div>

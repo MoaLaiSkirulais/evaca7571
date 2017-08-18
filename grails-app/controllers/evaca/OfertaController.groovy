@@ -5,30 +5,27 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
 	def ofertaService
 
 	
+	/* admin */
+	def admin() {
+		render (view: 'admin', model: getViewModel(ofertaService.edit(params.id)))
+    }
+
+
 	/* create */
 	def create() {
-		render(
-			view: 'create', 
-			model: getViewModel(ofertaService.create())			
-		)
+		render (view: 'create', model: getViewModel(ofertaService.create()))
     }
 
 
 	/* edit */
 	def edit() {
-		respond(
-			view:'create', 
-			getViewModel(ofertaService.edit(params.id))
-		)
+		respond (view:'create', getViewModel(ofertaService.edit(params.id)))
     }
 
 
 	/* index */
 	def index() {
-		render(
-			view: 'index', 
-			model: [ofertas:ofertaService.search()]
-		)
+		render(view: 'index', model: [ofertas:ofertaService.search()])
     }
 
 
@@ -42,10 +39,7 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
 		} catch (OfertaException e){
 
 			flash.message = e.message
-			render(
-				view: 'create', 
-				model:getViewModel(oferta)
-			)
+			render (view: 'create', model:getViewModel(oferta))
 			return
 		}
 

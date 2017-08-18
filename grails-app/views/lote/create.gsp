@@ -56,6 +56,16 @@
 	
     <content tag="left2">
 		<img src="${lote.imagen}">
+		
+		<g:uploadForm name="uploadFeaturedImage" action="uploadFeaturedImage">
+			<g:hiddenField name="id" value="${this.restaurant?.id}" />
+			<g:hiddenField name="version" value="${this.restaurant?.version}" />
+			<input type="file" name="featuredImageFile" />
+			<fieldset class="buttons">
+				<input class="save" type="submit" value="${message(code: 'restaurant.featuredImage.upload.label', default: 'Upload')}" />
+			</fieldset>
+		</g:uploadForm>
+
 	</content>
 	
 	</div>

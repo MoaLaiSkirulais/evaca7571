@@ -12,10 +12,10 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
     }
 	
 
-	/* edit */
-	def edit() {		
+	/* editProfile */
+	def editProfile() {
 		respond ( 
-			view:'create', 
+			view:'editProfile', 
 			getViewModel(usuarioService.edit(params.id))
 		)		
     } 
@@ -26,6 +26,26 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 		respond ( 
 			view:'admin', 
 			getViewModel(usuarioService.edit(params.id))
+		)		
+    } 
+	
+ 
+	/* showProfile */
+	def showProfile() {
+	
+		def usuarioId
+		
+		if (params.id){
+			usuarioId = params.id
+		}
+		
+		if (!params.id){
+			usuarioId = mySessionService.usuario.id
+		}
+	
+		respond ( 
+			view:'showProfile', 
+			getViewModel(usuarioService.edit(usuarioId))
 		)		
     } 
 	
@@ -113,6 +133,51 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 			profiles: usuarioService.getProfiles()
 		]
 	}
+	
+		
+	/* setAvatar */ 
+	def setAvatar(AvatarImageCommand cmd) {	
+        usuarioService.avatar(cmd)
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:params.int('id')
+    }
+
+	
+	/* editPassword */ 
+	def editPassword() {	        
+		respond ( 
+			view:'editPassword',
+			getViewModel(usuarioService.edit(params.id))
+		)
+    }
+
+	
+	/* setPassword */ 
+	def setPassword(SetPasswordCommand cmd) {	
+        usuarioService.setPassword(cmd)
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:params.int('id')
+    }
+
+	
+	/* editAvatar */
+	def editAvatar() {
+		respond ( 
+			view:'editAvatar',
+			getViewModel(usuarioService.edit(params.id))
+		)
+    }
+
+
+	/* getAvatarImage */
+	def getAvatarImage(Usuario usuario) {
+        if (usuario == null || usuario.avatarImageBytes == null) {            
+            return
+        }
+        render file: usuario.avatarImageBytes, contentType: usuario.avatarImageContentType
+    }
 
 
 	// /* save */

@@ -5,3 +5,9 @@
 .usuario-other {
     color:red !important;
 }
+
+.usuario-perfil {
+	color: #E74C3C;
+	font-weight: bold;
+	font-size: 16px;
+}
