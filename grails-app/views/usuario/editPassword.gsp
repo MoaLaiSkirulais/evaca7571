@@ -1,20 +1,22 @@
-<g:applyLayout name="usuario">
+<g:applyLayout name="layoutUserLogged">
 
     <content tag="left1">
-		<h2>cambiar contraseña</h2>
+
+		<h3 class="widget-title">cambiar contraseña</h3>
 
 		<form method="post">
 			<table class="table table-condensed" cellspacing="0">
 				<tbody>
+					<myform:field name="usuarioId" label="usuarioId" value="1"/>
 					<myform:field name="currentPassword" label="Actual"/>
-					<myform:field name="newPassword" label="Password"/>
-					<myform:field name="newRePassword" label="Repassword" value=""/>
+					<myform:field name="password" label="Password"/>
+					<myform:field name="rePassword" label="Repassword" value=""/>
 					
 				</tbody>
 			</table>
 			
 			<div class="buttons">
-				<g:actionSubmit action="setPassword" class="btn btn-default" value="Cambiar"/>
+				<g:actionSubmit action="savePassword" class="btn btn-default" value="Cambiar"/>
 			</div>
 			
 		</form>

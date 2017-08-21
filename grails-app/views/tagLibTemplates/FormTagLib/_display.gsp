@@ -1,7 +1,9 @@
-<tr class="description">
-	<th>${attrs.label}</th>	
+<tr >
+	<th>
+		${attrs.label}
+	</th>	
 	<td class="text-right">
-		<span class="amount">
+		<span >
 			${attrs.value}
 		</span>
 	</td>

@@ -2,6 +2,7 @@ package evaca
 
 class AvisoController extends BaseController implements AvisoExceptionHandler{
 	
+	def usuarioService
 	def avisoService
 
 	
@@ -23,11 +24,13 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 
 
-	/* index */
-	def index() {
+	/* search */
+	def search() {
 	
-		render(view: 'index', 
+		render(
+			view: 'search', 
 			model: [
+				usuario: usuarioService.edit(1), 
 				avisos: avisoService.search(params), 
 				lote:[
 					consignatarios: Usuario.list().sort{it.nombre}, 

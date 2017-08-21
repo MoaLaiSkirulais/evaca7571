@@ -3,7 +3,9 @@ package evaca
 class PlazoController extends BaseController implements PlazoExceptionHandler {
 	
 	def plazoService
-
+	def usuarioService
+	
+ 
 	/* create */
 	def create() {
 		plazoService.create()
@@ -17,9 +19,15 @@ class PlazoController extends BaseController implements PlazoExceptionHandler {
     }
 	
 
-	/* index */
-	def index() {	
-		render(view: 'index', model:plazoService.search())
+	/* search */
+	def search() {	
+		render(
+			view: 'search', 
+			model: [
+				usuario: usuarioService.edit(1), 
+				plazos: plazoService.search()
+			]
+		)
     }
 		
 

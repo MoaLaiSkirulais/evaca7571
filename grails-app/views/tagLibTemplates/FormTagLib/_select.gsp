@@ -1,5 +1,8 @@
-<tr class="description">
-	<th>${attrs.label}</th>	
+<!-- <tr class="description"> -->
+<tr>
+	<th>
+		${attrs.label}
+	</th>	
 	<td class="text-right">
 		<span class="amount">
 			<g:select style="${attrs.style}"

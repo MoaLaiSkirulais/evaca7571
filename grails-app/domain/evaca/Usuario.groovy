@@ -28,7 +28,7 @@ class Usuario {
 	
 		fechaCreacion blank: false, nullable: false
 		email nullable: false, email: true, unique: true
-		password nullable: true, blank: true
+		password size: 6..15, nullable: true, blank: true
 		state nullable: false
 		profile nullable: false
 		username size: 6..15, blank: false, unique: true

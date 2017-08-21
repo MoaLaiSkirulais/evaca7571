@@ -4,8 +4,8 @@ import grails.validation.Validateable
 import org.springframework.web.multipart.MultipartFile
 
 
-/* AvatarImageCommand */
-class AvatarImageCommand implements Validateable {
+/* SaveAvatarCommand */
+class SaveAvatarCommand implements Validateable {
     
 	MultipartFile avatarImageFile
 

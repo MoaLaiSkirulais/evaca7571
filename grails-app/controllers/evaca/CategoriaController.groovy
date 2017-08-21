@@ -3,6 +3,7 @@ package evaca
 class CategoriaController extends BaseController implements CategoriaExceptionHandler {
 	
 	def categoriaService
+	def usuarioService
 
 	/* create */
 	def create() {
@@ -17,9 +18,15 @@ class CategoriaController extends BaseController implements CategoriaExceptionHa
     }
 	
 
-	/* index */
-	def index() {	
-		render(view: 'index', model:categoriaService.search())
+	/* search */
+	def search() {	
+		render(
+			view: 'search', 
+			model: [
+				usuario: usuarioService.edit(1), 
+				categorias: categoriaService.search()
+			]
+		)
     }
 		
 

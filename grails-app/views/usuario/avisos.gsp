@@ -1,4 +1,4 @@
-<g:applyLayout name="searchContainerCriteria">
+<g:applyLayout name="usuario">
 					
     <content tag="criteria">
 		<h2>Avisos</h2>

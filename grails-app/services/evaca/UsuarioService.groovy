@@ -46,29 +46,15 @@ class UsuarioService {
 	}	
 
 	
-	/* avatar */
-	// def avatar(Usuario usuario) {	
-	def avatar(AvatarImageCommand cmd) {	
+	/* saveAvatar */
+	def saveAvatar(SaveAvatarCommand cmd) {	
 	
 		def usuario = new Usuario().get(1)
 		if (!usuario){
 			throw new UsuarioNotFoundException();
 		}
  	
-		// byte[] bytes = cmd.featuredImageFile.bytes
-		// String contentType = cmd.featuredImageFile.contentType
-		
-		// byte[] bytes = cmd.featuredImageFile.bytes
-		// String contentType = cmd.featuredImageFile.contentType
-
-		// println (cmd.avatarImageFile)
-		println (cmd.avatarImageFile.bytes)
-		// println (usuario.avatarImageBytes)
-		// println (usuario.avatarImageContentType )
-		
-		usuario.avatarImageBytes = cmd.avatarImageFile.bytes
- 
-		println ("avatar()")		
+		usuario.avatarImageBytes = cmd.avatarImageFile.bytes 
 		usuario.save(flush:true, failOnError: false)
 	}	
 
@@ -101,6 +87,46 @@ class UsuarioService {
 	/* save */
 	def save(Usuario usuario) {
 
+		usuario.save(flush:true, failOnError: false)
+		if (usuario.hasErrors()) {
+			UsuarioException error = new UsuarioException(message:"mal!")
+			error.model = [usuario: usuario]
+			throw error;
+		}
+		return usuario
+	}
+	
+	
+	/* savePassword */
+	def savePassword(SavePasswordCommand command) {
+
+		Usuario usuario = Usuario.get(command.usuarioId)
+		if (!usuario){
+			render status: HttpStatus.NOT_FOUND
+			return
+		}
+
+		usuario.properties = command.properties
+		usuario.save(flush:true, failOnError: false)
+		if (usuario.hasErrors()) {
+			UsuarioException error = new UsuarioException(message:"mal!")
+			error.model = [usuario: usuario]
+			throw error;
+		}
+		return usuario
+	}
+
+
+	/* saveProfile */
+	def saveProfile(SaveProfileCommand command) {
+
+		Usuario usuario = Usuario.get(command.usuarioId)
+		if (!usuario){
+			render status: HttpStatus.NOT_FOUND
+			return
+		}
+
+		usuario.properties = command.properties
 		usuario.save(flush:true, failOnError: false)
 		if (usuario.hasErrors()) {
 			UsuarioException error = new UsuarioException(message:"mal!")

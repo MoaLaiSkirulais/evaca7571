@@ -1,11 +1,7 @@
-<html>
+<g:applyLayout name="layoutUserLogged">
 	
-    <head>
-        <meta name="layout" content="sham" />
-    </head>
-
-       <body>
-		<evaca:breadcrums/>
+	 <content tag="left1">	
+		
 
 		<div class="page-wrapper">			
 			<div class="container">
@@ -21,6 +17,7 @@
 				</div>				
 			</div>
 		</div>
-	</body>
+		
+	</content>
 
-</html>
+</g:applyLayout>

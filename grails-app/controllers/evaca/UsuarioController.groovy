@@ -4,6 +4,8 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	
 	def mySessionService
 	def usuarioService
+	def avisoService
+	def loteService
 
 
 	/* create */
@@ -135,12 +137,12 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	}
 	
 		
-	/* setAvatar */ 
-	def setAvatar(AvatarImageCommand cmd) {	
-        usuarioService.avatar(cmd)
+	/* saveAvatar */ 
+	def saveAvatar(SaveAvatarCommand cmd) {	
+        usuarioService.saveAvatar(cmd)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"edit", id:params.int('id')
+		redirect action:"showProfile", id:params.int('id')
     }
 
 	
@@ -153,12 +155,21 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
     }
 
 	
-	/* setPassword */ 
-	def setPassword(SetPasswordCommand cmd) {	
-        usuarioService.setPassword(cmd)
+	/* savePassword */ 
+	def savePassword(SavePasswordCommand command) {	
+        usuarioService.savePassword(command)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"edit", id:params.int('id')
+		redirect action:"showProfile", id:params.int('id')
+    }
+
+	
+	/* saveProfile */ 
+	def saveProfile(SaveProfileCommand command) {	
+        usuarioService.saveProfile(command)
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"showProfile", id:params.int('id')
     }
 
 	
@@ -189,6 +200,24 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 		// redirect action:"edit", id:usuario.id
 
     // }
+	
+	/* index */
+	def avisos() {
+	
+		render(view: 'avisos', 
+			model: [
+				usuario: getViewModel(usuarioService.edit(1)), 
+				avisos: Aviso.list(), 
+				lote:[
+					consignatarios: Usuario.list().sort{it.nombre}, 
+					categorias: Categoria.list().sort{it.nombre}, 
+					vendedores: Usuario.list().sort{it.nombre}, 
+					razas: Raza.list().sort{it.nombre}
+				]
+			]
+		)
 
+    }
+	
 	
 }

@@ -1,21 +1,21 @@
-<g:applyLayout name="usuario">
+<g:applyLayout name="layoutUserLogged">
 
     <content tag="left1">
-		<h2>Perfil</h2>
+		
+		<h3 class="widget-title">Modificar Perfil</h3>
 
 		<form method="post">
 			<table class="table table-condensed" cellspacing="0">
 				<tbody>
+					<myform:field name="usuarioId" label="usuarioId" value="1"/>
 					<myform:field name="nombre" label="Nombre" value="${usuario.nombre}"/>
 					<myform:field name="apellido" label="Apellido" value="${usuario.apellido}"/>
-					<myform:select name="profile" label="Perfil" from="${profiles}" value="${usuario.profile}"/>
-					<myform:field name="comision" label="Comisión" value="${usuario.comision}"/>
-					
+					<myform:field name="comision" label="Comisión" value="${usuario.comision}"/>					
 				</tbody>
 			</table>
 			
 			<div class="buttons">
-				<g:actionSubmit action="postular" class="btn btn-default" value="guardar"/>
+				<g:actionSubmit action="saveProfile" class="btn btn-default" value="guardar"/>
 			</div>			
 			
 		</form>

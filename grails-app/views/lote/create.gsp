@@ -1,8 +1,8 @@
-<g:applyLayout name="crudContainerTwoCols">
+<g:applyLayout name="layoutUserLogged">
 
-    <content tag="left1">
-	
-		<h2>Lote</h2>
+    <content tag="left1">	
+		<h3 class="widget-title">Lote</h3>	
+		
 		<evaca:cruderror modelo="${lote}"/>
 		
 		<form method="post">
@@ -10,7 +10,7 @@
 				<tbody>
 					<myform:display name="id" label="#id" value="${lote.id}"/>
 					<myform:display name="usuario" label="Usuario" value="${lote.usuario}"/>
-					<myform:display name="fechaCreacion" label="Fecha creacion" value="${lote.fechaCreacion}"/>
+					<myform:display name="fechaCreacion" label="Creacion" value="${lote.fechaCreacion}"/>
 					
 					<myform:select 
 						label="Categoria" 	

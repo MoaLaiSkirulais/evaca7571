@@ -4,6 +4,7 @@ class LoteController extends BaseController implements LoteExceptionHandler{
 	
 	def loteService
 	def uploadRestaurantFeaturedImageService
+	def usuarioService
 
 
 	/* admin */
@@ -24,16 +25,15 @@ class LoteController extends BaseController implements LoteExceptionHandler{
     }
 
 
-	/* index */
-	def index() {	
-	
-		// render params
-		// render params?.usuario?.id
-		// return 
-		
+	/* search */
+	def search() {	
+
 		render(
-			view: 'index', 
-			model:loteService.search(params)
+			view: 'search', 
+			model: [
+				usuario: usuarioService.edit(1), 
+				lotes : loteService.search(params)			
+			]	
 		)
     }
 
@@ -62,6 +62,7 @@ class LoteController extends BaseController implements LoteExceptionHandler{
 	def getViewModel(Lote lote){
 
 		[
+			usuario: usuarioService.edit(1), 
 			lote: lote, 
 			categorias: Categoria.list().sort{it.nombre},
 			razas: Raza.list().sort{it.nombre}

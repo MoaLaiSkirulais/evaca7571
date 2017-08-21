@@ -56,8 +56,6 @@ class LoteService {
 	@Transactional(readOnly = true)
 	def search(params) {
 	
-			
-		// def avisos = Aviso.createCriteria().list (params) {
 		def lotes = Lote.createCriteria().list(){
 				
 			if (params?.usuario?.id) {
@@ -70,7 +68,7 @@ class LoteService {
 			
 		}
 		
-		return [lotes:lotes]
+		return lotes
 
 	}
 

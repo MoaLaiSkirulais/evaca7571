@@ -1,24 +1,19 @@
-<g:applyLayout name="searchContainer">
+<g:applyLayout name="layoutUserLogged">
 	
-	<h2>Lotes</h2>
-	
-	<div class="alert alert-success active">
-		${flash.message}
-	</div>
-
-	<div class="col-sm-12">						
-	
+	 <content tag="left1">	
+		<h3 class="widget-title">Lotes</h3>							
+		
 		<div class="table-responsive">
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
 					<tr>
-						<th class="product-name">fechaCreacion</th>
-						<th class="product-name">usuario</th>
-						<th class="product-name">raza</th>
-						<th class="product-name">categoria</th>
-						<th class="product-name">cantidad</th>
-						<th class="product-name">ubicacion</th>
-						<th class="product-name">pesoPromedio</th>
+						<th>fechaCreacion</th>
+						<th>propietario</th>
+						<th>raza</th>
+						<th>categoria</th>
+						<th>cantidad</th>
+						<th>ubicacion</th>
+						<th>pesoPromedio</th>
 					</tr>
 				</thead>
 				
@@ -27,33 +22,29 @@
 					<g:each in="${lotes}" var="lote" status="i">
 						<tr class="item">
 							
-							<td class="product-name">
+							<td>
 								${lote.fechaCreacion}
 							</td>
 
-							<td class="product-name">
+							<td>
 								${lote.usuario}
 							</td>
 							
-							<td class="product-name">
+							<td>
 								${lote.raza}
 							</td>
 							
-							<td class="product-name">
+							<td>
 								${lote.categoria}
 							</td>
 							
-							<td class="product-name">
+							<td>
 								${lote.cantidad}
 							</td>
 							
-							<td class="product-name">
+							<td>
 								${lote.ubicacion}
 							</td>    
-							
-							<td class="product-name">
-								${lote.pesoPromedio}
-							</td>
 							
 							<td class="product-add-to-cart">
 								<g:link action="edit" id="${lote.id}" class="btn btn-default">Modificar</g:link>
@@ -64,4 +55,5 @@
 			</table>
 			<g:link action="create" class="btn btn-default">Nuevo</g:link>
 		</div><!-- /.table-responsive -->
+	</content>
 </g:applyLayout>

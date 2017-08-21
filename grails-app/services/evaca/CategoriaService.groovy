@@ -4,6 +4,7 @@ class CategoriaService {
 	
 	def mySessionService
 	
+	
 	/* create */
 	def create() {
 		new Categoria(usuario:mySessionService.usuario)
@@ -48,7 +49,7 @@ class CategoriaService {
 	def search() {
 	
 		def categorias = Categoria.list()
-		return  [categorias:categorias]
+		return  categorias
 
 	}		
 	

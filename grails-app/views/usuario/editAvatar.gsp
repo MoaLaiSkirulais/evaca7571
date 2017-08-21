@@ -1,13 +1,13 @@
-<g:applyLayout name="usuario">
+<g:applyLayout name="layoutUserLogged">
 
     <content tag="left1">
-		<h2>cambiar avatar</h2>
-		<evaca:cruderror modelo="${usuario}"/>
 
-		<g:uploadForm name="uploadFeaturedImage" action="setAvatar">
+		<h3 class="widget-title">cambiar avatar</h3>
+
+		<g:uploadForm name="uploadFeaturedImage" action="saveAvatar">
 			<table class="table table-condensed" cellspacing="0">
 				<tbody>
-					<img src="<g:createLink controller='usuario' action='getAvatarImage' id='1'/>" width="400"/>
+					<img src="<g:createLink controller='usuario' action='getAvatarImage' id='1'/>"/>
 					<g:hiddenField name="id" value="${usuario.id}" />
 					<input type="file" name="avatarImageFile" />					
 				</tbody>
