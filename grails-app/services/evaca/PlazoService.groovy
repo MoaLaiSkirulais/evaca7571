@@ -26,7 +26,7 @@ class PlazoService {
 		if (!plazo){
 			throw new PlazoNotFoundException()
 		}
-		[plazo: plazo]
+		plazo
 	}
 	
 	

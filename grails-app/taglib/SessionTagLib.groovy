@@ -16,7 +16,7 @@ class SessionTagLib {
 		if (mySessionService.isLogged()) {			
 			out << render(template:"/tagLibTemplates/SessionTagLib", model:[mySessionService:mySessionService])
 		} else {
-			out << "<a href=\"/usuario/login\">login</a>"
+			out << "<a href=\"/usuario/newlogin\">login</a>"
 		}
 	}
 

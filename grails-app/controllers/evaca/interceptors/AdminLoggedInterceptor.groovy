@@ -9,12 +9,16 @@ class AdminLoggedInterceptor {
 	public AdminLoggedInterceptor() {
         match(
 			controller: ~/(categoria|plazo|raza|pregunta)/, 
-			action: ~/(|index|edit|create|save)/
+			action: ~/(|search|edit|create|save)/
 		)
 		
 		match(controller: ~/(aviso|oferta)/, 
 			action: ~/(desaprobar|aprobar)/
 		)		
+		
+		match(controller: ~/(usuario)/, 
+			action: ~/(desaprobar|aprobar|admin)/
+		)				
     }
    
 

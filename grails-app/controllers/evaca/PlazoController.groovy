@@ -14,8 +14,14 @@ class PlazoController extends BaseController implements PlazoExceptionHandler {
 	
 	/* edit */
 	def edit() {	
-		def model = plazoService.edit(params.id)
-		respond view:'create', model
+		def model = 
+		render (
+			view: 'create', 
+			model:[ 
+				usuario: usuarioService.edit(1), 
+				plazo: plazoService.edit(params.id)
+			]
+		)
     }
 	
 

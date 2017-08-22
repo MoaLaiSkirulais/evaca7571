@@ -1,7 +1,8 @@
-<g:applyLayout name="usuario">
+<g:applyLayout name="layoutUserLogged">
 
     <content tag="left1">
 
+		<h3 class="widget-title">Administrar</h3>
 		<evaca:cruderror modelo="${usuario}"/>
 
 		<form method="post">

@@ -15,7 +15,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	
 
 	/* editProfile */
-	def editProfile() {
+	def edit_profile() {
 		respond ( 
 			view:'editProfile', 
 			getViewModel(usuarioService.edit(params.id))
@@ -33,7 +33,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	
  
 	/* showProfile */
-	def showProfile() {
+	def show_profile() {
 	
 		def usuarioId
 		
@@ -138,7 +138,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	
 		
 	/* saveAvatar */ 
-	def saveAvatar(SaveAvatarCommand cmd) {	
+	def save_avatar(SaveAvatarCommand cmd) {	
         usuarioService.saveAvatar(cmd)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
@@ -147,7 +147,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 
 	
 	/* editPassword */ 
-	def editPassword() {	        
+	def edit_password() {	        
 		respond ( 
 			view:'editPassword',
 			getViewModel(usuarioService.edit(params.id))
@@ -156,7 +156,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 
 	
 	/* savePassword */ 
-	def savePassword(SavePasswordCommand command) {	
+	def save_password(SavePasswordCommand command) {	
         usuarioService.savePassword(command)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
@@ -165,7 +165,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 
 	
 	/* saveProfile */ 
-	def saveProfile(SaveProfileCommand command) {	
+	def save_profile(SaveProfileCommand command) {	
         usuarioService.saveProfile(command)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
@@ -174,7 +174,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 
 	
 	/* editAvatar */
-	def editAvatar() {
+	def edit_avatar() {
 		respond ( 
 			view:'editAvatar',
 			getViewModel(usuarioService.edit(params.id))
@@ -183,11 +183,12 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 
 
 	/* getAvatarImage */
-	def getAvatarImage(Usuario usuario) {
+	def get_avatar_image(Usuario usuario) {
         if (usuario == null || usuario.avatarImageBytes == null) {            
             return
         }
-        render file: usuario.avatarImageBytes, contentType: usuario.avatarImageContentType
+        render (file: usuario.avatarImageBytes, contentType: usuario.avatarImageContentType)
+		return
     }
 
 
