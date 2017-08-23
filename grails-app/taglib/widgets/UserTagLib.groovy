@@ -9,7 +9,12 @@ class UserTagLib {
 		
 		// if (mySessionService.isLogged()){ /* esta validacion debe ser redundante */
 			// out << render(template: "/tagLibTemplates/UserTagLib/links", model:[usuario:Usuario.findByNombre("administrador")])
-			out << render(template: "/tagLibTemplates/UserTagLib/links", model:[usuario:usuarioService.edit(1)])
+			out << 
+				render(
+					template: "/tagLibTemplates/UserTagLib/links", 
+					// model:[usuario:usuarioService.edit(1)]
+					model:[usuario:mySessionService.usuario]
+				)
 		// }
 	}
 

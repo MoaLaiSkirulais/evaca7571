@@ -49,7 +49,7 @@ class UsuarioService {
 	/* saveAvatar */
 	def saveAvatar(SaveAvatarCommand cmd) {	
 	
-		def usuario = new Usuario().get(1)
+		def usuario = new Usuario().get(cmd.usuarioId)
 		if (!usuario){
 			throw new UsuarioNotFoundException();
 		}
@@ -73,8 +73,11 @@ class UsuarioService {
 
 	
 	/* postular */
-	def postular(Usuario usuario) {	
+	// def postular(Usuario usuario) {	
+	def postular(PostularCommand cmd) {	
 
+		def usuario = new Usuario()
+		usuario.properties = cmd.properties
 		usuario.changeState(UsuarioState.POSTULADO, mySessionService.usuario)
 		usuario.save(flush:true, failOnError: false)
 

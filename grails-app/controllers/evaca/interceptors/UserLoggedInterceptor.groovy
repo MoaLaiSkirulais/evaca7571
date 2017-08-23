@@ -11,10 +11,10 @@ class UserLoggedInterceptor {
 			controller: ~/(aviso|oferta|lote|resena)/, 
 			action: ~/(|index|edit|create)/
 		)
-		
+
 		match (
 			controller: ~/(usuario)/, 
-			action: ~/(|index|edit|show_profile)/
+			action: ~/(|index|edit|show_profile|edit_avatar|edit_password|edit_profile)/
 		)
 		
 		match (

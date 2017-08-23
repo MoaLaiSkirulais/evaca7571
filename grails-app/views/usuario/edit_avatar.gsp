@@ -4,10 +4,10 @@
 
 		<h3 class="widget-title">cambiar avatar</h3>
 
-		<g:uploadForm name="uploadFeaturedImage" action="saveAvatar">
+		<g:uploadForm name="uploadFeaturedImage" action="save_avatar">
 			<table class="table table-condensed" cellspacing="0">
 				<tbody>
-					<img src="<g:createLink controller='usuario' action='getAvatarImage' id='1'/>"/>
+					<img src="<g:createLink controller='usuario' action='get_avatar_image' id='${usuario.id}'/>"/>
 					<g:hiddenField name="id" value="${usuario.id}" />
 					<input type="file" name="avatarImageFile" />					
 				</tbody>

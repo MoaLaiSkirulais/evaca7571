@@ -12,8 +12,8 @@
 			Apellido: ${usuario.apellido}<br>
 			Perfil: ${usuario.profile}<br>
 			Comisión: ${usuario.comision}<br>
-			
-			<img src="<g:createLink controller='usuario' action='getAvatarImage' id='1'/>"/>
+
+			<img src="<g:createLink controller='usuario' action='get_avatar_image' id='${usuario.id}'/>"/>
 			
 		</div>
 	

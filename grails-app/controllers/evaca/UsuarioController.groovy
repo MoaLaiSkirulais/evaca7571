@@ -1,23 +1,29 @@
 package evaca
 
+// import org.codehaus.groovy.grails.core.io.ResourceLocator
+import org.springframework.core.io.Resource
+
 class UsuarioController extends BaseController implements UsuarioExceptionHandler{ 
 	
 	def mySessionService
 	def usuarioService
 	def avisoService
 	def loteService
-
+	def grailsResourceLocator
 
 	/* create */
 	def create() {
-		usuarioService.create()
+		respond ( 
+			view:'create', 
+			getViewModel(usuarioService.create())
+		)		
     }
 	
 
-	/* editProfile */
+	/* edit_profile */
 	def edit_profile() {
 		respond ( 
-			view:'editProfile', 
+			view:'edit_profile', 
 			getViewModel(usuarioService.edit(params.id))
 		)		
     } 
@@ -32,7 +38,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
     } 
 	
  
-	/* showProfile */
+	/* show_profile */
 	def show_profile() {
 	
 		def usuarioId
@@ -46,7 +52,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 		}
 	
 		respond ( 
-			view:'showProfile', 
+			view:'show_profile', 
 			getViewModel(usuarioService.edit(usuarioId))
 		)		
     } 
@@ -94,10 +100,10 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 
 
 	/* postular (visitante) */
-	def postular(Usuario usuario) {
+	def postular(PostularCommand cmd) {
 		try {
 
-			usuarioService.postular(usuario)
+			usuarioService.postular(cmd)
 			flash.message = "La cuenta fue creada. Ahora deberá ser activada para poder utilizarla."
 			flash.type = "ok"
 			redirect controller:"message", action:"show"
@@ -142,14 +148,14 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
         usuarioService.saveAvatar(cmd)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"showProfile", id:params.int('id')
+		redirect action:"show_profile", id:params.int('id')
     }
 
 	
-	/* editPassword */ 
+	/* edit_password */ 
 	def edit_password() {	        
 		respond ( 
-			view:'editPassword',
+			view:'edit_password',
 			getViewModel(usuarioService.edit(params.id))
 		)
     }
@@ -160,7 +166,7 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
         usuarioService.savePassword(command)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"showProfile", id:params.int('id')
+		redirect action:"show_profile", id:params.int('id')
     }
 
 	
@@ -169,25 +175,34 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
         usuarioService.saveProfile(command)
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"showProfile", id:params.int('id')
+		redirect action:"show_profile", id:params.int('id')
     }
 
 	
-	/* editAvatar */
+	/* edit_avatar */
 	def edit_avatar() {
 		respond ( 
-			view:'editAvatar',
+			view:'edit_avatar',
 			getViewModel(usuarioService.edit(params.id))
 		)
     }
 
 
-	/* getAvatarImage */
-	def get_avatar_image(Usuario usuario) {
-        if (usuario == null || usuario.avatarImageBytes == null) {            
+	/* get_avatar_image */
+	def get_avatar_image(Usuario usuario) { /* levanta el user de db! */
+	
+        if (usuario == null) {            
+			println "no hay user"
+			render "no-image"
             return
         }
-        render (file: usuario.avatarImageBytes, contentType: usuario.avatarImageContentType)
+		
+		// render (file: usuario.avatarImageBytes, contentType: usuario.avatarImageContentType)
+        // render (file: generic, contentType: usuario.avatarImageContentType)
+		// final Resource image = grailsResourceLocator.findResourceForURI('/7.jpg')
+		final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
+        // render (file: image.inputStream, fileName: '7.jpg', contentType: usuario.avatarImageContentType)
+        render (file: image.inputStream, contentType: usuario.avatarImageContentType)
 		return
     }
 

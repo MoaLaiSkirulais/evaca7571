@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile
 /* SaveAvatarCommand */
 class SaveAvatarCommand implements Validateable {
     
+	Integer usuarioId
 	MultipartFile avatarImageFile
 
     static constraints = {
