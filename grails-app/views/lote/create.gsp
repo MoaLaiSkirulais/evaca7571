@@ -9,7 +9,8 @@
 			<table class="table table-condensed" cellspacing="0">
 				<tbody>
 					<myform:display name="id" label="#id" value="${lote.id}"/>
-					<myform:display name="usuario" label="Usuario" value="${lote.usuario}"/>
+					<myform:display name="usuario" label="Propietario" value="${lote.usuario}"/>
+					<g:hiddenField name="usuario.id" value="${lote.usuario.id}"/>
 					<myform:display name="fechaCreacion" label="Creacion" value="${lote.fechaCreacion}"/>
 					
 					<myform:select 
@@ -31,8 +32,7 @@
 					<myform:field name="cantidad" label="Cantidad" value="${lote.cantidad}"/>
 					<myform:field name="pesoMaximo" label="Peso maximo" value="${lote.pesoMaximo}"/>
 					<myform:field name="pesoMinimo" label="Peso minimo" value="${lote.pesoMinimo}"/>
-					<myform:field name="pesoPromedio" label="Peso promedio" value="${lote.pesoPromedio}"/>
-					<myform:field name="imagen" label="Imagen url" value="${lote.imagen}"/>
+					<myform:field name="pesoPromedio" label="Peso promedio" value="${lote.pesoPromedio}"/>					
 
 					<tr class="order-total">
 						<th></th>
@@ -55,15 +55,22 @@
 	</content>
 	
     <content tag="left2">
-		<img src="${lote.imagen}">
-		
-		<g:uploadForm name="uploadFeaturedImage" action="uploadFeaturedImage">
-			<g:hiddenField name="id" value="${this.restaurant?.id}" />
-			<g:hiddenField name="version" value="${this.restaurant?.version}" />
-			<input type="file" name="featuredImageFile" />
-			<fieldset class="buttons">
-				<input class="save" type="submit" value="${message(code: 'restaurant.featuredImage.upload.label', default: 'Upload')}" />
-			</fieldset>
+	
+		<h3 class="widget-title">Imagen</h3>	
+
+		<g:uploadForm name="uploadFeaturedImage" action="save_image">
+			<table class="table table-condensed" cellspacing="0">
+				<tbody>					
+					<img src="<g:createLink controller='lote' action='get_image' id='${lote.id}'/>"/>
+					<g:hiddenField name="loteId" value="${lote.id}" />
+					<input type="file" name="image" />					
+				</tbody>
+			</table>
+
+			<div class="buttons">
+				<input class="btn btn-default" type="submit" value="Upload" />
+			</div>
+			
 		</g:uploadForm>
 
 	</content>

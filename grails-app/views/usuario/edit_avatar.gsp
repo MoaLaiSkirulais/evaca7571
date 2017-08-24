@@ -6,9 +6,9 @@
 
 		<g:uploadForm name="uploadFeaturedImage" action="save_avatar">
 			<table class="table table-condensed" cellspacing="0">
-				<tbody>
+				<tbody>					
 					<img src="<g:createLink controller='usuario' action='get_avatar_image' id='${usuario.id}'/>"/>
-					<g:hiddenField name="id" value="${usuario.id}" />
+					<g:hiddenField name="usuarioId" value="${usuario.id}" />
 					<input type="file" name="avatarImageFile" />					
 				</tbody>
 			</table>

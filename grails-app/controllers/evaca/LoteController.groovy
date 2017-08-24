@@ -1,26 +1,43 @@
 package evaca
 
-class LoteController extends BaseController implements LoteExceptionHandler{
+import org.springframework.core.io.Resource
+
+class LoteController 
+	extends BaseController 
+	implements ImageHandler
+	
+	{
 	
 	def loteService
 	def uploadRestaurantFeaturedImageService
+	def grailsResourceLocator
 
 
 	/* admin */
 	def admin() {		
-		respond (view:'admin', getViewModel(loteService.edit(params.id)))		
+		respond (
+			view:'admin', 
+			getViewModel(loteService.edit(params.id))
+		)
     } 
 	
 
 	/* create */
 	def create() {		    
-		respond view:'create', getViewModel(loteService.create())
+		respond (
+			view:'create', 
+			getViewModel(loteService.create())
+		)
     }
 
 	
 	/* edit */
 	def edit() {	
-		respond view:'create', getViewModel(loteService.edit(params.id))
+		println "edit"
+		respond (
+			view: 'create', 
+			getViewModel(loteService.edit(params.id))
+		)
     }
 
 
@@ -38,10 +55,11 @@ class LoteController extends BaseController implements LoteExceptionHandler{
 
 	/* save */
 	def save(Lote lote) {
+	// def save(SaveCommand cmd) {
 
 		try {
 
-			loteService.save(lote)		
+			loteService.save(lote)
 			flash.message = "Cambios aplicados con exito"
 			flash.type = "ok"
 			redirect action:"edit", id:lote.id
@@ -65,7 +83,30 @@ class LoteController extends BaseController implements LoteExceptionHandler{
 			razas: Raza.list().sort{it.nombre}
 		]
 	}
+	
+	/* get_image */ 
+	def get_image(Lote lote) { 
+	 
+		// @Autowired
+		// def grailsResourceLocator
  
-
-
+        if (lote == null) {
+			render "no-img"
+            return
+        }
+		
+		println "----"
+		println grailsResourceLocator
+		println "----"
+		
+		if (lote.image == null) {
+			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
+			render (file: image.inputStream, contentType: '')
+            return
+        }
+		
+		render (file: lote.image, contentType: '')
+		return
+    }
+	
 }

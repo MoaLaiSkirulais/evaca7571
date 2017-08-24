@@ -28,12 +28,20 @@
 		<div class="widgets">
 			<div class="widget widget-categories">
 
-				<evaca:cruderror modelo="${usuario}"/>
+				<!-- <evaca:cruderror modelo="${usuario}"/> -->
 				<g:pageProperty name="page.left1" />
 
 			</div><!-- /.widget-categories -->
 		</div><!-- /.widgets -->
 		
+	</content>
+	
+	<content tag="left2">
+		<div class="widgets">
+			<div class="widget widget-categories">
+				<g:pageProperty name="page.left2" />
+			</div>
+		</div>
 	</content>
 	
 </g:applyLayout>

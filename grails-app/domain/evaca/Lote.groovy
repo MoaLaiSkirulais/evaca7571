@@ -16,8 +16,8 @@ class Lote {
 	Integer edad
 	Boolean trazada
 	Boolean marcaLiquida
-	String imagen
-	LoteState state
+	LoteState state	
+	byte[] image /* despues podria salir en 1-1 */
 
 	static belongsTo = [
 		raza: Raza, 
@@ -26,6 +26,12 @@ class Lote {
 	]
 
 	static hasMany = [avisos: Aviso]
+	
+	
+	/* mapping */
+    static mapping = {
+		image column: 'image', sqlType: 'longblob' 
+    }
 
 
 	/* constraints */
@@ -40,15 +46,13 @@ class Lote {
 		edad nullable: true		
 		trazada nullable: true
 		marcaLiquida nullable: true
-		imagen nullable: true
-
+		image nullable: true
     }
 
 	
 	/* Lote */
 	public Lote() {
 		this.fechaCreacion = new Date();
-		this.imagen = "static/sham/img/products/v0.gif"
 		this.state = LoteState.DISPONIBLE;
     }
 

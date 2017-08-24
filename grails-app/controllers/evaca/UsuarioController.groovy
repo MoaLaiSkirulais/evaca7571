@@ -103,7 +103,10 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	def postular(PostularCommand cmd) {
 		try {
 
-			usuarioService.postular(cmd)
+			def usuario = new Usuario()
+			usuario.properties = cmd.properties
+			
+			usuarioService.postular(usuario)
 			flash.message = "La cuenta fue creada. Ahora deberá ser activada para poder utilizarla."
 			flash.type = "ok"
 			redirect controller:"message", action:"show"
@@ -190,19 +193,22 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 
 	/* get_avatar_image */
 	def get_avatar_image(Usuario usuario) { /* levanta el user de db! */
-	
-        if (usuario == null) {            
-			println "no hay user"
-			render "no-image"
+
+        if (usuario == null) {
             return
         }
 		
-		// render (file: usuario.avatarImageBytes, contentType: usuario.avatarImageContentType)
-        // render (file: generic, contentType: usuario.avatarImageContentType)
-		// final Resource image = grailsResourceLocator.findResourceForURI('/7.jpg')
-		final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
-        // render (file: image.inputStream, fileName: '7.jpg', contentType: usuario.avatarImageContentType)
-        render (file: image.inputStream, contentType: usuario.avatarImageContentType)
+		println "----"
+		println grailsResourceLocator
+		println "----"
+		
+		if (usuario.avatarImageBytes == null) {            
+			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
+			render (file: image.inputStream, contentType: usuario.avatarImageContentType)
+            return
+        }
+		
+		render (file: usuario.avatarImageBytes, contentType: usuario.avatarImageContentType)
 		return
     }
 

@@ -2,7 +2,7 @@
 	<div class="inner-product">
 		<div class="product-thumbnail">
 			<!-- <img src="${resource(dir: 'sham/img/products', file: 'v4.gif')}" alt="Sham Theme"> -->
-			<img src="${attrs.aviso.lote.imagen}" alt="Sham Theme">
+			
 		</div>
 		<div class="product-details text-center">
 			<div class="product-btns">

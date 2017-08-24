@@ -33,7 +33,12 @@ class PopulateProService {
 		)
 		consignatario.password = ''
 		usuarioService.postular(consignatario)
-		// return
+		
+		// def postular(PostularCommand cmd) {
+		// try {
+
+			// usuarioService.postular(cmd)
+
 		/* productor1 */
 		def productor1 = new Usuario(
 			username: "productor1", 

@@ -34,6 +34,10 @@ class LoteService {
 	
 	/* save */
 	def save(Lote lote) {
+	// def save(SaveCommand cmd) {
+	
+		println mySessionService.usuario
+		println lote.usuario
 
 		/* valida owner */
 		if (mySessionService.usuario != lote.usuario){
@@ -42,13 +46,14 @@ class LoteService {
 		}
 
 		/* save */
+		// lote.properties = cmd.properties
 		lote.usuario = mySessionService.usuario
 		lote.save(flush:true, failOnError: false)
 
 		if (lote.hasErrors()) {
 			throw new LoteException()		
 		}
-		
+
 	}		
 	
 

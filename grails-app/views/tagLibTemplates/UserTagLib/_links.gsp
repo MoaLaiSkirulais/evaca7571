@@ -1,7 +1,8 @@
 <h3 class="widget-title">Usuario</h3>
 <div class="usuario-perfil">
-	${usuario?.email} (#${usuario?.id})<br>
-	${usuario?.username}
+	<!-- ${usuario?.email} (#${usuario?.id})<br> -->
+	${usuario?.email}<br>
+	<!-- ${usuario?.username} -->
 </div>
 <ul>
 	<li></li>

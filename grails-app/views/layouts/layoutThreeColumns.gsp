@@ -17,7 +17,7 @@
 						</div>
 					</div>
 
-					<div class="col-sm-8">
+					<div class="col-sm-5">
 						<g:pageProperty name="page.left1"/>
 					</div>
 
