@@ -80,8 +80,8 @@ class LoteController
 		[
 			lote: lote, 
 			categorias: Categoria.list().sort{it.nombre},
-			razas: Raza.list().sort{it.nombre},
-			aviso: new Aviso().get(3)
+			consignatarios: avisoService.getConsignatarios(), 
+			razas: Raza.list().sort{it.nombre}
 		]
 	}
 

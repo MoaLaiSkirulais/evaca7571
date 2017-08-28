@@ -1,7 +1,9 @@
-<div class="product col-md-3 col-sm-6 col-xs-12" data-product-id="1">
+<div class="product col-md-4 col-sm-6 col-xs-12" data-product-id="1">
 	<div class="inner-product">
 		<div class="product-thumbnail">
+
 			<!-- <img src="${resource(dir: 'sham/img/products', file: 'v4.gif')}" alt="Sham Theme"> -->
+			<img src="<g:createLink controller='lote' action='get_image' id='${attrs.aviso?.lote?.id}'/>"/>
 			
 		</div>
 		<div class="product-details text-center">
@@ -33,7 +35,7 @@
 	<p class="product-price">
 		<ins>
 			<span class="amount">
-				$${attrs.aviso.precio} 
+				$${attrs.aviso.precio}
 			</span>
 		</ins>
 	</p>

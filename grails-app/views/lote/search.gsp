@@ -12,7 +12,7 @@
 						<th>raza</th>
 						<th>categoria</th>
 						<th>cantidad</th>
-						<th>ubicacion</th>
+						<th>aviso</th>
 						<th>foto</th>
 					</tr>
 				</thead>
@@ -43,7 +43,7 @@
 							</td>
 							
 							<td>
-								${lote.ubicacion}
+								${lote.aviso}
 							</td>    
 							
 							<td>

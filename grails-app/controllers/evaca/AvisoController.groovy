@@ -5,7 +5,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	def usuarioService
 	def avisoService
 
-	
+
 	/* admin */
 	def admin() {		
 		respond (view:'admin', getViewModel(avisoService.edit(params.id)))		
@@ -17,7 +17,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		render (view: 'create', model: getViewModel(avisoService.create()))
     }
 
-	
+
 	/* edit */
 	def edit() {
 		respond (view:'create', getViewModel(avisoService.edit(params.id)))
@@ -43,7 +43,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
     }
 
-	
+
 	/* postular */
 	def postular(Aviso aviso) {
 
@@ -77,12 +77,12 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		changeState.call(avisoService.&rechazar)
     }
 
-	
+
 	/* cancelar */
 	def cancelar() {
 		changeState.call(avisoService.&cancelar)
     }
-	
+
 
 	/* changeState */
 	def changeState = { 
@@ -103,7 +103,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		flash.type = "ok"
 		redirect action:"edit", id:params.int('id')
 		
-	}   
+	}
 
 
 	/* show */
@@ -117,8 +117,19 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 			]
 		)
     }
+
 	
-	
+	/* find */
+	def find() {
+ 
+		render(view: 'find', 
+			model: [
+				avisos: Aviso.list()
+			]
+		)
+    }
+
+
 	/* getViewModel */ /* closure? trait? service? */
 	def getViewModel(Aviso aviso){
 		[

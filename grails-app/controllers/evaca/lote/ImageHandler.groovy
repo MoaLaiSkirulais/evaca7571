@@ -26,7 +26,7 @@ trait ImageHandler {
 		println "----"
 		
 		if (lote.image == null) {
-			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
+			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/lotes/anylote.png')
 			render (file: image.inputStream, contentType: '')
             return
         }
