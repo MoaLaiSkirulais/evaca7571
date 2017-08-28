@@ -17,12 +17,8 @@
 						</div>
 					</div>
 
-					<div class="col-sm-5">
+					<div class="col-sm-9">
 						<g:pageProperty name="page.left1"/>
-					</div>
-
-					<div class="col-sm-4">
-						<g:pageProperty name="page.left2"/>
 					</div>
 					
 				</div>

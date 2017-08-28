@@ -19,9 +19,9 @@ class Aviso {
 	static constraints = {
 
 		state nullable: false
-		consignatario nullable: false
+		consignatario nullable: true
 		lote nullable: false
-		precio nullable: false
+		precio nullable: true
 		// lote : { val, obj ->
 			// obj.propietario == val.usuario
 		// }

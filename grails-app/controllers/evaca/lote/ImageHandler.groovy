@@ -1,10 +1,6 @@
 package evaca
 
-// // import org.springframework.core.io.Resource
-// import org.codehaus.groovy.grails.core.io.ResourceLocator
-// import org.springframework.core.io.Resource
-// import org.springframework.core.io.ResourceLocator
-// import org.codehaus.groovy.grails.core.io
+import org.grails.core.io.ResourceLocator
 import org.springframework.core.io.Resource
 
 import grails.web.Action
@@ -12,17 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 trait ImageHandler {
 
-	// @Autowired
-	// ResourceLocatorService grailsResourceLocator
-	// def grailsResourceLocator
+	@Resource("grailsResourceLocator")
+	ResourceLocator grailsResourceLocator
+
 	
-	/* get_image */
-	// @Autowired
+	/* get_image */ 
 	@Action
-	def _get_image(Lote lote) { 
-	 
-		// @Autowired
-		// def grailsResourceLocator
+	def get_image(Lote lote) { 
  
         if (lote == null) {
 			render "no-img"
@@ -39,7 +31,7 @@ trait ImageHandler {
             return
         }
 		
-		render (file: lote.image)
+		render (file: lote.image, contentType: '')
 		return
     }
 	

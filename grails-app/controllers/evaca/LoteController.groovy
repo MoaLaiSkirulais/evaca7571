@@ -8,11 +8,11 @@ class LoteController
 	
 	{
 	
+	def avisoService
 	def loteService
 	def uploadRestaurantFeaturedImageService
-	def grailsResourceLocator
 
-
+	
 	/* admin */
 	def admin() {		
 		respond (
@@ -35,7 +35,7 @@ class LoteController
 	def edit() {	
 		println "edit"
 		respond (
-			view: 'create', 
+			view: 'edit', 
 			getViewModel(loteService.edit(params.id))
 		)
     }
@@ -80,33 +80,51 @@ class LoteController
 		[
 			lote: lote, 
 			categorias: Categoria.list().sort{it.nombre},
-			razas: Raza.list().sort{it.nombre}
+			razas: Raza.list().sort{it.nombre},
+			aviso: new Aviso().get(3)
 		]
 	}
-	
-	/* get_image */ 
-	def get_image(Lote lote) { 
-	 
-		// @Autowired
-		// def grailsResourceLocator
- 
-        if (lote == null) {
-			render "no-img"
-            return
-        }
-		
-		println "----"
-		println grailsResourceLocator
-		println "----"
-		
-		if (lote.image == null) {
-			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
-			render (file: image.inputStream, contentType: '')
-            return
-        }
-		
-		render (file: lote.image, contentType: '')
-		return
+
+
+	/* postular */
+	def postular(Aviso aviso) {
+
+		try {
+
+			avisoService.postular(aviso); 
+
+		} catch (AvisoException e){
+
+			flash.message = e.message
+			render(view: 'edit', model:getViewModel(aviso.lote))
+			return
+		} 
+
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:aviso.lote.id
+
     }
+
 	
+	/* cancelar */
+	def cancelar() {
+	
+		try {
+		
+			avisoService.cancelar(params.int('id'));  
+
+		} catch (AvisoException e){
+		
+			flash.message = e.message
+			redirect action:"edit", id:params.lote.id
+			return
+		}
+
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"edit", id:params.lote.id
+    }
+
+		
 }

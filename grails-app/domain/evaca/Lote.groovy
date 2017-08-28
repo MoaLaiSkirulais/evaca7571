@@ -18,15 +18,15 @@ class Lote {
 	Boolean marcaLiquida
 	LoteState state	
 	byte[] image /* despues podria salir en 1-1 */
+	Aviso aviso 
 
 	static belongsTo = [
 		raza: Raza, 
 		categoria: Categoria, 
-		usuario:Usuario
+		usuario: Usuario
 	]
 
-	static hasMany = [avisos: Aviso]
-	
+	static hasOne = [aviso: Aviso]	
 	
 	/* mapping */
     static mapping = {
@@ -47,6 +47,7 @@ class Lote {
 		trazada nullable: true
 		marcaLiquida nullable: true
 		image nullable: true
+		aviso nullable: true /* esto no deberia ser! */
     }
 
 	

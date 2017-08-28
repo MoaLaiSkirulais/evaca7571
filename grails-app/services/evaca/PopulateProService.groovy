@@ -340,9 +340,9 @@ class PopulateProService {
 		plazos()
 		preguntas()
 		lotes()
-		avisos()
-		ofertas()
-		resenas()
+		// avisos()
+		// ofertas()
+		// resenas()
 		
 	}
 

@@ -8,7 +8,10 @@ class LoteService {
 	
 	/* create */
 	def create() {
-		return new Lote([usuario:mySessionService.usuario])
+
+		def lote = new Lote([usuario: mySessionService.usuario])
+		lote.aviso = new Aviso([propietario: lote.usuario])
+		return lote
 	}
 
 	
@@ -47,6 +50,10 @@ class LoteService {
 
 		/* save */
 		// lote.properties = cmd.properties
+		if (!lote.aviso){
+			lote.aviso = new Aviso([propietario: lote.usuario])
+		}
+
 		lote.usuario = mySessionService.usuario
 		lote.save(flush:true, failOnError: false)
 

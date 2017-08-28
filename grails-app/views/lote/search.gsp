@@ -1,4 +1,4 @@
-<g:applyLayout name="layoutUserLogged">
+<g:applyLayout name="layoutTwoColumnsUserLogged">
 	
 	 <content tag="left1">	
 		<h3 class="widget-title">Lotes</h3>							
@@ -13,7 +13,7 @@
 						<th>categoria</th>
 						<th>cantidad</th>
 						<th>ubicacion</th>
-						<th>pesoPromedio</th>
+						<th>foto</th>
 					</tr>
 				</thead>
 				
@@ -44,6 +44,10 @@
 							
 							<td>
 								${lote.ubicacion}
+							</td>    
+							
+							<td>
+								<img src="<g:createLink controller='lote' action='get_image' id='${lote.id}'/>" height="70px" />
 							</td>    
 							
 							<td class="product-add-to-cart">

@@ -1,4 +1,4 @@
-<g:applyLayout name="layoutUserLogged">
+<g:applyLayout name="layoutTwoColumnsUserLogged">
 
     <content tag="left1">
 		

@@ -18,25 +18,22 @@
 				<admin:links/>
 				
 					
-			</div><!-- /.widget-categories -->
-		</div><!-- /.widgets -->
-	</content>
+			</div>
+		</div>
+	</content>	
 	
-	
-    <content tag="left1" >
+    <content tag="left1">
 	
 		<div class="widgets">
 			<div class="widget widget-categories">
-
-				<!-- <evaca:cruderror modelo="${usuario}"/> -->
 				<g:pageProperty name="page.left1" />
-
-			</div><!-- /.widget-categories -->
-		</div><!-- /.widgets -->
+			</div>
+		</div>
 		
 	</content>
 	
 	<content tag="left2">
+
 		<div class="widgets">
 			<div class="widget widget-categories">
 				<g:pageProperty name="page.left2" />

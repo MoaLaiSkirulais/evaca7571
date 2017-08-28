@@ -54,7 +54,8 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		} catch (AvisoException e){
 
 			flash.message = e.message
-			render(view: 'create', model:getViewModel(aviso))
+			println "pija"
+			render(controller:'lote', view: 'create', model:getViewModel(aviso))
 			return
 		} 
 
