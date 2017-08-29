@@ -4,6 +4,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	
 	def usuarioService
 	def avisoService
+	def ofertaService
 
 
 	/* admin */
@@ -127,6 +128,26 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 				avisos: Aviso.list()
 			]
 		)
+    }
+	
+	
+	/* postular_oferta (ofertante) */
+	def postular_oferta(Oferta oferta) { /* tiene que ser un command object */
+
+		try {
+		
+			ofertaService.postular(oferta);  
+			
+		} catch (OfertaException e){
+
+			flash.message = e.message
+			render (view: 'show', model:getViewModel(oferta))
+			return
+		}
+
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"show", id:aviso.id
     }
 
 

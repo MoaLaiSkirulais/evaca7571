@@ -52,6 +52,7 @@
 
 							<li><a href="/contact/about">Quienes somos</a></li>
 							<li><a href="/contact">Contactenos</a></li>
+							<li><a href="/aviso/find">Avisos</a></li>
 							<!-- <li> -->
 								<!-- <a href="#!" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">Tablas <i class="caret"></i></a> -->
 								<!-- <ul class="dropdown-menu"> -->

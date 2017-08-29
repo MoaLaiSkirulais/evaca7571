@@ -1,8 +1,8 @@
 <div class="product-images">
 	<div class="product-thumbnail">
 		<a href="build/img/products/13.jpg" class="fancybox" rel="gallery">
-			<!-- <img src="build/img/products/13.jpg" class="img-responsive"> -->
-			<img src="${attrs.aviso.lote.imagen}" alt="Sham Theme">
+			<!-- <img src="build/img/products/13.jpg" class="img-responsive"> -->			
+			<img src="<g:createLink controller='lote' action='get_image' id='${attrs.aviso?.lote?.id}'/>"/>
 		</a>
 	</div>
 	<!-- <div class="product-images-carousel"> -->

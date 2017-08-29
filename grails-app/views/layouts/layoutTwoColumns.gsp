@@ -13,7 +13,9 @@
 				
 					<div class="col-md-3">
 						<div class="shop-sidebar shop-sidebar-left">
-							<g:pageProperty name="page.sidebar"/>
+							<div class="widgets">
+								<g:pageProperty name="page.sidebar"/>							
+							</div>
 						</div>
 					</div>
 

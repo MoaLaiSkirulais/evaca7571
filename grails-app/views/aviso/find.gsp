@@ -65,15 +65,13 @@
 
     <content tag="left1">	
 	
-		
-			<div class="masonry row">
-				
-				<g:each in="${avisos}" var="aviso">
-					<evaca:productBox aviso="${aviso}"/>
-				</g:each>						
+		<div class="masonry row">
 			
-			</div><!-- /.masonry -->
+			<g:each in="${avisos}" var="aviso">
+				<evaca:productBox aviso="${aviso}"/>
+			</g:each>						
 		
+		</div><!-- /.masonry -->
 		
 	</content>
 	

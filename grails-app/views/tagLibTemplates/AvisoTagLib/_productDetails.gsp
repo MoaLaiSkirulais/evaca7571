@@ -9,7 +9,7 @@
 
 	<div class="product-title">
 		<h3 class="product-name">${attrs.aviso.lote.raza}</h3>
-		<p class="product-available">${attrs.aviso.consignatario} / ${attrs.aviso.fechaPublicacion}</p>
+		<p class="product-available">${attrs.aviso.consignatario} / ${attrs.aviso.fechaCreacion}</p>
 		<p class="product-available">${attrs.aviso.lote.ubicacion}</p>
 		<hr>
 	</div>
