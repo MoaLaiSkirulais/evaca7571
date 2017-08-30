@@ -133,11 +133,15 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	
 	/* postular_oferta (ofertante) */
 	def postular_oferta(Oferta oferta) { /* tiene que ser un command object */
+	
+		println "--------------"
+		println oferta
+		println "--------------"
 
 		try {
-		
+
 			ofertaService.postular(oferta);  
-			
+
 		} catch (OfertaException e){
 
 			flash.message = e.message

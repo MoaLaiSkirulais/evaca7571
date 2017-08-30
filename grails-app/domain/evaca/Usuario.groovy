@@ -1,4 +1,4 @@
-package evaca
+	package evaca
 
 import groovy.transform.EqualsAndHashCode
 
@@ -62,9 +62,9 @@ class Usuario {
 	/* changeState */
 	public changeState(UsuarioState state, Usuario ejecutor){
 
-		state.validateStateAccess(this, ejecutor);
-		state.validateStateFlow(this);
-		this.state = state
+		// state.validateStateAccess(this, ejecutor);
+		// state.validateStateFlow(this);
+		// this.state = state
 
 	}
 
@@ -72,6 +72,37 @@ class Usuario {
 	/* toString */	
 	String toString(){
 		this.username
+	}
+	
+	
+	/* postular */
+	public postular(){
+
+		if (this.state != UsuarioState.BORRADOR) { 
+			throw new UsuarioStateFlowException(message : "El usuario no está en BORRADOR")
+		}
+		
+		this.state = UsuarioState.POSTULADO	
+	}
+
+	
+	/* aprobar */
+	public aprobar(Usuario ejecutor){
+
+		if (this.state == UsuarioState.APROBADO) { 
+			throw new UsuarioStateFlowException(message : "El usuario ya está aprobado")
+		}
+		
+		/* está aprobacion? */
+		if (this.state != UsuarioState.POSTULADO){
+			throw new UsuarioStateFlowException(message : "El usuario no está postulado")
+		}
+		
+		if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+			throw new UsuarioStateFlowException(message: "Se necesita un administrador para ejecutar esta accion")
+		}
+		
+		this.state = UsuarioState.APROBADO	
 	}
 
 }

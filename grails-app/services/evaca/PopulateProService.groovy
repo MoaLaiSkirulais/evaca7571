@@ -32,12 +32,7 @@ class PopulateProService {
 			comision: 11					
 		)
 		consignatario.password = ''
-		usuarioService.postular(consignatario)
-		
-		// def postular(PostularCommand cmd) {
-		// try {
-
-			// usuarioService.postular(cmd)
+		consignatario.postular()
 
 		/* productor1 */
 		def productor1 = new Usuario(
@@ -50,7 +45,7 @@ class PopulateProService {
 			comision: 11					
 		)
 		productor1.password = ''
-		usuarioService.postular(productor1)
+		productor1.postular()
 		
 		/* productor2 */
 		def productor2 = new Usuario(
@@ -63,7 +58,7 @@ class PopulateProService {
 			comision: 11					
 		)
 		productor2.password = ''
-		usuarioService.postular(productor2)
+		productor2.postular()
 		
 		/* administrador */
 		def administrador = new Usuario(
@@ -77,18 +72,22 @@ class PopulateProService {
 			comision: 11					
 		)
 		administrador.password = ''
-		usuarioService.postular(administrador)
+		administrador.postular()
+		administrador.save(flush:true, failOnError: false)
 		
 		/* seteo admin, esto no es correcto directo */
-		administrador.changeState(UsuarioState.APROBADO, administrador)
+		administrador.state == UsuarioState.APROBADO
 		administrador.save(flush:true, failOnError: false)
 		
 		/* permisos */
-		mySessionService.login('administrador', '')		
+		productor1.aprobar(administrador)
+		productor2.aprobar(administrador)
+		consignatario.aprobar(administrador)
 		
-		usuarioService.aprobar(productor1.id) /* quizas conviene pasarle el objeto */
-		usuarioService.aprobar(productor2.id)
-		usuarioService.aprobar(consignatario.id)
+		productor1.save(flush:true, failOnError: false)
+		productor2.save(flush:true, failOnError: false)
+		consignatario.save(flush:true, failOnError: false)
+		administrador.save(flush:true, failOnError: false)
 
 		return 1
 	}
@@ -102,41 +101,45 @@ class PopulateProService {
 
 		def raza
 		
-		raza = razaService.create() /* como no puedo mandarle un contructor?! ahora lo dejo asi*/
+		def administrador = Usuario.findByUsername("administrador")
+		
+		raza = new Raza(usuario:administrador) /* como no puedo mandarle un contructor?! ahora lo dejo asi*/
 		raza.nombre = "Aberdeen Angus"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true) /* tal vez pasarle el creador para validar el permiso, con este nuevo esquema no lo veo mal */
 		
-		raza = razaService.create()
+		raza = new Raza(usuario:administrador) 
 		raza.nombre = "Braford"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true)
 		
-		raza = razaService.create() /* no deberia hacer falta el create? */
+		raza = new Raza(usuario:administrador) 
 		raza.nombre = "Holando Argentino"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true)
 		
-		raza = razaService.create()
+		raza = new Raza(usuario:administrador) 
 		raza.nombre = "Cruza"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true)
 		
-		raza = razaService.create()
+		raza = new Raza(usuario:administrador) 
 		raza.nombre = "Hereford"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true)
 		
-		raza = razaService.create()
+		raza = new Raza(usuario:administrador) 
 		raza.nombre = "Jersey"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true)
 		
-		raza = razaService.create()
+		raza = new Raza(usuario:administrador) 
 		raza.nombre = "Bovino Criollo"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true)
 		
-		raza = razaService.create()
+		raza = new Raza(usuario:administrador) 
 		raza.nombre = "Brangus"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true)
 		
-		raza = razaService.create()
+		raza = new Raza(usuario:administrador) 
  		raza.nombre = "Careta"
-		razaService.save(raza)
+		raza.save(flush:true, failOnError: true)
+		
+		/* no hay postular ni nada, es dificil validar integridad asi con dominio expuesto */
 
 	}
 
@@ -146,27 +149,22 @@ class PopulateProService {
 
 		log.info "Populando categorias..."
 		
-		def categoria
+		def administrador = Usuario.findByUsername("administrador")		
+
+		new Categoria(usuario:administrador, nombre:"Preñadas")
+			.save(flush:true, failOnError: true)
 		
-		categoria = categoriaService.create()
-		categoria.nombre = "Preñadas"
-		categoriaService.save(categoria)
+		new Categoria(usuario:administrador, nombre:"Con Ternero al Pie")
+			.save(flush:true, failOnError: true)
 		
-		categoria = categoriaService.create()
-		categoria.nombre = "Con Ternero al Pie"
-		categoriaService.save(categoria)
-		
-		categoria = categoriaService.create()
-		categoria.nombre = "Vacias"
-		categoriaService.save(categoria)
-		
-		categoria = categoriaService.create()
-		categoria.nombre = "De Descarte"
-		categoriaService.save(categoria)
-		
-		categoria = categoriaService.create()
-		categoria.nombre = "Con Servicio"
-		categoriaService.save(categoria)
+		new Categoria(usuario:administrador, nombre:"Vacias")
+			.save(flush:true, failOnError: true)
+			
+		new Categoria(usuario:administrador, nombre:"De Descarte")
+			.save(flush:true, failOnError: true)
+			
+		new Categoria(usuario:administrador, nombre:"Con Servicio")
+			.save(flush:true, failOnError: true)
 
 	}
 
@@ -176,66 +174,54 @@ class PopulateProService {
 
 		log.info "Populando plazos..."
 		
-		def plazo
+		def administrador = Usuario.findByUsername("administrador")			
 				
-		plazo = plazoService.create()
-		plazo.nombre = "Contado"
-		plazoService.save(plazo)
-		
-		plazo = plazoService.create()
-		plazo.nombre = "30 días"
-		plazoService.save(plazo)
-		
-		plazo = plazoService.create()
-		plazo.nombre = "30 y 60 días"
-		plazoService.save(plazo)
-		
-		plazo = plazoService.create()
-		plazo.nombre = "60 días"
-		plazoService.save(plazo)
-		
-		plazo = plazoService.create()
-		plazo.nombre = "30, 60 y 90 días"
-		plazoService.save(plazo)
-		
-		plazo = plazoService.create()
-		plazo.nombre = "90 días"
-		plazoService.save(plazo)
-		
-		plazo = plazoService.create()
-		plazo.nombre = "Otro"
-		plazoService.save(plazo)
+		new Plazo(usuario:administrador, nombre:"Contado")
+			.save(flush:true, failOnError: true)
+			
+		new Plazo(usuario:administrador, nombre:"30 días")
+			.save(flush:true, failOnError: true)
+			
+		new Plazo(usuario:administrador, nombre:"30 y 60 días")
+			.save(flush:true, failOnError: true)
+			
+		new Plazo(usuario:administrador, nombre:"60 días")
+			.save(flush:true, failOnError: true)
+			
+		new Plazo(usuario:administrador, nombre:"30, 60 y 90 días")
+			.save(flush:true, failOnError: true)
+			
+		new Plazo(usuario:administrador, nombre:"90 días")
+			.save(flush:true, failOnError: true)
+			
+		new Plazo(usuario:administrador, nombre:"Otro")
+			.save(flush:true, failOnError: true)
 
 	}
 
-
+ 
 	/* preguntas */
 	def preguntas() {
 
 		log.info "Populando preguntas..."
 		
-		def pregunta
+		def administrador = Usuario.findByUsername("administrador")			
+		
+		new Pregunta(usuario:administrador, label:"Como fue la comunicacion con el vendedor?")
+			.save(flush:true, failOnError: true)
 
-		pregunta = preguntaService.create()
-		pregunta.label = "Como fue la comunicacion con el vendedor?"
-		preguntaService.save(pregunta)		
-		
-		pregunta = preguntaService.create()
-		pregunta.label = "Como fue la comunicacion con el consignatario?"
-		preguntaService.save(pregunta)
-		
-		pregunta = preguntaService.create()
-		pregunta.label = "Cual es el estado del lote?"
-		preguntaService.save(pregunta)
-		
-		pregunta = preguntaService.create()
-		pregunta.label = "Volveria a comprar?"
-		preguntaService.save(pregunta)
-		
-		pregunta = preguntaService.create()
-		pregunta.label = "Que le parecio el sistema?"
-		preguntaService.save(pregunta)
-		
+		new Pregunta(usuario:administrador, label:"Como fue la comunicacion con el consignatario?")
+			.save(flush:true, failOnError: true)
+
+		new Pregunta(usuario:administrador, label:"Cual es el estado del lote?")
+			.save(flush:true, failOnError: true)
+
+		new Pregunta(usuario:administrador, label:"Volveria a comprar?")
+			.save(flush:true, failOnError: true)
+
+		new Pregunta(usuario:administrador, label:"Que le parecio el sistema?")
+			.save(flush:true, failOnError: true)
+	
 	}
 
 
@@ -339,7 +325,7 @@ class PopulateProService {
 		categorias()
 		plazos()
 		preguntas()
-		lotes()
+		// lotes()
 		// avisos()
 		// ofertas()
 		// resenas()

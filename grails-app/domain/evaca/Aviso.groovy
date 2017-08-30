@@ -50,6 +50,23 @@ class Aviso {
 	}
 
 
+	/* recibirOferta */
+	public recibirOferta(Oferta oferta, Usuario ofertante){
+	
+		if (this.state != AvisoState.APROBADO){
+			throw new OfertaException(message : "El aviso no está aprobado")
+		}
+
+		if (this.propietario == ofertante){
+			throw new OfertaStateFlowException(message: "No puede ofertar su propio aviso")
+		}
+		
+		// state.validateStateAccess(this, ejecutor);
+		// state.validateStateFlow(this);
+		// this.state = state
+	}
+
+
 	/* toString */
 	String toString(){
 		this.id + "| owner:" + this.lote.usuario + "| consignatario: " +  this.consignatario + " | " + this.state 
