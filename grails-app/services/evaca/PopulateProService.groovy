@@ -205,7 +205,7 @@ class PopulateProService {
 
 		log.info "Populando preguntas..."
 		
-		def administrador = Usuario.findByUsername("administrador")			
+		def administrador = Usuario.findByUsername("administrador")
 		
 		new Pregunta(usuario:administrador, label:"Como fue la comunicacion con el vendedor?")
 			.save(flush:true, failOnError: true)
@@ -229,21 +229,20 @@ class PopulateProService {
 	def lotes() {
 
 		log.info "Populando lotes..."
-		
-		/* login */
-		mySessionService.login('productor1', '')
+
+		def administrador = Usuario.findByUsername("administrador")
 		
 		/* lote1 */
-		def lote1 = loteService.create()
+		def lote1 = new Lote(usuario:administrador)
 		lote1.raza = Raza.findByNombre("Braford")
 		lote1.categoria = Categoria.findByNombre("Preñadas")
-		loteService.save(lote1)
+		lote1.save(flush:true, failOnError: true)
 
 		/* lote2 */
-		def lote2 = loteService.create()
+		def lote2 = new Lote(usuario:administrador)
 		lote2.raza = Raza.findByNombre("Jersey")
 		lote2.categoria = Categoria.findByNombre("Preñadas")
-		loteService.save(lote2)
+		lote2.save(flush:true, failOnError: true)
 
 	}
 
@@ -253,28 +252,27 @@ class PopulateProService {
 
 		log.info "Populando avisos..."
 		
-		/* login */
-		mySessionService.login('productor1', '')
+		def productor1 = Usuario.findByUsername("productor1")
+		def administrador = Usuario.findByUsername("administrador")
 
 		/* aviso1 */
-		def aviso1 = avisoService.create()		 
+		def aviso1 = new Aviso(propietario:productor1) /* aca podriamos empezar a usar algun factory interno tipo .create() */
 		aviso1.lote = Lote.createCriteria().list () {raza{eq("nombre", "Braford")}}[0]
 		aviso1.consignatario = Usuario.findByNombre("consignatario")
 		aviso1.precio = 101
-		avisoService.postular(aviso1)
+		aviso1.postular(productor1)
+		aviso1.aprobar(administrador)
 
 		/* aviso2 */
-		def aviso2 = avisoService.create()
+		def aviso2 = new Aviso(propietario:productor1)
 		aviso2.lote = Lote.createCriteria().list () {raza{eq("nombre", "Jersey")}}[0]
 		aviso2.consignatario = Usuario.findByNombre("consignatario")
 		aviso2.precio = 102
-		avisoService.postular(aviso2)
-		
-		/* login */
-		mySessionService.login('administrador', '')
+		aviso2.postular(productor1)
+		aviso2.aprobar(administrador)
 
-		avisoService.aprobar(aviso1.id)
-		avisoService.aprobar(aviso2.id)
+		aviso1.save(flush:true, failOnError: true)
+		aviso2.save(flush:true, failOnError: true)
 	}
 
 
@@ -283,23 +281,21 @@ class PopulateProService {
 
 		log.info "Populando ofertas..."
 		
-		/* login */
-		mySessionService.login('productor2', '')
-
 		/* ofertar */
-		def oferta = ofertaService.create()
+		def productor1 = Usuario.findByUsername("productor1")
+		def oferta = new Oferta(propietario:productor1)
 		oferta.aviso = Aviso.list()[0]
 		oferta.plazo = Plazo.list()[1]
 		oferta.precio = 1000
-		ofertaService.postular(oferta)
-		
+		oferta.postular(productor1)
+
 		/* aprobar */
-		mySessionService.login('administrador', '')
-		ofertaService.aprobar(oferta.id)
+		def administrador = Usuario.findByUsername("administrador")
+		oferta.aprobar(administrador)
 
 		/* aceptar */		
-		mySessionService.login('productor1', '')
-		ofertaService.aceptar(oferta.id)
+		oferta.aceptar(productor1)		
+		oferta.save(flush:true, failOnError: true)
 
 	}
 
@@ -308,11 +304,14 @@ class PopulateProService {
 	def resenas() {
 
 		log.info "Populando resenas..."
-		mySessionService.login('productor2', '')
+		def productor1 = Usuario.findByUsername("productor1")
 
-		def resena = resenaService.create()
+		
+		def resena = new Resena(propietario:productor1)
+		// resena.venta = 4
 		resena.puntaje = 4
-		resenaService.postular(resena)
+		resena.postular(productor1)
+		resena.save(flush:true, failOnError: true)
 
 	}
 	
@@ -325,10 +324,10 @@ class PopulateProService {
 		categorias()
 		plazos()
 		preguntas()
-		// lotes()
-		// avisos()
-		// ofertas()
-		// resenas()
+		lotes()
+		avisos()
+		ofertas()
+		resenas()
 		
 	}
 

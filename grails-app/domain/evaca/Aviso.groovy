@@ -44,9 +44,52 @@ class Aviso {
 
 	/* changeState */
 	public changeState(AvisoState state, Usuario ejecutor){
-		state.validateStateAccess(this, ejecutor);
-		state.validateStateFlow(this);
-		this.state = state
+		// state.validateStateAccess(this, ejecutor);
+		// state.validateStateFlow(this);
+		// this.state = state
+	}
+
+
+	/* aprobar */
+	public aprobar(Usuario ejecutor){
+		
+		/* está aprobado? */
+		if (this.state == AvisoState.APROBADO){
+			throw new AvisoException(message : "El aviso ya está APROBADO")
+		}
+		
+		/* está postulado? */
+		if (this.state != AvisoState.POSTULADO){
+			throw new AvisoException(message : "El aviso no está POSTULADO")
+		}
+		
+		/* admin */
+		if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+			throw new AvisoException(message: "Se necesita un administrador para ejecutar esta accion")
+		}
+		
+		/* aprueba dueño? */
+		if (ejecutor == this.propietario){
+			throw new AvisoException(message: "No puede aprobar su propio aviso")
+		}
+
+		this.state = AvisoState.APROBADO
+	}
+
+
+	/* postular */
+	public postular(Usuario ejecutor){
+		
+		if (this.propietario != ejecutor){
+			throw new AvisoException(message: "Solo el dueño del aviso puede pedir aprobacion")
+		}
+		
+		println this.state
+		if (this.state != AvisoState.BORRADOR) { 
+			throw new AvisoException(message : "El aviso no está en BORRADOR")
+		}
+		
+		this.state = AvisoState.POSTULADO
 	}
 
 

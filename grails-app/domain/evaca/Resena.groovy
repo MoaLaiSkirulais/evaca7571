@@ -50,13 +50,32 @@ class Resena {
 		
 
 	}
+	
+	
+	/* postular() */
+	public postular(Usuario ejecutor) {
+	
+		/* hay que validar que la venta existe*/
+		
+		/* hay que validar solo 3 reseñas posibles */
+
+		if (this.state != ResenaState.BORRADOR) { 
+			throw new ResenaException(message : "La resena no está en BORRADOR")
+		}
+		
+		if (this.propietario != ejecutor){
+			throw new ResenaException(message: "Solo el dueño del resena puede pedir aprobacion")
+        }
+		
+		this.state = ResenaState.POSTULADO
+	}
 
 	
 	/* changeState */
 	public changeState(ResenaState state, Usuario ejecutor){
-		state.validateStateAccess(this, ejecutor)
-		state.validateStateFlow(this)
-		this.state = state
+		// state.validateStateAccess(this, ejecutor)
+		// state.validateStateFlow(this)
+		// this.state = state
 
 	}
 }
