@@ -1,9 +1,8 @@
-<g:applyLayout name="searchContainer">
-	
-	<h2>Ofertas</h2>
-	
-	<div class="col-sm-12">		
-	
+<g:applyLayout name="layoutTwoColumnsUserLogged">
+
+	<content tag="left1">	
+		<h3 class="widget-title">Ofertas</h3>
+		
 		<div class="table-responsive">
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
@@ -16,7 +15,7 @@
 						<th class="product-name">tbState</th>
 					</tr>
 				</thead>
-				
+					
 				<tbody>								
 					<g:each in="${ofertas}" var="item" status="i">
 						<tr class="item">
@@ -54,6 +53,6 @@
 			</table>
 			<g:link action="create" class="btn btn-default">Nuevo</g:link>
 		</div><!-- /.table-responsive -->
-	</div>
+	</content>
 
 </g:applyLayout>

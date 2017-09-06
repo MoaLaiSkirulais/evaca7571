@@ -27,7 +27,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
 	/* search */
 	def search() {
-	
+		println "!!"
 		render(
 			view: 'search', 
 			model: [

@@ -9,10 +9,10 @@
 				<ul>		
 					<li><br><br><h3>Accesos</h3></li>
 					<li><g:link controller="lote" action="search">Lotes</g:link></li>
-					<li><g:link controller="aviso" action="search">Avisos</g:link></li>
-					<li><g:link controller="oferta" action="index">Ofertas</g:link></li>
-					<li><g:link controller="venta" action="index">Ventas</g:link></li>
-					<li><g:link controller="resena" action="index">Resena</g:link></li>
+					<!-- <li><g:link controller="aviso" action="search">Avisos</g:link></li> -->
+					<li><g:link controller="oferta" action="search">Ofertas</g:link></li>
+					<!-- <li><g:link controller="venta" action="search">Ventas</g:link></li> -->
+					<li><g:link controller="resena" action="search">Resena</g:link></li>
 				</ul>	
 
 				<admin:links/>

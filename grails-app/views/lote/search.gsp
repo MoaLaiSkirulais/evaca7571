@@ -1,6 +1,6 @@
 <g:applyLayout name="layoutTwoColumnsUserLogged">
 	
-	 <content tag="left1">	
+	<content tag="left1">	
 		<h3 class="widget-title">Lotes</h3>							
 		
 		<div class="table-responsive">

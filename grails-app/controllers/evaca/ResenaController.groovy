@@ -5,50 +5,59 @@ class ResenaController {
 	def resenaService
 	
 	
-	/* admin */
+	/** 
+	 * admin 
+	 */
 	def admin() {
 		render (view: 'admin', model: getViewModel(resenaService.edit(params.id)))
     }
 
 	
-	/* create */
+	/** 
+	 * create 
+	 */
 	def create() {
 		render (view: 'create', model: getViewModel(resenaService.create()))
     }
 
 
-	/* edit */
+	/** 
+	 * edit 
+	 */
 	def edit() {
 		respond (view:'create', getViewModel(resenaService.edit(params.id)))
     }
 
 	
-	/* index */
-	def index() {
+	/**
+	 * search 
+	 */
+	def search() {
 
 		def resenas = Resena.list()
-
-		render(view: 'index', 
-		model: [
-				resenas:resenas
-			]
-		)
+		render(view: 'search', model: [resenas:resenas])
     }
 
 	
-	/* aprobar (admin) */
+	/** 
+	 * aprobar (admin) 
+	 */
 	def aprobar() {
 		changeState.call(resenaService.&aprobar)
     }
 
 	
-	/* desaprobar (admin) */
+	/** 
+	 * desaprobar (admin) 
+	 */
 	def desaprobar() {
 		changeState.call(resenaService.&desaprobar)
     }
 	
 
-	/* postular (vendedor | comprador) */
+	/** 
+	 * postular (vendedor | comprador) 
+	 */
 	def postular(Resena resena) {
 
 		try {
@@ -71,7 +80,9 @@ class ResenaController {
     }
 	
 	
-	/* changeState */
+	/** 
+	 * changeState 
+	 */
 	def changeState = { 
 		
 		try {			
@@ -89,7 +100,9 @@ class ResenaController {
 	}   
 
 	
-	/* getViewModel */ 
+	/** 
+	 * getViewModel 
+	 */ 
 	def getViewModel(Resena resena){
 		[
 			resena: resena

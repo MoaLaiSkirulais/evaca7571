@@ -23,9 +23,9 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
     }
 
 
-	/* index */
-	def index() {
-		render(view: 'index', model: [ofertas:ofertaService.search()])
+	/* search */
+	def search() {
+		render(view: 'search', model: [ofertas:ofertaService.search()])
     }
 
 

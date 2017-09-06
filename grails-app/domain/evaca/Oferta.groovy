@@ -75,19 +75,26 @@ class Oferta {
 		this.state = OfertaState.APROBADO
 
 	}
+
 	
 	/* aceptar */
 	public aceptar(Usuario ejecutor){
 			
+		/* aprobada? */
 		if (this.state != OfertaState.APROBADO){
 			throw new OfertaStateFlowException(message : "La oferta debe estar aprobada")
 		}
 	
-	
+		/* owner? */
 		if (ejecutor != this.aviso.propietario){
 			throw new OfertaStateFlowException(message: "Sólo el anunciante puede aceptar la oferta")
 		}			
 
+		/* genera venta */
+		this.venta = new Venta()
+		// venta.oferta = oferta
+		// venta.save(flush:true, failOnError: false)
+		
 		this.state = OfertaState.ACEPTADO
 
 	}

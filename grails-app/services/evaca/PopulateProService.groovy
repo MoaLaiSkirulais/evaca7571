@@ -305,11 +305,29 @@ class PopulateProService {
 
 		log.info "Populando resenas..."
 		def productor1 = Usuario.findByUsername("productor1")
+		def venta = Venta.list()[0]
 
-		
 		def resena = new Resena(propietario:productor1)
-		// resena.venta = 4
+		resena.prepare()
+		resena.venta = venta
 		resena.puntaje = 4
+		
+		/* preguntas */		
+		resena.respuestas[0].puntaje = 5
+		resena.respuestas[0].respuesta = "aceptable"
+		
+		resena.respuestas[1].puntaje = 3  /* seria bueno encadenar con setters aca alguna vez! */
+		resena.respuestas[1].respuesta = "bueno"
+		
+		resena.respuestas[2].puntaje = 1
+		resena.respuestas[2].respuesta = "esta bien"
+		
+		resena.respuestas[3].puntaje = 2
+		resena.respuestas[3].respuesta = "tal vez"
+		
+		resena.respuestas[4].puntaje = 2
+		resena.respuestas[4].respuesta = "sin comentarios"
+		
 		resena.postular(productor1)
 		resena.save(flush:true, failOnError: true)
 

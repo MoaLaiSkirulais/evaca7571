@@ -1,8 +1,8 @@
-<g:applyLayout name="searchContainer">
-					
-	<h2>Resenas</h2>
-	<div class="col-sm-12">
+<g:applyLayout name="layoutTwoColumnsUserLogged">
+	
+	<content tag="left1">	
 
+		<h3 class="widget-title">Resenas</h3>					
 		<div class="table-responsive">
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
@@ -49,6 +49,6 @@
 			</table>
 			<g:link action="create" class="btn btn-default">Nuevo</g:link>
 		</div><!-- /.table-responsive -->
-	</div>
+	</content>
 
 </g:applyLayout>
