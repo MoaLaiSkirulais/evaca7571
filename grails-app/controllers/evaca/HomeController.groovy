@@ -6,6 +6,8 @@ class HomeController {
 	
 		// def avisos = Aviso.list()
 		
+		println "caca"
+		
 		def avisos = Aviso.createCriteria().list () {			
 			eq ("state", AvisoState.APROBADO)
 		}

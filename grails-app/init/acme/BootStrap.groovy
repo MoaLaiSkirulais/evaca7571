@@ -16,6 +16,15 @@ class BootStrap {
 		// populateProService.all()
 		// populateService.all()
 		// myService.countAll()
+		
+		/* init */    
+		populateProService.all()
+		def u = new UsuarioReader()
+		u.loadFromCsv()
+
+		def r = new LoteReader()
+		r.loadFromCsv()
+		populateProService.countAll()
 
     }
     def destroy = {

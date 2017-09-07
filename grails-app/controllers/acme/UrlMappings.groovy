@@ -16,7 +16,7 @@ class UrlMappings {
 	    "/caca"(view: "/caca")  
 	    "/field"(controller:"field", action:"index")
 	    "/plugins"(controller:"field", action:"plugins", view: "plugins")
-        "/"{controller = "home"}
+        "/"(controller:"home", action:"index") 
         "500"(view:'/error')
         "404"(view:'/notFound')
 		"/$controller"(action: "redirect", controller: "project")
