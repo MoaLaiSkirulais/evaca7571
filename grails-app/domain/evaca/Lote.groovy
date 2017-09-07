@@ -3,7 +3,7 @@ package evaca
 class Lote {
 	
 	Date fechaCreacion
-	Usuario usuario
+	Usuario propietario
 	Raza raza	
 	Categoria categoria
 
@@ -23,7 +23,7 @@ class Lote {
 	static belongsTo = [
 		raza: Raza, 
 		categoria: Categoria, 
-		usuario: Usuario
+		propietario: Usuario
 	]
 
 	static hasOne = [aviso: Aviso]	
@@ -65,10 +65,16 @@ class Lote {
 	}
 
 
+	/* iniciar */
+	public iniciar(){		
+		this.aviso = new Aviso([propietario: this.propietario])
+	}
+
+
 	/* toString */
 	String toString(){
 		// this.id + " | " + this.usuario + " | " + this.raza + " | " + this.categoria + " | " + this.cantidad
-		this.id + " | " + this.usuario + " | " + this.raza + " | " + this.state
+		this.id + " | " + this.propietario + " | " + this.raza + " | " + this.state
 	}
 
 }

@@ -1,4 +1,4 @@
-package evaca
+package evaca.lote
 
 import grails.validation.Validateable
 import org.springframework.web.multipart.MultipartFile

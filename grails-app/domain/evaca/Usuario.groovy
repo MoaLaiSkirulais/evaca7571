@@ -17,7 +17,7 @@ class Usuario {
 	Float comision
 	String avatar
 	
-	byte[] avatarImageBytes 
+	byte[] image 
     String avatarImageContentType 
 
 	static hasMany = [ofertas: Oferta, resenas: Resena, lotes: Lote]
@@ -34,7 +34,7 @@ class Usuario {
 		username size: 6..15, blank: false, unique: true
 		puntaje blank: true, nullable: true, editable: false, defaultValue: 0		
 		
-		avatarImageBytes nullable: true
+		image nullable: true
         avatarImageContentType nullable: true
     }
 
@@ -44,7 +44,7 @@ class Usuario {
 
         sort "fechaCreacion"
 		usuarioActivacion lazy: false
-		avatarImageBytes column: 'avatar_image_bytes', sqlType: 'longblob' 
+		image column: 'image', sqlType: 'longblob' 
     }
 
 

@@ -76,7 +76,7 @@ class PopulateProService {
 		administrador.save(flush:true, failOnError: false)
 		
 		/* seteo admin, esto no es correcto directo */
-		administrador.state == UsuarioState.APROBADO
+		administrador.state = UsuarioState.APROBADO
 		administrador.save(flush:true, failOnError: false)
 		
 		/* permisos */
@@ -233,13 +233,14 @@ class PopulateProService {
 		def administrador = Usuario.findByUsername("administrador")
 		
 		/* lote1 */
-		def lote1 = new Lote(usuario:administrador)
+		def lote1 = new Lote(propietario:administrador)
 		lote1.raza = Raza.findByNombre("Braford")
 		lote1.categoria = Categoria.findByNombre("Preñadas")
 		lote1.save(flush:true, failOnError: true)
 
 		/* lote2 */
-		def lote2 = new Lote(usuario:administrador)
+		/* hay que implementar el lote postular! */
+		def lote2 = new Lote(propietario:administrador)
 		lote2.raza = Raza.findByNombre("Jersey")
 		lote2.categoria = Categoria.findByNombre("Preñadas")
 		lote2.save(flush:true, failOnError: true)
@@ -261,7 +262,7 @@ class PopulateProService {
 		aviso1.consignatario = Usuario.findByNombre("consignatario")
 		aviso1.precio = 101
 		aviso1.postular(productor1)
-		aviso1.aprobar(administrador)
+		// aviso1.aprobar(administrador)
 
 		/* aviso2 */
 		def aviso2 = new Aviso(propietario:productor1)
@@ -269,7 +270,7 @@ class PopulateProService {
 		aviso2.consignatario = Usuario.findByNombre("consignatario")
 		aviso2.precio = 102
 		aviso2.postular(productor1)
-		aviso2.aprobar(administrador)
+		// aviso2.aprobar(administrador)
 
 		aviso1.save(flush:true, failOnError: true)
 		aviso2.save(flush:true, failOnError: true)

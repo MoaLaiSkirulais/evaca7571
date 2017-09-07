@@ -3,13 +3,14 @@ package evaca
 // import org.codehaus.groovy.grails.core.io.ResourceLocator
 import org.springframework.core.io.Resource
 
-class UsuarioController extends BaseController implements UsuarioExceptionHandler{ 
+class UsuarioController 
+	extends BaseController 
+	implements UsuarioImageHandler, UsuarioExceptionHandler{ 
 	
 	def mySessionService
 	def usuarioService
 	def avisoService
 	def loteService
-	def grailsResourceLocator
 
 	/* create */
 	def create() {
@@ -81,9 +82,9 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 	}	
 	
 
-	/* index */
-	def index() {
-		render(view: 'index', model:usuarioService.search())
+	/* search */
+	def search() {
+		render(view: 'search', model:usuarioService.search())
     }
 	
 	
@@ -144,17 +145,8 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 			profiles: usuarioService.getProfiles()
 		]
 	}
-	
-		
-	/* saveAvatar */ 
-	def save_avatar(SaveAvatarCommand cmd) {	
-        usuarioService.saveAvatar(cmd)
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"show_profile", id:params.int('id')
-    }
 
-	
+
 	/* edit_password */ 
 	def edit_password() {	        
 		respond ( 
@@ -189,29 +181,6 @@ class UsuarioController extends BaseController implements UsuarioExceptionHandle
 			getViewModel(usuarioService.edit(params.id))
 		)
     }
-
-
-	/* get_avatar_image */
-	def get_avatar_image(Usuario usuario) { /* levanta el user de db! */
-
-        if (usuario == null) {
-            return
-        }
-		
-		println "----"
-		println grailsResourceLocator
-		println "----"
-		
-		if (usuario.avatarImageBytes == null) {            
-			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
-			render (file: image.inputStream, contentType: usuario.avatarImageContentType)
-            return
-        }
-		
-		render (file: usuario.avatarImageBytes, contentType: usuario.avatarImageContentType)
-		return
-    }
-
 
 	// /* save */
 	// def save(Usuario usuario) {

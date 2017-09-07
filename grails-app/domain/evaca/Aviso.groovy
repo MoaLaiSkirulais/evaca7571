@@ -6,6 +6,7 @@ class Aviso {
 
 	Date fechaCreacion	
 	Float precio
+	Plazo plazo
 	AvisoState state
 	Usuario propietario
 	Usuario consignatario
@@ -22,6 +23,7 @@ class Aviso {
 		consignatario nullable: true
 		lote nullable: false
 		precio nullable: true
+		plazo nullable: true
 		// lote : { val, obj ->
 			// obj.propietario == val.usuario
 		// }
