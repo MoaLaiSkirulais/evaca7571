@@ -2,15 +2,24 @@
 	
 
 	<div class="inner-product">
-		<div class="product-thumbnail" 
+		<div class="product-thumbnail"
 				style="background-image: url('/lote/get_image/${attrs.aviso?.lote?.id}'); background-color: #cccccc; width:259px; height:329px" >
 
-			<!-- <img src="${resource(dir: 'sham/img/products', file: 'v4.gif')}" alt="Sham Theme"> -->
-			<!-- <img src="<g:createLink controller='lote' action='get_image' id='${attrs.aviso?.lote?.id}'/>"/> -->
+			<div style="position:absolute; bottom:110; right:10;">
+				<img src="<g:createLink controller='usuario' action='get_image' id='${attrs.aviso.propietario.id}'/>" style="border: 1px solid gray; width:40px; opacity: 0.7;"/>
+			</div>
+			
+			
+
 			<div style="width:259px; border:none; background-color:  rgba(224, 218, 218, 0.9); 
 							position:absolute; bottom:0; left:0; 
 							text-align: left; padding:10px;
 							text-transform: uppercase;">
+							
+				<!-- <div style="position:absolute; bottom:10; right:10;"> -->
+					<!-- <img src="<g:createLink controller='usuario' action='get_image' id='${attrs?.aviso?.consignatario?.id}'/>" style="border: 1px solid gray; width:20px; opacity: 0.9;"/> -->
+				<!-- </div> -->
+				
 				<span class="amount">fecha: ${attrs.aviso.lote.fechaCreacion}<br></span>
 				<span class="amount">aviso: #${attrs.aviso.lote.id}<br></span>
 				<span class="amount">categoría: ${attrs.aviso.lote.categoria}</span><br>

@@ -14,25 +14,40 @@ class UsuarioReader {
 	 */
 	public loadFromCsv(String path){
 
-		File csvFile = new File(LocalSystem.getDataResource("/mock/usuarios/usuarios.csv"));
+		File csvFile = new File(LocalSystem.getDataResource("/mock/csv/usuarios.csv"));
 		def i = 0
 		csvFile.splitEachLine(',') { fields ->
-		
 
 			def usuario = new Usuario(
 				username: fields[0].trim(), 
 				nombre: fields[0].trim(), 
 				apellido: fields[0].trim(), 
 				email: fields[1].trim(), 
-				profile: UsuarioProfile.CONSIGNATARIO, 
-				comision: 11
+				comision: fields[3].trim()
 			)
+			
+			/* profile */
+			def profile = fields[2].trim()
+			switch (profile) { 
+
+				case ~/^CONSIGNATARIO$/:
+					usuario.profile = UsuarioProfile.CONSIGNATARIO
+					break
+				
+				case ~/^PRODUCTOR$/:
+					usuario.profile = UsuarioProfile.PRODUCTOR
+					break
+					
+				case ~/^ADMINISTRADOR$/:
+					usuario.profile = UsuarioProfile.ADMINISTRADOR
+					break
+			}
 
 			usuario.password = ''
 			usuario.postular()
 
 			i++
-			def path1 = "/mock/usuarios/images/1-(" + i + ").jpg"
+			def path1 = "/mock/usuarios/1-(" + i + ").jpg"
 			println path1
 			
 			def r = new ImageReader()

@@ -55,7 +55,7 @@ class LoteReader {
 			lote.aviso.plazo = Plazo.findByNombre(fields[5].trim())
 			
 			/* consignatario */
-			def consignatario = Usuario.findByUsername("consignatario")
+			def consignatario = Usuario.findByUsername(fields[6].trim())
 			lote.aviso.consignatario = consignatario
 			
 			def state = fields[3].trim()
