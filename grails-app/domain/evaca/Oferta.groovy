@@ -41,11 +41,20 @@ class Oferta {
 	
 	/* postular */
 	public postular(Usuario ejecutor){
+	
+		/* ya tiene oferta activa? */
 		
+		/* aviso aprobado? */ /* bueno aca apare el tema del parametro si o no analizar! */
+		if (this.aviso.state != AvisoState.APROBADO) {
+			throw new OfertaException(message : "El aviso no esta aprobado")
+		}
+		
+		/* oferta en borrador? */
 		if (this.state != OfertaState.BORRADOR) { 
 			throw new OfertaException(message : "La oferta debe estar en borrador")
 		}
 	
+		/* owner? */
 		if (this.propietario != ejecutor){
 			throw new OfertaException(message: "Solo el dueño de la oferta puede pedir aprobacion")
 		}        

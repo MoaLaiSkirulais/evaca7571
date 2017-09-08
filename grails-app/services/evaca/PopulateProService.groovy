@@ -262,7 +262,7 @@ class PopulateProService {
 		aviso1.consignatario = Usuario.findByNombre("consignatario")
 		aviso1.precio = 101
 		aviso1.postular(productor1)
-		// aviso1.aprobar(administrador)
+		aviso1.aprobar(administrador)
 
 		/* aviso2 */
 		def aviso2 = new Aviso(propietario:productor1)
@@ -270,7 +270,7 @@ class PopulateProService {
 		aviso2.consignatario = Usuario.findByNombre("consignatario")
 		aviso2.precio = 102
 		aviso2.postular(productor1)
-		// aviso2.aprobar(administrador)
+		aviso2.aprobar(administrador)
 
 		aviso1.save(flush:true, failOnError: true)
 		aviso2.save(flush:true, failOnError: true)
