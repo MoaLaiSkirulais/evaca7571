@@ -1,36 +1,39 @@
-<g:each in="${attrs.ofertas}" var="oferta">
 
 	<div class="row">
 		<div class="col-md-6 col-sm-12">
 			<ol class="reviews">
+				<g:each in="${attrs.ofertas}" var="oferta">
 				<li class="review">
 					<div class="media">
 						<div class="media-left media-middle">
 							<a href="#!">
-								<img class="media-object avatar" src="build/img/users/1.jpg">
+								<img class="media-object avatar" 
+									src="<g:createLink controller='usuario' action='get_image' id='${oferta.propietario.id}'/>" />
 							</a>
 						</div>
 						<div class="media-body">
 							<div class="rating pull-right">
-								<div class="star-rating">
-									<span style="width:90%"></span>
-								</div>
+								<!-- <div class="star-rating"> -->
+									<!-- <span style="width:90%"></span> -->
+								<!-- </div> -->
 							</div>
-							<h4 class="media-heading">${oferta.usuario}</h4>
+							<h4 class="media-heading">${oferta.propietario}</h4>
 							<time datetime="${oferta.fechaCreacion}">
-								${oferta.fechaCreacion}
+								<b>${oferta.fechaCreacion}</b>
 							</time>
 							<div class="description">
-								Oferta: ${oferta.precio} | Plazo: ${oferta.plazo}
+								Precio ofertado: ${oferta.precio}<br>
+								Plazo ofertado: ${oferta.plazo}<br>
+								Estado: ${oferta.state}
 							</div>
-							<div class="description">
-								Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.
-							</div>
+
+							<!-- <div class="description"> -->
+								<!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text. -->
+							<!-- </div> -->
 						</div>
 					</div>
 				</li>
+				</g:each>						
 			</ol><!-- /.reviews -->
 		</div>		
-	</div><!-- /.row -->
-
-</g:each>						
+	</div><!-- /.row --><br><br>
