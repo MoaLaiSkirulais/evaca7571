@@ -19,12 +19,9 @@ class LoteReader {
 		csvFile.splitEachLine(',') { fields ->
 			
 			def lote = new Lote()
-
-			// def lote1 = new Lote(usuario:administrador)
 			def administrador = Usuario.findByUsername("administrador")
 			
 			/* propietario */
-			println fields[0].trim()
 			def propietario = Usuario.findByUsername(fields[0].trim())
 			lote.propietario = propietario
 			
@@ -70,18 +67,7 @@ class LoteReader {
 					lote.aviso.postular(lote.propietario);
 					lote.aviso.aprobar(administrador);
 					break
-				
-				// case ~/^RECHAZADO$/:
-					// lote.aviso.rechazar();
-					// break
-				
-				// case ~/^CANCELADO$/:
-					// lote.aviso.cancelar();
-					// break
-				
-				// case ~/^BORRADOR$/:				
-					// break
-
+		
 			}   
 
 			lote.aviso.state = fields[3].trim()
@@ -91,7 +77,7 @@ class LoteReader {
 
 			i++
 			def path1 = "/mock/lotes/1 (" + i + ").jpg"
-			println path1
+			// println path1
 
 			def r = new ImageReader()
 			try {

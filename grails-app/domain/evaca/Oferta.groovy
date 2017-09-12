@@ -77,11 +77,34 @@ class Oferta {
 		}
 		
 		/* admin? */
-		if (ejecutor.profile != UsuarioProfile.ADMINISTRADOR){
+		if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
 			throw new OfertaStateFlowException(message: "Sólo un administrador puede aprobar la oferta")
 		}
 		
 		this.state = OfertaState.APROBADO
+
+	}
+
+	
+	/* desaprobar */
+	public desaprobar(Usuario ejecutor){
+		
+		/* está publicado? */
+		if (this.state == OfertaState.DESAPROBADO){
+			throw new OfertaException(message : "La oferta ya está desaprobada")
+		}
+
+		/* está aprobacion? */
+		if (this.state != OfertaState.POSTULADO){
+			throw new OfertaException(message : "La oferta debe estar en aprobacion")
+		}
+		
+		/* admin? */
+		if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+			throw new OfertaException(message: "Sólo un administrador puede aprobar la oferta")
+		}
+		
+		this.state = OfertaState.DESAPROBADO
 
 	}
 
@@ -91,19 +114,21 @@ class Oferta {
 			
 		/* aprobada? */
 		if (this.state != OfertaState.APROBADO){
-			throw new OfertaStateFlowException(message : "La oferta debe estar aprobada")
+			throw new OfertaException(message : "La oferta debe estar aprobada")
 		}
-	
+
 		/* owner? */
 		if (ejecutor != this.aviso.propietario){
-			throw new OfertaStateFlowException(message: "Sólo el anunciante puede aceptar la oferta")
+			throw new OfertaException(message: "Sólo el anunciante puede aceptar la oferta")
 		}			
 
 		/* genera venta */
 		this.venta = new Venta()
 		// venta.oferta = oferta
-		// venta.save(flush:true, failOnError: false)
-		
+
+		/* hay que terminar todas las otras ofertas y cambiar varios estados! 
+			puede ser un service quizas? */
+
 		this.state = OfertaState.ACEPTADO
 
 	}

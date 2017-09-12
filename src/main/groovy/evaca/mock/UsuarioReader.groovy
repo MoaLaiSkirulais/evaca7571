@@ -48,7 +48,6 @@ class UsuarioReader {
 
 			i++
 			def path1 = "/mock/usuarios/1-(" + i + ").jpg"
-			println path1
 			
 			def r = new ImageReader()
 			usuario.image = r.readImageFile(LocalSystem.getDataResource(path1))

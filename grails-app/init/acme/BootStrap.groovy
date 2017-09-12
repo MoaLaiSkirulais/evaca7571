@@ -18,6 +18,7 @@ class BootStrap {
 		// myService.countAll()
 		
 		/* init */    
+		return
 		populateProService.all()
 		
 		def u = new UsuarioReader()

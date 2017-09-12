@@ -30,10 +30,14 @@ class Aviso {
 
 	}
 	
-	
+	// static mapping = {
+        
+    // }
 	/* mapping */
     static mapping = {
 		// state lazy: false
+		// ofertas lazy: false
+		// ofertas fetch: 'join'
     }
 	
 	
