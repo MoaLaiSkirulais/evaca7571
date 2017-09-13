@@ -15,16 +15,18 @@ class LoteReader {
 	public loadFromCsv(String path){
 
 		File csvFile = new File(LocalSystem.getDataResource("/mock/csv/lotes.csv"));
-		def i = 0
+		def i = 1
 		csvFile.splitEachLine(',') { fields ->
+		
+			def propietario = Usuario.findByUsername(fields[0].trim())
 			
-			def lote = new Lote()
 			def administrador = Usuario.findByUsername("administrador")
 			
-			/* selecciona propietario */
-			def propietario = Usuario.findByUsername(fields[0].trim())
-			lote.propietario = propietario
+			/* selecciona propietario */			
+			// lote.propietario = propietario /* analizar esto! */
 			
+			def lote = new Lote()
+
 			/* selecciona raza */
 			def raza = Raza.findByNombre(fields[1].trim())
 			if (!raza) {
@@ -45,14 +47,25 @@ class LoteReader {
 			
 			lote.categoria = categoria
 			
-			/* crea el aviso */
-			/* voy a hacer el flujo normal, no voy a ir directo aunque pudiera con los states */
-			lote.iniciar()
+			/* imagen asociada */
+			def r = new ImageReader()
+			def path1 = "/mock/lotes/1 (" + i + ").jpg"
+			try {
+				lote.image = r.readImageFile(LocalSystem.getDataResource(path1))
+			} catch (e) {}
+			
+			/* intenta postular */
+			try {
+				propietario.postularLote(lote)
+			} catch (Exception e){
+				println "error: " + e
+				return /* es como el continue */
+			}
+
+			/* tratamiento del aviso dado que se postuló el lote sin errores */
+			def consignatario = Usuario.findByUsername(fields[6].trim())
 			lote.aviso.precio = Float.parseFloat(fields[4].trim())
 			lote.aviso.plazo = Plazo.findByNombre(fields[5].trim())
-			
-			/* selecciona consignatario */
-			def consignatario = Usuario.findByUsername(fields[6].trim())
 			lote.aviso.consignatario = consignatario
 			
 			def state = fields[3].trim()
@@ -72,20 +85,13 @@ class LoteReader {
 
 			lote.aviso.state = fields[3].trim()
 			
-			/* save */
-			lote.save(flush:true, failOnError: true)
-
-			/* imagen del lote */
-			i++
-			def path1 = "/mock/lotes/1 (" + i + ").jpg"
-
-			def r = new ImageReader()
+			/* guarda cambios en el AR */
 			try {
-				lote.image = r.readImageFile(LocalSystem.getDataResource(path1))
-				lote.save(flush:true, failOnError: false)
-			} catch (e) {}
+				propietario.save(flush:true, failOnError: true)
+			} catch (Exception e){}
+			
 		
-
+			i++
 		}
 	
 	}

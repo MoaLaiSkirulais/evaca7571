@@ -20,7 +20,7 @@ class Usuario {
 	byte[] image 
     String avatarImageContentType 
 
-	static hasMany = [ofertas: Oferta, resenas: Resena, lotes: Lote]
+	static hasMany = [resenas: Resena, lotes: Lote]
 
 
 	/* constraints */
@@ -43,7 +43,7 @@ class Usuario {
     static mapping = {
 
         sort "fechaCreacion"
-		usuarioActivacion lazy: false
+		// usuarioActivacion lazy: false
 		image column: 'image', sqlType: 'longblob' 
     }
 
@@ -103,6 +103,45 @@ class Usuario {
 		}
 		
 		this.state = UsuarioState.APROBADO	
+	}
+	
+	
+	/* desaprobar */
+	public desaprobar(Usuario ejecutor){
+
+		/* ya esta? */
+		if (this.state == UsuarioState.DESAPROBADO){
+			throw new UsuarioException(message : "El usuario ya está desaprobado")
+		}
+		
+		/* admin? */
+		if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
+			throw new UsuarioException(message: "Se necesita un administrador para ejecutar esta accion")
+		}
+		
+		this.state = UsuarioState.DESAPROBADO	
+	}
+	
+	
+	/**
+	 * lotes
+	 */
+	 
+	/* postularLote */
+	public postularLote(Lote lote){
+		
+		/* solo estado aprobado puede agregar ofertas */
+		if (this.state != UsuarioState.APROBADO){
+			throw new UsuarioException(message : "El usuario no está aprobado")
+		}
+
+		/* delega bl propia de oferta */
+		lote.propietario = this
+		lote.postular() 
+
+		/* agregar a lotes */
+		this.addToLotes(lote)
+
 	}
 
 }

@@ -54,19 +54,20 @@ class Lote {
 	/* Lote */
 	public Lote() {
 		this.fechaCreacion = new Date();
-		this.state = LoteState.DISPONIBLE;
+		// this.state = LoteState.DISPONIBLE;
+		this.state = LoteState.BORRADOR;
     }
 
 
 	/* changeState */
 	public changeState(LoteState state){
-		state.validateStateFlow(this);
-		this.state = state
+		// state.validateStateFlow(this);
+		// this.state = state
 	}
 
 
 	/* iniciar */
-	public iniciar(){		
+	public iniciar(){ /* uhmm */
 		this.aviso = new Aviso([propietario: this.propietario])
 	}
 
@@ -75,6 +76,25 @@ class Lote {
 	String toString(){
 		// this.id + " | " + this.usuario + " | " + this.raza + " | " + this.categoria + " | " + this.cantidad
 		this.id + " | " + this.propietario + " | " + this.raza + " | " + this.state
+	}
+	
+	
+	/* postular */
+	public postular(){
+	
+		// return 
+		/* basicamente no se toman grandes acciones */
+		/* en borrador? */
+		if (this.state != LoteState.BORRADOR) { 
+			throw new LoteException(message : "El lote debe estar en borrador")
+		}
+		
+		println this.propietario
+		this.aviso = new Aviso()
+		this.aviso.lote = this /* este ida y vuelta es muy raro! */
+		this.aviso.propietario = this.propietario
+		this.state = LoteState.DISPONIBLE
+
 	}
 
 }

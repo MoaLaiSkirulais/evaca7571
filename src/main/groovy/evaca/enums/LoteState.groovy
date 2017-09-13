@@ -2,11 +2,17 @@ package evaca
 
 /* LoteState */	
 public enum LoteState {
+	
+	BORRADOR { 
+		public LoteState validateStateFlow(Usuario usuario) {
+			throw new LoteException(message : "No se puede pasar manualmente a borrador")
+		}
+	}, 	
 
 	DISPONIBLE { 
 		public LoteState validateStateFlow(Lote lote) {
 			if (lote.state == LoteState.VENDIDO){
-				throw new DomainException(message : "El lote ya fue Vendido")
+				throw new LoteException(message : "El lote ya fue Vendido")
 			}
 		}
 	}, 
@@ -14,7 +20,7 @@ public enum LoteState {
 	PUBLICADO { 
 		public LoteState validateStateFlow(Lote lote) {
 			if (lote.state != LoteState.DISPONIBLE){
-				throw new DomainException(message : "El lote no está Disponible")
+				throw new LoteException(message : "El lote no está Disponible")
 			}
 		}
 	}, 
@@ -22,7 +28,7 @@ public enum LoteState {
 	VENDIDO { 
 		public LoteState validateStateFlow(Lote lote) {
 			if (lote.state != LoteState.PUBLICADO){
-				throw new DomainException(message : "El lote no está Publicado")
+				throw new LoteException(message : "El lote no está Publicado")
 			}
 		}
 

@@ -18,13 +18,12 @@ class UsuarioReader {
 		def i = 0
 		csvFile.splitEachLine(',') { fields ->
 
-			def usuario = new Usuario(
-				username: fields[0].trim(), 
-				nombre: fields[0].trim(), 
-				apellido: fields[0].trim(), 
-				email: fields[1].trim(), 
-				comision: fields[3].trim()
-			)
+			def usuario = new Usuario()
+			usuario.username = fields[0].trim()
+			usuario.nombre = fields[0].trim()
+			usuario.apellido = fields[0].trim()
+			usuario.email = fields[1].trim()
+			usuario.comision = fields[3].trim()
 			
 			/* profile */
 			def profile = fields[2].trim()
@@ -45,14 +44,32 @@ class UsuarioReader {
 
 			usuario.password = ''
 			usuario.postular()
-
+ 
 			i++
 			def path1 = "/mock/usuarios/1-(" + i + ").jpg"
 			
 			def r = new ImageReader()
 			usuario.image = r.readImageFile(LocalSystem.getDataResource(path1))
-			usuario.save(flush:true, failOnError: false)
-		
+			
+			/* profile */
+			def administrador = Usuario.findByUsername("administrador")
+			def state = fields[4].trim()
+
+			switch (state) { 
+
+				case ~/^DESAPROBADO$/:
+					usuario.desaprobar(administrador)
+					break
+				
+				case ~/^APROBADO$/:
+					usuario.aprobar(administrador)
+					break
+					
+				case ~/^POSTULADO$/:					
+					break
+			}
+			
+			usuario.save(flush:true, failOnError: false)		
 
 		}
 	
