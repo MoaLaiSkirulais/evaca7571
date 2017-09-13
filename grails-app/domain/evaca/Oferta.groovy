@@ -8,10 +8,10 @@ class Oferta {
 	Plazo plazo
 	Float precio
 	OfertaState state
-	Venta venta 
+	// Venta venta 
 
 	static belongsTo = [aviso:Aviso, propietario:Usuario, plazo:Plazo]	
-	static hasOne = [venta: Venta]
+	// static hasOne = [venta: Venta]
     // static mappedBy = [child: 'parent']
 	// static mappedBy = [venta: "oferta"]
 
@@ -26,7 +26,7 @@ class Oferta {
 	
 	/* constraints */
     static constraints = {
-		venta nullable: true
+		// venta nullable: true
     }
 
 
@@ -40,24 +40,18 @@ class Oferta {
 	
 	
 	/* postular */
-	public postular(Usuario ejecutor){
+	// public postular(Usuario ejecutor){
+	public postular(){
 	
-		/* ya tiene oferta activa? */
-		
-		/* aviso aprobado? */ /* bueno aca apare el tema del parametro si o no analizar! */
-		if (this.aviso.state != AvisoState.APROBADO) {
-			throw new OfertaException(message : "El aviso no esta aprobado")
-		}
-		
 		/* oferta en borrador? */
 		if (this.state != OfertaState.BORRADOR) { 
 			throw new OfertaException(message : "La oferta debe estar en borrador")
 		}
 	
-		/* owner? */
-		if (this.propietario != ejecutor){
-			throw new OfertaException(message: "Solo el dueño de la oferta puede pedir aprobacion")
-		}        
+		// /* owner? */
+		// if (this.propietario != ejecutor){
+			// throw new OfertaException(message: "Solo el dueño de la oferta puede pedir aprobacion")
+		// }        
 		
 		this.state = OfertaState.POSTULADO
 
@@ -96,12 +90,12 @@ class Oferta {
 
 		/* está aprobacion? */
 		if (this.state != OfertaState.POSTULADO){
-			throw new OfertaException(message : "La oferta debe estar en aprobacion")
+			throw new OfertaException(message : "La oferta debe estar postulada")
 		}
 		
 		/* admin? */
 		if (ejecutor?.profile != UsuarioProfile.ADMINISTRADOR){
-			throw new OfertaException(message: "Sólo un administrador puede aprobar la oferta")
+			throw new OfertaException(message: "Sólo un administrador puede desaprobar la oferta")
 		}
 		
 		this.state = OfertaState.DESAPROBADO
@@ -119,11 +113,11 @@ class Oferta {
 
 		/* owner? */
 		if (ejecutor != this.aviso.propietario){
-			throw new OfertaException(message: "Sólo el anunciante puede aceptar la oferta")
+			throw new OfertaException(message: "Sólo el vendedor puede aceptar la oferta")
 		}			
 
 		/* genera venta */
-		this.venta = new Venta()
+		// this.venta = new Venta()
 		// venta.oferta = oferta
 
 		/* hay que terminar todas las otras ofertas y cambiar varios estados! 

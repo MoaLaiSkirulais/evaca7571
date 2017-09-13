@@ -5,11 +5,12 @@ class Resena {
 	Date fechaCreacion
 	Integer puntaje	
 	Venta venta
+	Aviso aviso
 	Usuario propietario
 	List<Respuesta> respuestas /* esto es genial tener muy en cuenta, es ofertas che */
 	ResenaState state
 
-	static belongsTo = [venta:Venta, propietario:Usuario] 
+	static belongsTo = [venta:Venta, aviso:Aviso, propietario:Usuario] 
 	static hasMany = [respuestas: Respuesta]
 
 
@@ -51,7 +52,7 @@ class Resena {
 
 		fechaCreacion()
 		puntaje min:1, max:5
-		venta()
+		venta nullable: true
 		// propietario unique: 'venta' /* esta restriccion no sirve para cuando varios pueden entregar resenas*/
 
 	}
@@ -70,9 +71,9 @@ class Resena {
 			throw new ResenaException(message : "La resena no está en BORRADOR")
 		}
 		
-		if (this.propietario != ejecutor){
-			throw new ResenaException(message: "Solo el dueño de la reseña puede postular")
-        }
+		// if (this.propietario != ejecutor){
+			// throw new ResenaException(message: "Solo el dueño de la reseña puede postular")
+        // }
 		
 		this.state = ResenaState.POSTULADO
 	}

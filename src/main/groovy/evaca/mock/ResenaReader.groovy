@@ -22,16 +22,17 @@ class ResenaReader {
 		csvFile.splitEachLine(',') { fields ->
 		}
 		
-		/* reseñar todas las ventas */
+		/* reseñar todas los avisos vendidos, igual voy a chocar */
 		def administrador = Usuario.findByUsername("administrador")
-		Venta.list().each {
+		Aviso.list().each { aviso ->
 		
-			println it.dump()
+			// println aviso.dump()
 			
+			/* nueva resena */
 			def resena = new Resena()
-			resena.propietario = it.oferta.propietario
+			resena.propietario = aviso.propietario
 			resena.prepare()
-			resena.venta = it
+			// resena.venta = it
 			resena.puntaje = 4
 			
 			/* preguntas */		
@@ -50,17 +51,24 @@ class ResenaReader {
 			resena.respuestas[4].puntaje = 2
 			resena.respuestas[4].respuesta = "sin comentarios"
 			
-			resena.postular(resena.propietario)
-			resena.save(flush:true, failOnError: true)
-			
+			try {
+				aviso.postularResena(resena)
+				aviso.save(flush:true, failOnError: true)
+			} catch (AvisoException e){
+				println e
+			}
+
 		} 
 		
 		/* aprobar todas */	
-		Resena.list().each {
+		/* no va por el AR parece ? quizas este bien */	
+		Resena.list().each { resena -> 
 			try {
-				it.aprobar(administrador)
-				it.save(flush:true, failOnError: true)
-			} catch (OfertaException e){}							
+				resena.aprobar(administrador)
+				resena.save(flush:true, failOnError: true)
+			} catch (OfertaException e){
+				println e
+			}
 			
 		} 
 		

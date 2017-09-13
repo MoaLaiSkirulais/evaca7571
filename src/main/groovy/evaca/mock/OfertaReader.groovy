@@ -14,26 +14,23 @@ class OfertaReader {
 	 */
 	public loadFromCsv(String path){
 
+		/* listado de ofertantes, plazo y precio que van a aplicar a los avisos */
 		File csvFile = new File(LocalSystem.getDataResource("/mock/csv/ofertas.csv"));
 		def i = 0
 		csvFile.splitEachLine(',') { fields ->
 
 			def ofertante = Usuario.findByUsername(fields[0].trim())		
 			
-			Aviso.list().each {
-			
-				// println "Aviso ${it}"
+			Aviso.list().each { aviso ->
 			
 				def oferta = new Oferta(propietario:ofertante)
 				oferta.plazo = Plazo.findByNombre(fields[4].trim())
 				oferta.precio = Float.parseFloat(fields[3].trim())
-				oferta.aviso = it
+
 				try {
-					it.addToOfertas(oferta)
-					oferta.postular(ofertante) /* aca es interesante pq el ofertante es el ismo que el propietario! puede volar ese param! */
-					// oferta.save(flush:true, failOnError: true)
-					it.save(flush:true, failOnError: true)
-				} catch (OfertaException e){}
+					aviso.postularOferta(oferta, ofertante)
+					aviso.save(flush:true, failOnError: true)
+				} catch (AvisoException e){}
 				
 			} 
 
@@ -41,33 +38,33 @@ class OfertaReader {
 
 		/* aprobar 16 avisos, todas las ofertas */
 		def administrador = Usuario.findByUsername("administrador")
-		Aviso.list()[0..15].each {
-			it.ofertas.each {
+		Aviso.list()[0..15].each { aviso ->
+			aviso.ofertas.each { oferta -> 
 				try {
-					it.aprobar(administrador)
-					it.save(flush:true, failOnError: true)
-				} catch (OfertaException e){}							
+					aviso.aprobarOferta(oferta, administrador)
+					aviso.save(flush:true, failOnError: true)
+				} catch (AvisoException e){}							
 			} 	
 		} 
 		
 		/* desaprobar 6 avisos, todas las ofertas */
-		Aviso.list()[16..22].each {
-			it.ofertas.each {
+		Aviso.list()[16..22].each { aviso ->
+			aviso.ofertas.each { oferta -> 
 				try {
-					it.desaprobar(administrador)
-					it.save(flush:true, failOnError: true)
-				} catch (OfertaException e){}							
+					aviso.desaprobarOferta(oferta, administrador)
+					aviso.save(flush:true, failOnError: true)
+				} catch (AvisoException e){}
 			} 	
 		} 
 		
-		/* de los 16 aprobados, aceptar en 10 todas sus ofertas */
-		Aviso.list()[0..9].each {
-			def anunciante = it.propietario
-			it.ofertas.each {
+		/* de los 16 avisos aprobados, aceptar en 10 todas sus ofertas */
+		Aviso.list()[0..9].each {aviso ->
+			def anunciante = aviso.propietario
+			aviso.ofertas.each { oferta -> 
 				try {
-					it.aceptar(anunciante)
-					it.save(flush:true, failOnError: true)
-				} catch (OfertaException e){}
+					aviso.aceptarOferta(oferta, anunciante)
+					aviso.save(flush:true, failOnError: true)
+				} catch (AvisoException e){}
 			} 	
 		} 
 		

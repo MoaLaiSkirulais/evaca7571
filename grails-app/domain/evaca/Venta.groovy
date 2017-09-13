@@ -3,13 +3,16 @@ package evaca
 class Venta {
 	
 	Date fechaCreacion
-	Oferta oferta
+	// Oferta oferta
+	Aviso aviso
 	
-	static belongsTo = [oferta:Oferta] 
+	static belongsTo = [
+		aviso:Aviso
+	] 
 
     static constraints = {
 		fechaCreacion nullable: true
-		oferta nullable: true
+		// oferta nullable: true
     }
 	
 	

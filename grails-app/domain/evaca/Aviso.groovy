@@ -11,9 +11,22 @@ class Aviso {
 	Usuario propietario
 	Usuario consignatario
 	Lote lote     
+	Venta venta
  
-	static belongsTo = [lote:Lote, propietario:Usuario, consignatario:Usuario]	
-	static hasMany = [ofertas: Oferta]
+	static belongsTo = [
+		lote:Lote, 
+		propietario:Usuario, 
+		consignatario:Usuario
+	]	
+
+	static hasMany = [
+		ofertas: Oferta, 
+		resenas: Resena
+	]
+	
+	static hasOne = [
+		venta: Venta
+	]
 
 
 	/* constraints */
@@ -24,17 +37,12 @@ class Aviso {
 		lote nullable: false
 		precio nullable: true
 		plazo nullable: true
-		// lote : { val, obj ->
-			// obj.propietario == val.usuario
-		// }
+		venta nullable: true
 
 	}
 	
-	// static mapping = {
-        
-    // }
-	/* mapping */
-    static mapping = {
+
+	static mapping = {
 		// state lazy: false
 		// ofertas lazy: false
 		// ofertas fetch: 'join'
@@ -47,14 +55,10 @@ class Aviso {
 		this.state = AvisoState.BORRADOR;		
 	}
 
-
-	/* changeState */
-	public changeState(AvisoState state, Usuario ejecutor){
-		// state.validateStateAccess(this, ejecutor);
-		// state.validateStateFlow(this);
-		// this.state = state
-	}
-
+	
+	/**
+	 * aviso
+	 */
 
 	/* aprobar */
 	public aprobar(Usuario ejecutor){
@@ -99,20 +103,119 @@ class Aviso {
 	}
 
 
-	/* recibirOferta */
-	public recibirOferta(Oferta oferta, Usuario ofertante){
+	/**
+	 * ofertas 
+	 */
+	 
+	/* postularOferta */
+	public postularOferta(Oferta oferta, Usuario ofertante){
 	
+		// println this.dump()
+	
+		/* solo estado aprobado puede agregar ofertas */
 		if (this.state != AvisoState.APROBADO){
-			throw new OfertaException(message : "El aviso no está aprobado")
+			throw new AvisoException(message : "El aviso no está aprobado")
 		}
 
+		/* ofertante = vendodor? */
 		if (this.propietario == ofertante){
-			throw new OfertaStateFlowException(message: "No puede ofertar su propio aviso")
+			throw new AvisoException(message: "No puede ofertar su propio aviso")
 		}
 		
-		// state.validateStateAccess(this, ejecutor);
-		// state.validateStateFlow(this);
-		// this.state = state
+		/* delega bl propia de oferta */
+		oferta.postular() 
+
+		/* agregar a aviso */
+		oferta.aviso = this
+		this.addToOfertas(oferta)
+
+	}
+
+
+	/* desaprobarOferta */
+	public desaprobarOferta(Oferta oferta, Usuario ejecutor){
+	
+		/* solo estado aprobado */
+		if (this.state != AvisoState.APROBADO){
+			throw new AvisoException(message : "El aviso no está aprobado")
+		}
+		
+		/* pertenece al aviso?! */
+
+		/* delega bl propia de oferta */
+		oferta.desaprobar(ejecutor) 
+
+	}
+
+
+	/* aprobarOferta */
+	public aprobarOferta(Oferta oferta, Usuario ejecutor){
+	
+		/* solo estado aprobado */
+		if (this.state != AvisoState.APROBADO){
+			throw new AvisoException(message : "El aviso no está aprobado")
+		}
+		
+		/* pertenece al aviso?! */
+		
+		/* delega bl propia de oferta */
+		oferta.aprobar(ejecutor) 
+
+	}
+
+
+	/* aceptarOferta */
+	public aceptarOferta(Oferta oferta, Usuario ejecutor){
+	
+		/* solo estado aprobado */
+		if (this.state != AvisoState.APROBADO){
+			throw new AvisoException(message : "El aviso no está aprobado")
+		}
+		
+		/* pertenece al aviso?! */
+		
+		/* delega bl propia de oferta */
+		oferta.aceptar(ejecutor) 
+		
+		/* genera la venta */
+		this.venta = new Venta()
+		// venta.oferta = oferta
+		venta.aviso = this
+		// this.venta = venta
+		// this.addToVenta(venta)
+
+		/* cambia estado */
+		this.state = AvisoState.VENDIDO
+
+	}
+	
+	/**
+	 * resenas 
+	 */
+	 
+	/* postularResena */
+	// public postularResena(Resena resena, Usuario postulante){
+	public postularResena(Resena resena){
+	
+		/* solo estado aprobado puede agregar ofertas */
+		if (this.state != AvisoState.VENDIDO){
+			throw new AvisoException(message : "El aviso no está vendido")
+		}
+
+		/* postulante = vendedor || consignatario || comprador ? */
+		// println resena.propietario
+		if (this.propietario != resena.propietario 
+				&& this.consignatario != resena.propietario){
+			throw new AvisoException(message: "Solo el consignatario o el vendedor puede postular una reseña")
+		}
+		
+		/* delega bl propia de oferta */
+		resena.postular() 
+
+		/* agregar a aviso */
+		resena.aviso = this
+		this.addToResenas(resena)
+
 	}
 
 

@@ -21,11 +21,11 @@ class LoteReader {
 			def lote = new Lote()
 			def administrador = Usuario.findByUsername("administrador")
 			
-			/* propietario */
+			/* selecciona propietario */
 			def propietario = Usuario.findByUsername(fields[0].trim())
 			lote.propietario = propietario
 			
-			/* raza */
+			/* selecciona raza */
 			def raza = Raza.findByNombre(fields[1].trim())
 			if (!raza) {
 				raza = new Raza(usuario:administrador) 
@@ -35,7 +35,7 @@ class LoteReader {
 			
 			lote.raza = raza
 			
-			/* categoria */
+			/* selecciona categoria */
 			def categoria = Categoria.findByNombre(fields[2].trim())
 			if (!categoria) {
 				categoria = new Categoria(usuario:administrador) 
@@ -45,13 +45,13 @@ class LoteReader {
 			
 			lote.categoria = categoria
 			
-			/* aviso */
+			/* crea el aviso */
 			/* voy a hacer el flujo normal, no voy a ir directo aunque pudiera con los states */
 			lote.iniciar()
 			lote.aviso.precio = Float.parseFloat(fields[4].trim())
 			lote.aviso.plazo = Plazo.findByNombre(fields[5].trim())
 			
-			/* consignatario */
+			/* selecciona consignatario */
 			def consignatario = Usuario.findByUsername(fields[6].trim())
 			lote.aviso.consignatario = consignatario
 			
@@ -75,9 +75,9 @@ class LoteReader {
 			/* save */
 			lote.save(flush:true, failOnError: true)
 
+			/* imagen del lote */
 			i++
 			def path1 = "/mock/lotes/1 (" + i + ").jpg"
-			// println path1
 
 			def r = new ImageReader()
 			try {
