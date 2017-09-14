@@ -15,15 +15,11 @@ trait ImageHandler {
 	/* get_image */ 
 	@Action
 	def get_image(Lote lote) { 
- 
+	
         if (lote == null) {
 			render "no-img"
             return
         }
-		
-		println "----"
-		println grailsResourceLocator
-		println "----"
 		
 		if (lote.image == null) {
 			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/lotes/anylote.png')

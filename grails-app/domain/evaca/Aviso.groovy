@@ -94,7 +94,6 @@ class Aviso {
 			throw new AvisoException(message: "Solo el dueño del aviso puede pedir aprobacion")
 		}
 		
-		println this.state
 		if (this.state != AvisoState.BORRADOR) { 
 			throw new AvisoException(message : "El aviso no está en BORRADOR")
 		}

@@ -1,36 +1,36 @@
-dorothy,Braford,Preñadas,POSTULADO,3000,Contado,lurati
-dorothy,Braford,Preñadas,APROBADO,300,60 días,lurati
-dorothy,Holando Argentino,Vacias,POSTULADO,1100,30 días,jorgel
-dorothy,Cruza,Con Ternero al Pie,RECHAZADO,4200,90 días,martin
-austin,Braford,De Descarte,APROBADO,2100,90 días,lurati
-austin,Braford,Preñadas,APROBADO,4200,60 días,martin
-austin,Holando Argentino,Con Servicio,POSTULADO,5500,Otro,jorgel
-austin,Hereford,Vacias,APROBADO,10000,Contado,lurati
-austin,Jersey,Preñadas,APROBADO,5500,90 días,harriett
-austin,Cruza,Con Ternero al Pie,POSTULADO,2100,60 días,harriett
-martin,Braford,De Descarte,APROBADO,3000,90 días,lurati
-martin,Braford,Preñadas,APROBADO,7000,60 días,martin
-martin,Holando Argentino,Con Servicio,BORRADOR,1100,30, 60 y 90 días,martin
-martin,Hereford,Preñadas,APROBADO,2100,30 días,martin
-martin,Cruza,Vacias,APROBADO,10000,90 días,lurati
-harriett,Braford,De Descarte,RECHAZADO,3000,60 días,harriett
-harriett,Braford,Preñadas,APROBADO,2100,30, 60 y 90 días,jorgel
-harriett,Holando Argentino,Preñadas,POSTULADO,300,30 días,martin
-harriett,Jersey,Preñadas,APROBADO,4200,Otro,lurati
-harriett,Hereford,Vacias,CANCELADO,300,60 días,martin
-theresa,Braford,De Descarte,APROBADO,4200,30 días,lurati
-theresa,Holando Argentino,Con Servicio,BORRADOR,3000,30, 60 y 90 días,martin
-theresa,Jersey,Con Ternero al Pie,APROBADO,10000,Otro,harriett
-christina,Braford,De Descarte,APROBADO,4200,Contado,martin
-christina,Hereford,Con Ternero al Pie,POSTULADO,5500,Otro,harriett
-christina,Brangus,Con Servicio,APROBADO,3000,30 días,lurati
-christina,Jersey,Vacias,RECHAZADO,1500,Contado,lurati
-adelaide,Holando Argentino,Preñadas,APROBADO,2100,30, 60 y 90 días,harriett
-adelaide,Cruza,Preñadas,APROBADO,10000,30 días,martin
-mollie,Braford,Vacias,CANCELADO,3000,Contado,martin
-mollie,Jersey,Con Ternero al Pie,RECHAZADO,10000,Otro,lurati
-mollie,Careta,Preñadas,CANCELADO,2100,60 días,lurati
-mollie,Brangus,De Descarte,RECHAZADO,5500,Otro,harriett
-sarala,Careta,Preñadas,BORRADOR,4200,60 días,harriett
-sarala,Hereford,Con Servicio,RECHAZADO,5500,Contado,jorgel
-sarala,Cruza,Con Ternero al Pie,BORRADOR,4200,Otro,harriett
+dorothy,Braford,Preñadas,POSTULADO,3000,Contado,lurati,Buenos Aires,Glew
+dorothy,Braford,Preñadas,APROBADO,300,60 días,lurati,Buenos Aires,Ranchos
+dorothy,Holando Argentino,Vacias,POSTULADO,1100,30 días,jorgel,Buenos Aires,Glew
+dorothy,Cruza,Con Ternero al Pie,RECHAZADO,4200,90 días,martin,Buenos Aires,Ranchos
+austin,Braford,De Descarte,APROBADO,2100,90 días,lurati,Buenos Aires,Glew
+austin,Braford,Preñadas,APROBADO,4200,60 días,martin,Buenos Aires,Ranchos
+austin,Holando Argentino,Con Servicio,POSTULADO,5500,Otro,jorgel,Buenos Aires,Glew
+austin,Hereford,Vacias,APROBADO,10000,Contado,lurati,Buenos Aires,Pila
+austin,Jersey,Preñadas,APROBADO,5500,90 días,harriett,Buenos Aires,Pila
+austin,Cruza,Con Ternero al Pie,POSTULADO,2100,60 días,harriett,Buenos Aires,Pila
+martin,Braford,De Descarte,APROBADO,3000,90 días,lurati,Buenos Aires,Pila
+martin,Braford,Preñadas,APROBADO,7000,60 días,martin,Santa Fé,Victorica
+martin,Holando Argentino,Con Servicio,BORRADOR,1100,30, 60 y 90 días,martin,La Pampa,Victorica
+martin,Hereford,Preñadas,APROBADO,2100,30 días,martin,La Pampa,Victorica
+martin,Cruza,Vacias,APROBADO,10000,90 días,lurati,La Pampa,Venado Tuerto
+harriett,Braford,De Descarte,RECHAZADO,3000,60 días,harriett,Santa Fé,Las Palmas
+harriett,Braford,Preñadas,APROBADO,2100,30, 60 y 90 días,jorgel,San Luis,Merlo
+harriett,Holando Argentino,Preñadas,POSTULADO,300,30 días,martin,San Luis,Capital
+harriett,Jersey,Preñadas,APROBADO,4200,Otro,lurati,Santa Fé,Las Palmas
+harriett,Hereford,Vacias,CANCELADO,300,60 días,martin,San Luis,Merlo
+theresa,Braford,De Descarte,APROBADO,4200,30 días,lurati,La Pampa,Victorica
+theresa,Holando Argentino,Con Servicio,BORRADOR,3000,30, 60 y 90 días,martin,La Pampa,Victorica
+theresa,Jersey,Con Ternero al Pie,APROBADO,10000,Otro,harriett,Santa Fé,Rio Segundo
+christina,Braford,De Descarte,APROBADO,4200,Contado,martin,Corrientes,Salto
+christina,Hereford,Con Ternero al Pie,POSTULADO,5500,Otro,harriett,Corrientes,Salto
+christina,Brangus,Con Servicio,APROBADO,3000,30 días,lurati,La Pampa,Victorica
+christina,Jersey,Vacias,RECHAZADO,1500,Contado,lurati,Corrientes,Capital
+adelaide,Holando Argentino,Preñadas,APROBADO,2100,30, 60 y 90 días,harriett,La Pampa,Santa Rosa
+adelaide,Cruza,Preñadas,APROBADO,10000,30 días,martin,San Luis,Merlo
+mollie,Braford,Vacias,CANCELADO,3000,Contado,martin,San Luis,Capital
+mollie,Jersey,Con Ternero al Pie,RECHAZADO,10000,Otro,lurati,La Pampa,Santa Rosa
+mollie,Careta,Preñadas,CANCELADO,2100,60 días,lurati,San Luis,Merlo
+mollie,Brangus,De Descarte,RECHAZADO,5500,Otro,harriett,La Pampa,Santa Rosa
+sarala,Careta,Preñadas,BORRADOR,4200,60 días,harriett,San Luis,Merlo
+sarala,Hereford,Con Servicio,RECHAZADO,5500,Contado,jorgel,San Luis,Merlo
+sarala,Cruza,Con Ternero al Pie,BORRADOR,4200,Otro,harriett,San Luis,Merlo

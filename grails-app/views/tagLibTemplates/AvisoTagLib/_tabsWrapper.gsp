@@ -1,14 +1,14 @@
 <div class="tabs-wrapper">
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
-		<li>
-			<a href="#tab-description" aria-controls="tab-description" data-toggle="tab">Description</a>
-		</li>
+		<!-- <li> -->
+			<!-- <a href="#tab-description" aria-controls="tab-description" data-toggle="tab">Description</a> -->
+		<!-- </li> -->
 		<li class="active">
-			<a href="#tab-information" aria-controls="tab-information" data-toggle="tab">Additional Information</a>
+			<a href="#tab-information" aria-controls="tab-information" data-toggle="tab">Ofertas (${attrs.aviso.ofertas.size()})</a>
 		</li>
 		<li>
-			<a href="#tab-reviews" aria-controls="tab-reviews" data-toggle="tab">Reviews (3)</a>
+			<a href="#tab-reviews" aria-controls="tab-reviews" data-toggle="tab">Reseñas (${attrs.aviso.resenas.size()})</a>
 		</li>
 	</ul>
 	<!-- Tab panes -->

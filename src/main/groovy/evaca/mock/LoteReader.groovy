@@ -16,15 +16,14 @@ class LoteReader {
 
 		File csvFile = new File(LocalSystem.getDataResource("/mock/csv/lotes.csv"));
 		def i = 1
+		
 		csvFile.splitEachLine(',') { fields ->
 		
-			def propietario = Usuario.findByUsername(fields[0].trim())
-			
+			def propietario = Usuario.findByUsername(fields[0].trim())			
 			def administrador = Usuario.findByUsername("administrador")
 			
 			/* selecciona propietario */			
 			// lote.propietario = propietario /* analizar esto! */
-			
 			def lote = new Lote()
 
 			/* selecciona raza */
@@ -46,6 +45,8 @@ class LoteReader {
 			}
 			
 			lote.categoria = categoria
+			lote.provincia = fields[7].trim()
+			lote.ubicacion = fields[8].trim()
 			
 			/* imagen asociada */
 			def r = new ImageReader()
@@ -55,13 +56,13 @@ class LoteReader {
 			} catch (e) {}
 			
 			/* intenta postular */
-			try {
+			try {				
 				propietario.postularLote(lote)
 			} catch (Exception e){
 				println "error: " + e
 				return /* es como el continue */
 			}
-
+			
 			/* tratamiento del aviso dado que se postuló el lote sin errores */
 			def consignatario = Usuario.findByUsername(fields[6].trim())
 			lote.aviso.precio = Float.parseFloat(fields[4].trim())
