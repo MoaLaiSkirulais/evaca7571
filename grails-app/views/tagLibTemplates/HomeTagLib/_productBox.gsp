@@ -1,4 +1,5 @@
-<div class="product col-md-3 col-sm-6 col-xs-12" data-product-id="1" >
+<!-- <div class="product col-md-3 col-sm-6 col-xs-12" data-product-id="1" > -->
+<div class="product col-md-4 col-sm-6 col-xs-12" data-product-id="1">
 	
 
 	<div class="inner-product">

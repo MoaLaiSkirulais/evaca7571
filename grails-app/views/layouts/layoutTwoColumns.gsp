@@ -14,7 +14,7 @@
 					<div class="col-md-3">
 						<div class="shop-sidebar shop-sidebar-left">
 							<div class="widgets">
-								<g:pageProperty name="page.sidebar"/>							
+								<g:pageProperty name="page.sidebar"/>
 							</div>
 						</div>
 					</div>
