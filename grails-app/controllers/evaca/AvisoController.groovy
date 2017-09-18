@@ -134,24 +134,37 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	/* postular_oferta (ofertante) */
 	def postular_oferta(Oferta oferta) { /* tiene que ser un command object */
 	
-		println "--------------"
-		println oferta
-		println "--------------"
+		
+		// render oferta.dump()
+		// render "\r\n--------------\r\n\r\n"
+		// render params
+		
+		// render "\r\n--------------\r\n\r\n"
+		def oferta2 = new Oferta(params)
+		oferta2.properties = params
+		// render oferta2.dump()
+
+		// render "\r\n--------------\r\n\r\n"
+		def oferta3 = Oferta.get(params.id)
+		// render oferta3.dump()
+		// render "\r\n--------------\r\n\r\n"
+		// render oferta3.aviso.dump()
 
 		try {
 
-			ofertaService.postular(oferta);  
+			def administrador = Usuario.findByUsername("administrador")
+			oferta3.aviso.postularOferta(oferta3, administrador)
 
 		} catch (OfertaException e){
 
-			flash.message = e.message
-			render (view: 'show', model:getViewModel(oferta))
+			// flash.message = e.message
+			render (view: 'show', model:getViewModel(oferta3.aviso))
 			return
 		}
 
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"show", id:aviso.id
+		// flash.message = "Cambios aplicados con exito"
+		// flash.type = "ok"
+		// redirect action:"show", id:aviso.id
     }
 
 

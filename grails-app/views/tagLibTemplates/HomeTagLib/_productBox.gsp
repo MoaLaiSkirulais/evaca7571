@@ -17,9 +17,9 @@
 							text-align: left; padding:10px;
 							text-transform: uppercase;">
 							
-				<!-- <div style="position:absolute; bottom:10; right:10;"> -->
-					<!-- <img src="<g:createLink controller='usuario' action='get_image' id='${attrs?.aviso?.consignatario?.id}'/>" style="border: 1px solid gray; width:20px; opacity: 0.9;"/> -->
-				<!-- </div> -->
+				<div style="position:absolute; bottom:10; right:10;">
+					<img src="<g:createLink controller='usuario' action='get_image' id='${attrs?.aviso?.consignatario?.id}'/>" style="border: 1px solid gray; width:20px; opacity: 0.9;"/>
+				</div>
 				
 				<span class="amount">fecha: ${attrs.aviso.lote.fechaCreacion}<br></span>
 				<span class="amount">aviso: #${attrs.aviso.lote.id}<br></span>

@@ -19,7 +19,7 @@ class AvisoService {
 	/* getLotes */
 	def getLotes() {
 		def lotes = Lote.createCriteria().list () { 
-			eq("usuario", mySessionService.usuario)
+			eq("propietario", mySessionService?.usuario)
 		}
 		lotes
 	}
