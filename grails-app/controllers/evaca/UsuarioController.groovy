@@ -4,7 +4,7 @@ package evaca
 import org.springframework.core.io.Resource
 
 class UsuarioController 
-	extends BaseController 
+extends BaseController 
 	implements UsuarioImageHandler, UsuarioExceptionHandler{ 
 	
 	def mySessionService
@@ -61,8 +61,10 @@ class UsuarioController
 
 	/* login */
 	def login() {
+
 		mySessionService.login(params.username, params.password)
 		def usuario = Usuario.findByUsername(params.username)
+
 		flash.message = "Welcome"
 		redirect controller: 'home'	 
     }

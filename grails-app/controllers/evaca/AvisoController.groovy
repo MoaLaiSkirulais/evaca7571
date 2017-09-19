@@ -5,7 +5,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	def usuarioService
 	def avisoService
 	def ofertaService
-
+	def mySessionService
 
 	/* admin */
 	def admin() {		
@@ -111,6 +111,8 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	def show() {
  
 		def id=params.id
+		render new Aviso().get(id).dump()
+		return
 		render(view: 'show', 
 			model: [
 				aviso: new Aviso().get(id),
@@ -132,39 +134,33 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	
 	
 	/* postular_oferta (ofertante) */
-	def postular_oferta(Oferta oferta) { /* tiene que ser un command object */
+	def postular_oferta() { /* tiene que ser un command object! */
 	
-		
-		// render oferta.dump()
-		// render "\r\n--------------\r\n\r\n"
 		// render params
+		// return
 		
-		// render "\r\n--------------\r\n\r\n"
-		def oferta2 = new Oferta(params)
-		oferta2.properties = params
-		// render oferta2.dump()
-
-		// render "\r\n--------------\r\n\r\n"
-		def oferta3 = Oferta.get(params.id)
-		// render oferta3.dump()
-		// render "\r\n--------------\r\n\r\n"
-		// render oferta3.aviso.dump()
+		def aviso = Aviso.get(params.aviso.id)
+		def oferta = new Oferta(params)
+		oferta.propietario = mySessionService.getUsuario()
 
 		try {
 
 			def administrador = Usuario.findByUsername("administrador")
-			oferta3.aviso.postularOferta(oferta3, administrador)
+			aviso.postularOferta(oferta, administrador)
+			aviso.save(flush:true, failOnError: true)
 
-		} catch (OfertaException e){
+		} catch (Exception e){
 
 			// flash.message = e.message
-			render (view: 'show', model:getViewModel(oferta3.aviso))
+			// render (view: 'show', model:getViewModel(oferta3.aviso))
+			render ("\r\n-------\r\n" + e.dump() + getViewModel(aviso) + "\r\n-------\r\n")
 			return
 		}
 
-		// flash.message = "Cambios aplicados con exito"
-		// flash.type = "ok"
-		// redirect action:"show", id:aviso.id
+		render ("\r\n---- Bien! -----\r\n"); return
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"show", id:aviso.id
     }
 
 

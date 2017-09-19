@@ -1,18 +1,35 @@
-# curl -v http://172.22.97.51:8080/aviso/postular_oferta
 export SERVER_IP=172.22.97.51:8080
 
+# ---------------
+# login
+# ---------------
+printf "\n\n[= login ========================]\n"
+
+curl --cookie-jar cookies.txt -vi --keepalive \
+	-X POST \
+	-F 'username=productor1' \
+	-F 'password=' \
+	$SERVER_IP/usuario/login
+
+
+# ---------------
 # postular_oferta
-printf "\n\n[= postular_oferta! ========================]\n"
+# ---------------
+printf "\n\n[= postular_oferta ========================]\n"
 
-export PARAMS="ofertaId=1&param2=value2"
-
-export VAR1=`cat <<EOF
-ofertaId=1
-&param2=value2
-EOF
-`
-curl -X POST \
-	-F 'ofertaId=1' \
-	-F 'id=10' \
-	-F 'password=something' \
+curl --cookie cookies.txt --cookie-jar newcookies.txt \
+	-v -X POST \
+	-F 'aviso.id=15' \
+	-F 'precio=1' \
+	-F 'plazo.id=2' \
 	$SERVER_IP/aviso/postular_oferta
+
+exit
+# ---------------
+# show
+# ---------------
+printf "\n\n[= postular_oferta ========================]\n"
+
+curl --cookie cookies.txt --cookie-jar newcookies.txt \
+	-v -X GET \
+	$SERVER_IP/aviso/show/17

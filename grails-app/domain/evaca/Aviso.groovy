@@ -121,6 +121,13 @@ class Aviso {
 			throw new AvisoException(message: "No puede ofertar su propio aviso")
 		}
 		
+		/* ofertante ya ofertó? */ 
+		def b = this.ofertas.findIndexOf { oferta1 -> oferta1.propietario == oferta.propietario }
+		if (b){
+			throw new AvisoException(message: "Ya oferto este aviso")
+		}
+
+		
 		/* delega bl propia de oferta */
 		oferta.postular() 
 

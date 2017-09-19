@@ -21,7 +21,7 @@ class MySessionService {
 
 	/* login */
 	def login(username, password) {
-		
+
 		def u = username
 		def p = password
 		
