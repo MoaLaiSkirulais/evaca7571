@@ -16,26 +16,16 @@ trait UsuarioImageHandler {
 	@Action
 	def get_image(Usuario usuario) { 
 	
-		println  "------------>"
- 
         if (usuario == null) {
-			println  "------------>"
 			render "no-img"
             return
         }
-		
-		println grailsResourceLocator
-		println  "------------>"
 		
 		if (usuario.image == null) {
 			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
 			render (file: image.inputStream, contentType: '')
             return
         }
-		
-		println  "------------>"
-		println  usuario.image
-		println  "------------>"
 
 		render (file: usuario.image, contentType: '')
 		return

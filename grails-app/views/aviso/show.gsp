@@ -12,11 +12,12 @@
 		<section class="section single-product-wrapper">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-3">
+					<div class="col-sm-5">
 						<aviso:productImages aviso="${aviso}"/>
 					</div>
 
-					<div class="col-sm-6 col-sm-offset-1">
+					<div class="col-sm-7 col-sm-offset-0">
+						<evaca:cruderror modelo="${aviso}"/>
 						<aviso:productDetails aviso="${aviso}"/>
 					</div>
 

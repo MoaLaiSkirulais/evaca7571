@@ -1,3 +1,5 @@
+package evaca
+
 class AvisoTagLib {
 	
 	static namespace = "aviso"
@@ -28,6 +30,26 @@ class AvisoTagLib {
 
 	def tabResenas = {attrs ->
 		out << render(template:"/tagLibTemplates/AvisoTagLib/tabResenas", model:[attrs:attrs])
+	}
+	 
+	def entityState = {attrs ->
+		
+		if (attrs.state == OfertaState.APROBADO) {
+			out << "<span style=\"color:green\">${attrs.state}</span>"
+		}
+		
+		if (attrs.state == OfertaState.POSTULADO) {
+			out << "<span style=\"color:#E74C3C\">${attrs.state}</span>"
+		}
+		
+		if (attrs.state == OfertaState.DESAPROBADO) {
+			out << "<span style=\"color:silver\">${attrs.state}</span>"
+		}
+		
+		if (attrs.state == OfertaState.ACEPTADO) {
+			out << "<span style=\"color:blue\">${attrs.state}</span>"
+		}
+		
 	}
 
 }

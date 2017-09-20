@@ -27,7 +27,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
 	/* search */
 	def search() {
-		println "!!"
+
 		render(
 			view: 'search', 
 			model: [
@@ -55,7 +55,6 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		} catch (AvisoException e){
 
 			flash.message = e.message
-			println "pija"
 			render(controller:'lote', view: 'create', model:getViewModel(aviso))
 			return
 		} 
@@ -99,7 +98,6 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 			return
 		}
 
-		println "bien"
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
 		redirect action:"edit", id:params.int('id')
@@ -111,14 +109,13 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	def show() {
  
 		def id=params.id
-		render new Aviso().get(id).dump()
-		return
-		render(view: 'show', 
-			model: [
+		def model = [
 				aviso: new Aviso().get(id),
 				plazos: Plazo.list()
 			]
-		)
+		
+		//render model.aviso.dump(); return;		
+		render(view: 'show', model: model)
     }
 
 	
@@ -136,29 +133,113 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	/* postular_oferta (ofertante) */
 	def postular_oferta() { /* tiene que ser un command object! */
 	
-		// render params
-		// return
+		 // render params
+		 // return
 		
 		def aviso = Aviso.get(params.aviso.id)
+		if (!aviso){
+			render ("No se encontró el aviso")
+			return
+		}
+
 		def oferta = new Oferta(params)
-		oferta.propietario = mySessionService.getUsuario()
+		println "----" + oferta.dump()
+		println "----" + mySessionService.getUsuario()
+		// oferta.propietario = mySessionService.getUsuario()
+		oferta.propietario = Usuario.findByUsername("productor1")
 
 		try {
 
 			def administrador = Usuario.findByUsername("administrador")
 			aviso.postularOferta(oferta, administrador)
+			println aviso.dump()
 			aviso.save(flush:true, failOnError: true)
+			//oferta.save(flush:true, failOnError: true)
 
 		} catch (Exception e){
 
-			// flash.message = e.message
-			// render (view: 'show', model:getViewModel(oferta3.aviso))
-			render ("\r\n-------\r\n" + e.dump() + getViewModel(aviso) + "\r\n-------\r\n")
+			render ("\r\n----Exception!----\r\n" + e.dump() + getViewModel(aviso) + "\r\n-------\r\n"); return;
+			flash.message = e.message
+			def model = [
+				aviso: aviso,
+				plazos: Plazo.list()
+			]
+			render (view: 'show', model:model)
 			return
 		}
 
 		render ("\r\n---- Bien! -----\r\n"); return
-		flash.message = "Cambios aplicados con exito"
+		flash.message = "La oferta deberá ser aprobada por la administración"
+		flash.type = "ok"
+		redirect action:"show", id:aviso.id
+    }
+
+	/* aprobar_oferta (ofertante) */
+	def aprobar_oferta() { 
+	
+		def oferta = Oferta.get(params.oferta.id)
+		if (!oferta){
+			render ("No se encontró la oferta")
+			return
+		}
+
+		def aviso = oferta.aviso
+		
+		try {
+
+			def administrador = Usuario.findByUsername("administrador")
+			aviso.aprobarOferta(oferta, administrador)
+			aviso.save(flush:true, failOnError: true)
+
+		} catch (Exception e){
+
+			// render ("\r\n----Exception!----\r\n" + e.dump() + getViewModel(aviso) + "\r\n-------\r\n"); return;
+			flash.message = e.message
+			def model = [
+				aviso: aviso,
+				plazos: Plazo.list()
+			]
+			render (view: 'show', model:model)
+			return
+		}
+
+		render ("\r\n---- Bien! -----\r\n"); return
+		flash.message = "La fue aprobada"
+		flash.type = "ok"
+		redirect action:"show", id:aviso.id
+    }
+	
+
+	/* aceptar_oferta (ofertante) */
+	def aceptar_oferta() { 
+	
+		def oferta = Oferta.get(params.oferta.id)
+		if (!oferta){
+			render ("No se encontró la oferta")
+			return
+		}
+
+		def aviso = oferta.aviso
+		
+		try {
+
+			aviso.aceptarOferta(oferta, mySessionService.getUsuario())
+			aviso.save(flush:true, failOnError: true)
+
+		} catch (Exception e){
+
+			render ("\r\n----Exception!----\r\n" + e.dump() + getViewModel(aviso) + "\r\n-------\r\n"); return;
+			flash.message = e.message
+			def model = [
+				aviso: aviso,
+				plazos: Plazo.list()
+			]
+			render (view: 'show', model:model)
+			return
+		}
+
+		render ("\r\n---- Bien! -----\r\n"); return
+		flash.message = "La fue aprobada"
 		flash.type = "ok"
 		redirect action:"show", id:aviso.id
     }

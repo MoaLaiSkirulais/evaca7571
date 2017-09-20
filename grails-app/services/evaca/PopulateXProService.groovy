@@ -231,18 +231,33 @@ class PopulateXProService {
 		log.info "Populando lotes..."
 
 		def administrador = Usuario.findByUsername("administrador")
+		def r = new ImageReader()
 		
 		/* lote1 */
-		def lote1 = new Lote(propietario:administrador)
+		def lote1 = new Lote()
 		lote1.raza = Raza.findByNombre("Braford")
 		lote1.categoria = Categoria.findByNombre("Preñadas")
+		lote1.provincia = "San Juan"
+		lote1.ubicacion = "San Juan"
+		lote1.image = r.readImageFile(LocalSystem.getDataResource("/mock/lotes/1 (1).jpg"))
+
+		def productor1 = Usuario.findByUsername("productor1")
+		productor1.postularLote(lote1)
+
 		lote1.save(flush:true, failOnError: true)
 
 		/* lote2 */
 		/* hay que implementar el lote postular! */
-		def lote2 = new Lote(propietario:administrador)
+		def lote2 = new Lote()
 		lote2.raza = Raza.findByNombre("Jersey")
 		lote2.categoria = Categoria.findByNombre("Preñadas")
+		lote2.provincia = "La Rioja"
+		lote2.ubicacion = "La Rioja"
+		lote2.image = r.readImageFile(LocalSystem.getDataResource("/mock/lotes/1 (2).jpg"))
+		
+		def productor2 = Usuario.findByUsername("productor2")
+		productor2.postularLote(lote2)
+
 		lote2.save(flush:true, failOnError: true)
 
 	}
@@ -250,6 +265,39 @@ class PopulateXProService {
 
 	/* avisos */
 	def avisos() {
+
+		log.info "Populando avisos...";
+		
+		def administrador = Usuario.findByUsername("administrador")
+		
+		/* lote1 */
+		L:{
+			def propietario = Usuario.findByUsername("productor1")
+			def lote = Lote.findByPropietario(propietario)
+			lote.aviso.precio = 1000
+			lote.aviso.plazo = Plazo.findByNombre("Contado")
+			lote.aviso.consignatario = Usuario.findByUsername("consignatario")
+			lote.aviso.postular(lote.propietario);
+			lote.aviso.aprobar(administrador);
+			lote.save(flush:true, failOnError: true)
+		}
+		
+		/* lote2 */
+		L:{
+			def propietario = Usuario.findByUsername("productor2")
+			def lote = Lote.findByPropietario(propietario)
+			lote.aviso.precio = 1000
+			lote.aviso.plazo = Plazo.findByNombre("Contado")
+			lote.aviso.consignatario = Usuario.findByUsername("consignatario")
+			lote.aviso.postular(lote.propietario);
+			lote.aviso.aprobar(administrador);
+			lote.save(flush:true, failOnError: true)
+		}
+	}
+
+
+	/* _avisos */
+	def _avisos() {
 
 		log.info "Populando avisos..."
 		

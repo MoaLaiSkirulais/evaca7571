@@ -48,6 +48,16 @@ class Oferta {
 			throw new OfertaException(message : "La oferta debe estar en borrador")
 		}
 	
+		/* precio */
+		if (!this.precio) { 
+			throw new OfertaException(message : "Debe indicar un precio")
+		}
+	
+		/* plazo */
+		if (!this.plazo) { 
+			throw new OfertaException(message : "Debe indicar un plazo")
+		}
+
 		// /* owner? */
 		// if (this.propietario != ejecutor){
 			// throw new OfertaException(message: "Solo el dueño de la oferta puede pedir aprobacion")

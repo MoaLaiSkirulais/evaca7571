@@ -109,8 +109,7 @@ class Aviso {
 	/* postularOferta */
 	public postularOferta(Oferta oferta, Usuario ofertante){
 	
-		// println this.dump()
-	
+
 		/* solo estado aprobado puede agregar ofertas */
 		if (this.state != AvisoState.APROBADO){
 			throw new AvisoException(message : "El aviso no está aprobado")
@@ -122,9 +121,10 @@ class Aviso {
 		}
 		
 		/* ofertante ya ofertó? */ 
-		def b = this.ofertas.findIndexOf { oferta1 -> oferta1.propietario == oferta.propietario }
+		def b = this.ofertas.find { oferta1 -> oferta1.propietario == oferta.propietario }
 		if (b){
-			throw new AvisoException(message: "Ya oferto este aviso")
+			println "Ya ofertó este aviso"
+			throw new AvisoException(message: "Ya ofertó este aviso")
 		}
 
 		
@@ -134,6 +134,7 @@ class Aviso {
 		/* agregar a aviso */
 		oferta.aviso = this
 		this.addToOfertas(oferta)
+		return
 
 	}
 
@@ -157,7 +158,7 @@ class Aviso {
 	/* aprobarOferta */
 	public aprobarOferta(Oferta oferta, Usuario ejecutor){
 	
-		/* solo estado aprobado */
+		/* solo estado aprobado, sino puede ser que ya está vendido */
 		if (this.state != AvisoState.APROBADO){
 			throw new AvisoException(message : "El aviso no está aprobado")
 		}

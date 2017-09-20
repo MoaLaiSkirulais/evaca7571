@@ -19,7 +19,7 @@ printf "\n\n[= postular_oferta ========================]\n"
 
 curl --cookie cookies.txt --cookie-jar newcookies.txt \
 	-v -X POST \
-	-F 'aviso.id=15' \
+	-F 'aviso.id=2' \
 	-F 'precio=1' \
 	-F 'plazo.id=2' \
 	$SERVER_IP/aviso/postular_oferta
