@@ -2,7 +2,7 @@
 	<div class="col-md-6 col-sm-12">
 		<ol class="reviews">
 		
-			<g:each in="${attrs.resenas}" var="resena">
+			<g:each status="i" in="${attrs.resenas}" var="resena">
 				<li class="review">
 					<div class="media">
 						<div class="media-left media-middle">
@@ -24,11 +24,13 @@
 							</h4>
 
 							<time datetime="${resena.fechaCreacion}">
-								<b>${resena.fechaCreacion}</b>
+								<b>#${i+1}</b> - 
+								<b><g:formatDate date="${resena.fechaCreacion}" type="datetime" style="FULL" timeStyle="SHORT"/></b>
 							</time>
 							
 							<div class="description">
-								<!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. -->
+								<b>${resena.comentario}</b><br>
+								Estado: <aviso:entityState state="${resena.state}"/>
 							</div>
 						</div>
 					</div>

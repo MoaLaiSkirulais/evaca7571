@@ -13,19 +13,25 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     } 
 
 
-	/* create */
+	/** 
+	 * create 
+	 */
 	def create() {	
 		render (view: 'create', model: getViewModel(avisoService.create()))
     }
 
 
-	/* edit */
+	/** 
+	 * edit 
+	 */
 	def edit() {
 		respond (view:'create', getViewModel(avisoService.edit(params.id)))
     }
 
 
-	/* search */
+	/** 
+	 * search 
+	 */
 	def search() {
 
 		render(
@@ -45,7 +51,9 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 
 
-	/* postular */
+	/* 
+	 * postular 
+	 */
 	def postular(Aviso aviso) {
 
 		try {
@@ -68,39 +76,39 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
 	/* aprobar (admin) */
 	def aprobar() {
-		changeState.call(avisoService.&aprobar)
+		// changeState.call(avisoService.&aprobar)
     }
 
 
 	/* rechazar */
 	def rechazar() {	
-		changeState.call(avisoService.&rechazar)
+		// changeState.call(avisoService.&rechazar)
     }
 
 
 	/* cancelar */
 	def cancelar() {
-		changeState.call(avisoService.&cancelar)
+		// changeState.call(avisoService.&cancelar)
     }
 
 
 	/* changeState */
 	def changeState = { 
 		
-		try {
+		// try {
 		
-			it(params.int('id'));  
+			// it(params.int('id'));  
 
-		} catch (AvisoException e){
+		// } catch (AvisoException e){
 
-			flash.message = e.message
-			redirect action:"edit", id:params.int('id')
-			return
-		}
+			// flash.message = e.message
+			// redirect action:"edit", id:params.int('id')
+			// return
+		// }
 
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"edit", id:params.int('id')
+		// flash.message = "Cambios aplicados con exito"
+		// flash.type = "ok"
+		// redirect action:"edit", id:params.int('id')
 		
 	}
 
@@ -119,7 +127,9 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 
 	
-	/* find */
+	/** 
+	 * find 
+	 */
 	def find() {
  
 		render(view: 'find', 
@@ -130,7 +140,9 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 	
 	
-	/* postular_oferta (ofertante) */
+	/** 
+	 * postular_oferta (ofertante) 
+	 */
 	def postular_oferta() { /* tiene que ser un command object! */
 	
 		 // render params
@@ -173,8 +185,11 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		flash.type = "ok"
 		redirect action:"show", id:aviso.id
     }
+	
 
-	/* aprobar_oferta (ofertante) */
+	/** 
+	 * aprobar_oferta (ofertante) 
+	 */
 	def aprobar_oferta() { 
 	
 		def oferta = Oferta.get(params.oferta.id)
@@ -210,7 +225,9 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 	
 
-	/* aceptar_oferta (ofertante) */
+	/** 
+	 * aceptar_oferta (ofertante) 
+	 */
 	def aceptar_oferta() { 
 	
 		def oferta = Oferta.get(params.oferta.id)
@@ -245,7 +262,9 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 
 
-	/* getViewModel */ /* closure? trait? service? */
+	/** 
+	 * getViewModel 
+	 */ 
 	def getViewModel(Aviso aviso){
 		[
 			aviso: aviso, 

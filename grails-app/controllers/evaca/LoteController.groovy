@@ -11,7 +11,7 @@ class LoteController
 	def avisoService
 	def loteService
 	def uploadRestaurantFeaturedImageService
-
+	def mySessionService
 	
 	/* admin */
 	def admin() {		
@@ -66,6 +66,34 @@ class LoteController
  
 		} catch (LoteException e){
 
+			flash.message = e.message
+			render(view: 'create', model:getViewModel(lote))
+			return
+		}
+	    
+    }
+	
+	
+	/* postular2 */
+	def postular2() {
+	// def save(SaveCommand cmd) {
+	
+		// render params; 	return;
+		def lote = new Lote(params)
+		lote.propietario = mySessionService.usuario
+
+		try {
+
+			lote.postular()
+			lote.save(flush:true, failOnError: true)
+			
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect action:"edit", id:lote.id
+ 
+		} catch (Exception e){
+
+			render ("\r\n---- " + e +" -----\r\n"); return
 			flash.message = e.message
 			render(view: 'create', model:getViewModel(lote))
 			return

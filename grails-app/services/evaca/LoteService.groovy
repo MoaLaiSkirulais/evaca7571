@@ -9,8 +9,8 @@ class LoteService {
 	/* create */
 	def create() {
 
-		def lote = new Lote([usuario: mySessionService.usuario])
-		lote.aviso = new Aviso([propietario: lote.usuario])
+		def lote = new Lote([propietario: mySessionService.usuario])
+		lote.aviso = new Aviso([propietario: lote.propietario])
 		return lote
 	}
 
@@ -25,7 +25,7 @@ class LoteService {
 		}
 
 		/* valida owner */
-		if (mySessionService.usuario != lote.usuario){
+		if (mySessionService.usuario != lote.propietario){
 			throw new LoteNotFoundException(message: "Solo puede editar sus propios lotes")
 		}
 
@@ -40,10 +40,10 @@ class LoteService {
 	// def save(SaveCommand cmd) {
 	
 		println mySessionService.usuario
-		println lote.usuario
+		println lote.propietario
 
 		/* valida owner */
-		if (mySessionService.usuario != lote.usuario){
+		if (mySessionService.usuario != lote.propietario){
 			throw new LoteNotFoundException(message: "Solo puede editar sus propios lotes")
 			/* queda medio feo esto pero donde debe ir? */
 		}
@@ -51,10 +51,10 @@ class LoteService {
 		/* save */
 		// lote.properties = cmd.properties
 		if (!lote.aviso){
-			lote.aviso = new Aviso([propietario: lote.usuario])
+			lote.aviso = new Aviso([propietario: lote.propietario])
 		}
 
-		lote.usuario = mySessionService.usuario
+		lote.propietario = mySessionService.usuario
 		lote.save(flush:true, failOnError: false)
 
 		if (lote.hasErrors()) {
@@ -74,12 +74,12 @@ class LoteService {
 				// println "hehe"
 				usuario { eq("id", params.usuario.id.toLong())}
 			}
-		
+
 			// usuario{eq("id", mySessionService?.usuario?.id?.toLong())}
 			// consignatario{eq("id", params.consignatario.id.toLong())}
 			
 		}
-		
+
 		return lotes
 
 	}

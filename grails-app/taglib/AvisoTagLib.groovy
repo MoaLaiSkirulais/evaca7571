@@ -33,20 +33,27 @@ class AvisoTagLib {
 	}
 	 
 	def entityState = {attrs ->
+	
+		println attrs.state
+		String sState = attrs.state
 		
-		if (attrs.state == OfertaState.APROBADO) {
+		// if (attrs.state == OfertaState.APROBADO) {
+		if (sState == "APROBADO") {
 			out << "<span style=\"color:green\">${attrs.state}</span>"
 		}
 		
-		if (attrs.state == OfertaState.POSTULADO) {
+		// if (attrs.state == OfertaState.POSTULADO) {
+		if (sState == "POSTULADO") {
 			out << "<span style=\"color:#E74C3C\">${attrs.state}</span>"
 		}
 		
-		if (attrs.state == OfertaState.DESAPROBADO) {
+		// if (attrs.state == OfertaState.DESAPROBADO) {
+		if (sState == "DESAPROBADO") {
 			out << "<span style=\"color:silver\">${attrs.state}</span>"
 		}
 		
-		if (attrs.state == OfertaState.ACEPTADO) {
+		// if (attrs.state == OfertaState.ACEPTADO) {
+		if (sState == "ACEPTADO") {
 			out << "<span style=\"color:blue\">${attrs.state}</span>"
 		}
 		

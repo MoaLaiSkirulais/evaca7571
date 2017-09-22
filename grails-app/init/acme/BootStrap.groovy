@@ -25,7 +25,7 @@ class BootStrap {
 
 		def r = new LoteReader()
 		r.loadFromCsv()
-		// return
+
 		def o = new OfertaReader()
 		o.loadFromCsv()
 

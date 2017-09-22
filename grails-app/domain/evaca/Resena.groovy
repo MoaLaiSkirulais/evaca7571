@@ -9,6 +9,7 @@ class Resena {
 	Usuario propietario
 	List<Respuesta> respuestas /* esto es genial tener muy en cuenta, es ofertas che */
 	ResenaState state
+	String comentario
 
 	static belongsTo = [venta:Venta, aviso:Aviso, propietario:Usuario] 
 	static hasMany = [respuestas: Respuesta]
@@ -53,6 +54,7 @@ class Resena {
 		fechaCreacion()
 		puntaje min:1, max:5
 		venta nullable: true
+		comentario nullable: true
 		// propietario unique: 'venta' /* esta restriccion no sirve para cuando varios pueden entregar resenas*/
 
 	}
@@ -66,6 +68,16 @@ class Resena {
 		/* hay que validar que la venta existe*/
 		
 		/* hay que validar solo 3 reseñas posibles */
+		
+		/* puntaje */
+		if (!this.puntaje) { 
+			throw new ResenaException(message : "Debe indicar un puntaje")
+		}
+
+		/* hay respuestas */
+		if (!this.respuestas) { 
+			throw new ResenaException(message : "Debe incluir todas las respuestas")
+		}
 
 		if (this.state != ResenaState.BORRADOR) { 
 			throw new ResenaException(message : "La resena no está en BORRADOR")

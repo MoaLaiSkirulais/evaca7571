@@ -89,6 +89,11 @@ class Lote {
 			throw new LoteException(message : "El lote debe estar en borrador")
 		}
 		
+		// def aviso = new Aviso()
+		// aviso.lote = this
+		// aviso.propietario = this.propietario
+		// // this.addToAvison(aviso)
+		
 		this.aviso = new Aviso()
 		this.aviso.lote = this /* este ida y vuelta es muy raro! */
 		this.aviso.propietario = this.propietario

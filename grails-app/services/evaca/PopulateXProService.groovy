@@ -447,6 +447,27 @@ class PopulateXProService {
 		Categoria.executeUpdate('delete from Categoria')
 		Pregunta.executeUpdate('delete from Pregunta')
 		Usuario.executeUpdate('delete from Usuario')
+		
+		/*
+		
+		select * from Usuario; 
+		select * from Lote; 
+		select * from Aviso; 
+		select * from Oferta; 
+		
+	
+		ALTER TABLE Respuesta ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Resena ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Venta ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Oferta ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Aviso ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Lote ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Plazo ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Raza ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Categoria ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Pregunta ALTER COLUMN ID RESTART WITH 1; 
+		ALTER TABLE Usuario ALTER COLUMN ID RESTART WITH 1; 
+		*/
 
 		// Usuario.findAll().each { it.delete() }
 		// Raza.findAll().each { it.delete() }

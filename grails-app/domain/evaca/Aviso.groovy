@@ -201,6 +201,7 @@ class Aviso {
 	 */
 	 
 	/* postularResena */
+	/* al final creoque todo esto podría pasar a la class Resena! */	
 	// public postularResena(Resena resena, Usuario postulante){
 	public postularResena(Resena resena){
 	
@@ -215,6 +216,14 @@ class Aviso {
 				&& this.consignatario != resena.propietario){
 			throw new AvisoException(message: "Solo el consignatario o el vendedor puede postular una reseña")
 		}
+	 
+	 
+		/* usuario ya reseñó? */ 
+		def toFind = this.resenas.find { resena1 -> resena1.propietario == resena.propietario }
+		if (toFind){
+			println "Ya reseñó este aviso"
+			throw new AvisoException(message: "Ya reseñó este aviso")
+		}
 		
 		/* delega bl propia de oferta */
 		resena.postular() 
@@ -222,6 +231,22 @@ class Aviso {
 		/* agregar a aviso */
 		resena.aviso = this
 		this.addToResenas(resena)
+
+	}
+	
+	
+	/* aprobarResena */
+	public aprobarResena(Resena resena, Usuario ejecutor){
+	
+		/* solo estado aprobado puede agregar ofertas */
+		if (this.state != AvisoState.VENDIDO){
+			throw new AvisoException(message : "El aviso no está vendido")
+		} 
+		
+		/* pertenece al aviso?! */
+		
+		/* delega bl propia de oferta */
+		resena.aprobar(ejecutor) 
 
 	}
 

@@ -1,7 +1,7 @@
 export SERVER_IP=172.22.97.51:8080
-export AVISO_ID=26
-export PLAZO_ID=15
-export OFERTA_ID=132
+export AVISO_ID=1
+export PLAZO_ID=1
+export OFERTA_ID=1
 
 # ---------------
 # login

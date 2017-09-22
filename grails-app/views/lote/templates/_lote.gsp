@@ -4,8 +4,8 @@
 	<table class="table table-condensed" cellspacing="0">
 		<tbody>
 			<myform:display name="id" label="#id" value="${lote.id}"/>
-			<myform:display name="usuario" label="Propietario" value="${lote.usuario}"/>
-			<g:hiddenField name="usuario.id" value="${lote.usuario.id}"/>
+			<myform:display name="propietario" label="Propietario" value="${lote.propietario}"/>
+			<g:hiddenField name="propietario.id" value="${lote.propietario.id}"/>
 			<myform:display name="fechaCreacion" label="Creacion" value="${lote.fechaCreacion}"/>
 			
 			<myform:select 

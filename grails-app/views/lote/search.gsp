@@ -1,7 +1,21 @@
-<g:applyLayout name="layoutTwoColumnsUserLogged">
+<g:applyLayout name="layoutSearch">
 	
-	<content tag="left1">	
-		<h3 class="widget-title">Lotes</h3>							
+	<content tag="sidebar">
+		<h2>Lotes</h2>
+		<g:form method="GET">
+			<table class="table table-condensed" cellspacing="0">
+				<tbody>
+					<fieldset action="index" class="form">
+						<div class="fieldcontain">
+						</div>							
+					</fieldset>
+				</tbody>
+			</table>
+			<g:actionSubmit value="Buscar" action="index" class="btn btn-default"/>
+		</g:form>
+    </content>
+	
+	<content tag="body">
 		
 		<div class="table-responsive">
 			<table class="table cart-table wishlist-table" cellspacing="0">
@@ -27,7 +41,7 @@
 							</td>
 
 							<td>
-								${lote.usuario}
+								${lote.propietario}
 							</td>
 							
 							<td>
@@ -61,5 +75,5 @@
 			</table>
 			<g:link action="create" class="btn btn-default">Nuevo</g:link>
 		</div><!-- /.table-responsive -->
-	</content>
+    </content>
 </g:applyLayout>
