@@ -49,36 +49,13 @@ class LoteController
 			model: [
 				lotes : loteService.search(params)			
 			]	
-		)
+			)
     }
 
 
-	/* save */
-	def save(Lote lote) {
-	// def save(SaveCommand cmd) {
+	/* postular */
+	def postular() {
 
-		try {
-
-			loteService.save(lote)
-			flash.message = "Cambios aplicados con exito"
-			flash.type = "ok"
-			redirect action:"edit", id:lote.id
- 
-		} catch (LoteException e){
-
-			flash.message = e.message
-			render(view: 'create', model:getViewModel(lote))
-			return
-		}
-	    
-    }
-	
-	
-	/* postular2 */
-	def postular2() {
-	// def save(SaveCommand cmd) {
-	
-		// render params; 	return;
 		def lote = new Lote(params)
 		lote.propietario = mySessionService.usuario
 
@@ -89,15 +66,41 @@ class LoteController
 			
 			flash.message = "Cambios aplicados con exito"
 			flash.type = "ok"
-			redirect action:"edit", id:lote.id
- 
+			redirect action:"edit", id:lote.id 
+			
 		} catch (Exception e){
 
-			render ("\r\n---- " + e +" -----\r\n"); return
 			flash.message = e.message
 			render(view: 'create', model:getViewModel(lote))
 			return
 		}
+	    
+    }
+	
+	
+	/* actualizar */
+	def actualizar(Lote lote) {
+
+		if (!lote){
+			render "Lote not found"
+			return
+		}
+
+		try {
+
+			lote.actualizar()
+			lote.save(flush:true, failOnError: true)
+			
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect action:"edit", id:lote.id 
+			
+		} catch (Exception e){
+
+			flash.message = e.message
+			redirect action:"edit", id:lote.id 
+			return
+		}		
 	    
     }
 	
@@ -109,38 +112,56 @@ class LoteController
 			lote: lote, 
 			categorias: Categoria.list().sort{it.nombre},
 			consignatarios: avisoService.getConsignatarios(), 
+			plazos: Plazo.list(), 
 			razas: Raza.list().sort{it.nombre}
 		]
 	}
 
 
-	/* postular */
-	def postular(Aviso aviso) {
+	/* postular_aviso */
+	def postular_aviso(Aviso aviso) {
+		
+		if (!aviso){
+			render "No se encontro el aviso"; 		
+		}
+		
+		def lote = aviso.lote
+  
+		try {		
 
-		try {
+			lote.postularAviso(aviso)
+			aviso.save(flush:true, failOnError: false)
 
-			avisoService.postular(aviso); 
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect action:"edit", id:lote.id
 
-		} catch (AvisoException e){
-
+		} catch (Exception e){
+		
 			flash.message = e.message
-			render(view: 'edit', model:getViewModel(aviso.lote))
+			redirect action:"edit", id:lote.id
 			return
 		} 
-
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"edit", id:aviso.lote.id
-
     }
 
 	
-	/* cancelar */
-	def cancelar() {
+	/* cancelar_aviso */
+	def cancelar_aviso(Aviso aviso) {
+	
+		if (!aviso){
+			render "No se encontro el aviso"; 		
+		}
+		
+		def lote = aviso.lote
 	
 		try {
 		
-			avisoService.cancelar(params.int('id'));  
+			lote.cancelarAviso(aviso, mySessionService.getUsuario())
+			aviso.save(flush:true, failOnError: false)
+
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect action:"edit", id:lote.id
 
 		} catch (AvisoException e){
 		
@@ -149,9 +170,6 @@ class LoteController
 			return
 		}
 
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"edit", id:params.lote.id
     }
 
 		

@@ -1,4 +1,4 @@
-<h3 class="widget-title">Lote</h3>	
+<h3 class="widget-title">Nuevo Lote</h3>	
 		
 <form method="post">
 	<table class="table table-condensed" cellspacing="0">
@@ -33,7 +33,7 @@
 
 	<div class="buttons">		
 		<g:link action="create" class="btn btn-default">nuevo lote</g:link>
-		<g:actionSubmit action="save" value="guardar" class="btn btn-default"/>
+		<g:actionSubmit action="save" value="crear" class="btn btn-default"/>
 	</div>
 	
 </form>

@@ -79,8 +79,8 @@ class Lote {
 	}
 	
 	
-	/* postular */
-	public postular(){
+	/* _postular */
+	public _postular(){
 	
 		// return 
 		/* basicamente no se toman grandes acciones */
@@ -100,5 +100,110 @@ class Lote {
 		this.state = LoteState.DISPONIBLE
 
 	}
+
+	
+	/* postular */
+	public postular(){ /* ojo siempre un ejecutor?! */
+		
+		/* solo estado aprobado puede agregar lotes */
+		if (this.propietario.state != UsuarioState.APROBADO){
+			throw new LoteException(message : "El usuario no está aprobado")
+		}
+	
+		/* en borrador? */
+		if (this.state != LoteState.BORRADOR) { 
+			throw new LoteException(message : "El lote debe estar en borrador")
+		}
+		
+		/* raza */
+		if (!this.raza) { 
+			throw new LoteException(message : "Debe indicar raza")
+		}
+		  
+		/* categoria */
+		if (!this.categoria) { 
+			throw new LoteException(message : "Debe indicar categoria")
+		}
+
+		/* propietario */
+		if (!this.propietario) { 		
+			throw new LoteException(message : "Debe indicar propietario")
+		}
+
+		/* inicializa el aviso */
+		this.aviso = new Aviso()
+		this.aviso.lote = this 
+		// this.aviso.propietario = this.propietario		
+		// this.aviso.propietario =  Usuario.findByUsername("consignatario")
+		this.aviso.propietario = Usuario.findByUsername(this.propietario.username) /* wtf con esto?¡ */		
+		
+		/* state inicial */
+		this.state = LoteState.DISPONIBLE
+
+	}
+
+	
+	/* actualizar */
+	public actualizar(){ 
+		
+		/* en borrador? */
+		if (this.state != LoteState.DISPONIBLE) { 
+			throw new LoteException(message : "El lote debe estar disponible")
+		}
+		
+		/* raza */
+		if (!this.raza) { 
+			throw new LoteException(message : "Debe indicar raza")
+		}
+		  
+		/* categoria */
+		if (!this.categoria) { 
+			throw new LoteException(message : "Debe indicar categoria")
+		}
+
+		/* propietario */
+		if (!this.propietario) { 		
+			throw new LoteException(message : "Debe indicar propietario")
+		}
+
+	}
+	
+	/** 
+	 * Aviso
+	 */
+	
+	/* postularAviso */
+	public postularAviso(Aviso aviso){ 	
+
+		// /* valida lote propio */
+		// if (aviso.propietario != aviso.lote?.usuario){
+			// throw new AvisoException(message : "El lote no pertenece al dueño del aviso")	
+		// }
+
+		/* valida lote libre */
+		if (this.state != LoteState.DISPONIBLE){
+			throw new AvisoException(message : "El lote no está disponible")	
+		}
+		
+		/* delega */
+		aviso.postular()
+
+		/* lockea lote */
+		this.state = LoteState.PUBLICADO
+		
+	}
+	 
+	
+	/* cancelarAviso */
+	public cancelarAviso(Aviso aviso, Usuario ejecutor){
+
+		/* delega */
+		aviso.cancelar(ejecutor)
+
+		/* lockea lote */
+		this.state = LoteState.DISPONIBLE
+		
+	}
+	 
 
 }

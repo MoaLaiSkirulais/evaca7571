@@ -76,7 +76,28 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
 	/* aprobar (admin) */
 	def aprobar() {
-		// changeState.call(avisoService.&aprobar)
+	
+		def aviso = Aviso.get(params.aviso.id)
+		if (!aviso){
+			render ("No se encontró el aviso")
+			return
+		}
+		
+		try {
+		
+			aviso.aprobar(); 
+			flash.message = "Cambios aplicados con exito"
+			flash.type = "ok"
+			redirect controller:'lote', action:"edit", id:aviso.id
+
+		} catch (AvisoException e){
+
+			flash.message = e.message
+			redirect controller:'lote', action:"edit", id:aviso.id
+			return
+		} 
+
+		
     }
 
 

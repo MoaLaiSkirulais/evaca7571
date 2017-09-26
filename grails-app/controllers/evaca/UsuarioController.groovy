@@ -98,7 +98,28 @@ extends BaseController
 	
 	/* desaprobar (admin) */
 	def desaprobar() {
-		changeState.call(usuarioService.&desaprobar)
+		
+		// render params; return;
+		
+		try {
+		
+			def usuario = new Usuario().get(params.usuario.id)
+			if (!usuario){
+				render "Usuario not found"; return;
+				throw new UsuarioNotFoundException();
+			}
+			usuario.desaprobar(mySessionService.usuario)		
+			usuario.save(flush:true, failOnError: true)
+
+		} catch (Exception e){
+			render "Error" + e; return;
+			// redirect (action:"edit_profile", id:usuario.id)
+		}
+		
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		render "verga"; return;
+		redirect (action:"edit_profile", id:usuario.id)
     }
 
 

@@ -34,6 +34,7 @@ class Aviso {
 
 		state nullable: false
 		consignatario nullable: true
+		propietario nullable: true
 		lote nullable: false
 		precio nullable: true
 		plazo nullable: true
@@ -87,15 +88,37 @@ class Aviso {
 	}
 
 
+	/* cancelar */
+	public cancelar(Usuario ejecutor){
+		
+		/* dueño? */
+		if (ejecutor != this.propietario){
+			throw new AvisoException(message: "Solo cancela el dueño del aviso")
+		}
+
+		this.state = AvisoState.CANCELADO
+	}
+
+
 	/* postular */
 	public postular(Usuario ejecutor){
 		
-		if (this.propietario != ejecutor){
-			throw new AvisoException(message: "Solo el dueño del aviso puede pedir aprobacion")
-		}
+		// if (this.propietario != ejecutor){
+			// throw new AvisoException(message: "Solo el dueño del aviso puede pedir aprobacion")
+		// }
 		
-		if (this.state != AvisoState.BORRADOR) { 
+		if (this.state != AvisoState.BORRADOR && this.state != AvisoState.CANCELADO) { 
 			throw new AvisoException(message : "El aviso no está en BORRADOR")
+		}
+
+		/* precio */
+		if (!this.precio) { 
+			throw new AvisoException(message : "Debe indicar un precio")
+		}	
+		
+		/* plazo */
+		if (!this.plazo) { 
+			throw new AvisoException(message : "Debe indicar un plazo")
 		}
 		
 		this.state = AvisoState.POSTULADO

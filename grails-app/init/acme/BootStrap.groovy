@@ -20,17 +20,17 @@ class BootStrap {
 		populateXProService.plazos()
 		populateXProService.preguntas()
 		
-		def u = new UsuarioReader()
-		u.loadFromCsv()
+		// def u = new UsuarioReader()
+		// u.loadFromCsv()
 
-		def r = new LoteReader()
-		r.loadFromCsv()
+		// def r = new LoteReader()
+		// r.loadFromCsv()
 
-		def o = new OfertaReader()
-		o.loadFromCsv()
+		// def o = new OfertaReader()
+		// o.loadFromCsv()
 
-		def re = new ResenaReader()
-		re.loadFromCsv()
+		// def re = new ResenaReader()
+		// re.loadFromCsv()
 
     }
     def destroy = {

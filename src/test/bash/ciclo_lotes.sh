@@ -4,23 +4,45 @@ export PLAZO_ID=1
 export OFERTA_ID=1
 
 # ---------------
-# login
+# login admin
 # ---------------
 printf "\n\n[= login ========================]\n"
 
 curl --cookie-jar cookies.txt \
 	-v -X POST \
-	-F 'username=productor1' \
+	-F 'username=administrador' \
 	-F 'password=' \
 	$SERVER_IP/usuario/login
 
+	# exit
 
 # ---------------
-# postular_oferta
+# usuario/desaprobar
 # ---------------
-printf "\n\n[= postular_lote ========================]\n"
+printf "\n\n[= usuario/desaprobar ========================]\n"
 
-curl --cookie cookies.txt --cookie-jar newcookies.txt \
+curl --cookie cookies.txt \
+	-v -X POST \
+	-F "usuario.id=2" \
+	$SERVER_IP/usuario/desaprobar
+	
+# ---------------
+# propietario1 admin
+# ---------------
+printf "\n\n[= login ========================]\n"
+
+curl --cookie-jar cookies.txt \
+	-v -X POST \
+	-F 'username=propietario1' \
+	-F 'password=' \
+	$SERVER_IP/usuario/login
+# exit
+# ---------------
+# postular2
+# ---------------
+printf "\n\n[= postular2 ========================]\n"
+
+curl --cookie cookies.txt \
 	-v -X POST \
 	-F "raza.id=1" \
 	-F "categoria.id=1" \
@@ -28,3 +50,7 @@ curl --cookie cookies.txt --cookie-jar newcookies.txt \
 	-F "ubicacion=San Juan" \
 	$SERVER_IP/lote/postular2
 
+	
+	
+	
+	

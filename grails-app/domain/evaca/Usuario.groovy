@@ -108,7 +108,9 @@ class Usuario {
 	
 	/* desaprobar */
 	public desaprobar(Usuario ejecutor){
-
+		
+		
+		
 		/* ya esta? */
 		if (this.state == UsuarioState.DESAPROBADO){
 			throw new UsuarioException(message : "El usuario ya está desaprobado")

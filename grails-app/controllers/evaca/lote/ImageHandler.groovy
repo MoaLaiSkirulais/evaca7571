@@ -16,6 +16,9 @@ trait ImageHandler {
 	@Action
 	def get_image(Lote lote) { 
 	
+		// render lote
+		// return
+	
         if (lote == null) {
 			render "no-img"
             return
