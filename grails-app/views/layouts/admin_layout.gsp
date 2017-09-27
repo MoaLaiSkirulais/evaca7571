@@ -6,22 +6,20 @@
 
     <body>
 		<evaca:breadcrums/>
-
+		
 		<div class="page-wrapper">			
 			<div class="container">
 				<div class="row">
 				
 					<div class="col-md-3">
 						<div class="shop-sidebar shop-sidebar-left">
-							<!-- <g:pageProperty name="page.sidebar"/> -->							
-							<aviso:links/>							
+							<div class="widgets">
+								<admin:links/>
+							</div>
 						</div>
 					</div>
-					
-				</div>
-				<div class="row">
-				
-					<div class="col-sm-12">
+
+					<div class="col-sm-9">
 						<g:pageProperty name="page.body"/>
 					</div>
 					
@@ -31,3 +29,4 @@
 	</body>
 
 </html>
+

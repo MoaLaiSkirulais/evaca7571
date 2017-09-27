@@ -12,6 +12,7 @@ class UrlMappings {
 		"/home"(controller:"home") 
 		// "/form"(controller:"home", action:"form") 
 		"/form"(controller:"home", action:"bookData") 
+		"/admin"(controller:"admin", action:"search_usuarios") 
 		"/milayout" (controller:"home", action:"milayout", view: "milayout") 
 	    "/caca"(view: "/caca")  
 	    "/field"(controller:"field", action:"index")

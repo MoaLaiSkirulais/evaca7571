@@ -64,3 +64,25 @@ th {
 	margin: 5px auto 15px;
 
 }
+
+#admin .admin-action {
+    text-align: center;
+	color: silver !important;
+	text-transform: lowercase;
+	font-size: 14px !important;	
+}
+
+#admin .actions td{
+    padding: 0 0 10 0 !important;
+	text-align:right; 
+	
+}
+
+#admin .item td {
+    padding: 20 0 0 0 !important;
+}
+
+#admin .item th{
+   padding: 20 0 0 0 !important;	
+   font-weight: bolder !important;
+}

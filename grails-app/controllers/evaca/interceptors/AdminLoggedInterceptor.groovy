@@ -19,6 +19,9 @@ class AdminLoggedInterceptor {
 		match(controller: ~/(usuario)/, 
 			action: ~/(desaprobar|aprobar|admin)/
 		)				
+		
+		match(controller: ~/(admin)/
+		)				
     }
    
 

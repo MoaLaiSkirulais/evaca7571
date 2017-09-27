@@ -15,9 +15,12 @@ class LoteReader {
 	public loadFromCsv(String path){
 
 		File csvFile = new File(LocalSystem.getDataResource("/mock/csv/lotes.csv"));
-		def i = 1
+		def i = 0
 		
 		csvFile.splitEachLine(',') { fields ->
+		
+			i++
+			println "--" + i
 		
 			def propietario = Usuario.findByUsername(fields[0].trim())			
 			def administrador = Usuario.findByUsername("administrador")
@@ -65,34 +68,44 @@ class LoteReader {
 			
 			/* tratamiento del aviso dado que se postuló el lote sin errores */
 			def consignatario = Usuario.findByUsername(fields[6].trim())
-			lote.aviso.precio = Float.parseFloat(fields[4].trim())
-			lote.aviso.plazo = Plazo.findByNombre(fields[5].trim())
-			lote.aviso.consignatario = consignatario
 			
+			def aviso = lote.aviso
+			aviso.precio = Float.parseFloat(fields[4].trim())
+			println "precio:" + aviso.precio
+			aviso.plazo = Plazo.findByNombre(fields[5].trim())
+			
+			println "plazo:" + aviso.plazo
+			aviso.consignatario = consignatario
+						
 			def state = fields[3].trim()
 			switch (state) { 
 			
-				case ~/^POSTULADO$/:
-					lote.aviso.postular(lote.propietario);
+				case ~/^POSTULADO$/:	
+					println "POSTULADO"
+					lote.postularAviso(aviso)
+					// lote.aviso.postular(lote.propietario);
 					break
 					
 				
 				case ~/^APROBADO$/:
-					lote.aviso.postular(lote.propietario);
-					lote.aviso.aprobar(administrador);
+					println "APROBADO"
+					// lote.aviso.postular(lote.propietario);
+					// lote.aviso.aprobar(administrador);					
+					lote.postularAviso(aviso)
+					aviso.aprobar(administrador)
 					break
 		
 			}   
 
-			lote.aviso.state = fields[3].trim()
+			// lote.aviso.state = fields[3].trim()
 			
 			/* guarda cambios en el AR */
 			try {
+				// aviso.save(flush:true, failOnError: false)
 				propietario.save(flush:true, failOnError: true)
 			} catch (Exception e){}
 			
 		
-			i++
 		}
 	
 	}

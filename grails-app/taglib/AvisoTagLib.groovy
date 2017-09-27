@@ -57,6 +57,10 @@ class AvisoTagLib {
 			out << "<span style=\"color:blue\">${attrs.state}</span>"
 		}
 		
+		if (sState == "BORRADOR") {
+			out << "<span style=\"color:peru\">${attrs.state}</span>"
+		}
+		
 	}
 
 }
