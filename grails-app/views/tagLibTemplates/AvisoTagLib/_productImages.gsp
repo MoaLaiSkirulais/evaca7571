@@ -3,7 +3,7 @@
 		<a href="build/img/products/13.jpg" class="fancybox" rel="gallery">
 			<!-- <img src="build/img/products/13.jpg" class="img-responsive"> -->
 			<div class="product-thumbnail" 
-				style="background-image: url('/lote/get_image/${attrs.aviso?.lote?.id}'); background-color: #cccccc; width:259px; height:329px" >
+				style="background-image: url('/lote/get_image/${attrs.aviso?.lote?.id}'); background-color: #cccccc; width:259px; height:329px; background-repeat: no-repeat; background-size:cover" >
 			</div>
 			<!-- <img src="<g:createLink controller='lote' action='get_image' id='${attrs.aviso?.lote?.id}'/>"/> -->
 		</a>

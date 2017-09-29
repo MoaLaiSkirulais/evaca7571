@@ -115,7 +115,7 @@ class AdminController
 		render(
 			view: 'search_ofertas', 
 			model: [
-				ofertas: ofertas.sort{it.fechaCreacion}, 
+				ofertas: ofertas.sort{it.fechaCreacion}.reverse(), 
 				filter :[
 					states: OfertaState.values()
 				]

@@ -137,13 +137,12 @@ class Aviso {
 	/* postularOferta */
 	public postularOferta(Oferta oferta, Usuario ofertante){
 	
-
 		/* solo estado aprobado puede agregar ofertas */
 		if (this.state != AvisoState.APROBADO){
 			throw new AvisoException(message : "El aviso no está aprobado")
 		}
 
-		/* ofertante = vendodor? */
+		/* ofertante = vendedor? */
 		if (this.propietario == ofertante){
 			throw new AvisoException(message: "No puede ofertar su propio aviso")
 		}
@@ -154,7 +153,6 @@ class Aviso {
 			println "Ya ofertó este aviso"
 			throw new AvisoException(message: "Ya ofertó este aviso")
 		}
-
 		
 		/* delega bl propia de oferta */
 		oferta.postular() 

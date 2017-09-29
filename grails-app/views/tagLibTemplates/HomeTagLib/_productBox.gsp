@@ -4,7 +4,7 @@
 
 	<div class="inner-product">
 		<div class="product-thumbnail"
-				style="background-image: url('/lote/get_image/${attrs.aviso?.lote?.id}'); background-color: #cccccc; width:259px; height:329px" >
+				style="background-image: url('/lote/get_image/${attrs.aviso?.lote?.id}'); background-color: #cccccc; width:259px; height:329px; background-repeat: no-repeat;" >
 
 			<div style="position:absolute; bottom:110; right:10;">
 				<img src="<g:createLink controller='usuario' action='get_image' id='${attrs.aviso.propietario.id}'/>" style="border: 1px solid gray; width:40px; opacity: 0.7;"/>
@@ -27,19 +27,19 @@
 				<span class="amount">consignatario: ${attrs.aviso.consignatario}</span>
 			</div>
 		</div>
-		<div class="product-details text-center">
-			<div class="product-btns">
-				<span data-toggle="tooltip" data-placement="top" title="Add To Cart">
-					<a href="#!" class="li-icon add-to-cart"><i class="lil-shopping_cart"></i></a>
-				</span>
-				<span data-toggle="tooltip" data-placement="top" title="Add to Favorites">
-					<a href="#!" class="li-icon"><i class="lil-favorite"></i></a>
-				</span>
-				<span data-toggle="tooltip" data-placement="top" title="View">
-					<a href="product.html" class="li-icon view-details"><i class="lil-search"></i></a>
-				</span>
-			</div>
-		</div>
+		<!-- <div class="product-details text-center"> -->
+			<!-- <div class="product-btns"> -->
+				<!-- <span data-toggle="tooltip" data-placement="top" title="Add To Cart"> -->
+					<!-- <a href="#!" class="li-icon add-to-cart"><i class="lil-shopping_cart"></i></a> -->
+				<!-- </span> -->
+				<!-- <span data-toggle="tooltip" data-placement="top" title="Add to Favorites"> -->
+					<!-- <a href="#!" class="li-icon"><i class="lil-favorite"></i></a> -->
+				<!-- </span> -->
+				<!-- <span data-toggle="tooltip" data-placement="top" title="View"> -->
+					<!-- <a href="product.html" class="li-icon view-details"><i class="lil-search"></i></a> -->
+				<!-- </span> -->
+			<!-- </div> -->
+		<!-- </div> -->
 	</div>
 	<h3 class="product-title">
 		<a href="#!">

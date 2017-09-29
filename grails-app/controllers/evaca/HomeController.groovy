@@ -14,7 +14,7 @@ class HomeController {
 
 		render(view: 'index', 
 			model: [
-				avisos:avisos
+				avisos:avisos.reverse()
 			]
 		)
         

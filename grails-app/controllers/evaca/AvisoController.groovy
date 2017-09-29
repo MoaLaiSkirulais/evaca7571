@@ -166,9 +166,6 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	 */
 	def postular_oferta() { /* tiene que ser un command object! */
 	
-		 // render params
-		 // return
-		
 		def aviso = Aviso.get(params.aviso.id)
 		if (!aviso){
 			render ("No se encontró el aviso")
@@ -176,22 +173,15 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		}
 
 		def oferta = new Oferta(params)
-		println "----" + oferta.dump()
-		println "----" + mySessionService.getUsuario()
-		// oferta.propietario = mySessionService.getUsuario()
-		oferta.propietario = Usuario.findByUsername("productor1")
+		oferta.propietario = mySessionService.getUsuario()
 
 		try {
 
-			def administrador = Usuario.findByUsername("administrador")
-			aviso.postularOferta(oferta, administrador)
-			println aviso.dump()
+			aviso.postularOferta(oferta, mySessionService.getUsuario())
 			aviso.save(flush:true, failOnError: true)
-			//oferta.save(flush:true, failOnError: true)
 
 		} catch (Exception e){
 
-			render ("\r\n----Exception!----\r\n" + e.dump() + getViewModel(aviso) + "\r\n-------\r\n"); return;
 			flash.message = e.message
 			def model = [
 				aviso: aviso,
@@ -201,7 +191,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 			return
 		}
 
-		render ("\r\n---- Bien! -----\r\n"); return
+		// render ("\r\n---- Bien! -----\r\n"); return
 		flash.message = "La oferta deberá ser aprobada por la administración"
 		flash.type = "ok"
 		redirect action:"show", id:aviso.id
@@ -239,7 +229,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 			return
 		}
 
-		render ("\r\n---- Bien! -----\r\n"); return
+		// render ("\r\n---- Bien! -----\r\n"); return
 		flash.message = "La fue aprobada"
 		flash.type = "ok"
 		redirect action:"show", id:aviso.id
@@ -266,7 +256,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
 		} catch (Exception e){
 
-			render ("\r\n----Exception!----\r\n" + e.dump() + getViewModel(aviso) + "\r\n-------\r\n"); return;
+			// render ("\r\n----Exception!----\r\n" + e.dump() + getViewModel(aviso) + "\r\n-------\r\n"); return;
 			flash.message = e.message
 			def model = [
 				aviso: aviso,
@@ -276,7 +266,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 			return
 		}
 
-		render ("\r\n---- Bien! -----\r\n"); return
+		// render ("\r\n---- Bien! -----\r\n"); return
 		flash.message = "La fue aprobada"
 		flash.type = "ok"
 		redirect action:"show", id:aviso.id

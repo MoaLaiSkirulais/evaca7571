@@ -3,16 +3,16 @@
 	<content tag="left1">	
 		<h3 class="widget-title">Ofertas</h3>
 		
-		<div class="table-responsive">
+		<div class="table-responsive" id="admin">
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
 					<tr>
-						<th class="product-name">fechaCreacion</th>
-						<th class="product-name">propietario</th>
-						<th class="product-name">aviso</th>
-						<th class="product-name">plazo</th>
-						<th class="product-name">precio</th>
-						<th class="product-name">tbState</th>
+						<th>fechaCreacion</th>
+						<th>propietario</th>
+						<th>aviso</th>
+						<th>plazo</th>
+						<th>precio</th>
+						<th>tbState</th>
 					</tr>
 				</thead>
 					
@@ -20,34 +20,27 @@
 					<g:each in="${ofertas}" var="item" status="i">
 						<tr class="item">
 							
-							<td class="product-name">
-								${item.fechaCreacion}
+							<td>
+								<g:formatDate date="${item.fechaCreacion}" type="datetime"/>
 							</td>
 							
-							<td class="product-name">
-								${item.propietario}
+							<td>${item.propietario}</td>
+							<td>${item.aviso.id}</td>																		
+							<td>${item.plazo}</td>
+							<td>${item.precio}</td>
+
+							<td>
+								<aviso:entityState state="${item.state}"/>
 							</td>
-							
-							<td class="product-name">
-								${item.aviso}
+
+						</tr>
+						
+						<tr class="actions">
+							<td colspan="6" >
+								<g:link controller="aviso" params="['oferta.id': item.id]" class="admin-action" action="aceptar_oferta" id="${item.id}">Aceptar</g:link>
 							</td>
-																		
-							<td class="product-name">
-								${item.plazo}
-							</td>
-																		
-							<td class="product-name">
-								${item.precio}
-							</td>
-																		
-							<td class="product-name">
-								${item.state}
-							</td>
-																		
-							<td class="product-add-to-cart">
-								<g:link action="edit" id="${item.id}" class="btn btn-default">Modificar</g:link>
-							</td>
-						</tr><!-- <tr><td colspan="6"></td></tr> -->
+						</tr>
+
 					</g:each>					            
 				</tbody>
 			</table>

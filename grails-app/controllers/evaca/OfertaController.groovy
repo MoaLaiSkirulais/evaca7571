@@ -3,8 +3,9 @@ package evaca
 class OfertaController extends BaseController implements OfertaExceptionHandler{
 	
 	def ofertaService
+	def mySessionService
 
-	
+
 	/* admin */
 	def admin() {
 		render (view: 'admin', model: getViewModel(ofertaService.edit(params.id)))
@@ -23,9 +24,17 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
     }
 
 
-	/* search */
+	/* search */ 
 	def search() {
-		render(view: 'search', model: [ofertas:ofertaService.search()])
+	
+		def ofertas = Oferta.createCriteria().list(){
+		
+			if (mySessionService.usuario.id) {
+				aviso{propietario{eq("id", mySessionService.usuario.id)}}
+			}
+		}
+
+		render(view: 'search', model: [ofertas : ofertas])
     }
 
 
