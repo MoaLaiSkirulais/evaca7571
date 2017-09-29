@@ -3,10 +3,40 @@
     <content tag="body">
 	
 		<h2>usuarios</h2>
-		
+
 		<evaca:cruderror modelo="${usuario}"/>
 		
+		<g:form method="GET">
+			<table class="table table-condensed" cellspacing="0">
+				<tbody>
+					<fieldset action="index" class="form">
+
+						<div class="fieldcontain">
+							<myform:field label="username" name="filter.username" value="${params.filter?.username}"/>
+
+							<myform:select 
+								label="state" 
+								name="filter.state" 
+								from="${filter.states}" 
+								value="${params.filter?.state}"/>
+							
+							<myform:select 
+								label="profile" 
+								name="filter.profile" 
+								from="${filter.profiles}" 
+								value="${params.filter?.profile}"/>
+
+						</div>
+
+					</fieldset>
+				</tbody>
+			</table>
+			<g:actionSubmit value="Limpiar" action="index" class="btn btn-default"/>
+			<g:actionSubmit value="Buscar" action="search_usuarios" class="btn btn-default"/>
+		</g:form>
+		
 		<div class="table-responsive" id="admin">
+		
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
 					<tr>
@@ -24,7 +54,7 @@
 
 						<tr class="item">
 							<td class="product-name">${usuario.id}</td>			
-							<td class="product-name">${usuario.fechaCreacion}</td>
+							<td><g:formatDate date="${usuario.fechaCreacion}" type="datetime"/></td>
 							<td class="product-name">${usuario.username}</td>
 							<td class="product-name">${usuario.email}</td>
 							<td class="product-name">${usuario.profile}</td>
@@ -33,8 +63,10 @@
 
 						<tr class="actions">
 							<td class="product-name" colspan="6" style="text-align:right">
-								<g:link class="admin-action" action="admin" id="${usuario.id}">ver Avisos (${usuario.lotes.size()})|</g:link>
-								<g:link class="admin-action" action="admin" id="${usuario.id}">ver Ofertas |</g:link>
+								<g:link params="['filter.username': usuario.username]" class="admin-action" action="search_avisos">
+									ver Avisos (${usuario.lotes.size()})|
+								</g:link>
+								<g:link class="admin-action" action="search_avisos" id="${usuario.id}">ver Ofertas  (${usuario.ofertas.size()})|</g:link>
 								<g:link class="admin-action" action="admin" id="${usuario.id}">ver Reseñas</g:link>&nbsp;&nbsp;&nbsp;&nbsp;
 								<g:link params="['usuario.id': usuario.id]" class="admin-action" action="aprobar_usuario" id="${usuario.id}">Aprobar | </g:link>
 								<g:link params="['usuario.id': usuario.id]" class="admin-action" action="desaprobar_usuario" id="${usuario.id}">Desaprobar</g:link>

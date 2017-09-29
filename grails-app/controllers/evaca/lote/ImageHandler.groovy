@@ -37,15 +37,15 @@ trait ImageHandler {
 	
 	/* save_image */ 
 	@Action
-	def save_image(SaveImageCommand cmd) {	
+	def save_image() {	
 	
-		def lote = new Lote().get(cmd.loteId)
+		def lote = new Lote().get(params.lote.id)
 		if (!lote){
 			throw new LoteNotFoundException();
 		}
  	
-		lote.image = cmd.image.bytes 
-		lote.save(flush:true, failOnError: false)
+		lote.image = params.image.bytes 
+		lote.save(flush:true, failOnError: true)
 	
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"

@@ -1,4 +1,4 @@
-<g:applyLayout name="layoutSearch">
+<g:applyLayout name="layoutTwoColumnsUserLogged">
 	
 	<content tag="sidebar">
 		<h2>Lotes</h2>
@@ -15,9 +15,9 @@
 		</g:form>
     </content>
 	
-	<content tag="body">
+	<content tag="left1">
 		
-		<div class="table-responsive">
+		<div class="table-responsive" id="admin">
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
 					<tr>
@@ -27,7 +27,7 @@
 						<th>categoria</th>
 						<th>cantidad</th>
 						<th>aviso</th>
-						<th>foto</th>
+						<!-- <th>foto</th> -->
 					</tr>
 				</thead>
 				
@@ -37,39 +37,26 @@
 						<tr class="item">
 							
 							<td>
-								${lote.fechaCreacion}
+								<g:formatDate date="${lote.fechaCreacion}" type="datetime"/>
 							</td>
+							
+							<td>${lote.propietario}</td>						
+							<td>${lote.raza}</td>							
+							<td>${lote.categoria}</td>						
+							<td>${lote.cantidad}</td>
+							<td>${lote.aviso.state}</td>
 
-							<td>
-								${lote.propietario}
+							<!-- <td> -->
+								<!-- <img src="<g:createLink controller='lote' action='get_image' id='${lote.id}'/>" height="70px" /> -->
+							<!-- </td> -->
+
+						</tr>
+						
+						<tr class="actions">
+							<td colspan="6" >
+								<g:link id="${lote.id}" class="admin-action" action="edit" id="${lote.id}">Modificar</g:link>
 							</td>
-							
-							<td>
-								${lote.raza}
-							</td>
-							
-							<td>
-								${lote.categoria}
-							</td>
-							
-							<td>
-								${lote.cantidad}
-							</td>
-							
-							<td>
-								${lote.aviso}
-							</td>    
-							
-							<td>
-								<img src="<g:createLink controller='lote' action='get_image' id='${lote.id}'/>" height="70px" />
-							</td>    
-							
-							<td class="product-add-to-cart">
-								<g:link action="edit" id="${lote.id}" class="btn btn-default">
-									Modificar
-								</g:link>
-							</td>
-						</tr><!-- <tr><td colspan="6"></td></tr> -->
+						</tr>
 					</g:each>					            
 				</tbody>
 			</table>

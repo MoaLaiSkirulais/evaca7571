@@ -4,17 +4,40 @@ import org.springframework.core.io.Resource
 
 class AdminController 
 	extends BaseController 
-	implements UsuarioImageHandler, UsuarioExceptionHandler, Helper {
+	// implements UsuarioImageHandler, UsuarioExceptionHandler, Helper {
+	implements UsuarioImageHandler, UsuarioExceptionHandler {
 	
 	def mySessionService
 
 	/* search_usuarios */
 	def search_usuarios() {
+	
+		def usuarios = Usuario.createCriteria().list () {
+		
+			if (params?.filter?.username) {
+				like("username", params.filter.username)
+			}
+
+			if (params?.filter?.state) {
+				def aux = params.filter.state as UsuarioState
+				eq("state", aux)
+			}
+
+			if (params?.filter?.profile) {
+				def aux = params.filter.profile as UsuarioProfile
+				eq("profile", aux)
+			}
+
+		}
 		
 		render(
 			view: 'search_usuarios', 
 			model: [
-				usuarios: Usuario.list().sort{it.fechaCreacion}, 
+				usuarios: usuarios.sort{it.fechaCreacion}, 
+				filter :[
+					profiles: UsuarioProfile.values(),  
+					states: UsuarioState.values()	
+				]
 			]
 		)
 		return 
@@ -25,12 +48,42 @@ class AdminController
 	/* search_avisos */
 	def search_avisos() {
 	
-		// render avisos: Aviso.list().sort{it.fechaCreacion}; return
+		def avisos = Aviso.createCriteria().list () {
+		
+			if (params?.filter?.username) {
+				// like("username", params.filter.username)
+				propietario{eq("username", params.filter.username)}
+			}
+
+			if (params?.filter?.state) {
+				def aux = params.filter.state as AvisoState
+				eq("state", aux)
+			}
+
+			if (params?.filter?.consignatario?.id) {
+				consignatario{eq("id", params.filter.consignatario.id.toLong())}
+			}
+
+			if (params?.filter?.plazo?.id) {
+				plazo{eq("id", params.filter.plazo.id.toLong())}
+			}
+
+		}
 	
+		/* filters */
+		def consignatarios = Usuario.createCriteria().list () {
+			eq("profile", UsuarioProfile.CONSIGNATARIO)
+		}
+		
 		render(
 			view: 'search_avisos', 
 			model: [
-				avisos: Aviso.list().sort{it.fechaCreacion}, 
+				avisos: avisos.sort{it.fechaCreacion}, 
+				filter :[
+					states: AvisoState.values(), 	
+					consignatarios: consignatarios, 
+					plazos: Plazo.list().sort{it.nombre}
+				]
 			]
 		)
 		
@@ -42,10 +95,30 @@ class AdminController
 	/* search_ofertas */
 	def search_ofertas() {
 	
+		def ofertas = Oferta.createCriteria().list () {
+		
+			if (params?.filter?.aviso?.id) {
+				aviso{eq("id", params.filter.aviso.id.toLong())}
+			}
+
+			if (params?.filter?.username) {
+				propietario{eq("username", params.filter.username)}
+			}
+
+			if (params?.filter?.state) {
+				def aux = params.filter.state as OfertaState
+				eq("state", aux)
+			}
+
+		}
+
 		render(
 			view: 'search_ofertas', 
 			model: [
-				ofertas: Oferta.list().sort{it.fechaCreacion}, 
+				ofertas: ofertas.sort{it.fechaCreacion}, 
+				filter :[
+					states: OfertaState.values()
+				]
 			]
 		)
 		return 
@@ -105,11 +178,11 @@ class AdminController
 
 	/* aprobar_aviso */
 	def aprobar_aviso() {
-	
+	 
 		try {
 
 			def aviso = getAviso(params.aviso.id)
-			aviso.desaprobar(mySessionService.usuario)
+			aviso.aprobar(mySessionService.usuario)
 			aviso.save(flush:true, failOnError: true)
 
 			successAndRedirect("Cambios aplicados con exito", "search_avisos")
@@ -193,7 +266,7 @@ class AdminController
 
     }
 	
-
+   
 	/* desaprobar_resena */
 	def desaprobar_resena() {
 	
@@ -219,5 +292,102 @@ class AdminController
 		// return
 		
 	// }   
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	/* pijas infinitas */
+	
+	
+	/* getUsuario */ 
+	Usuario getUsuario(usuarioId) {	
+	
+		def usuario = new Usuario().get(usuarioId)
+		if (!usuario){
+			render "Usuario not found"; return;
+			throw new UsuarioNotFoundException();
+		}
+		
+		return usuario
+    }
+	
+	
+	/* getAviso */ 
+	Aviso getAviso(avisoId) {	
+	
+		def aviso = new Aviso().get(avisoId)
+		if (!aviso){
+			render "Aviso not found"; return;
+			throw new AvisoException();
+		}
+		
+		return aviso
+    }
+	
+	
+	/* getOferta */ 
+	Oferta getOferta(ofertaId) {	
+	
+		def oferta = new Oferta().get(ofertaId)
+		if (!oferta){
+			render "Oferta not found"; return;
+			throw new OfertaException();
+		}
+		
+		return oferta
+    }
+	
+	
+	/* getResena */ 
+	Resena getResena(resenaId) {	
+	
+		def resena = new Resena().get(resenaId)
+		if (!resena){
+			render "Resena not found"; return;
+			throw new ResenaException();
+		}
+		
+		return resena
+    }
+	
+	
+	/* errorAndRedirect */ 
+	def errorAndRedirect(String message, String action) {	
+	
+		flash.message = message
+		flash.type = "error"
+		redirect (action: action)
+
+    }
+	
+	
+	/* successAndRedirect */ 
+	def successAndRedirect(String message, String action) {	
+	
+		flash.message = message
+		flash.type = "ok"
+		redirect (action: action)
+
+    }
 	
 }

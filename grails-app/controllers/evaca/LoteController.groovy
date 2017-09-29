@@ -43,13 +43,15 @@ class LoteController
 
 	/* search */
 	def search() {	
+	
+		def lotes = Lote.createCriteria().list(){
+				
+		if (mySessionService.usuario.id) {
+				propietario{eq("id", mySessionService.usuario.id)}
+			}			
+		}
 
-		render(
-			view: 'search', 
-			model: [
-				lotes : loteService.search(params)			
-			]	
-			)
+		render(view: 'search', model: [lotes : lotes])
     }
 
 

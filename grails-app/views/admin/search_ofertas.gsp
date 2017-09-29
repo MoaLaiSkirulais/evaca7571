@@ -4,32 +4,54 @@
 	
 		<h2>ofertas</h2>
 		
-		<evaca:cruderror modelo="${ofertas}"/>		
+		<evaca:cruderror modelo="${ofertas}"/>
+		
+		<g:form method="GET">
+			<table class="table table-condensed" cellspacing="0">
+				<tbody>
+					<fieldset action="index" class="form">
+
+						<div class="fieldcontain">
+							<myform:field label="username" name="filter.username" value="${params.filter?.username}"/>
+							<myform:field label="aviso.id" name="filter.aviso.id" value="${params.filter?.aviso?.id}"/>
+
+							<myform:select 
+								label="state" 
+								name="filter.state" 
+								from="${filter.states}" 
+								value="${params?.filter?.state}"/>
+						</div>
+
+					</fieldset>
+				</tbody>
+			</table>
+			<g:actionSubmit value="Limpiar" action="index" class="btn btn-default"/>
+			<g:actionSubmit value="Buscar" action="search_ofertas" class="btn btn-default"/>
+		</g:form>
 		
 		<div class="table-responsive" id="admin">
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
-					<tr>
-						<th class="product-name">fechaCreacion</th>
-						<th class="product-name">oferente</th>
-						<th class="product-name">aviso</th>
-						<th class="product-name">plazo</th>
-						<th class="product-name">precio</th>
-						<th class="product-name">tbState</th>
+					<tr class="item">
+						<th>fechaCreacion</th>
+						<th>oferente</th>
+						<th>aviso</th>
+						<th>plazo</th>
+						<th>precio</th>
+						<th>tbState</th>
 					</tr>
 				</thead>
 					
 				<tbody>								
 					<g:each in="${ofertas}" var="oferta" status="i">
-						<tr class="item">
-							
-							<td class="product-name">${oferta.fechaCreacion}</td>							
-							<td class="product-name">${oferta.propietario}</td>
-							<td class="product-name">${oferta.aviso.id} ${oferta.aviso.lote.raza}</td>
-							<td class="product-name">${oferta.plazo}</td>
-							<td class="product-name">${oferta.precio}</td>
-							<td class="product-name"><aviso:entityState state="${oferta.state}"/></td>
-																		
+						
+						<tr class="item">							
+							<td><g:formatDate date="${oferta.fechaCreacion}" type="datetime"/></td>
+							<td>${oferta.propietario}</td>
+							<td>${oferta.aviso.id} ${oferta.aviso.lote.raza}</td>
+							<td>${oferta.plazo}</td>
+							<td>${oferta.precio}</td>
+							<td><aviso:entityState state="${oferta.state}"/></td>
 						</tr>
 						
 						<tr class="actions">

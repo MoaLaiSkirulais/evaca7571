@@ -13,7 +13,7 @@
 			Perfil: ${usuario.profile}<br>
 			Comisión: ${usuario.comision}<br>
 
-			<img src="<g:createLink controller='usuario' action='get_avatar_image' id='${usuario.id}'/>"/>
+			<img src="<g:createLink controller='usuario' action='get_image' id='${usuario.id}'/>"/>
 			
 		</div>
 	

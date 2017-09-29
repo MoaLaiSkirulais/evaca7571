@@ -20,7 +20,7 @@ class Usuario {
 	byte[] image 
     String avatarImageContentType 
 
-	static hasMany = [resenas: Resena, lotes: Lote]
+	static hasMany = [resenas: Resena, lotes: Lote, ofertas: Oferta]
 
 
 	/* constraints */

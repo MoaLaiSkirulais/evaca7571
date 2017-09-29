@@ -103,7 +103,7 @@
 						<table class="table table-condensed" cellspacing="0">
 							<tbody>					
 								<img src="<g:createLink controller='lote' action='get_image' id='${lote.id}'/>"/>
-								<g:hiddenField name="loteId" value="${lote.id}" />
+								<g:hiddenField name="lote.id" value="${lote.id}" />
 								<input type="file" name="image" />					
 							</tbody>
 						</table>

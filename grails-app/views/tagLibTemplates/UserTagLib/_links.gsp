@@ -18,7 +18,4 @@
 	<li>
 		<g:link controller="usuario" params="${[id:usuario?.id]}" action="edit_avatar">Cambiar avatar</g:link>
 	</li>
-	<li>
-		<g:link controller="usuario" params="${[id:usuario?.id]}" action="admin">Administrar</g:link>
-	</li>	
 </ul>

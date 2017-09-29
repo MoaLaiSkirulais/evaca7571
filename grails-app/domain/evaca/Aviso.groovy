@@ -111,14 +111,19 @@ class Aviso {
 			throw new AvisoException(message : "El aviso no está en BORRADOR")
 		}
 
-		/* precio */
+		/* precio? */
 		if (!this.precio) { 
 			throw new AvisoException(message : "Debe indicar un precio")
 		}	
 		
-		/* plazo */
+		/* plazo? */
 		if (!this.plazo) { 
 			throw new AvisoException(message : "Debe indicar un plazo")
+		}
+		
+		/* consignatario? */
+		if (!this.consignatario) { 
+			throw new AvisoException(message : "Debe indicar un consignatario")
 		}
 		
 		this.state = AvisoState.POSTULADO

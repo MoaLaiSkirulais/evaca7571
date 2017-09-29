@@ -11,13 +11,17 @@ extends BaseController
 	def usuarioService
 	def avisoService
 	def loteService
-
+ 
 	/* create */
 	def create() {
-		respond ( 
-			view:'create', 
-			getViewModel(usuarioService.create())
-		)		
+	
+		def model = 
+			[
+				usuario: new Usuario(), 
+				profiles: UsuarioProfile.values()
+			]
+
+		respond (view:'create', model)		
     }
 	
 
@@ -125,20 +129,33 @@ extends BaseController
 
 	/* postular (visitante) */
 	def postular(PostularCommand cmd) {
+
+		def usuario = new Usuario()
+		usuario.properties = cmd.properties
+		
+			
 		try {
 
-			def usuario = new Usuario()
-			usuario.properties = cmd.properties
-			
-			usuarioService.postular(usuario)
+			usuario.postular()
+			if (usuario.hasErrors()) {
+				throw new UsuarioException();
+			}
+			usuario.save(flush:true, failOnError: true)
+
 			flash.message = "La cuenta fue creada. Ahora deberá ser activada para poder utilizarla."
 			flash.type = "ok"
 			redirect controller:"message", action:"show"
 
-		} catch (UsuarioException error){
+		} catch (Exception error){
+		
+			def model = 
+				[
+					usuario: usuario, 
+					profiles: UsuarioProfile.values()
+				]
 
 			flash.message = error.message
-			render(view: 'create', model: [usuario:usuario])
+			render(view: 'create', model: model)
 		}
     }
 

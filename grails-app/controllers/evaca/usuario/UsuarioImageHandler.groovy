@@ -33,20 +33,25 @@ trait UsuarioImageHandler {
 	
 	
 	/* save_image */ /* podria pasar a un service! */
+	// def save_image(SaveImageCommand cmd) {	
 	@Action
-	def save_image(SaveImageCommand cmd) {	
+	def save_image() {	
 	
-		def usuario = new Usuario().get(cmd.loteId)
+		// render cmd.dump()
+		// render params
+		// return
+	
+		def usuario = new Usuario().get(params.usuario.id)
 		if (!usuario){
 			throw new LoteNotFoundException();
 		}
  	
-		usuario.image = cmd.image.bytes 
-		usuario.save(flush:true, failOnError: false)
+		usuario.image = params.image.bytes 
+		usuario.save(flush:true, failOnError: true)
 
 		flash.message = "Cambios aplicados con exito"
 		flash.type = "ok"
-		redirect action:"edit", id:usuario.id
+		redirect action:"show_profile", id:usuario.id
     }
 
  
