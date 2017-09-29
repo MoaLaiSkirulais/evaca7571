@@ -78,7 +78,7 @@ class AdminController
 		render(
 			view: 'search_avisos', 
 			model: [
-				avisos: avisos.sort{it.fechaCreacion}, 
+				avisos: avisos.sort{it.fechaCreacion}.reverse(), 
 				filter :[
 					states: AvisoState.values(), 	
 					consignatarios: consignatarios, 

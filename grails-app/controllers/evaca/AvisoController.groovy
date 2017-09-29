@@ -267,7 +267,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 		}
 
 		// render ("\r\n---- Bien! -----\r\n"); return
-		flash.message = "La fue aprobada"
+		flash.message = "La oferta fue aprobada. El lote está vendido."
 		flash.type = "ok"
 		redirect action:"show", id:aviso.id
     }

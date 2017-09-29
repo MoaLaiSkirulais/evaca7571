@@ -33,9 +33,15 @@ class ResenaController {
 	 * search 
 	 */
 	def search() {
+		
+		def resenas = Oferta.createCriteria().list(){
+		
+			if (mySessionService.usuario.id) {
+				propietario{eq("id", mySessionService.usuario.id)}
+			}
+		}
 
-		def resenas = Resena.list()
-		render(view: 'search', model: [resenas:resenas])
+		render(view: 'search', model: [resenas : resenas])
     }
 
 	
