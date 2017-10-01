@@ -181,15 +181,15 @@ class Lote {
 		// }
 
 		/* valida lote libre */
-		if (this.state != LoteState.DISPONIBLE){
-			throw new AvisoException(message : "El lote no está disponible")	
-		}
+		// if (this.state != LoteState.DISPONIBLE){
+			// throw new AvisoException(message : "El lote no está disponible")	
+		// }
 		
 		/* delega */
 		aviso.postular()
 
 		/* lockea lote */
-		this.state = LoteState.PUBLICADO
+		// this.state = LoteState.PUBLICADO
 		
 	}
 	 

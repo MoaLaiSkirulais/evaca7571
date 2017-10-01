@@ -145,4 +145,10 @@ class Resena {
 		// this.state = state
 
 	}
+	
+	
+	/* toString */
+	String toString(){
+		this.id + "| owner:" + this.propietario + " | " + this.state 
+	}
 }

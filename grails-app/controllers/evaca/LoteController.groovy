@@ -41,6 +41,25 @@ class LoteController
     }
 
 
+	/* show */
+	def show() {	
+	
+		def lote = new Lote().get(params.id) 
+		if (!lote){
+			throw new LoteNotFoundException()
+		}
+
+		def model = [
+			lote: lote
+		]
+
+		respond (
+			view: 'show', 
+			model
+		)
+    }
+
+
 	/* search */
 	def search() {	
 	
@@ -122,6 +141,9 @@ class LoteController
 
 	/* postular_aviso */
 	def postular_aviso(Aviso aviso) {
+	
+		render "conchudo"
+		return  
 		
 		if (!aviso){
 			render "No se encontro el aviso"; 		

@@ -29,12 +29,28 @@ class ResenaController {
     }
 
 	
+	/* show */
+	def show() {
+
+		def resena = new Resena().get(params.id)
+		if (!resena){
+			throw new ResenaException()
+		}
+ 
+		def model = [
+			resena: resena
+		]
+		
+		respond (view:'show', model)
+    }
+
+	
 	/**
 	 * search 
 	 */
 	def search() {
 		
-		def resenas = Oferta.createCriteria().list(){
+		def resenas = Resena.createCriteria().list(){
 		
 			if (mySessionService.usuario.id) {
 				propietario{eq("id", mySessionService.usuario.id)}

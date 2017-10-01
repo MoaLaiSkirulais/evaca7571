@@ -2,8 +2,8 @@ git config --global credential.helper cache
 git config credential.helper store
 git pull origin master
 
-/etc/init.d/lighttpd stop
-pkill java
-sudo sysctl -w vm.drop_caches=3
+# /etc/init.d/lighttpd stop
+# pkill java
+# sudo sysctl -w vm.drop_caches=3
 
-( nohup grails run-app --port=80 --non-interactive 2>&1 > /dev/null & )
+# ( nohup grails run-app --port=80 --non-interactive 2>&1 > /dev/null & )

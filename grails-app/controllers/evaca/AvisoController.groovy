@@ -55,7 +55,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 	 * postular 
 	 */
 	def postular(Aviso aviso) {
-
+	
 		try {
 
 			avisoService.postular(aviso); 
@@ -148,9 +148,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 
 	
-	/** 
-	 * find 
-	 */
+	/* find */
 	def find() {
  
 		render(view: 'find', 
@@ -161,11 +159,10 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 	
 	
-	/** 
-	 * postular_oferta (ofertante) 
-	 */
+	/* postular_oferta (ofertante) */
 	def postular_oferta() { /* tiene que ser un command object! */
 	
+		println params.aviso.id
 		def aviso = Aviso.get(params.aviso.id)
 		if (!aviso){
 			render ("No se encontró el aviso")
@@ -177,7 +174,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 
 		try {
 
-			aviso.postularOferta(oferta, mySessionService.getUsuario())
+			aviso.postularOferta(oferta)
 			aviso.save(flush:true, failOnError: true)
 
 		} catch (Exception e){
@@ -198,9 +195,7 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
     }
 	
 
-	/** 
-	 * aprobar_oferta (ofertante) 
-	 */
+	/* aprobar_oferta (ofertante) */
 	def aprobar_oferta() { 
 	
 		def oferta = Oferta.get(params.oferta.id)

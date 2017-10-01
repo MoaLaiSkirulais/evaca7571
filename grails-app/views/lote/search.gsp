@@ -22,6 +22,7 @@
 				<thead>
 					<tr>
 						<th>fechaCreacion</th>
+						<th>id</th>
 						<th>propietario</th>
 						<th>raza</th>
 						<th>categoria</th>
@@ -39,21 +40,19 @@
 							<td>
 								<g:formatDate date="${lote.fechaCreacion}" type="datetime"/>
 							</td>
-							
+
+							<td>${lote.id}</td>						
 							<td>${lote.propietario}</td>						
 							<td>${lote.raza}</td>							
 							<td>${lote.categoria}</td>						
 							<td>${lote.cantidad}</td>
 							<td>${lote.aviso.state}</td>
 
-							<!-- <td> -->
-								<!-- <img src="<g:createLink controller='lote' action='get_image' id='${lote.id}'/>" height="70px" /> -->
-							<!-- </td> -->
-
 						</tr>
-						
+
 						<tr class="actions">
-							<td colspan="6" >
+							<td colspan="7" >
+								<g:link id="${lote.id}" class="admin-action" action="show" id="${lote.id}">Ver |</g:link>
 								<g:link id="${lote.id}" class="admin-action" action="edit" id="${lote.id}">Modificar</g:link>
 							</td>
 						</tr>

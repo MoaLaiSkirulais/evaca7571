@@ -69,13 +69,30 @@ class Oferta {
 	
 	/* aprobar */
 	public aprobar(Usuario ejecutor){
+	
+	
+		// /* solo estado aprobado, sino puede ser que ya está vendido */
+		// if (this.state != AvisoState.APROBADO){
+			// throw new AvisoException(message : "El aviso no está aprobado")
+		// }
+
+		// /* pertenece al aviso?! esto es clave! */
+		// if (!this.ofertas.contains(oferta)){
+			// throw new AvisoException(message : "La oferta no pertenece al aviso")
+		// }
+	
+	
+		/* ...................... */
+		/* ...................... */
+		/* ...................... */
+		/* ...................... */
 		
-		/* está publicado? */
+		/* está aprobada? */
 		if (this.state == OfertaState.APROBADO){
 			throw new OfertaException(message : "La oferta ya está aprobada")
 		}
 
-		/* está aprobacion? */
+		/* está postulada? */
 		if (this.state != OfertaState.POSTULADO){
 			throw new OfertaException(message : "La oferta no está postulada")
 		}
@@ -133,9 +150,17 @@ class Oferta {
 		/* hay que terminar todas las otras ofertas y cambiar varios estados! 
 			puede ser un service quizas? */
 
+		this.aviso.state = AvisoState.VENDIDO
 		this.state = OfertaState.ACEPTADO
 
 	}
+	
+
+	/* toString */
+	String toString(){
+		this.id + "| owner:" + this.propietario + " | " + this.state 
+	}
+
 
 	
 }

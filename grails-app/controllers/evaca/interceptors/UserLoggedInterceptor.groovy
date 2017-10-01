@@ -14,7 +14,7 @@ class UserLoggedInterceptor {
 
 		match (
 			controller: ~/(oferta|lote|resena)/, 
-			action: ~/(|search|edit|create)/
+			action: ~/(|search|edit|create|show)/
 		)
 
 		match (

@@ -7,6 +7,11 @@ class FormTagLib {
 		out << render(template:"/tagLibTemplates/FormTagLib/display", model:[attrs:attrs])
 	}
 
+	/* show */
+	def show = {attrs ->		
+		out << render(template:"/tagLibTemplates/FormTagLib/show", model:[attrs:attrs])
+	}
+
 	/* separator */
 	def separator = {attrs ->		
 		out << render(template:"/tagLibTemplates/FormTagLib/separator", model:[attrs:attrs])

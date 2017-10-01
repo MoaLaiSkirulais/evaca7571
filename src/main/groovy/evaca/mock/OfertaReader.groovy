@@ -19,16 +19,15 @@ class OfertaReader {
 		def i = 0
 		csvFile.splitEachLine(',') { fields ->
 
-			def ofertante = Usuario.findByUsername(fields[0].trim())		
-			
 			Aviso.list().each { aviso ->
 			
-				def oferta = new Oferta(propietario:ofertante)
+				def oferta = new Oferta()
+				oferta.propietario = Usuario.findByUsername(fields[0].trim())
 				oferta.plazo = Plazo.findByNombre(fields[4].trim())
 				oferta.precio = Float.parseFloat(fields[3].trim())
 
 				try {
-					aviso.postularOferta(oferta, ofertante)
+					aviso.postularOferta(oferta)
 					aviso.save(flush:true, failOnError: true)
 				} catch (AvisoException e){}
 				
@@ -47,7 +46,7 @@ class OfertaReader {
 			} 	
 		} 
 		
-		/* desaprobar 6 avisos, todas las ofertas */
+		/* desaprobar de 6 avisos, todas las ofertas */
 		Aviso.list()[16..22].each { aviso ->
 			aviso.ofertas.each { oferta -> 
 				try {

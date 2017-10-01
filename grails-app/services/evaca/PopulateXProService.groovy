@@ -243,8 +243,7 @@ class PopulateXProService {
 
 		def productor1 = Usuario.findByUsername("productor1")
 		productor1.postularLote(lote1)
-
-		lote1.save(flush:true, failOnError: true)
+		productor1.save(flush:true, failOnError: true)
 
 		/* lote2 */
 		/* hay que implementar el lote postular! */
@@ -257,8 +256,7 @@ class PopulateXProService {
 		
 		def productor2 = Usuario.findByUsername("productor2")
 		productor2.postularLote(lote2)
-
-		lote2.save(flush:true, failOnError: true)
+		productor2.save(flush:true, failOnError: true)
 
 	}
 
@@ -270,7 +268,7 @@ class PopulateXProService {
 		
 		def administrador = Usuario.findByUsername("administrador")
 		
-		/* lote1 */
+		/* aviso1 */
 		L:{
 			def propietario = Usuario.findByUsername("productor1")
 			def lote = Lote.findByPropietario(propietario)
@@ -282,7 +280,7 @@ class PopulateXProService {
 			lote.save(flush:true, failOnError: true)
 		}
 		
-		/* lote2 */
+		/* aviso2 */
 		L:{
 			def propietario = Usuario.findByUsername("productor2")
 			def lote = Lote.findByPropietario(propietario)
@@ -296,55 +294,42 @@ class PopulateXProService {
 	}
 
 
-	/* _avisos */
-	def _avisos() {
-
-		log.info "Populando avisos..."
-		
-		def productor1 = Usuario.findByUsername("productor1")
-		def administrador = Usuario.findByUsername("administrador")
-
-		/* aviso1 */
-		def aviso1 = new Aviso(propietario:productor1) /* aca podriamos empezar a usar algun factory interno tipo .create() */
-		aviso1.lote = Lote.createCriteria().list () {raza{eq("nombre", "Braford")}}[0]
-		aviso1.consignatario = Usuario.findByNombre("consignatario")
-		aviso1.precio = 101
-		aviso1.postular(productor1)
-		aviso1.aprobar(administrador)
-
-		/* aviso2 */
-		def aviso2 = new Aviso(propietario:productor1)
-		aviso2.lote = Lote.createCriteria().list () {raza{eq("nombre", "Jersey")}}[0]
-		aviso2.consignatario = Usuario.findByNombre("consignatario")
-		aviso2.precio = 102
-		aviso2.postular(productor1)
-		aviso2.aprobar(administrador)
-
-		aviso1.save(flush:true, failOnError: true)
-		aviso2.save(flush:true, failOnError: true)
-	}
-
-
 	/* ofertas */
 	def ofertas() {
 
 		log.info "Populando ofertas..."
+
+		/* se ofertan cruzados y queda ahi, la sigue el test  */
+
+		/* productor2 recibe la oferta de productor1 */
+		O:{
+			
+			def oferta = new Oferta()
+			oferta.propietario = Usuario.findByUsername("productor1")
+			oferta.plazo = Plazo.findByNombre("Contado")
+			oferta.precio = 1000
+
+			def lote = Lote.findByPropietario(Usuario.findByUsername("productor2"))
+			lote.aviso.postularOferta(oferta)
+			lote.aviso.aprobarOferta(oferta, Usuario.findByUsername("administrador"))
+
+			lote.aviso.save(flush:true, failOnError: true)
+		}
 		
-		/* ofertar */
-		def productor1 = Usuario.findByUsername("productor1")
-		def oferta = new Oferta(propietario:productor1)
-		oferta.aviso = Aviso.list()[0]
-		oferta.plazo = Plazo.list()[1]
-		oferta.precio = 1000
-		oferta.postular(productor1)
+		/* productor1 recibe la oferta de productor2 */
+		O:{
 
-		/* aprobar */
-		def administrador = Usuario.findByUsername("administrador")
-		oferta.aprobar(administrador)
+			def oferta = new Oferta()
+			oferta.propietario = Usuario.findByUsername("productor2")
+			oferta.plazo = Plazo.findByNombre("Contado")
+			oferta.precio = 2000
 
-		/* aceptar */		
-		oferta.aceptar(productor1)		
-		oferta.save(flush:true, failOnError: true)
+			def lote = Lote.findByPropietario(Usuario.findByUsername("productor1"))
+			lote.aviso.postularOferta(oferta)
+			lote.aviso.aprobarOferta(oferta, Usuario.findByUsername("administrador"))
+
+			lote.aviso.save(flush:true, failOnError: true)
+		}
 
 	}
 
@@ -353,32 +338,31 @@ class PopulateXProService {
 	def resenas() {
 
 		log.info "Populando resenas..."
-		def productor1 = Usuario.findByUsername("productor1")
 		def venta = Venta.list()[0]
 
-		def resena = new Resena(propietario:productor1)
+		def resena = new Resena()
+		resena.propietario = Usuario.findByUsername("productor1")
 		resena.prepare()
 		resena.venta = venta
 		resena.puntaje = 4
 		
 		/* preguntas */		
-		resena.respuestas[0].puntaje = 5
 		resena.respuestas[0].respuesta = "aceptable"
-		
-		resena.respuestas[1].puntaje = 3  /* seria bueno encadenar con setters aca alguna vez! */
 		resena.respuestas[1].respuesta = "bueno"
-		
-		resena.respuestas[2].puntaje = 1
 		resena.respuestas[2].respuesta = "esta bien"
-		
-		resena.respuestas[3].puntaje = 2
 		resena.respuestas[3].respuesta = "tal vez"
-		
-		resena.respuestas[4].puntaje = 2
 		resena.respuestas[4].respuesta = "sin comentarios"
-		
-		resena.postular(productor1)
-		resena.save(flush:true, failOnError: true)
+
+		resena.respuestas[0].puntaje = 5
+		resena.respuestas[1].puntaje = 3  /* encadenar con setters aca alguna vez! */
+		resena.respuestas[2].puntaje = 1
+		resena.respuestas[3].puntaje = 2
+		resena.respuestas[4].puntaje = 2
+
+		/* add */
+		def lote = Lote.findByPropietario(Usuario.findByUsername("productor1"))
+		lote.aviso.postularResena(resena)
+		lote.aviso.save(flush:true, failOnError: true)
 
 	}
 	

@@ -21,13 +21,13 @@
 							<td>${resena.id}</td>
 							<td>${resena.fechaCreacion}</td>
 							<td>${resena.propietario}</td>
-							<td>${resena.venta}</td>
+							<td>${resena?.venta}</td>
 							<td>${resena.puntaje}</td>							
 						</tr>
 
-						<tr class="actions">
+						<tr class="actions1">
 							<td colspan="5">
-								<g:link controller="resena" class="admin-action" action="edit" id="${resena.id}">Ver</g:link>
+								<g:link controller="resena" class="admin-action" action="show" id="${resena.id}">[[[[Ver]]]]</g:link>
 							</td>
 						</tr>
 					</g:each>					            

@@ -24,7 +24,7 @@
 		
 		<div style="width:250px; border:0px solid blue; height:88px">
 			<div style="float:left; width:90px">
-				<img src="<g:createLink controller='usuario' action='get_image' id='${attrs.aviso.consignatario.id}'/>" style="border: 0px solid gray;  opacity: 1.0; width:90px" />
+				<img src="<g:createLink controller='usuario' action='get_image' id='${attrs.aviso?.consignatario?.id}'/>" style="border: 0px solid gray;  opacity: 1.0; width:90px" />
 			</div>
 			<div style="float:right; width:160px; height:88px; border:0px solid green;">
 				<div style="margin-top:35px">Consignatario</div>

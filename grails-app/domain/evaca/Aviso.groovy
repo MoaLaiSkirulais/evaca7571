@@ -107,6 +107,12 @@ class Aviso {
 			// throw new AvisoException(message: "Solo el dueño del aviso puede pedir aprobacion")
 		// }
 		
+		/* lote disponible? */
+		if (this.lote.state != LoteState.DISPONIBLE){
+			throw new AvisoException(message : "El lote no está disponible")	
+		}
+		
+		/* borrador o cancelado? */
 		if (this.state != AvisoState.BORRADOR && this.state != AvisoState.CANCELADO) { 
 			throw new AvisoException(message : "El aviso no está en BORRADOR")
 		}
@@ -126,6 +132,8 @@ class Aviso {
 			throw new AvisoException(message : "Debe indicar un consignatario")
 		}
 		
+		/* relacion hasOne estaria bien el ida y viene! */
+		this.lote.state = LoteState.PUBLICADO
 		this.state = AvisoState.POSTULADO
 	}
 
@@ -135,21 +143,24 @@ class Aviso {
 	 */
 	 
 	/* postularOferta */
-	public postularOferta(Oferta oferta, Usuario ofertante){
-	
+	// public postularOferta(Oferta oferta, Usuario ofertante){
+	public postularOferta(Oferta oferta){
+
 		/* solo estado aprobado puede agregar ofertas */
 		if (this.state != AvisoState.APROBADO){
 			throw new AvisoException(message : "El aviso no está aprobado")
 		}
 
 		/* ofertante = vendedor? */
-		if (this.propietario == ofertante){
+		println this.propietario
+		println oferta.propietario
+		if (this.propietario == oferta.propietario){
 			throw new AvisoException(message: "No puede ofertar su propio aviso")
 		}
 		
 		/* ofertante ya ofertó? */ 
-		def b = this.ofertas.find { oferta1 -> oferta1.propietario == oferta.propietario }
-		if (b){
+		def list = this.ofertas.find {oferta1 -> oferta1.propietario == oferta.propietario}
+		if (list){
 			println "Ya ofertó este aviso"
 			throw new AvisoException(message: "Ya ofertó este aviso")
 		}
@@ -183,14 +194,17 @@ class Aviso {
 
 	/* aprobarOferta */
 	public aprobarOferta(Oferta oferta, Usuario ejecutor){
-	
+
 		/* solo estado aprobado, sino puede ser que ya está vendido */
-		if (this.state != AvisoState.APROBADO){
-			throw new AvisoException(message : "El aviso no está aprobado")
+		// if (this.state != AvisoState.APROBADO){
+			// throw new AvisoException(message : "El aviso no está aprobado")
+		// }
+
+		/* pertenece al aviso?! esto es clave! */
+		if (!this.ofertas.contains(oferta)){
+			throw new AvisoException(message : "La oferta no pertenece al aviso")
 		}
-		
-		/* pertenece al aviso?! */
-		
+
 		/* delega bl propia de oferta */
 		oferta.aprobar(ejecutor) 
 
@@ -218,7 +232,7 @@ class Aviso {
 		// this.addToVenta(venta)
 
 		/* cambia estado */
-		this.state = AvisoState.VENDIDO
+		// this.state = AvisoState.VENDIDO
 
 	}
 	
@@ -230,27 +244,30 @@ class Aviso {
 	/* al final creoque todo esto podría pasar a la class Resena! */	
 	// public postularResena(Resena resena, Usuario postulante){
 	public postularResena(Resena resena){
-	
+
 		/* solo estado aprobado puede agregar ofertas */
 		if (this.state != AvisoState.VENDIDO){
 			throw new AvisoException(message : "El aviso no está vendido")
 		}
 
-		/* postulante = vendedor || consignatario || comprador ? */
-		// println resena.propietario
-		if (this.propietario != resena.propietario 
-				&& this.consignatario != resena.propietario){
-			throw new AvisoException(message: "Solo el consignatario o el vendedor puede postular una reseña")
+		/* obtengo comprador del aviso para lo que sigue
+			esto idealmente deberia ser un dato estampado o en el aviso
+			o en el mismo objeto venta que ahora no lo estoy usando */
+		def oferta = this.ofertas.find {oferta -> oferta.state == OfertaState.ACEPTADO}
+			
+		/* reviewer = vendedor o consignatario o comprador ? */
+		if (resena.propietario != this.propietario
+				&& resena.propietario != this.consignatario
+				&& resena.propietario != oferta.propietario) {
+			throw new AvisoException(message: "Solo el consignatario, vendedor o comprador puede postular una reseña")
 		}
-	 
-	 
+
 		/* usuario ya reseñó? */ 
-		def toFind = this.resenas.find { resena1 -> resena1.propietario == resena.propietario }
+		def toFind = this.resenas.find {resena1 -> resena1.propietario == resena.propietario}
 		if (toFind){
-			println "Ya reseñó este aviso"
 			throw new AvisoException(message: "Ya reseñó este aviso")
 		}
-		
+
 		/* delega bl propia de oferta */
 		resena.postular() 
 
@@ -259,18 +276,19 @@ class Aviso {
 		this.addToResenas(resena)
 
 	}
-	
-	
+
+
 	/* aprobarResena */
+	/* se va de aca superseguro! */
 	public aprobarResena(Resena resena, Usuario ejecutor){
-	
+
 		/* solo estado aprobado puede agregar ofertas */
-		if (this.state != AvisoState.VENDIDO){
-			throw new AvisoException(message : "El aviso no está vendido")
-		} 
-		
+		// if (this.state != AvisoState.VENDIDO){
+			// throw new AvisoException(message : "El aviso no está vendido")
+		// } 
+
 		/* pertenece al aviso?! */
-		
+
 		/* delega bl propia de oferta */
 		resena.aprobar(ejecutor) 
 

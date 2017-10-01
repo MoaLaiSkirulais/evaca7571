@@ -69,30 +69,21 @@ class LoteReader {
 			/* tratamiento del aviso dado que se postuló el lote sin errores */
 			def consignatario = Usuario.findByUsername(fields[6].trim())
 			
-			def aviso = lote.aviso
-			aviso.precio = Float.parseFloat(fields[4].trim())
-			println "precio:" + aviso.precio
-			aviso.plazo = Plazo.findByNombre(fields[5].trim())
-			
-			println "plazo:" + aviso.plazo
-			aviso.consignatario = consignatario
+			lote.aviso.precio = Float.parseFloat(fields[4].trim())
+			lote.aviso.plazo = Plazo.findByNombre(fields[5].trim())
+			lote.aviso.consignatario = consignatario
 						
 			def state = fields[3].trim()
 			switch (state) { 
 			
 				case ~/^POSTULADO$/:	
-					println "POSTULADO"
-					lote.postularAviso(aviso)
-					// lote.aviso.postular(lote.propietario);
+					lote.aviso.postular()
 					break
 					
 				
 				case ~/^APROBADO$/:
-					println "APROBADO"
-					// lote.aviso.postular(lote.propietario);
-					// lote.aviso.aprobar(administrador);					
-					lote.postularAviso(aviso)
-					aviso.aprobar(administrador)
+					lote.aviso.postular()
+					lote.aviso.aprobar(administrador)
 					break
 		
 			}   

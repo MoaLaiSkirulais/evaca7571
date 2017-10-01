@@ -15,8 +15,7 @@
 					<li><g:link controller="resena" action="index">Resena</g:link></li>
 				</ul>	
 
-				<admin:links/>
-				
+				<admin:links/>				
 					
 			</div>
 		</div>
@@ -24,8 +23,8 @@
 	
     <content tag="left1">
 	
-		<div class="widgets">
-			<div class="widget widget-categories">
+		<div>
+			<div>
 				<g:pageProperty name="page.left1" />
 			</div>
 		</div>
@@ -34,8 +33,8 @@
 	
 	<content tag="left2">
 
-		<div class="widgets">
-			<div class="widget widget-categories">
+		<div>
+			<div>
 				<g:pageProperty name="page.left2" />
 			</div>
 		</div>
