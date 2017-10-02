@@ -1,6 +1,6 @@
 git config --global credential.helper cache
 git config credential.helper store
-git pull origin master
+git pull origin aviso_centric
 
 # /etc/init.d/lighttpd stop
 # pkill java
