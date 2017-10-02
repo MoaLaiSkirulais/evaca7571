@@ -87,7 +87,7 @@
 						<tr class="actions">
 							<td colspan="6" >
 								<g:link params="['filter.aviso.id': aviso.id]" class="admin-action" action="search_ofertas">
-									ver Ofertas (${aviso.ofertas.size()})
+									[ver Ofertas (${aviso.ofertas.size()})]
 								</g:link>
 								
 								<g:link class="admin-action" action="admin" id="${aviso.id}">

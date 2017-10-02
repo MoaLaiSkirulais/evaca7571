@@ -68,8 +68,9 @@ th {
 #admin .admin-action {
     text-align: center;
 	color: #E74C3C !important;
-	text-transform: lowercase;
+	/* text-transform: lowercase; */
 	font-size: 14px !important;	
+	padding-right: 20 !important;
 }
 
 #admin .actions td{

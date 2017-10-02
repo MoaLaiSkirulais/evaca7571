@@ -33,7 +33,7 @@
 	<ul>
 		<g:each in="${categorias}" var="categoria">
 			<li>
-				<a href="#!" style="margin: 5px 0 0 0;">
+				<a href="?filter.categoria.id=${categoria.id}" style="margin: 5px 0 0 0;">
 					${categoria.nombre}
 				</a>
 			</li>
@@ -46,7 +46,7 @@
 	<ul>
 		<g:each in="${razas}" var="raza">
 			<li>
-				<a href="#!">
+				<a href="?filter.raza.id=${raza.id}" style="margin: 5px 0 0 0;">
 					${raza.nombre} <span class="count">(6)</span>
 				</a>
 			</li>
@@ -62,7 +62,7 @@
 			<li class="clearfix">
 				<div class="media">
 					<div class="media-left pull-left">
-						<a href="#">
+						<a href="?filter.propietario.id=${topVendedor.id}" style="margin: 5px 0 0 0;">
 							<img class="media-object img-responsive" src="<g:createLink controller='usuario' action='get_image' id='${topVendedor.id}'/>" style="border: 0px solid gray;  opacity: 1.0; width:90px" />
 						</a>
 					</div>

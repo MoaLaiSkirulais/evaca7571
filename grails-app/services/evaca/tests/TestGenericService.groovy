@@ -51,6 +51,33 @@ class TestGenericService {
 		/* audit */
 		populateXProService.countAll()
 	}
+	
+	/* demoSetup */
+	def demoSetup() {
+	
+		/* reset all */
+		populateXProService.clearAll()
+
+		/* populate */
+		populateXProService.usuarios()
+		populateXProService.razas()
+		populateXProService.categorias()
+		populateXProService.plazos()
+		populateXProService.preguntas()
+
+		/* transaccional */
+		def u = new UsuarioReader()
+		u.loadFromCsv()
+
+		def r = new LoteReader()
+		r.loadFromCsv()
+
+		def o = new OfertaReader()
+		o.loadFromCsv()
+
+		def re = new ResenaReader()
+		re.loadFromCsv()
+	}
 }
 
 

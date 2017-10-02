@@ -152,8 +152,6 @@ class Aviso {
 		}
 
 		/* ofertante = vendedor? */
-		println this.propietario
-		println oferta.propietario
 		if (this.propietario == oferta.propietario){
 			throw new AvisoException(message: "No puede ofertar su propio aviso")
 		}

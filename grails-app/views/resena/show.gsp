@@ -3,22 +3,32 @@
 	<content tag="left1">
 						
 		<evaca:cruderror modelo="${resena}"/>
-		<h2>Resena</h2>
+		<h3 class="widget-title">Resena</h3>
 
 		<table class="table table-condensed" cellspacing="0">
+
 			<tbody>
-			
-				<myform:display label="#id" value="${resena.id}"/>
-				<myform:display label="State" value="${resena.state}"/>
-				<myform:display label="propietario" value="${resena.propietario}"/>
-				<myform:display label="Fecha" value="${resena.fechaCreacion}"/>
-				<myform:display label="Puntaje" value="${resena.puntaje}"/>
+
+				<myform:show label="#id" value="${resena.id}"/>
+				<myform:show label="State" value="${resena.state}"/>
+				<myform:show label="propietario" value="${resena.propietario}"/>
+
+				<!-- <myform:show label="propietario" value="${g.link([action:'show_profile', controller:'usuario', id:resena.propietario.id])}"/> -->
+				
+				<myform:show label="Fecha" value="${resena.fechaCreacion}"/>
+				<myform:show label="Puntaje" value="${resena.puntaje}"/>
+				
+
+				<span class="star-rating">
+					<span style="width:${resena.puntaje * 100 / 5}%">
+				</span>
 				
 				<myform:separator label="Preguntas"/>
-				<g:each status="i" in="${resena.respuestas}" var="respuesta"><br>
-					<myform:display label="" value="${respuesta.pregunta.label}"/>
-					<myform:display label="Puntaje" value="${respuesta.puntaje}"/>
-					<myform:display label="Comentarios" value="${respuesta.respuesta}"/>
+				<g:each status="i" in="${resena.respuestas}" var="respuesta">
+					<myform:show label="#${i+1}" value="${respuesta.pregunta.label}"/>
+					<myform:show label="Puntaje" value="${respuesta.puntaje}"/>
+					<myform:show label="Comentarios" value="${respuesta.respuesta}"/>
+					<myform:separator label=""/>
 				</g:each>
 				
 			</tbody>

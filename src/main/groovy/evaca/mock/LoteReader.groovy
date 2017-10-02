@@ -14,13 +14,14 @@ class LoteReader {
 	 */
 	public loadFromCsv(String path){
 
+		println "Loading lotes from csv..."
 		File csvFile = new File(LocalSystem.getDataResource("/mock/csv/lotes.csv"));
 		def i = 0
 		
 		csvFile.splitEachLine(',') { fields ->
 		
 			i++
-			println "--" + i
+			// println "--" + i
 		
 			def propietario = Usuario.findByUsername(fields[0].trim())			
 			def administrador = Usuario.findByUsername("administrador")
@@ -62,7 +63,7 @@ class LoteReader {
 			try {				
 				propietario.postularLote(lote)
 			} catch (Exception e){
-				println "error: " + e
+				println "[" + i + "] " + e
 				return /* es como el continue */
 			}
 			

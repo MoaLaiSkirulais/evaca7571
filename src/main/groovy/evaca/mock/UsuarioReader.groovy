@@ -13,6 +13,8 @@ class UsuarioReader {
 	 * loadFromCsv 
 	 */
 	public loadFromCsv(String path){
+	
+		println "Loading usuarios from csv..."
 
 		File csvFile = new File(LocalSystem.getDataResource("/mock/csv/usuarios.csv"));
 		def i = 0

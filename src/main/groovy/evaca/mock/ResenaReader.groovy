@@ -13,6 +13,8 @@ class ResenaReader {
 	 * loadFromCsv 
 	 */
 	public loadFromCsv(String path){
+		
+		println "Loading resenas from csv..."
 	
 		Resena.executeUpdate('delete from Respuesta')
 		Resena.executeUpdate('delete from Resena')
@@ -26,8 +28,6 @@ class ResenaReader {
 		def administrador = Usuario.findByUsername("administrador")
 		Aviso.list().each { aviso ->
 		
-			// println aviso.dump()
-			
 			/* nueva resena */
 			def resena = new Resena()
 			resena.propietario = aviso.propietario
@@ -55,7 +55,7 @@ class ResenaReader {
 				aviso.postularResena(resena)
 				aviso.save(flush:true, failOnError: true)
 			} catch (AvisoException e){
-				println e
+				println "[" + i + "] " + e
 			}
 
 		} 
@@ -67,7 +67,7 @@ class ResenaReader {
 				resena.aprobar(administrador)
 				resena.save(flush:true, failOnError: true)
 			} catch (OfertaException e){
-				println e
+				println "[" + i + "] " + e
 			}
 			
 		} 

@@ -1,8 +1,8 @@
-<g:applyLayout name="admin_layout">
+<g:applyLayout name="layoutTwoColumnsUserLogged">
 	
-    <content tag="body">
+    <content tag="left1">
 	
-		<h2>usuarios</h2>
+		<h3 class="widget-title">usuarios</h2>
 
 		<evaca:cruderror modelo="${usuario}"/>
 		
@@ -39,13 +39,13 @@
 		
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
-					<tr>
-						<th class="product-name">id</th>
-						<th class="product-name">fechaCreacion</th>
-						<th class="product-name">username</th>
-						<th class="product-name">email</th>
-						<th class="product-name">tbTipo</th>
-						<th class="product-name">tbSate</th>
+					<tr class="item">
+						<th>id</th>
+						<th>fechaCreacion</th>
+						<th>username</th>
+						<th>email</th>
+						<th>tbTipo</th>
+						<th>tbSate</th>
 					</tr>
 				</thead>
 				
@@ -53,23 +53,43 @@
 					<g:each in="${usuarios}" var="usuario" status="i">
 
 						<tr class="item">
-							<td class="product-name">${usuario.id}</td>			
+							<td>${usuario.id}</td>			
 							<td><g:formatDate date="${usuario.fechaCreacion}" type="datetime"/></td>
-							<td class="product-name">${usuario.username}</td>
-							<td class="product-name">${usuario.email}</td>
-							<td class="product-name">${usuario.profile}</td>
-							<td class="product-name"><usuario:state value="${usuario.state}"/></td>
+								
+							<td>
+								<g:link controller="usuario" action="show_profile" id="${usuario.id}">
+									${usuario.username} 
+								</g:link>								
+							</td>
+
+							<td>${usuario.email}</td>
+							<td>${usuario.profile}</td>
+							<td><usuario:state value="${usuario.state}"/></td>
 						</tr>
 
 						<tr class="actions">
 							<td class="product-name" colspan="6" style="text-align:right">
+
 								<g:link params="['filter.username': usuario.username]" class="admin-action" action="search_avisos">
-									ver Avisos (${usuario.lotes.size()})|
+									Avisos(${usuario.lotes.size()})
 								</g:link>
-								<g:link class="admin-action" action="search_avisos" id="${usuario.id}">ver Ofertas  (${usuario.ofertas.size()})|</g:link>
-								<g:link class="admin-action" action="admin" id="${usuario.id}">ver Reseñas</g:link>&nbsp;&nbsp;&nbsp;&nbsp;
-								<g:link params="['usuario.id': usuario.id]" class="admin-action" action="aprobar_usuario" id="${usuario.id}">Aprobar | </g:link>
-								<g:link params="['usuario.id': usuario.id]" class="admin-action" action="desaprobar_usuario" id="${usuario.id}">Desaprobar</g:link>
+
+								<g:link class="admin-action" action="search_avisos" id="${usuario.id}">
+									Ofertas(${usuario.ofertas.size()})
+								</g:link>
+
+								<g:link class="admin-action" action="admin" id="${usuario.id}">
+									Reseñas
+								</g:link>
+
+								<g:link params="['usuario.id': usuario.id]" class="admin-action" action="aprobar_usuario" id="${usuario.id}">
+									Aprobar
+								</g:link>
+								
+								<g:link params="['usuario.id': usuario.id]" class="admin-action" action="desaprobar_usuario" id="${usuario.id}">
+									Desaprobar
+								</g:link>
+
 							</td>
 						</tr>
 					</g:each>

@@ -13,6 +13,8 @@ class OfertaReader {
 	 * loadFromCsv 
 	 */
 	public loadFromCsv(String path){
+	
+		println "Loading ofertas from csv..."
 
 		/* listado de ofertantes, plazo y precio que van a aplicar a los avisos */
 		File csvFile = new File(LocalSystem.getDataResource("/mock/csv/ofertas.csv"));
