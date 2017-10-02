@@ -18,5 +18,14 @@ class UserTagLib {
 		// }
 	}
 
+	def accesos = {attrs ->
+
+		out << 
+			render(
+				template: "/tagLibTemplates/UserTagLib/accesos", 
+				model:[usuario:mySessionService.usuario]
+			)		
+	}
+
  
 }

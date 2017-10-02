@@ -63,7 +63,7 @@
 				<tbody>								
 					<g:each in="${avisos}" var="aviso" status="i">
 
-						<tr class="item">							
+						<tr class="item">
 							<td><g:formatDate date="${aviso.fechaCreacion}" type="datetime"/></td>
 							<td>
 								<g:link params="['filter.username': aviso.propietario]" action="search_usuarios">
@@ -87,11 +87,20 @@
 						<tr class="actions">
 							<td colspan="6" >
 								<g:link params="['filter.aviso.id': aviso.id]" class="admin-action" action="search_ofertas">
-									ver Ofertas (${aviso.ofertas.size()})|
+									ver Ofertas (${aviso.ofertas.size()})
 								</g:link>
-								<g:link class="admin-action" action="admin" id="${aviso.id}">ver Reseñas</g:link>&nbsp;&nbsp;&nbsp;&nbsp;
-								<g:link params="['aviso.id': aviso.id]" class="admin-action" action="aprobar_aviso" id="${aviso.id}">Aprobar | </g:link>
-								<g:link params="['aviso.id': aviso.id]" class="admin-action" action="desaprobar_aviso" id="${aviso.id}">Desaprobar</g:link>
+								
+								<g:link class="admin-action" action="admin" id="${aviso.id}">
+									ver Reseñas
+								</g:link>
+
+								<g:link params="['aviso.id': aviso.id]" class="admin-action" action="aprobar_aviso" id="${aviso.id}">
+									Aprobar
+								</g:link>
+								
+								<g:link params="['aviso.id': aviso.id]" class="admin-action" action="desaprobar_aviso" id="${aviso.id}">
+									Desaprobar
+								</g:link>
 							</td>
 						</tr>					
 					</g:each>					            

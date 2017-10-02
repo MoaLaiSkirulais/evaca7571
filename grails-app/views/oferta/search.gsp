@@ -6,10 +6,11 @@
 		<div class="table-responsive" id="admin">
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
-					<tr>
+					<tr class="item">
+						<th>id</th>
 						<th>fechaCreacion</th>
-						<th>propietario</th>
 						<th>aviso</th>
+						<th>comprador</th>
 						<th>plazo</th>
 						<th>precio</th>
 						<th>tbState</th>
@@ -17,27 +18,28 @@
 				</thead>
 					
 				<tbody>								
-					<g:each in="${ofertas}" var="item" status="i">
+					<g:each in="${ofertas}" var="oferta" status="i">
 						<tr class="item">
 							
+							<td>${oferta.id}</td>
 							<td>
-								<g:formatDate date="${item.fechaCreacion}" type="datetime"/>
+								<g:formatDate date="${oferta.fechaCreacion}" type="datetime"/>
 							</td>
-							
-							<td>${item.propietario}</td>
-							<td>${item.aviso.id}</td>																		
-							<td>${item.plazo}</td>
-							<td>${item.precio}</td>
+
+							<td>${oferta.aviso.lote.id}</td>
+							<td>${oferta.propietario}</td>
+							<td>${oferta.plazo}</td>
+							<td>${oferta.precio}</td>
 
 							<td>
-								<aviso:entityState state="${item.state}"/>
+								<aviso:entityState state="${oferta.state}"/>
 							</td>
 
 						</tr>
 						
 						<tr class="actions">
 							<td colspan="6" >
-								<g:link controller="aviso" params="['oferta.id': item.id]" class="admin-action" action="aceptar_oferta" id="${item.id}">Aceptar</g:link>
+								<g:link controller="aviso" params="['oferta.id': oferta.id]" class="admin-action" action="aceptar_oferta" id="${oferta.id}">Aceptar</g:link>
 							</td>
 						</tr>
 

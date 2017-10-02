@@ -64,12 +64,15 @@ class LoteController
 	def search() {	
 	
 		def lotes = Lote.createCriteria().list(){
-				
+		
+		// render "hijodeputa"; 
+		// render mySessionService.usuario.id; 
+		// return;
+		
 		if (mySessionService.usuario.id) {
 				propietario{eq("id", mySessionService.usuario.id)}
-			}			
+			}
 		}
-
 		render(view: 'search', model: [lotes : lotes])
     }
 
@@ -142,8 +145,8 @@ class LoteController
 	/* postular_aviso */
 	def postular_aviso(Aviso aviso) {
 	
-		render "conchudo"
-		return  
+		// render "conchudo"
+		// return  
 		
 		if (!aviso){
 			render "No se encontro el aviso"; 		

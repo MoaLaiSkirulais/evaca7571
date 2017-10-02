@@ -67,7 +67,7 @@ th {
 
 #admin .admin-action {
     text-align: center;
-	color: silver !important;
+	color: #E74C3C !important;
 	text-transform: lowercase;
 	font-size: 14px !important;	
 }

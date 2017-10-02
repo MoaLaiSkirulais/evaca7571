@@ -257,14 +257,15 @@ class AvisoController extends BaseController implements AvisoExceptionHandler{
 				aviso: aviso,
 				plazos: Plazo.list()
 			]
-			render (view: 'show', model:model)
+			// render (view: 'show', model:model)
+			render (controller:"lote", view: 'show', model:model)
 			return
 		}
 
 		// render ("\r\n---- Bien! -----\r\n"); return
 		flash.message = "La oferta fue aprobada. El lote está vendido."
 		flash.type = "ok"
-		redirect action:"show", id:aviso.id
+		redirect controller:"lote", action:"show", id:aviso.id
     }
 
 

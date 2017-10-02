@@ -45,7 +45,6 @@
 						</table>			
 
 						<div class="buttons">		
-							<g:link action="create" class="btn btn-default">nuevo lote</g:link>
 							<g:actionSubmit action="actualizar" value="actualizar" class="btn btn-default"/>
 						</div>
 	
