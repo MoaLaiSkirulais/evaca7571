@@ -40,19 +40,19 @@
 						<tr class="actions">
 							<td colspan="8" >
 								<g:link controller="oferta" params="['filter.lote.aviso.id': lote.aviso.id]" class="admin-action" action="search">
-									[Ofertas (${lote.aviso.ofertas.size()})]
+									Ofertas(${lote.aviso.ofertas.size()})
 								</g:link>
 
 								<g:link class="admin-action" action="admin" id="${lote.aviso.id}">
-									[Reseñas (${lote.aviso.resenas.size()})]
+									Reseñas(${lote.aviso.resenas.size()})
 								</g:link>
 
 								<g:link id="${lote.id}" class="admin-action" action="show" id="${lote.id}">
-									[Ver aviso]
+									Ver
 								</g:link>
 
 								<g:link id="${lote.id}" class="admin-action" action="edit" id="${lote.id}">
-									[Modificar]
+									Modificar
 								</g:link>
 							</td>
 						</tr>

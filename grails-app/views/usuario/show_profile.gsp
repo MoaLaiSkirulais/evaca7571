@@ -27,13 +27,13 @@
 			<li><h3>Actividad</h3></li>
 
 			<li>
-				<g:link controller="admin" action="search_avisos">
-					Ofertas (${usuario.lotes.size()})
+				<g:link controller="lote" action="search">
+					Avisos (${usuario.lotes.size()})
 				</g:link>
 			</li>
 
 			<li>
-				<g:link controller="admin" action="search_resenas">
+				<g:link controller="resena" action="search">
 					Resenas (${usuario.resenas.size()})
 				</g:link>
 			</li>

@@ -67,7 +67,7 @@ th {
 
 #admin .admin-action {
     text-align: center;
-	color: #E74C3C !important;
+	color: #06BAE1  !important;
 	/* text-transform: lowercase; */
 	font-size: 14px !important;	
 	padding-right: 20 !important;
@@ -87,3 +87,9 @@ th {
    padding: 20 0 0 0 !important;	
    font-weight: bolder !important;
 }
+
+h3{
+	margin-top: 0; !important;	
+}
+
+

@@ -2,7 +2,8 @@
 	
     <content tag="left1">
 
-		<evaca:cruderror modelo="${lote}"/>
+		<!-- <evaca:cruderror modelo="${lote}"/> -->
+		<h3 class="widget-title">Aviso</h3>
 
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
@@ -36,6 +37,7 @@
 	</content>
 	
     <content tag="left2">
+		<h3>Imagen</h3>
 		<img src="<g:createLink controller='lote' action='get_image' id='${lote.id}'/>"/>
 		<ul>		
 			<li><br><br><h3>Actividad</h3></li>

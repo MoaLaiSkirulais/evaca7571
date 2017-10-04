@@ -197,20 +197,60 @@ extends BaseController
 
 	
 	/* savePassword */ 
-	def save_password(SavePasswordCommand command) {	
-        usuarioService.savePassword(command)
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"show_profile", id:params.int('id')
+	def save_password() {	
+		
+		Usuario usuario = Usuario.get(params.usuario.id)
+		if (!usuario){
+			render "User not found"
+			return
+		}
+ 
+		try {
+
+			usuario.changePassword(params.currentPassword, params.newPassword, params.newRepassword)
+			usuario.save(flush:true, failOnError: true)
+
+			flash.message = "Contraseña reemplazada"
+			flash.type = "ok"
+			redirect action:"show_profile", id:params.int('id')
+			
+			// System.errorAndRedirect("Contraseña reemplazada!", "show_profile")
+
+		} catch (Exception error) {
+
+			flash.message = error.message
+			render(view: 'edit_password', model: [usuario: usuario]) 
+			return
+		}
+		
     }
 
 	
-	/* saveProfile */ 
-	def save_profile(SaveProfileCommand command) {	
-        usuarioService.saveProfile(command)
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"show_profile", id:params.int('id')
+	/* save_profile */ 
+	def save_profile() {	
+	
+		Usuario usuario = Usuario.get(params.usuario.id)
+		if (!usuario){
+			render "User not found"
+			return
+		}
+
+		try {
+			
+			usuario.properties = params.usuario
+			usuario.saveProfile()
+			usuario.save(flush:true, failOnError: true)
+			
+			flash.message = "Perfil actualizado"
+			flash.type = "ok"
+			redirect action:"show_profile", id:params.int('id')
+
+		} catch (Exception error) {
+
+			flash.message = error.message
+			render(view: 'edit_profile', model: [usuario: usuario]) 
+			return
+		}
     }
 
 	

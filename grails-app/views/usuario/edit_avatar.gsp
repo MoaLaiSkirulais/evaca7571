@@ -3,6 +3,7 @@
     <content tag="left1">
 
 		<h3 class="widget-title">cambiar avatar</h3>
+		<evaca:cruderror modelo="${usuario}"/>
 
 		<g:uploadForm name="uploadFeaturedImage" action="save_image">
 			<table class="table table-condensed" cellspacing="0">

@@ -10,5 +10,9 @@ class HeaderTagLib {
 		out << render(template:"/tagLibTemplates/CrudErrorTagLib", model:[attrs:attrs])
 	}
 
+	def flashmessage = {attrs ->		
+		out << render(template:"/tagLibTemplates/FlashMessageTagLib", model:[attrs:attrs])
+	}
+
 
 }

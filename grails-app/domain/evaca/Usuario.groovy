@@ -109,8 +109,6 @@ class Usuario {
 	/* desaprobar */
 	public desaprobar(Usuario ejecutor){
 		
-		
-		
 		/* ya esta? */
 		if (this.state == UsuarioState.DESAPROBADO){
 			throw new UsuarioException(message : "El usuario ya está desaprobado")
@@ -122,6 +120,42 @@ class Usuario {
 		}
 		
 		this.state = UsuarioState.DESAPROBADO	
+	}
+	
+	
+	/* changePassword */
+	public changePassword(String currentPassword, String newPassword, String newRepassword){
+	
+		/* solo estado aprobado puede agregar ofertas */
+		if (this.state != UsuarioState.APROBADO){
+			throw new UsuarioException(message : "El usuario no está aprobado")
+		}
+
+		/* check currentPassword */
+		if (this.password != currentPassword){
+			throw new UsuarioException(message : "Password actual incorrecto")
+		}
+		
+		println newPassword
+		println newRepassword
+		/* check passs repass */
+		if (newPassword != newRepassword){
+			throw new UsuarioException(message : "No coinciden los passwords")
+		}
+		
+		this.password = newPassword
+
+	}
+
+	
+	/* saveProfile */
+	public saveProfile(){
+	
+		/* solo estado aprobado puede agregar ofertas */
+		if (this.state != UsuarioState.APROBADO){
+			throw new UsuarioException(message : "El usuario no está aprobado")
+		}
+
 	}
 	
 	

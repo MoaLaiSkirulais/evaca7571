@@ -24,6 +24,10 @@ class FormTagLib {
 			attrs.value = ""
 		}
 
+		if (attrs.type == null) {
+			attrs.type = ""
+		}
+
 		out << render(template:"/tagLibTemplates/FormTagLib/field", model:[attrs:attrs])
 	}
 

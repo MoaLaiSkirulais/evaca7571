@@ -4,7 +4,7 @@
 	</th>
 	<td class="text-right">
 		<span class="amount">
-			<input value="${attrs.value}" name="${attrs.name}" class="FormTagLib_field" style="${attrs.style}"/>
+			<input value="${attrs.value}" name="${attrs.name}" class="FormTagLib_field" style="${attrs.style}" type="${attrs.type}"/>
 		</span>
 	</td>
 </tr>

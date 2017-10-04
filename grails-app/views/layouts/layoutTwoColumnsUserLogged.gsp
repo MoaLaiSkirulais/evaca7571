@@ -10,14 +10,12 @@
 		</div>
 	</content>
 	
-    <content tag="left1">
-	
-		<div class="widgets">
-			<div class="widget widget-categories">
+    <content tag="left1">	
+		<div>
+			<div>
 				<g:pageProperty name="page.left1"/>
 			</div>
 		</div>
-
 	</content>
 
 </g:applyLayout>

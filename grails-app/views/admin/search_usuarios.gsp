@@ -2,7 +2,7 @@
 	
     <content tag="left1">
 	
-		<h3 class="widget-title">usuarios</h2>
+		<h3 class="widget-title">usuarios</h3>
 
 		<evaca:cruderror modelo="${usuario}"/>
 		

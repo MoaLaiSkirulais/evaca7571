@@ -33,7 +33,7 @@ class AdminController
 		render(
 			view: 'search_usuarios', 
 			model: [
-				usuarios: usuarios.sort{it.fechaCreacion}, 
+				usuarios: usuarios.sort{it.fechaCreacion}.reverse(), 
 				filter :[
 					profiles: UsuarioProfile.values(),  
 					states: UsuarioState.values()	
