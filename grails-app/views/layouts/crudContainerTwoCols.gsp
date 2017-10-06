@@ -9,6 +9,7 @@
 
 		<div class="page-wrapper">			
 			<div class="container">
+				<evaca:flashmessage/>
 				<div class="row">
 					<div class="col-sm-6">
 			            <g:pageProperty name="page.left1"/>

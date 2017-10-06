@@ -4,8 +4,6 @@
 	
 		<h3 class="widget-title">usuarios</h3>
 
-		<evaca:cruderror modelo="${usuario}"/>
-		
 		<g:form method="GET">
 			<table class="table table-condensed" cellspacing="0">
 				<tbody>

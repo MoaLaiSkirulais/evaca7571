@@ -14,7 +14,8 @@
 					<th></th>
 					<td class="text-right">
 						<div class="form-group text-right">
-							<g:actionSubmit action="create" value="registrarse" class="btn btn-default"/>	
+							
+							<g:link controller="usuario "action="create" class="btn btn-default">Registrarse</g:link>
 							<g:actionSubmit action="login" value="login" class="btn btn-default"/>	
 						</div>
 					</td>

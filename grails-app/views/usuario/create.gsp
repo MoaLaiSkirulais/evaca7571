@@ -1,8 +1,8 @@
 <g:applyLayout name="crudContainerTwoCols">
 
     <content tag="left1">
-		<h2>usuario</h2>
-		<evaca:cruderror modelo="${usuario}"/>
+		<h3>nuevo usuario</h3>
+		<!-- <evaca:cruderror modelo="${usuario}"/> -->
 
 		<form method="post">
 
@@ -23,7 +23,6 @@
 			</table>
 			
 			<div class="buttons">
-				<!-- <g:link action="create" class="btn btn-default">visitante.nuevo usuario</g:link> -->
 				<g:actionSubmit action="postular" class="btn btn-default" value="Postular"/>
 			</div>			
 			

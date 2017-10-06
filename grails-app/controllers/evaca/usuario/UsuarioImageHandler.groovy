@@ -22,6 +22,7 @@ trait UsuarioImageHandler {
         }
 		
 		if (usuario.image == null) {
+			println "pijaaaaaaaaaaaaaaaaaaaaassssssssssssssssssssss"
 			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
 			render (file: image.inputStream, contentType: '')
             return

@@ -1,4 +1,4 @@
-	package evaca
+package evaca
 
 import groovy.transform.EqualsAndHashCode
 
@@ -26,14 +26,16 @@ class Usuario {
 	/* constraints */
     static constraints = {
 	
+		/* not null */
 		fechaCreacion blank: false, nullable: false
 		email nullable: false, email: true, unique: true
 		password size: 6..15, nullable: true, blank: true
 		state nullable: false
 		profile nullable: false
 		username size: 6..15, blank: false, unique: true
-		puntaje blank: true, nullable: true, editable: false, defaultValue: 0		
 		
+		/* nullables */
+		puntaje blank: true, nullable: true, editable: false, defaultValue: 0		
 		image nullable: true
         avatarImageContentType nullable: true
     }
@@ -58,17 +60,7 @@ class Usuario {
 		this.avatar = "/static/sham/img/users/5.jpg"
     }
 	
-	
-	/* changeState */
-	public changeState(UsuarioState state, Usuario ejecutor){
 
-		// state.validateStateAccess(this, ejecutor);
-		// state.validateStateFlow(this);
-		// this.state = state
-
-	}
-
-	
 	/* toString */	
 	String toString(){
 		this.username
@@ -78,10 +70,21 @@ class Usuario {
 	/* postular */
 	public postular(){
 
+		/* borrador? */
 		if (this.state != UsuarioState.BORRADOR) { 
 			throw new UsuarioStateFlowException(message : "El usuario no está en BORRADOR")
 		}
 		
+		/* constrains? */
+		this.validate()
+		if (this.hasErrors()) {
+		
+			this.errors.allErrors.each { 
+				def msg = ErrorHandler.build(it.defaultMessage, it.field)
+				throw new UsuarioException(message : msg)				
+			}
+		}
+
 		this.state = UsuarioState.POSTULADO	
 	}
 
@@ -136,8 +139,6 @@ class Usuario {
 			throw new UsuarioException(message : "Password actual incorrecto")
 		}
 		
-		println newPassword
-		println newRepassword
 		/* check passs repass */
 		if (newPassword != newRepassword){
 			throw new UsuarioException(message : "No coinciden los passwords")
@@ -154,6 +155,16 @@ class Usuario {
 		/* solo estado aprobado puede agregar ofertas */
 		if (this.state != UsuarioState.APROBADO){
 			throw new UsuarioException(message : "El usuario no está aprobado")
+		}
+		
+		/* constrains? */
+		this.validate()
+		if (this.hasErrors()) {
+		
+			this.errors.allErrors.each { 
+				def msg = ErrorHandler.build(it.defaultMessage, it.field)
+				throw new UsuarioException(message : msg)				
+			}
 		}
 
 	}

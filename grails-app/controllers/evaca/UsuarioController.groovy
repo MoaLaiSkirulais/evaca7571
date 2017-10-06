@@ -1,11 +1,19 @@
 package evaca
 
+import org.grails.core.io.ResourceLocator
+import org.springframework.core.io.Resource
+
+import grails.web.Action
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 // import org.codehaus.groovy.grails.core.io.ResourceLocator
 import org.springframework.core.io.Resource
 
 class UsuarioController 
 extends BaseController 
-	implements UsuarioImageHandler, UsuarioExceptionHandler{ 
+	// implements UsuarioImageHandler, UsuarioExceptionHandler{ 
+	implements UsuarioExceptionHandler{ 
 	
 	def mySessionService
 	def usuarioService
@@ -34,13 +42,13 @@ extends BaseController
     } 
 	
 	
-	/* admin */
-	def admin() {		
-		respond ( 
-			view:'admin', 
-			getViewModel(usuarioService.edit(params.id))
-		)		
-    } 
+	// /* admin */
+	// def admin() {		
+		// respond ( 
+			// view:'admin', 
+			// getViewModel(usuarioService.edit(params.id))
+		// )		
+    // } 
 	
  
 	/* show_profile */
@@ -102,9 +110,7 @@ extends BaseController
 	
 	/* desaprobar (admin) */
 	def desaprobar() {
-		
-		// render params; return;
-		
+
 		try {
 		
 			def usuario = new Usuario().get(params.usuario.id)
@@ -133,13 +139,9 @@ extends BaseController
 		def usuario = new Usuario()
 		usuario.properties = cmd.properties
 		
-			
 		try {
 
 			usuario.postular()
-			if (usuario.hasErrors()) {
-				throw new UsuarioException();
-			}
 			usuario.save(flush:true, failOnError: true)
 
 			flash.message = "La cuenta fue creada. Ahora deberá ser activada para poder utilizarla."
@@ -160,22 +162,22 @@ extends BaseController
     }
 
 	
-	/* changeState */
-	def changeState = { 
+	// /* changeState */
+	// def changeState = { 
 		
-		try {			
-			it(params.int('id'));  
-		} catch (OfertaException e){
-			flash.message = e.message
-			redirect action:"edit", id:params.int('id')
-			return
-		}
+		// try {			
+			// it(params.int('id'));  
+		// } catch (OfertaException e){
+			// flash.message = e.message
+			// redirect action:"edit", id:params.int('id')
+			// return
+		// }
 
-		flash.message = "Cambios aplicados con exito"
-		flash.type = "ok"
-		redirect action:"edit", id:params.int('id')
+		// flash.message = "Cambios aplicados con exito"
+		// flash.type = "ok"
+		// redirect action:"edit", id:params.int('id')
 		
-	}   
+	// }   
 	
 	
 	/* getViewModel */ /* closure? trait? service? */
@@ -289,6 +291,59 @@ extends BaseController
 		)
 
     }
+	
+	
+	
+	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
+	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
+	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
+	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
+	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
+	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
+	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
+	
+	/* get_image */ 
+	def get_image(Usuario usuario) { 
+	
+        if (usuario == null) {
+			render "no-img"
+            return
+        }
+		
+		if (usuario.image == null) {
+			println "pijaaaaaaaaaaaaaaaaaaaaassssssssssssssssssssss"
+			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
+			render (file: image.inputStream, contentType: '')
+            return
+        }
+
+		render (file: usuario.image, contentType: '')
+		return
+    }
+	
+	
+	/* save_image */ /* podria pasar a un service! */
+	// def save_image(SaveImageCommand cmd) {	
+	def save_image() {	
+	
+		// render cmd.dump()
+		// render params
+		// return
+	
+		def usuario = new Usuario().get(params.usuario.id)
+		if (!usuario){
+			throw new LoteNotFoundException();
+		}
+ 	
+		usuario.image = params.image.bytes 
+		usuario.save(flush:true, failOnError: true)
+
+		flash.message = "Cambios aplicados con exito"
+		flash.type = "ok"
+		redirect action:"show_profile", id:usuario.id
+    }
+
+
 	
 	
 }

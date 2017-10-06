@@ -22,22 +22,29 @@
 	
     <content tag="left2">
 		<h2>Avatar</h2>
-		<img src="<g:createLink controller='usuario' action='get_image' id='${usuario.id}'/>"/>
-		<ul>		
-			<li><h3>Actividad</h3></li>
+		<div>
+			<img src="<g:createLink controller='usuario' action='get_image' id='${usuario.id}'/>"/>
+		</div>
+		<div class="star-rating">
+			<span style="width:90%"></span>
+		</div><br><br>
+		<div >
+			<ul>		
+				<li><h3>Actividad</h3></li>
 
-			<li>
-				<g:link controller="lote" action="search">
-					Avisos (${usuario.lotes.size()})
-				</g:link>
-			</li>
+				<li>
+					<g:link controller="lote" action="search">
+						Avisos (${usuario.lotes.size()})
+					</g:link>
+				</li>
 
-			<li>
-				<g:link controller="resena" action="search">
-					Resenas (${usuario.resenas.size()})
-				</g:link>
-			</li>
-		</ul>
+				<li>
+					<g:link controller="resena" action="search">
+						Resenas (${usuario.resenas.size()})
+					</g:link>
+				</li>
+			</ul>
+		</div>
 	</content>
 
 </g:applyLayout>
