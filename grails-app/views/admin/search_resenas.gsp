@@ -1,32 +1,45 @@
-<g:applyLayout name="admin_layout">
+<g:applyLayout name="layoutTwoColumnsUserLogged">
 	
-    <content tag="body">
+    <content tag="left1">
 
 		<h2>resenas</h2>
 		
 		<div class="table-responsive" id="admin">
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
-					<tr>
-						<th class="product-name">id</th>
-						<th class="product-name">fechaCreacion</th>
-						<th class="product-name">usuario</th>
-						<th class="product-name">venta</th>
-						<th class="product-name">puntaje</th>
-						<th class="product-name">tbSate</th>
+					<tr class="item">
+						<th>id</th>
+						<th>fechaCreacion</th>
+						<th>aviso</th>
+						<th>reviewer</th>
+						<th>puntaje</th>
+						<th>tbSate</th>
 					</tr>
 				</thead>
 
 				<tbody>
-
 					<g:each in="${resenas}" var="resena" status="i">
 						<tr class="item">							
-							<td class="product-name">${resena.id}</td>
-							<td class="product-name">${resena.fechaCreacion}</td>
-							<td class="product-name">${resena.propietario}</td>
-							<td class="product-name">${resena.venta}</td>
-							<td class="product-name">${resena.puntaje}</td>
-							<td class="product-name"><aviso:entityState state="${resena.state}"/></td>
+							<td>${resena.id}</td>
+							<td>
+								<g:formatDate date="${resena.fechaCreacion}" type="datetime"/>
+							</td>
+							<td>
+								<user:avatar usuario="${resena.aviso.propietario}" size="30"/>
+								<g:link controller="aviso" class="link" action="show" id="${resena.aviso.id}">
+									${resena.aviso.id} ${resena.aviso.lote.raza} | $${resena.aviso.precio}
+								</g:link>
+							</td>
+							<td>
+								<user:avatar usuario="${resena.propietario}" size="30"/>
+								<g:link controller="usuario" class="link" action="show_profile" id="${resena.propietario.id}">
+									${resena.propietario}
+								</g:link>
+							</td>
+							<td>
+								<user:stars value="${resena.puntaje}"/>
+							</td>
+							<td><aviso:entityState state="${resena.state}"/></td>
 						</tr>
 						
 						<tr class="actions">

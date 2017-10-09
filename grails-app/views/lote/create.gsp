@@ -2,8 +2,6 @@
 	
     <content tag="left1">
 
-		<evaca:cruderror modelo="${lote}"/>
-
 		<div class="container">
 			<div class="row">
 

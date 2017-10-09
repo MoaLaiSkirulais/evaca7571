@@ -38,6 +38,7 @@
 			<table class="table cart-table wishlist-table" cellspacing="0">
 				<thead>
 					<tr class="item">
+						<th width="60px"></th>
 						<th>id</th>
 						<th>fechaCreacion</th>
 						<th>username</th>
@@ -51,22 +52,31 @@
 					<g:each in="${usuarios}" var="usuario" status="i">
 
 						<tr class="item">
-							<td>${usuario.id}</td>			
-							<td><g:formatDate date="${usuario.fechaCreacion}" type="datetime"/></td>
-								
 							<td>
-								<g:link controller="usuario" action="show_profile" id="${usuario.id}">
-									${usuario.username} 
-								</g:link>								
+								<user:avatar usuario="${usuario}" size="30"/>
 							</td>
 
+							<td>${usuario.id}</td>			
+							<td>
+								<g:formatDate date="${usuario.fechaCreacion}" type="datetime"/><br>
+								<user:stars value="${usuario.puntaje}"/>
+							</td>
+								
+							<td>
+								<g:link controller="usuario" class="link" action="show_profile" id="${usuario.id}">
+									${usuario.username} 
+								</g:link>
+							</td>
+							
 							<td>${usuario.email}</td>
 							<td>${usuario.profile}</td>
-							<td><usuario:state value="${usuario.state}"/></td>
+							<td>
+								<usuario:state value="${usuario.state}"/>
+							</td>							
 						</tr>
 
 						<tr class="actions">
-							<td class="product-name" colspan="6" style="text-align:right">
+							<td class="product-name" colspan="7" style="text-align:right">
 
 								<g:link params="['filter.username': usuario.username]" class="admin-action" action="search_avisos">
 									Avisos(${usuario.lotes.size()})

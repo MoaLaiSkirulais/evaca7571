@@ -1,10 +1,8 @@
-<g:applyLayout name="admin_layout">
+<g:applyLayout name="layoutTwoColumnsUserLogged">
 	
-    <content tag="body">
+    <content tag="left1">
 	
 		<h2>ofertas</h2>
-		
-		<evaca:cruderror modelo="${ofertas}"/>
 		
 		<g:form method="GET">
 			<table class="table table-condensed" cellspacing="0">
@@ -36,8 +34,8 @@
 						<th>fechaCreacion</th>
 						<th>oferente</th>
 						<th>aviso</th>
-						<th>plazo</th>
-						<th>precio</th>
+						<th>plazo ofrecido</th>
+						<th>precio ofrecido</th>
 						<th>tbState</th>
 					</tr>
 				</thead>
@@ -46,9 +44,23 @@
 					<g:each in="${ofertas}" var="oferta" status="i">
 						
 						<tr class="item">							
-							<td><g:formatDate date="${oferta.fechaCreacion}" type="datetime"/></td>
-							<td>${oferta.propietario}</td>
-							<td>${oferta.aviso.id} ${oferta.aviso.lote.raza}</td>
+							<td>
+								<g:formatDate date="${oferta.fechaCreacion}" type="datetime"/>
+							</td>
+							
+							<td>
+								<user:avatar usuario="${oferta.propietario}" size="30"/>
+								<g:link controller="usuario" class="link" action="show_profile" id="${oferta.propietario.id}">
+									${oferta.propietario}
+								</g:link>
+							</td>
+
+							<td>
+								<g:link controller="aviso" class="link" action="show" id="${oferta.aviso.id}">
+									${oferta.aviso.id} ${oferta.aviso.lote.raza}
+								</g:link>
+							</td>
+
 							<td>${oferta.plazo}</td>
 							<td>${oferta.precio}</td>
 							<td><aviso:entityState state="${oferta.state}"/></td>

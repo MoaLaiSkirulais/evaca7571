@@ -35,7 +35,6 @@ class AvisoTagLib {
 	 
 	def entityState = {attrs ->
 	
-		println attrs.state
 		String sState = attrs.state
 		
 		if (sState == "APROBADO") {

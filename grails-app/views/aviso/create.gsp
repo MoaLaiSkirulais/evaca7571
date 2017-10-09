@@ -1,7 +1,7 @@
 <g:applyLayout name="crudContainer">
 
 	<h2>aviso</h2>
-	<evaca:cruderror modelo="${aviso}"/>
+	<!-- <evaca:cruderror modelo="${aviso}"/> -->
 
 	<form method="post">
 		<table class="table table-condensed" cellspacing="0">

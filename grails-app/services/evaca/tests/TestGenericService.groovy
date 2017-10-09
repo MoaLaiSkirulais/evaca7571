@@ -77,6 +77,13 @@ class TestGenericService {
 
 		def re = new ResenaReader()
 		re.loadFromCsv()
+		
+		/*
+		import evaca.*
+		def srv = ctx.getBean('testGenericService')
+		srv.demoSetup()
+		*/
+
 	}
 }
 

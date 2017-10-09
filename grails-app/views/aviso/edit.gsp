@@ -14,7 +14,7 @@
 				<div class="container">
 					<div class="row">
 
-						<evaca:cruderror/>
+						<!-- <evaca:cruderror/> -->
 						<div class="col-sm-6">				
 							<div class="box">
 								<h2>Aviso</h2><br>

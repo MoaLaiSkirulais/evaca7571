@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 // import org.codehaus.groovy.grails.core.io.ResourceLocator
-import org.springframework.core.io.Resource
+// import org.springframework.core.io.Resource
 
 class UsuarioController 
 extends BaseController 
 	// implements UsuarioImageHandler, UsuarioExceptionHandler{ 
 	implements UsuarioExceptionHandler{ 
+	
+	// @Resource("grailsResourceLocator")
+	ResourceLocator grailsResourceLocator
 	
 	def mySessionService
 	def usuarioService

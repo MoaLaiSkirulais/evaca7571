@@ -35,7 +35,12 @@ th {
 	font-weight: 300 !important;	
 }
 
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+.table > tbody > tr > td, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > td, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > thead > tr > th {
     border-top: 0px solid #ddd;
 }
 
@@ -79,8 +84,13 @@ th {
 	
 }
 
+tr.actions {
+    border-bottom: 1px solid #ece3e3 !important;
+}
+
 #admin .item td {
     padding: 20 0 0 0 !important;
+	vertical-align: top;
 }
 
 #admin .item th{
@@ -90,6 +100,11 @@ th {
 
 h3{
 	margin-top: 0; !important;	
+}
+
+a.link{
+	text-decoration: underline;
+	text-decoration-color: silver;
 }
 
 

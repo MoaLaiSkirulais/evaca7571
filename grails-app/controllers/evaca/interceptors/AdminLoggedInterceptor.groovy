@@ -27,7 +27,7 @@ class AdminLoggedInterceptor {
 
 	/* before */
     boolean before() { 
-		println ">> AdminLoggedInterceptor"
+
 		if (!mySessionService.isAdministrator()) {
 			flash.message = "You must be admin to perform this action"
             redirect controller: 'usuario', action:"newlogin"

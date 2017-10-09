@@ -85,6 +85,7 @@ class Usuario {
 			}
 		}
 
+		this.puntaje = 0
 		this.state = UsuarioState.POSTULADO	
 	}
 
