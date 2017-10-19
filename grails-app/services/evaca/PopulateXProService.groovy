@@ -97,46 +97,53 @@ class PopulateXProService {
 	def razas() {
 
 		log.info "Populando razas..."
-		// mySessionService.login('administrador', '')
 
 		def raza
-		
 		def administrador = Usuario.findByUsername("administrador")
 		
-		raza = new Raza(usuario:administrador) /* como no puedo mandarle un contructor?! ahora lo dejo asi*/
+		raza = new Raza(propietario:administrador) /* como no puedo mandarle un contructor?! ahora lo dejo asi*/
 		raza.nombre = "Aberdeen Angus"
-		raza.save(flush:true, failOnError: true) /* tal vez pasarle el creador para validar el permiso, con este nuevo esquema no lo veo mal */
+		raza.postular() 
+		raza.save(flush:true, failOnError: true) 
 		
-		raza = new Raza(usuario:administrador) 
+		raza = new Raza(propietario:administrador) 
 		raza.nombre = "Braford"
+		raza.postular() 
 		raza.save(flush:true, failOnError: true)
 		
-		raza = new Raza(usuario:administrador) 
+		raza = new Raza(propietario:administrador) 
 		raza.nombre = "Holando Argentino"
+		raza.postular() 
 		raza.save(flush:true, failOnError: true)
 		
-		raza = new Raza(usuario:administrador) 
+		raza = new Raza(propietario:administrador) 
 		raza.nombre = "Cruza"
+		raza.postular() 
 		raza.save(flush:true, failOnError: true)
 		
-		raza = new Raza(usuario:administrador) 
+		raza = new Raza(propietario:administrador) 
 		raza.nombre = "Hereford"
+		raza.postular() 
 		raza.save(flush:true, failOnError: true)
 		
-		raza = new Raza(usuario:administrador) 
+		raza = new Raza(propietario:administrador) 
 		raza.nombre = "Jersey"
+		raza.postular() 
 		raza.save(flush:true, failOnError: true)
 		
-		raza = new Raza(usuario:administrador) 
+		raza = new Raza(propietario:administrador) 
 		raza.nombre = "Bovino Criollo"
+		raza.postular() 
 		raza.save(flush:true, failOnError: true)
 		
-		raza = new Raza(usuario:administrador) 
+		raza = new Raza(propietario:administrador) 
 		raza.nombre = "Brangus"
+		raza.postular() 
 		raza.save(flush:true, failOnError: true)
 		
-		raza = new Raza(usuario:administrador) 
+		raza = new Raza(propietario:administrador) 
  		raza.nombre = "Careta"
+		raza.postular() 
 		raza.save(flush:true, failOnError: true)
 		
 		/* no hay postular ni nada, es dificil validar integridad asi con dominio expuesto */
@@ -151,19 +158,19 @@ class PopulateXProService {
 		
 		def administrador = Usuario.findByUsername("administrador")		
 
-		new Categoria(usuario:administrador, nombre:"Preñadas")
+		new Categoria(propietario:administrador, nombre:"Preñadas")
 			.save(flush:true, failOnError: true)
 		
-		new Categoria(usuario:administrador, nombre:"Con Ternero al Pie")
+		new Categoria(propietario:administrador, nombre:"Con Ternero al Pie")
 			.save(flush:true, failOnError: true)
 		
-		new Categoria(usuario:administrador, nombre:"Vacias")
+		new Categoria(propietario:administrador, nombre:"Vacias")
 			.save(flush:true, failOnError: true)
 			
-		new Categoria(usuario:administrador, nombre:"De Descarte")
+		new Categoria(propietario:administrador, nombre:"De Descarte")
 			.save(flush:true, failOnError: true)
 			
-		new Categoria(usuario:administrador, nombre:"Con Servicio")
+		new Categoria(propietario:administrador, nombre:"Con Servicio")
 			.save(flush:true, failOnError: true)
 
 	}
@@ -176,25 +183,25 @@ class PopulateXProService {
 		
 		def administrador = Usuario.findByUsername("administrador")			
 				
-		new Plazo(usuario:administrador, nombre:"Contado")
+		new Plazo(propietario:administrador, nombre:"Contado")
 			.save(flush:true, failOnError: true)
 			
-		new Plazo(usuario:administrador, nombre:"30 días")
+		new Plazo(propietario:administrador, nombre:"30 días")
 			.save(flush:true, failOnError: true)
 			
-		new Plazo(usuario:administrador, nombre:"30 y 60 días")
+		new Plazo(propietario:administrador, nombre:"30 y 60 días")
 			.save(flush:true, failOnError: true)
 			
-		new Plazo(usuario:administrador, nombre:"60 días")
+		new Plazo(propietario:administrador, nombre:"60 días")
 			.save(flush:true, failOnError: true)
 			
-		new Plazo(usuario:administrador, nombre:"30, 60 y 90 días")
+		new Plazo(propietario:administrador, nombre:"30, 60 y 90 días")
 			.save(flush:true, failOnError: true)
 			
-		new Plazo(usuario:administrador, nombre:"90 días")
+		new Plazo(propietario:administrador, nombre:"90 días")
 			.save(flush:true, failOnError: true)
 			
-		new Plazo(usuario:administrador, nombre:"Otro")
+		new Plazo(propietario:administrador, nombre:"Otro")
 			.save(flush:true, failOnError: true)
 
 	}
@@ -207,19 +214,19 @@ class PopulateXProService {
 		
 		def administrador = Usuario.findByUsername("administrador")
 		
-		new Pregunta(usuario:administrador, label:"Como fue la comunicacion con el vendedor?")
+		new Pregunta(propietario:administrador, label:"Como fue la comunicacion con el vendedor?")
 			.save(flush:true, failOnError: true)
 
-		new Pregunta(usuario:administrador, label:"Como fue la comunicacion con el consignatario?")
+		new Pregunta(propietario:administrador, label:"Como fue la comunicacion con el consignatario?")
 			.save(flush:true, failOnError: true)
 
-		new Pregunta(usuario:administrador, label:"Cual es el estado del lote?")
+		new Pregunta(propietario:administrador, label:"Cual es el estado del lote?")
 			.save(flush:true, failOnError: true)
 
-		new Pregunta(usuario:administrador, label:"Volveria a comprar?")
+		new Pregunta(propietario:administrador, label:"Volveria a comprar?")
 			.save(flush:true, failOnError: true)
 
-		new Pregunta(usuario:administrador, label:"Que le parecio el sistema?")
+		new Pregunta(propietario:administrador, label:"Que le parecio el sistema?")
 			.save(flush:true, failOnError: true)
 	
 	}
