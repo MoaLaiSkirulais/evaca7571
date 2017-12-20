@@ -388,6 +388,8 @@ class PopulateProService {
 	/* clearAll */
 	def clearAll() {
 	
+		println "Clear all data"
+	
 		Resena.executeUpdate('delete from Respuesta')
 		Resena.executeUpdate('delete from Resena')
 		Venta.executeUpdate('delete from Venta')

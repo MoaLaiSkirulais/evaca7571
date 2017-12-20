@@ -16,7 +16,6 @@ class Oferta {
 	// static mappedBy = [venta: "oferta"]
 
 
-	
 	/* Oferta() */
 	public Oferta() {
 		this.fechaCreacion = new Date();
@@ -26,21 +25,10 @@ class Oferta {
 	
 	/* constraints */
     static constraints = {
-		// venta nullable: true
     }
 
-
-	/* changeState */
-	public changeState(OfertaState state, Usuario ejecutor){
-		// state.validateStateAccess(this, ejecutor)
-		// state.validateStateFlow(this)
-		// this.state = state
-
-	}
-	
 	
 	/* postular */
-	// public postular(Usuario ejecutor){
 	public postular(){
 	
 		/* oferta en borrador? */
@@ -67,6 +55,7 @@ class Oferta {
 
 	}
 	
+
 	/* aprobar */
 	public aprobar(Usuario ejecutor){
 	
@@ -106,7 +95,7 @@ class Oferta {
 
 	}
 
-	
+
 	/* desaprobar */
 	public desaprobar(Usuario ejecutor){
 		
@@ -129,13 +118,13 @@ class Oferta {
 
 	}
 
-	
+
 	/* aceptar */
 	public aceptar(Usuario ejecutor){
 			
 		/* aprobada? */
 		if (this.state != OfertaState.APROBADO){
-			throw new OfertaException(message : "La oferta debe estar aprobada")
+			throw new OfertaException(message : "La oferta debe estar aprobada" + " (" + this.state + ")")
 		}
 
 		/* owner? */

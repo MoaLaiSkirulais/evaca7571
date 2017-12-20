@@ -21,6 +21,7 @@ class PopulateXProService {
 	def usuarios() {
 
 		log.info "Populando usuarios..."
+		println "[log] Popula cuatro usuarios para pruebas"
 
 		/* consignatario */
 		def consignatario = new Usuario(
@@ -97,6 +98,7 @@ class PopulateXProService {
 	def razas() {
 
 		log.info "Populando razas..."
+		println "[log] Popula razas"
 
 		def raza
 		def administrador = Usuario.findByUsername("administrador")
@@ -155,6 +157,7 @@ class PopulateXProService {
 	def categorias() {
 
 		log.info "Populando categorias..."
+		println "[log] Popula categorias"
 		
 		def administrador = Usuario.findByUsername("administrador")		
 
@@ -180,6 +183,7 @@ class PopulateXProService {
 	def plazos() {
 
 		log.info "Populando plazos..."
+		println "[log] Popula plazos"
 		
 		def administrador = Usuario.findByUsername("administrador")			
 				
@@ -211,6 +215,7 @@ class PopulateXProService {
 	def preguntas() {
 
 		log.info "Populando preguntas..."
+		println "[log] Popula preguntas"
 		
 		def administrador = Usuario.findByUsername("administrador")
 		
@@ -236,6 +241,7 @@ class PopulateXProService {
 	def lotes() {
 
 		log.info "Populando lotes..."
+		println "[log] Ingresa dos lotes"
 
 		def administrador = Usuario.findByUsername("administrador")
 		def r = new ImageReader()
@@ -272,6 +278,7 @@ class PopulateXProService {
 	def avisos() {
 
 		log.info "Populando avisos...";
+		println "[log] Ingresa dos avisos"
 		
 		def administrador = Usuario.findByUsername("administrador")
 		
@@ -305,6 +312,7 @@ class PopulateXProService {
 	def ofertas() {
 
 		log.info "Populando ofertas..."
+		println "[log] Ingresa dos ofertas cruzadas"
 
 		/* se ofertan cruzados y queda ahi, la sigue el test  */
 
@@ -408,24 +416,68 @@ class PopulateXProService {
 
 	/* countAll */
 	def countAll() {
+	
+		println "[log] Despliega cantidad de objetos por clase"
 
-		println "Raza: " + Raza.list().size()
-		println "Categoria: " + Categoria.list().size()
-		println "Plazo: " + Plazo.list().size()
-		println "Usuario: " + Usuario.list().size()
-		println "Lote: " + Lote.list().size()
-		println "Aviso: " + Aviso.list().size()
-		println "Oferta: " + Oferta.list().size()
-		println "Venta: " + Venta.list().size()
-		println "Resena: " + Resena.list().size()
-		println "Pregunta: " + Pregunta.list().size()
-		println "Respuesta: " + Respuesta.list().size()
+		println "	Aviso: " + Aviso.list().size()
+		println "	Categoria: " + Categoria.list().size()
+		println "	Lote: " + Lote.list().size()
+		println "	Oferta: " + Oferta.list().size()
+		println "	Plazo: " + Plazo.list().size()
+		println "	Pregunta: " + Pregunta.list().size()
+		println "	Raza: " + Raza.list().size()
+		println "	Resena: " + Resena.list().size()
+		println "	Respuesta: " + Respuesta.list().size()
+		println "	Usuario: " + Usuario.list().size()
+		println "	Venta: " + Venta.list().size()
+
+	}
+
+	def userToString = { println it.size() }
+	
+
+	/* countAllGrouped */
+	def countAllGrouped() {
+
+		// Group by city property of user object:
+		// println Aviso.findAll().groupBy({ item -> item.state }).collect{userToString(it)} 
+		println Aviso.findAll().groupBy({ item -> item.state }).dump()
+		// println Aviso.findAll().groupBy({ item -> item.state }).collect{userToString(it)} 
+		// println Lote.findAll().groupBy({ item -> item.state }).collect{userToString(it)}
+		// println Oferta.findAll().groupBy({ item -> item.state }).collect{userToString(it)}
+		// println Usuario.findAll().groupBy({ item -> item.state }).collect{userToString(it)}
+		
+		
+		
+		
+		// assert 2 == usersByCity["Tilburg"].size()
+		// assert ['mrhaki', 'liam'] == usersByCity["Tilburg"].collect(userToString)
+		// assert ['bob'] == usersByCity["New York"].collect(userToString)
+		// assert ['britt', 'kim'] == usersByCity["Amsterdam"].collect(userToString)
+		//  
+
+	
+		// println "[log] Despliega cantidad de objetos por clase"
+
+		// println "	Aviso: " + Aviso.list().size()
+		// println "	Categoria: " + Categoria.list().size()
+		// println "	Lote: " + Lote.list().size()
+		// println "	Oferta: " + Oferta.list().size()
+		// println "	Plazo: " + Plazo.list().size()
+		// println "	Pregunta: " + Pregunta.list().size()
+		// println "	Raza: " + Raza.list().size()
+		// println "	Resena: " + Resena.list().size()
+		// println "	Respuesta: " + Respuesta.list().size()
+		// println "	Usuario: " + Usuario.list().size()
+		// println "	Venta: " + Venta.list().size()
 
 	}
 
 
 	/* clearAll */
 	def clearAll() {
+	
+		println "[log] Borra toda la informacion del sistema"
 	
 		Resena.executeUpdate('delete from Respuesta')
 		Resena.executeUpdate('delete from Resena')

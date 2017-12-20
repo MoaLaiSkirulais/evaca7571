@@ -3,7 +3,7 @@ package evaca
 import grails.transaction.Transactional
  
 @Transactional
-class TestGenericService {
+class ScriptService {
 	
 	def mySessionService
 	def PopulateXProService
@@ -33,10 +33,11 @@ class TestGenericService {
 		def productor2 = Usuario.findByUsername("productor2")
 
 		/* aceptaciones de ofertas */
-		def lote = Lote.findByPropietario(productor1)
-		def oferta = lote.aviso.ofertas[0]
+		println "[log] Acepta la oferta el productor1"
+		def productor2 = Usuario.findByUsername("productor2")
+		oferta = aviso.ofertas.find{oferta -> oferta.propietario == productor2}
 		oferta.aceptar(productor1)
-		
+
 		/* resenas */
 		populateXProService.resenas()
 		def resena = new Resena()
