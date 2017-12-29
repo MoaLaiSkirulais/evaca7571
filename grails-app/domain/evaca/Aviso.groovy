@@ -50,7 +50,10 @@ class Aviso {
     }
 	
 	
-	/* Aviso() */
+	// -------
+	// Aviso()
+	// -------
+	
 	public Aviso() {
 		this.fechaCreacion = new Date();
 		this.state = AvisoState.BORRADOR;		
@@ -61,7 +64,10 @@ class Aviso {
 	 * aviso
 	 */
 
-	/* aprobar */
+	// -------
+	// aprobar
+	// -------
+	
 	public aprobar(Usuario ejecutor){
 		
 		/* está aprobado? */
@@ -88,7 +94,10 @@ class Aviso {
 	}
 
 
-	/* cancelar */
+	// --------
+	// cancelar
+	// --------
+	
 	public cancelar(Usuario ejecutor){
 		
 		/* dueño? */
@@ -100,7 +109,10 @@ class Aviso {
 	}
 
 
-	/* postular */
+	// --------
+	// postular
+	// --------
+	
 	public postular(Usuario ejecutor){
 		
 		// if (this.propietario != ejecutor){
@@ -142,8 +154,11 @@ class Aviso {
 	 * ofertas 
 	 */
 	 
-	/* postularOferta */
-	// public postularOferta(Oferta oferta, Usuario ofertante){
+	
+	// --------------
+	// postularOferta
+	// --------------
+
 	public postularOferta(Oferta oferta){
 
 		/* solo estado aprobado puede agregar ofertas */
@@ -169,12 +184,16 @@ class Aviso {
 		/* agregar a aviso */
 		oferta.aviso = this
 		this.addToOfertas(oferta)
+		// this.propietario.addToOfertas(oferta)
 		return
 
 	}
 
 
-	/* desaprobarOferta */
+	// ----------------
+	// desaprobarOferta
+	// ----------------
+	
 	public desaprobarOferta(Oferta oferta, Usuario ejecutor){
 	
 		/* solo estado aprobado */
@@ -190,7 +209,10 @@ class Aviso {
 	}
 
 
-	/* aprobarOferta */
+	// -------------
+	// aprobarOferta
+	// -------------
+
 	public aprobarOferta(Oferta oferta, Usuario ejecutor){
 
 		/* solo estado aprobado, sino puede ser que ya está vendido */
@@ -209,7 +231,10 @@ class Aviso {
 	}
 
 
-	/* aceptarOferta */
+	// -------------
+	// aceptarOferta
+	// -------------
+
 	public aceptarOferta(Oferta oferta, Usuario ejecutor){
 	
 		/* solo estado aprobado */
@@ -238,9 +263,11 @@ class Aviso {
 	 * resenas 
 	 */
 	 
-	/* postularResena */
+	// --------------
+	// postularResena
+	// --------------
+
 	/* al final creoque todo esto podría pasar a la class Resena! */	
-	// public postularResena(Resena resena, Usuario postulante){
 	public postularResena(Resena resena){
 
 		/* solo estado aprobado puede agregar ofertas */
@@ -276,7 +303,10 @@ class Aviso {
 	}
 
 
-	/* aprobarResena */
+	// -------------
+	// aprobarResena
+	// -------------
+	
 	/* se va de aca superseguro! */
 	public aprobarResena(Resena resena, Usuario ejecutor){
 

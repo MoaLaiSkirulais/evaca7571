@@ -308,7 +308,10 @@ class PopulateXProService {
 	}
 
 
-	/* ofertas */
+	// -------
+	// ofertas
+	// -------
+	
 	def ofertas() {
 
 		log.info "Populando ofertas..."

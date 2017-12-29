@@ -9,7 +9,10 @@ class ScriptService {
 	def PopulateXProService
 	
 	
-	/* resenaSetup */
+	// -----------
+	// resenaSetup
+	// -----------
+	
 	def resenaSetup() {
 	
 		/* reset all */
@@ -34,8 +37,7 @@ class ScriptService {
 
 		/* aceptaciones de ofertas */
 		println "[log] Acepta la oferta el productor1"
-		def productor2 = Usuario.findByUsername("productor2")
-		oferta = aviso.ofertas.find{oferta -> oferta.propietario == productor2}
+		def oferta = productor1.ofertas.find{oferta -> oferta.propietario == productor2}
 		oferta.aceptar(productor1)
 
 		/* resenas */
@@ -53,7 +55,11 @@ class ScriptService {
 		populateXProService.countAll()
 	}
 	
-	/* demoSetup */
+	
+	// ---------
+	// demoSetup
+	// ---------
+	
 	def demoSetup() {
 	
 		/* reset all */
