@@ -37,7 +37,8 @@ class ScriptService {
 
 		/* aceptaciones de ofertas */
 		println "[log] Acepta la oferta el productor1"
-		def oferta = productor1.ofertas.find{oferta -> oferta.propietario == productor2}
+		def oferta = productor1.lotes.first().aviso.ofertas.first()
+		// def oferta = productor1.ofertas.find{oferta -> oferta.propietario == productor2}
 		oferta.aceptar(productor1)
 
 		/* resenas */

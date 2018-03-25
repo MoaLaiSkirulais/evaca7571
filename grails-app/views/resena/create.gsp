@@ -9,7 +9,7 @@
 			<table class="table table-condensed" cellspacing="0">
 				<tbody>
 
-					<myform:field name="aviso.id" label="aviso.id" value="${resena.aviso.id?.id}" style="display:none1s"/>
+					<myform:field name="aviso.id" label="aviso.id" value="${resena.aviso?.id?.id}" style="display:none1s"/>
 				
 					<myform:display label="#id" value="${resena.id}"/>
 					<myform:display name="state" label="State" value="${resena.state}"/>

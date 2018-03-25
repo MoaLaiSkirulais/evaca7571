@@ -65,10 +65,6 @@ class LoteController
 	
 		def lotes = Lote.createCriteria().list(){
 		
-		// render "hijodeputa"; 
-		// render mySessionService.usuario.id; 
-		// return;
-		
 		if (mySessionService.usuario.id) {
 				propietario{eq("id", mySessionService.usuario.id)}
 			}
@@ -145,9 +141,6 @@ class LoteController
 	/* postular_aviso */
 	def postular_aviso(Aviso aviso) {
 	
-		// render "conchudo"
-		// return  
-		
 		if (!aviso){
 			render "No se encontro el aviso"; 		
 		}
@@ -156,7 +149,8 @@ class LoteController
   
 		try {		
 
-			lote.postularAviso(aviso)
+			// lote.postularAviso(aviso)
+			aviso.postular()
 			aviso.save(flush:true, failOnError: false)
 
 			flash.message = "Cambios aplicados con exito"

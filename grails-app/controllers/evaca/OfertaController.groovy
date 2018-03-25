@@ -30,7 +30,14 @@ class OfertaController extends BaseController implements OfertaExceptionHandler{
 		def ofertas = Oferta.createCriteria().list(){
 		
 			if (mySessionService.usuario.id) {
-				aviso{propietario{eq("id", mySessionService.usuario.id)}}
+				
+				if (params.tbOferta == "received"){
+					aviso{propietario{eq("id", mySessionService.usuario.id)}}
+				} 
+				
+				if (params.tbOferta == "given"){
+					propietario{eq("id", mySessionService.usuario.id)}
+				}
 			}
 		}
 

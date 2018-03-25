@@ -274,7 +274,10 @@ class PopulateXProService {
 	}
 
 
-	/* avisos */
+	// ------
+	// avisos
+	// ------
+	
 	def avisos() {
 
 		log.info "Populando avisos...";

@@ -3,12 +3,12 @@
     <content tag="left1">
 
 		<!-- <evaca:cruderror modelo="${lote}"/> -->
-		<h3 class="widget-title">Aviso</h3>
+		<h3 class="widget-title">Lote</h3>
 
 		<table class="table table-condensed" cellspacing="0">
 			<tbody>
 
-				<myform:separator label="Lote"/>
+				<!-- <myform:separator label="Lote"/> -->
 				<myform:show label="#id" value="${lote.id}"/>
 				<myform:show label="State" value="${aviso.entityState([state: lote.state])}"/>
 				<myform:show label="Propietario" value="${lote.propietario}"/>
@@ -16,7 +16,7 @@
 				<myform:show label="Categoria" value="${lote.categoria}"/>
 				<myform:show label="Raza" value="${lote.raza}"/>
 				
-				<myform:separator label="Detalles"/>
+				<myform:separator label=""/>
 				<myform:show label="Edad" value="${lote.edad}"/>
 				<myform:show label="Ubicacion" value="${lote.ubicacion}"/>
 				<myform:show label="Cantidad" value="${lote.cantidad}"/>

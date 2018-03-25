@@ -1,4 +1,4 @@
-export SERVER_IP=172.22.97.51:8080
+export SERVER_IP=172.22.107.5:3000
 export AVISO_ID=1
 export RESENA_ID=2
 

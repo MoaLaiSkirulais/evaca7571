@@ -3,4 +3,4 @@
 # http://172.22.97.51:3000/api/users/login | jq .
 
 # curl -v http://172.22.97.51:8080/aviso/index
-curl -v http://172.22.97.51:8080/aviso/edit/1
+curl -v http://172.22.107.5:3000/aviso/edit/1
