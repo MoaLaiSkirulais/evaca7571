@@ -297,13 +297,10 @@ extends BaseController
 	
 	
 	
-	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
-	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
-	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
-	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
-	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
-	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
-	/* hijo de putuuuuuuuuuuuuuuuuuuuuuuuuuuu */
+	/* esto lo traigo solo por un bug que no toma los cambios */
+	/* esto lo traigo solo por un bug que no toma los cambios */
+	/* esto lo traigo solo por un bug que no toma los cambios */
+	/* esto lo traigo solo por un bug que no toma los cambios */
 	
 	/* get_image */ 
 	def get_image(Usuario usuario) { 
@@ -314,7 +311,6 @@ extends BaseController
         }
 		
 		if (usuario.image == null) {
-			println "pijaaaaaaaaaaaaaaaaaaaaassssssssssssssssssssss"
 			final Resource image = grailsResourceLocator.findResourceForURI('/sham/img/users/anon.png')
 			render (file: image.inputStream, contentType: '')
             return

@@ -88,7 +88,7 @@ class ScriptService {
 		
 		/*
 		import evaca.*
-		def srv = ctx.getBean('testGenericService')
+		def srv = ctx.getBean('scriptService')
 		srv.demoSetup()
 		*/
 
