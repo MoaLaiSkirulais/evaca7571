@@ -2,15 +2,7 @@ package evaca
 
 trait Helper {
 	
-	
-	/* pija */ 
-	def pija() {	
-	
-		render "pija"
-		return
 
-    }
-	
 	/* getUsuario */ 
 	Usuario getUsuario(usuarioId) {	
 	

@@ -128,7 +128,7 @@ class AdminController
 	
 	/* search_resenas */
 	def search_resenas() {
-		// pija();
+
 		render(
 			view: 'search_resenas', 
 			model: [
@@ -288,36 +288,14 @@ class AdminController
 	
 	// def changeState = { 
 		
-		// render "superpija"
 		// return
 		
 	// }   
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
-	/* pijas infinitas */
 	
+	
+	/* ---------------------------------------------------------------------- */
+	/* esto deberia estar en usuario pero no refresca bien grails los cambios */
+	/* ---------------------------------------------------------------------- */	
 	
 	/* getUsuario */ 
 	Usuario getUsuario(usuarioId) {	

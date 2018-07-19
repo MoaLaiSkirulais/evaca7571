@@ -5,7 +5,7 @@ class ControlTagLib {
 	static namespace = "usuario"
  
 	def state2 = {attrs ->		
-		out << "pija"
+		out << "test"
 	}
  
 	def state = {attrs ->	

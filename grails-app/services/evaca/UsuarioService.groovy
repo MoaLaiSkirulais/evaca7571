@@ -49,7 +49,6 @@ class UsuarioService {
 	/* saveAvatar */
 	def saveAvatar(SaveAvatarCommand cmd) {	
 	
-		println "caca"
 		println cmd.usuarioId
 	
 		def usuario = new Usuario().get(cmd.usuarioId)
